@@ -7,12 +7,30 @@
       background-image: url('menu_bg.png');
     "
   >
-    <!-- <div class="col-2" style="height: 590px">
-      <MenuItemsPr v-if="Pr" @ChildData="getDataPr($event)" />
-      <MenuItemsEq v-if="Eq" @ChildData="getDataEq($event)" />
-    </div> -->
-    <div class="col-12" style="text-align: center; height: 900px">
+    <div class="col-12" style="text-align: center; height: 1200px">
       <TopBaner @ChildData="getDataTop($event)" />
+      <div class="bg-primary" style="width: 100%; height: 30%">
+        <div class="row" style="width: 100%; height: 100%">
+          <div class="col-3 bg-danger" style="height: 100%"></div>
+          <div class="col-9 bg-success" style="height: 100%"></div>
+        </div>
+      </div>
+      <div class="bg-primary" style="width: 100%; height: 20%">
+        <div class="row" style="width: 100%; height: 100%">
+          <div class="col bg-warning" style="height: 100%"></div>
+          <div class="col bg-dark" style="height: 100%"></div>
+        </div>
+      </div>
+      <div class="bg-primary" style="width: 100%; height: 25%">
+        <div class="row" style="width: 100%; height: 100%">
+          <div class="col bg-success" style="height: 100%"></div>
+        </div>
+      </div>
+      <div class="bg-primary" style="width: 100%; height: 10%">
+        <div class="row" style="width: 100%; height: 100%">
+          <div class="col bg-danger" style="height: 100%"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@
       background-image: url('top_banner_bg.jpg');
       margin: auto;
       width: 100%;
-      height: 13%;
+      height: 10%;
       /* margin-right: -10px;
       margin-top: 6px; */
     "
@@ -68,7 +68,7 @@
         </a>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            1کارکنان
+            کارکنان
           </p>
         </div>
       </div>
