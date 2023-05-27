@@ -73,18 +73,7 @@
         </div>
       </div>
 
-      <div class="col-9" style="height: 200px">
-        <!-- <img
-          src="../../public/mapna.gif"
-          style="
-            height: 35%;
-            width: 35%;
-            border-radius: 60px;
-            margin-top: 20px;
-            margin-right: 140px;
-          "
-        /> -->
-      </div>
+      <div class="col-9" style="height: 200px"></div>
     </div>
   </div>
 </template>
