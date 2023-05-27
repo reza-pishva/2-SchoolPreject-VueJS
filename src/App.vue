@@ -7,100 +7,26 @@
       background-image: url('menu_bg.png');
     "
   >
-    <div class="col-2" style="height: 590px">
+    <!-- <div class="col-2" style="height: 590px">
       <MenuItemsPr v-if="Pr" @ChildData="getDataPr($event)" />
       <MenuItemsEq v-if="Eq" @ChildData="getDataEq($event)" />
-    </div>
-    <div class="col-10" style="height: 590px">
+    </div> -->
+    <div class="col-12" style="text-align: center; height: 900px">
       <TopBaner @ChildData="getDataTop($event)" />
-      <div class="row">
-        <div class="col-10">
-          <div class="row" style="height: 390px">
-            <router-view> </router-view>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="row" style="height: 23%; margin-top: -9px">
-            <div
-              style="
-                width: 80%;
-                height: 83%;
-                border-radius: 10px;
-                background-image: url('title_bg.jpg');
-                margin: auto;
-                margin-right: 8px;
-                margin-bottom: 2px;
-                text-align: center;
-                padding-top: 15px;
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                عنوان گزارش:
-              </p>
-              <p
-                v-if="report_title[2] < 7"
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -15px;
-                "
-              >
-                {{ report_title[0] }}
-              </p>
-            </div>
-          </div>
-          <div class="row" style="height: 47%">
-            <div
-              style="
-                width: 80%;
-                height: 94%;
-                border-radius: 10px;
-                background-image: url('title_text.jpg');
-                margin: auto;
-                margin-right: 8px;
-                margin-top: 2px;
-              "
-            >
-              <Transition name="slide-fade">
-                <p
-                  v-if="report_title[2] < 7"
-                  style="
-                    margin-top: 15px;
-                    font-size: smaller;
-                    font-family: Vazir;
-                    color: aliceblue;
-                    text-align: center;
-                  "
-                >
-                  {{ report_title[1] }}
-                </p>
-              </Transition>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import MenuItemsEq from "./components/MenuItemsEq.vue";
-import MenuItemsPr from "./components/MenuItemsPr.vue";
+// import MenuItemsEq from "./components/MenuItemsEq.vue";
+// import MenuItemsPr from "./components/MenuItemsPr.vue";
 import TopBaner from "./components/TopBaner.vue";
 
 export default {
   name: "App",
   components: {
-    MenuItemsEq,
-    MenuItemsPr,
+    // MenuItemsEq,
+    // MenuItemsPr,
     TopBaner,
   },
   data() {

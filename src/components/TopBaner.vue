@@ -1,17 +1,18 @@
 <template>
   <div
     style="
-      border-radius: 5px;
+      border-radius: 1px;
       background-image: url('top_banner_bg.jpg');
       margin: auto;
-      width: 99%;
-      margin-right: -10px;
-      margin-top: 6px;
+      width: 100%;
+      height: 13%;
+      /* margin-right: -10px;
+      margin-top: 6px; */
     "
   >
     <div class="row">
       <div
-        class="col"
+        class="col-1"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
         <a
@@ -21,18 +22,18 @@
           style="text-decoration: none"
         >
           <img
-            src="../../public/1.jpg"
-            style="height: 75%; width: 90%; border-radius: 5px"
+            src="../../public/main.png"
+            style="height: 35%; width: 75%; border-radius: 5px"
           />
         </a>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            نرم افزار ورود و خروج افراد
+            صفحه اصلی
           </p>
         </div>
       </div>
       <div
-        class="col"
+        class="col-1"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
         <a
@@ -41,19 +42,39 @@
           href="#"
           style="text-decoration: none"
           ><img
-            src="../../public/3.jpg"
-            style="height: 75%; width: 90%; border-radius: 5px"
+            src="../../public/student.png"
+            style="height: 35%; width: 75%; border-radius: 5px"
           />
         </a>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            نرم افزار ورود و خروج کالا و تجهیزات
+            دانش آموز
           </p>
         </div>
       </div>
-      <div class="col" style="height: 200px"></div>
-      <div class="col" style="height: 200px">
-        <img
+      <div
+        class="col-1"
+        style="height: 200px; text-align: center; padding-top: 15px"
+      >
+        <a
+          @click="chooseMenu(2)"
+          :class="{ selectMenuItem: report2, kala: !report2 }"
+          href="#"
+          style="text-decoration: none"
+          ><img
+            src="../../public/admin.png"
+            style="height: 35%; width: 75%; border-radius: 5px"
+          />
+        </a>
+        <div style="padding-top: 10px">
+          <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
+            کارکنان
+          </p>
+        </div>
+      </div>
+
+      <div class="col-9" style="height: 200px">
+        <!-- <img
           src="../../public/mapna.gif"
           style="
             height: 35%;
@@ -62,7 +83,7 @@
             margin-top: 20px;
             margin-right: 140px;
           "
-        />
+        /> -->
       </div>
     </div>
   </div>
