@@ -6,8 +6,6 @@
       margin: auto;
       width: 100%;
       height: 10%;
-      /* margin-right: -10px;
-      margin-top: 6px; */
     "
   >
     <div class="row">

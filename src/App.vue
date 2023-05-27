@@ -9,10 +9,41 @@
   >
     <div class="col-12" style="text-align: center; height: 1200px">
       <TopBaner @ChildData="getDataTop($event)" />
+
       <div class="bg-primary" style="width: 100%; height: 30%">
         <div class="row" style="width: 100%; height: 100%">
           <div class="col-3 bg-danger" style="height: 100%"></div>
-          <div class="col-9 bg-success" style="height: 100%"></div>
+          <div class="col-9 bg-success" style="height: 100%">
+            <div id="demo" class="carousel slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+              </ul>
+
+              <!-- The slideshow -->
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="12.png" class="carousel_img" />
+                </div>
+                <div class="carousel-item">
+                  <img src="13.jpg" class="carousel_img" />
+                </div>
+                <div class="carousel-item">
+                  <img src="14.jpg" class="carousel_img" />
+                </div>
+              </div>
+
+              <!-- Left and right controls -->
+              <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="bg-primary" style="width: 100%; height: 20%">
