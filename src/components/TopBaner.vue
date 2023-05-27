@@ -68,7 +68,7 @@
         </a>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            کارکنان
+            1کارکنان
           </p>
         </div>
       </div>
