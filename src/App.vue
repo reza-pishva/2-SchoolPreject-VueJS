@@ -12,15 +12,113 @@
 
       <div class="bg-primary" style="width: 100%; height: 30%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col-3 bg-danger" style="height: 100%"></div>
+          <div class="col-3 bg-danger" style="height: 100%">
+            <div
+              style="
+                width: 100%;
+                height: 12%;
+                border-radius: 10px;
+                background-image: url('title_bg.jpg');
+                margin: auto;
+                margin-top: 35px;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                مجتمع آموزشی پارسیان
+              </p>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 15%;
+                border-radius: 10px;
+                background-image: url('title_text.jpg');
+                margin: auto;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                آدرس: شیراز کوی وحدت جنب پمپ بنزین شهید مرعشی نجفی
+              </p>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 12%;
+                border-radius: 10px;
+                background-image: url('title_text.jpg');
+                margin: auto;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                تلفن : 0716252147
+              </p>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 12%;
+                border-radius: 10px;
+                background-image: url('title_text.jpg');
+                margin: auto;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                آدرس ایمیل : rpishva@gmail.com
+              </p>
+            </div>
+          </div>
           <div class="col-9 bg-success" style="height: 100%">
             <div id="demo" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
-              <ul class="carousel-indicators">
+              <!-- <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
-              </ul>
+              </ul> -->
 
               <!-- The slideshow -->
               <div class="carousel-inner">
@@ -48,7 +146,71 @@
       </div>
       <div class="bg-primary" style="width: 100%; height: 20%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col bg-warning" style="height: 100%"></div>
+          <div class="col bg-warning" style="height: 100%">
+            <div
+              style="
+                width: 100%;
+                height: 18%;
+                border-radius: 10px;
+                background-image: url('title_bg.jpg');
+                margin: auto;
+                margin-top: 10px;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: right;
+                padding-top: 14px;
+                padding-right: 20px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                تاریخچه مجتمع پارسیان
+              </p>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 72%;
+                border-radius: 10px;
+                background-image: url('title_text.jpg');
+                margin: auto;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                  margin-right: 10px;
+                  text-align: right;
+                  text-indent: 3%;
+                "
+              >
+                این مجتمع در سال 1399 به همت جمعی از فرهنگیان بازنشسته آموزش و
+                پرورش تاسیس گردید و در ابتدا فقط در مقطع ابتدایی پذیرای فرزندان
+                عزیزان همشهری بود ولی در ادامه مقاطع راهنمایی و متوسطه نیز در
+                این مجتمع شروع بکار کردند.ین مجتمع در سال 1399 به همت جمعی از
+                فرهنگیان بازنشسته آموزش و پرورش تاسیس گردید و در ابتدا فقط در
+                مقطع ابتدایی پذیرای فرزندان عزیزان همشهری بود ولی در ادامه مقاطع
+                راهنمایی و متوسطه نیز در این مجتمع شروع بکار کردند.ین مجتمع در
+                سال 1399 به همت جمعی از فرهنگیان بازنشسته آموزش و پرورش تاسیس
+                گردید و در ابتدا فقط در مقطع ابتدایی پذیرای فرزندان عزیزان
+                همشهری بود ولی در ادامه مقاطع راهنمایی و متوسطه نیز در این مجتمع
+                شروع بکار کردند.
+              </p>
+            </div>
+          </div>
           <div class="col bg-dark" style="height: 100%"></div>
         </div>
       </div>
