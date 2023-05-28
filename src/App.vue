@@ -22,7 +22,7 @@
                 margin: auto;
                 margin-top: 35px;
                 margin-right: 45px;
-                margin-bottom: 2px;
+                margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
               "
@@ -43,12 +43,14 @@
                 width: 90%;
                 height: 12%;
                 border-radius: 10px;
-                background-image: url('title_text.jpg');
+                background-color: rgb(8, 36, 64);
                 margin: auto;
                 margin-right: 45px;
-                margin-bottom: 2px;
+                margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
               "
             >
               <p
@@ -59,7 +61,7 @@
                   margin-top: -5px;
                 "
               >
-                آدرس: شیراز کوی وحدت جنب پمپ بنزین شهید مرعشی نجفی
+                آدرس: شیراز، بلوار پرستار، کوی وحدت، نبش خیابان شهید بانشی
               </p>
             </div>
             <div
@@ -67,12 +69,14 @@
                 width: 90%;
                 height: 12%;
                 border-radius: 10px;
-                background-image: url('title_text.jpg');
+                background-color: rgb(8, 36, 64);
                 margin: auto;
                 margin-right: 45px;
-                margin-bottom: 2px;
+                margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
               "
             >
               <p
@@ -83,7 +87,7 @@
                   margin-top: -5px;
                 "
               >
-                تلفن : 0716252147
+                شماره تماس: 62 - 36530360 (071)
               </p>
             </div>
             <div
@@ -91,12 +95,14 @@
                 width: 90%;
                 height: 12%;
                 border-radius: 10px;
-                background-image: url('title_text.jpg');
+                background-color: rgb(8, 36, 64);
                 margin: auto;
                 margin-right: 45px;
-                margin-bottom: 2px;
+                margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
               "
             >
               <p
@@ -107,7 +113,59 @@
                   margin-top: -5px;
                 "
               >
-                آدرس ایمیل : rpishva@gmail.com
+                کد پستی: 7184884411
+              </p>
+            </div>
+            <div
+              style="
+                width: 90%;
+                height: 12%;
+                border-radius: 10px;
+                background-color: rgb(8, 36, 64);
+                margin: auto;
+                margin-right: 45px;
+                margin-bottom: 5px;
+                text-align: center;
+                padding-top: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                رایانامه مجتمع: info@idealparsi.ir
+              </p>
+            </div>
+            <div
+              style="
+                width: 90%;
+                height: 12%;
+                border-radius: 10px;
+                background-color: rgb(8, 36, 64);
+                margin: auto;
+                margin-right: 45px;
+                margin-bottom: 5px;
+                text-align: center;
+                padding-top: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                رایانامه دبیرستان: highsch@idealparsi.ir
               </p>
             </div>
           </div>

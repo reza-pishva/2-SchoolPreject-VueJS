@@ -118,5 +118,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 100;
+  opacity: 0.7;
+  filter: alpha(opacity=100);
 }
 </style>
