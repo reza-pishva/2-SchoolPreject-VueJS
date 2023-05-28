@@ -2,16 +2,18 @@
   <div
     class="sticky"
     style="
-      border-radius: 1px;
-      background-image: url('top_banner_bg.jpg');
+      border-radius: 5px;
+      background-image: url('report_bg.webp');
       margin: auto;
-      width: 100%;
+      width: 30%;
       height: 10%;
+      margin-right: 20px;
+      margin-top: ;
     "
   >
     <div class="row">
       <div
-        class="col-1"
+        class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
         <a
@@ -22,7 +24,7 @@
         >
           <img
             src="../../public/main.png"
-            style="height: 35%; width: 75%; border-radius: 5px"
+            style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
         <div style="padding-top: 10px">
@@ -32,7 +34,7 @@
         </div>
       </div>
       <div
-        class="col-1"
+        class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
         <a
@@ -42,7 +44,7 @@
           style="text-decoration: none"
           ><img
             src="../../public/student.png"
-            style="height: 35%; width: 75%; border-radius: 5px"
+            style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
         <div style="padding-top: 10px">
@@ -52,7 +54,7 @@
         </div>
       </div>
       <div
-        class="col-1"
+        class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
         <a
@@ -62,7 +64,7 @@
           style="text-decoration: none"
           ><img
             src="../../public/admin.png"
-            style="height: 35%; width: 75%; border-radius: 5px"
+            style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
         <div style="padding-top: 10px">
