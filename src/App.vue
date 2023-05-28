@@ -249,32 +249,223 @@
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
+                border: 1px solid rgb(14, 53, 126);
+                border-radius: 15px;
+                opacity: 0.7;
+                filter: alpha(opacity=100);
               "
             >
-              <div
-                style="
-                  width: 25%;
-                  height: 40%;
-                  border-radius: 10px;
-                  background-image: url('report_bg.jpg');
-                  margin: auto;
-                  margin-top: 35px;
-                  margin-right: 8px;
-                  margin-bottom: 2px;
-                  text-align: center;
-                  padding-top: 25px;
-                "
-              >
-                <p
-                  style="
-                    font-size: smaller;
-                    font-family: Vazir;
-                    color: aliceblue;
-                    margin-top: -5px;
-                  "
-                >
-                  برنامه کلاسی
-                </p>
+              <div class="row" style="width: 100%; height: 50%">
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      برنامه کلاسی
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      محتوای آموزشی
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      یادداشت معلم
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      تاریخ امنحانات
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="width: 100%; height: 50%">
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      یادداشت معاون
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      آمار
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      یادداشت مدیر
+                    </p>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div
+                    style="
+                      width: 100%;
+                      height: 80%;
+                      border-radius: 10px;
+                      background-color: lightslategray;
+                      margin: auto;
+                      margin-right: 8px;
+                      margin-bottom: 2px;
+                      text-align: center;
+                      padding-top: 25px;
+                    "
+                  >
+                    <p
+                      style="
+                        font-size: smaller;
+                        font-family: Vazir;
+                        color: aliceblue;
+                        margin-top: -5px;
+                      "
+                    >
+                      برنامه کلاسی
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
