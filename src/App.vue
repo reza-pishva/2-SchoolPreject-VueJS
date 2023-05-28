@@ -11,7 +11,7 @@
       <TopBaner @ChildData="getDataTop($event)" />
 
       <div style="width: 100%; height: 30%">
-        <div class="row" style="width: 100%; height: 100%">
+        <div class="row mt-2" style="width: 100%; height: 100%">
           <div class="col-4" style="height: 100%">
             <div
               style="
@@ -21,7 +21,7 @@
                 background-image: url('title_bg.jpg');
                 margin: auto;
                 margin-top: 35px;
-                margin-right: 35px;
+                margin-right: 45px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -41,11 +41,11 @@
             <div
               style="
                 width: 90%;
-                height: 15%;
+                height: 12%;
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 35px;
+                margin-right: 45px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -69,7 +69,7 @@
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 35px;
+                margin-right: 45px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -93,7 +93,7 @@
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 35px;
+                margin-right: 45px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
