@@ -1,12 +1,5 @@
 <template>
-  <div
-    class="row"
-    style="
-      direction: rtl;
-      margin-top: 10px;
-      /* background-image: url('menu_bg.png'); */
-    "
-  >
+  <div class="row" style="direction: rtl; margin-top: 10px">
     <div class="col-12" style="text-align: center; height: 1200px">
       <TopBaner @ChildData="getDataTop($event)" />
 
