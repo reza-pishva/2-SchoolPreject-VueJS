@@ -23,7 +23,7 @@
           style="text-decoration: none"
         >
           <img
-            src="../../public/main.png"
+            src="../../../public/main.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
@@ -43,7 +43,7 @@
           href="#"
           style="text-decoration: none"
           ><img
-            src="../../public/student.png"
+            src="../../../public/student.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
@@ -63,7 +63,7 @@
           href="#"
           style="text-decoration: none"
           ><img
-            src="../../public/admin.png"
+            src="../../../public/admin.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </a>
