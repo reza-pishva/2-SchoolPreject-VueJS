@@ -12,201 +12,8 @@
 
       <div style="width: 100%; height: 30%">
         <div class="row mt-2" style="width: 100%; height: 100%">
-          <div class="col-4" style="height: 100%">
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-image: url('title_bg.jpg');
-                margin: auto;
-                margin-top: 35px;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-              "
-            >
-              <p
-                style="
-                  font-size: 16px;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                مجتمع آموزشی دخترانه غیر دولتی ایده آل پارسی
-              </p>
-            </div>
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-color: rgb(8, 36, 64);
-                margin: auto;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-                opacity: 0.7;
-                filter: alpha(opacity=100);
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                آدرس: شیراز، بلوار پرستار، کوی وحدت، نبش خیابان شهید بانشی
-              </p>
-            </div>
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-color: rgb(8, 36, 64);
-                margin: auto;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-                opacity: 0.7;
-                filter: alpha(opacity=100);
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                شماره تماس: 62 - 36530360 (071)
-              </p>
-            </div>
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-color: rgb(8, 36, 64);
-                margin: auto;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-                opacity: 0.7;
-                filter: alpha(opacity=100);
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                کد پستی: 7184884411
-              </p>
-            </div>
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-color: rgb(8, 36, 64);
-                margin: auto;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-                opacity: 0.7;
-                filter: alpha(opacity=100);
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                رایانامه مجتمع: info@idealparsi.ir
-              </p>
-            </div>
-            <div
-              style="
-                width: 90%;
-                height: 12%;
-                border-radius: 10px;
-                background-color: rgb(8, 36, 64);
-                margin: auto;
-                margin-right: 25px;
-                margin-bottom: 5px;
-                text-align: center;
-                padding-top: 15px;
-                opacity: 0.7;
-                filter: alpha(opacity=100);
-              "
-            >
-              <p
-                style="
-                  font-size: smaller;
-                  font-family: Vazir;
-                  color: aliceblue;
-                  margin-top: -5px;
-                "
-              >
-                رایانامه دبیرستان: highsch@idealparsi.ir
-              </p>
-            </div>
-          </div>
-          <div
-            class="col-8 pt-4"
-            style="
-              height: 100%;
-              border-radius: 15px;
-              background-image: url('report_bg.webp');
-            "
-          >
-            <div id="demo" class="carousel slide" data-ride="carousel">
-              <!-- Indicators -->
-              <!-- <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-              </ul> -->
-
-              <!-- The slideshow -->
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="12.png" class="carousel_img" />
-                </div>
-                <div class="carousel-item">
-                  <img src="13.jpg" class="carousel_img" />
-                </div>
-                <div class="carousel-item">
-                  <img src="14.jpg" class="carousel_img" />
-                </div>
-              </div>
-
-              <!-- Left and right controls -->
-              <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-              </a>
-              <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-              </a>
-            </div>
-          </div>
+          <InfoComponent />
+          <CarouselComponent />
         </div>
       </div>
       <div style="width: 100%; height: 20%">
@@ -553,16 +360,16 @@
 </template>
 
 <script>
-// import MenuItemsEq from "./components/MenuItemsEq.vue";
-// import MenuItemsPr from "./components/MenuItemsPr.vue";
+import InfoComponent from "./components/FirstPageComponents/InfoComponent.vue";
+import CarouselComponent from "./components/FirstPageComponents/CarouselComponent.vue";
 import TopBaner from "./components/TopBaner.vue";
 
 export default {
   name: "App",
   components: {
-    // MenuItemsEq,
-    // MenuItemsPr,
+    InfoComponent,
     TopBaner,
+    CarouselComponent,
   },
   data() {
     return {
@@ -571,28 +378,7 @@ export default {
       Pr: true,
     };
   },
-  methods: {
-    getDataPr(event) {
-      this.report_title = event;
-      console.log(event);
-    },
-    getDataEq(event) {
-      this.report_title = event;
-      console.log(event);
-    },
-    getDataTop(event) {
-      if (event == 2) {
-        console.log(event);
-        this.Eq = true;
-        this.Pr = false;
-      }
-      if (event == 1) {
-        console.log(event);
-        this.Eq = false;
-        this.Pr = true;
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
