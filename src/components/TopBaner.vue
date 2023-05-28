@@ -1,5 +1,6 @@
 <template>
   <div
+    class="sticky"
     style="
       border-radius: 1px;
       background-image: url('top_banner_bg.jpg');
@@ -109,5 +110,11 @@ export default {
   outline-offset: 1px;
   cursor: pointer;
   border-radius: 5px;
+}
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 </style>
