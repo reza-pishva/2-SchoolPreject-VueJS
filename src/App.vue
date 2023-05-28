@@ -12,16 +12,16 @@
 
       <div style="width: 100%; height: 30%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col-3" style="height: 100%">
+          <div class="col-4" style="height: 100%">
             <div
               style="
-                width: 100%;
+                width: 90%;
                 height: 12%;
                 border-radius: 10px;
                 background-image: url('title_bg.jpg');
                 margin: auto;
                 margin-top: 35px;
-                margin-right: 8px;
+                margin-right: 35px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -40,12 +40,12 @@
             </div>
             <div
               style="
-                width: 100%;
+                width: 90%;
                 height: 15%;
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 8px;
+                margin-right: 35px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -64,12 +64,12 @@
             </div>
             <div
               style="
-                width: 100%;
+                width: 90%;
                 height: 12%;
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 8px;
+                margin-right: 35px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -88,12 +88,12 @@
             </div>
             <div
               style="
-                width: 100%;
+                width: 90%;
                 height: 12%;
                 border-radius: 10px;
                 background-image: url('title_text.jpg');
                 margin: auto;
-                margin-right: 8px;
+                margin-right: 35px;
                 margin-bottom: 2px;
                 text-align: center;
                 padding-top: 15px;
@@ -111,7 +111,7 @@
               </p>
             </div>
           </div>
-          <div class="col-9" style="height: 100%">
+          <div class="col-8" style="height: 100%">
             <div id="demo" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <!-- <ul class="carousel-indicators">
