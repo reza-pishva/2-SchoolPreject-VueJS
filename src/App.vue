@@ -29,13 +29,13 @@
             >
               <p
                 style="
-                  font-size: smaller;
+                  font-size: 16px;
                   font-family: Vazir;
                   color: aliceblue;
                   margin-top: -5px;
                 "
               >
-                مجتمع آموزشی پارسیان
+                مجتمع آموزشی دخترانه غیر دولتی ایده آل پارسی
               </p>
             </div>
             <div
