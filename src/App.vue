@@ -4,15 +4,15 @@
     style="
       direction: rtl;
       margin-top: 10px;
-      background-image: url('menu_bg.png');
+      /* background-image: url('menu_bg.png'); */
     "
   >
     <div class="col-12" style="text-align: center; height: 1200px">
       <TopBaner @ChildData="getDataTop($event)" />
 
-      <div class="bg-primary" style="width: 100%; height: 30%">
+      <div style="width: 100%; height: 30%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col-3 bg-danger" style="height: 100%">
+          <div class="col-3" style="height: 100%">
             <div
               style="
                 width: 100%;
@@ -111,7 +111,7 @@
               </p>
             </div>
           </div>
-          <div class="col-9 bg-success" style="height: 100%">
+          <div class="col-9" style="height: 100%">
             <div id="demo" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <!-- <ul class="carousel-indicators">
@@ -144,9 +144,9 @@
           </div>
         </div>
       </div>
-      <div class="bg-primary" style="width: 100%; height: 20%">
+      <div style="width: 100%; height: 20%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col bg-warning" style="height: 100%">
+          <div class="col" style="height: 100%">
             <div
               style="
                 width: 100%;
@@ -211,17 +211,83 @@
               </p>
             </div>
           </div>
-          <div class="col bg-dark" style="height: 100%"></div>
+          <div class="col" style="height: 100%">
+            <div
+              style="
+                width: 100%;
+                height: 18%;
+                border-radius: 10px;
+                background-image: url('title_bg.jpg');
+                margin: auto;
+                margin-top: 10px;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: right;
+                padding-top: 14px;
+                padding-right: 20px;
+              "
+            >
+              <p
+                style="
+                  font-size: smaller;
+                  font-family: Vazir;
+                  color: aliceblue;
+                  margin-top: -5px;
+                "
+              >
+                دسترسیها
+              </p>
+            </div>
+            <div
+              style="
+                width: 100%;
+                height: 72%;
+                border-radius: 10px;
+                background-image: url('title_text.jpg');
+                margin: auto;
+                margin-right: 8px;
+                margin-bottom: 2px;
+                text-align: center;
+                padding-top: 15px;
+              "
+            >
+              <div
+                style="
+                  width: 25%;
+                  height: 40%;
+                  border-radius: 10px;
+                  background-image: url('report_bg.jpg');
+                  margin: auto;
+                  margin-top: 35px;
+                  margin-right: 8px;
+                  margin-bottom: 2px;
+                  text-align: center;
+                  padding-top: 25px;
+                "
+              >
+                <p
+                  style="
+                    font-size: smaller;
+                    font-family: Vazir;
+                    color: aliceblue;
+                    margin-top: -5px;
+                  "
+                >
+                  برنامه کلاسی
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="bg-primary" style="width: 100%; height: 25%">
+      <div style="width: 100%; height: 25%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col bg-success" style="height: 100%"></div>
+          <div class="col" style="height: 100%"></div>
         </div>
       </div>
-      <div class="bg-primary" style="width: 100%; height: 10%">
+      <div style="width: 100%; height: 10%">
         <div class="row" style="width: 100%; height: 100%">
-          <div class="col bg-danger" style="height: 100%"></div>
+          <div class="col" style="height: 100%"></div>
         </div>
       </div>
     </div>
