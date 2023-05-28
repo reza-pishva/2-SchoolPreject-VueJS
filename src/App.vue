@@ -21,7 +21,7 @@
                 background-image: url('title_bg.jpg');
                 margin: auto;
                 margin-top: 35px;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -45,7 +45,7 @@
                 border-radius: 10px;
                 background-color: rgb(8, 36, 64);
                 margin: auto;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -71,7 +71,7 @@
                 border-radius: 10px;
                 background-color: rgb(8, 36, 64);
                 margin: auto;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -97,7 +97,7 @@
                 border-radius: 10px;
                 background-color: rgb(8, 36, 64);
                 margin: auto;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -123,7 +123,7 @@
                 border-radius: 10px;
                 background-color: rgb(8, 36, 64);
                 margin: auto;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -149,7 +149,7 @@
                 border-radius: 10px;
                 background-color: rgb(8, 36, 64);
                 margin: auto;
-                margin-right: 45px;
+                margin-right: 25px;
                 margin-bottom: 5px;
                 text-align: center;
                 padding-top: 15px;
@@ -169,7 +169,14 @@
               </p>
             </div>
           </div>
-          <div class="col-8" style="height: 100%">
+          <div
+            class="col-8 pt-4"
+            style="
+              height: 100%;
+              border-radius: 15px;
+              background-image: url('report_bg.webp');
+            "
+          >
             <div id="demo" class="carousel slide" data-ride="carousel">
               <!-- Indicators -->
               <!-- <ul class="carousel-indicators">
