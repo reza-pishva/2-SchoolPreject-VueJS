@@ -48,7 +48,7 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <router-link to="/admin">
+        <router-link to="/personels">
           <img
             src="../../../public/admin.png"
             style="height: 40%; width: 75%; border-radius: 5px"

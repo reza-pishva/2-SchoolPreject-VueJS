@@ -15,4 +15,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: "Vazir";
+  src: local("Vazir"), url(./fonts/Vazir.ttf) format("truetype");
+}
+</style>
