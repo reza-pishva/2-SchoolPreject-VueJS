@@ -16,17 +16,12 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <a
-          @click="chooseMenu(1)"
-          :class="{ selectMenuItem: report1, afrad: !report1 }"
-          href="#"
-          style="text-decoration: none"
-        >
+        <router-link to="/home">
           <img
             src="../../../public/main.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
-        </a>
+        </router-link>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
             صفحه اصلی
@@ -37,16 +32,12 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <a
-          @click="chooseMenu(2)"
-          :class="{ selectMenuItem: report2, kala: !report2 }"
-          href="#"
-          style="text-decoration: none"
-          ><img
+        <router-link to="/students">
+          <img
             src="../../../public/student.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
-        </a>
+        </router-link>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
             دانش آموز
@@ -57,16 +48,12 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <a
-          @click="chooseMenu(2)"
-          :class="{ selectMenuItem: report2, kala: !report2 }"
-          href="#"
-          style="text-decoration: none"
-          ><img
+        <router-link to="/admin">
+          <img
             src="../../../public/admin.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
-        </a>
+        </router-link>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
             کارکنان
@@ -81,26 +68,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-      report1: false,
-      report2: false,
-    };
-  },
-  methods: {
-    chooseMenu(x) {
-      if (x == 1) {
-        this.report1 = true;
-        this.report2 = false;
-      }
-      if (x == 2) {
-        this.report2 = true;
-        this.report1 = false;
-      }
-      this.$emit("ChildData", x);
-      console.log(this.report1, this.report2);
-    },
-  },
+  data() {},
+  methods: {},
 };
 </script>
 

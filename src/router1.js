@@ -1,6 +1,7 @@
 import {createRouter,createWebHistory} from 'vue-router'
-// import ReportTable01 from './components/ReportTable01.vue'
-// import ReportTable02 from './components/ReportTable02.vue'
+import StudentsComponent from './components/StudentsComponents/StudentsComponent.vue'
+import AdminComponent from './components/AdminComponents/AdminComponent.vue'
+import FirstPageComponent from './components/FirstPageComponent.vue'
 // import ReportTable03 from './components/ReportTable03.vue'
 // import ReportTable05 from './components/ReportTable05.vue'
 // import ReportTable06 from './components/ReportTable06.vue'
@@ -10,8 +11,9 @@ import {createRouter,createWebHistory} from 'vue-router'
 // import ReportEqTable06 from './components/ReportEqTable06.vue'
 
 const routes = [
-    // {path:'/report-table01',component:ReportTable01},
-    // {path:'/report-table02',component:ReportTable02},
+    {path:'/home',component:FirstPageComponent},
+    {path:'/students',component:StudentsComponent},
+    {path:'/admin',component:AdminComponent},
     // {path:'/report-table03',component:ReportTable03},
     // {path:'/report-table05',component:ReportTable05},
     // {path:'/report-table06',component:ReportTable06},

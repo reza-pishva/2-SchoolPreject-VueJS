@@ -1,49 +1,15 @@
 <template>
-  <div class="row" style="direction: rtl; margin-top: 10px">
-    <div class="col-12" style="text-align: center; height: 1200px">
-      <TopBaner @ChildData="getDataTop($event)" />
-
-      <div style="width: 100%; height: 30%">
-        <div class="row mt-2" style="width: 100%; height: 100%">
-          <InfoComponent />
-          <CarouselComponent />
-        </div>
-      </div>
-      <div style="width: 100%; height: 20%">
-        <div class="row" style="width: 100%; height: 100%">
-          <HistoryComponent />
-          <FacilityComponent />
-        </div>
-      </div>
-      <div style="width: 100%; height: 25%">
-        <div class="row" style="width: 100%; height: 100%">
-          <div class="col" style="height: 100%"></div>
-        </div>
-      </div>
-      <div style="width: 100%; height: 10%">
-        <div class="row" style="width: 100%; height: 100%">
-          <div class="col" style="height: 100%"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <HomeComponent />
+  <router-view> </router-view>
 </template>
 
 <script>
-import InfoComponent from "./components/FirstPageComponents/InfoComponent.vue";
-import CarouselComponent from "./components/FirstPageComponents/CarouselComponent.vue";
-import HistoryComponent from "./components/FirstPageComponents/HistoryComponent.vue";
-import FacilityComponent from "./components/FirstPageComponents/FacilityComponent.vue";
-import TopBaner from "./components/FirstPageComponents/TopBaner.vue";
+import HomeComponent from "./components/HomeComponent.vue";
 
 export default {
   name: "App",
   components: {
-    InfoComponent,
-    TopBaner,
-    CarouselComponent,
-    HistoryComponent,
-    FacilityComponent,
+    HomeComponent,
   },
   data() {
     return {
