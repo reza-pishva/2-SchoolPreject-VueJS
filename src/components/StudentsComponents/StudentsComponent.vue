@@ -165,7 +165,7 @@
                   margin-right: 8px;
                   margin-bottom: 2px;
                   text-align: center;
-                  padding-top: 25px;
+                  padding-top: 20px;
                 "
               >
                 <p
@@ -191,7 +191,7 @@
                   margin-right: 8px;
                   margin-bottom: 2px;
                   text-align: center;
-                  padding-top: 25px;
+                  padding-top: 20px;
                 "
               >
                 <p
@@ -217,7 +217,7 @@
                   margin-right: 8px;
                   margin-bottom: 2px;
                   text-align: center;
-                  padding-top: 25px;
+                  padding-top: 20px;
                 "
               >
                 <p
@@ -243,7 +243,7 @@
                   margin-right: 8px;
                   margin-bottom: 2px;
                   text-align: center;
-                  padding-top: 25px;
+                  padding-top: 20px;
                 "
               >
                 <p
