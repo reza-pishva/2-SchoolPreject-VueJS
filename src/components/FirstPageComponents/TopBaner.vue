@@ -64,6 +64,7 @@
       <div class="col-9" style="height: 200px"></div>
     </div>
   </div>
+  <router-view></router-view>
 </template>
 
 <script>

@@ -6,7 +6,7 @@
         <div
           style="
             width: 100%;
-            height: 18%;
+            height: 22%;
             border-radius: 10px;
             background-image: url('title_bg.jpg');
             margin: auto;
