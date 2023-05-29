@@ -34,12 +34,10 @@ import InfoComponent from "./FirstPageComponents/InfoComponent.vue";
 import CarouselComponent from "./FirstPageComponents/CarouselComponent.vue";
 import HistoryComponent from "./FirstPageComponents/HistoryComponent.vue";
 import FacilityComponent from "./FirstPageComponents/FacilityComponent.vue";
-//import TopBaner from "./FirstPageComponents/TopBaner.vue";
 
 export default {
   name: "App",
   components: {
-    //TopBaner,
     InfoComponent,
     CarouselComponent,
     HistoryComponent,

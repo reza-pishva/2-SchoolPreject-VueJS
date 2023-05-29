@@ -1,9 +1,9 @@
 <template>
-  <div class="row" style="direction: rtl; margin-top: 10px">
-    <div class="col-12" style="text-align: center; height: 1200px">
-      <TopBaner />
+  <!-- <div class="row" style="direction: rtl; margin-top: 10px">
+    <div class="col-12" style="text-align: center; height: 150px"> -->
+  <TopBaner />
 
-      <!-- <div style="width: 100%; height: 30%">
+  <!-- <div style="width: 100%; height: 30%">
         <div class="row mt-2" style="width: 100%; height: 100%">
           <InfoComponent />
           <CarouselComponent />
@@ -25,8 +25,8 @@
           <div class="col" style="height: 100%"></div>
         </div>
       </div> -->
-    </div>
-  </div>
+  <!-- </div>
+  </div> -->
 </template>
 
 <script>

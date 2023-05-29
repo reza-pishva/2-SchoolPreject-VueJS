@@ -6,7 +6,7 @@
       background-image: url('report_bg.webp');
       margin: auto;
       width: 30%;
-      height: 10%;
+      height: 135px;
       margin-right: 20px;
       margin-top: ;
     "
