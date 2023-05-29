@@ -1,5 +1,6 @@
 import {createRouter,createWebHistory} from 'vue-router'
-import StudentsComponent from './components/StudentsComponents/StudentsComponent.vue'
+import StudentComponent from './components/StudentsComponents/StudentComponent.vue'
+import PersonelComponent from './components/PersonelsComponents/PersonelComponent.vue'
 import AdminComponent from './components/AdminComponents/AdminComponent.vue'
 import FirstPageComponent from './components/FirstPageComponent.vue'
 // import ReportTable03 from './components/ReportTable03.vue'
@@ -12,7 +13,8 @@ import FirstPageComponent from './components/FirstPageComponent.vue'
 
 const routes = [
     {path:'/home',component:FirstPageComponent},
-    {path:'/students',component:StudentsComponent},
+    {path:'/students',component:StudentComponent},
+    {path:'/personels',component:PersonelComponent},
     {path:'/admin',component:AdminComponent},
     // {path:'/report-table03',component:ReportTable03},
     // {path:'/report-table05',component:ReportTable05},
