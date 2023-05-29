@@ -1,5 +1,5 @@
 <template>
-  <div class="row mt-5" style="margin-left: 180px">
+  <div class="row mt-2" style="margin-left: 180px">
     <div class="col-2" style="height: 100px"></div>
     <div class="col-6" style="text-align: center">
       <div style="height: 100%">
@@ -12,7 +12,6 @@
             margin: auto;
             margin-top: 10px;
             margin-right: 8px;
-            margin-bottom: 2px;
             text-align: right;
             padding-top: 14px;
             padding-right: 20px;
@@ -40,7 +39,7 @@
             margin-bottom: 2px;
             text-align: center;
             padding-top: 10px;
-            margin-top: 10px;
+            margin-top: -10px;
             border: 1px solid rgb(14, 53, 126);
             border-radius: 15px;
             opacity: 0.7;
@@ -50,6 +49,7 @@
           <div class="row" style="width: 100%; height: 50%; margin: auto">
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -76,6 +76,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -102,6 +103,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -128,6 +130,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -156,6 +159,7 @@
           <div class="row" style="width: 100%; height: 50%; margin: auto">
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -182,6 +186,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -208,6 +213,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -234,6 +240,7 @@
             </div>
             <div class="col-3">
               <div
+                class="reza3"
                 style="
                   width: 100%;
                   height: 80%;
@@ -273,4 +280,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+div.reza3:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  outline: 2px solid white;
+  outline-offset: 1px;
+  cursor: pointer;
+  color: hsla(58, 90%, 51%, 0.934);
+  font-weight: bold;
+}
+div.reza3 {
+  opacity: 0.7;
+  filter: alpha(opacity=100);
+  color: hsl(0, 0%, 97%);
+}
+</style>
