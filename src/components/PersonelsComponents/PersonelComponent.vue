@@ -48,31 +48,33 @@
         >
           <div class="row" style="width: 100%; height: 50%; margin: auto">
             <div class="col-3">
-              <div
-                class="reza3"
-                style="
-                  width: 100%;
-                  height: 80%;
-                  border-radius: 10px;
-                  background-color: rgb(8, 36, 64);
-                  margin: auto;
-                  margin-right: 8px;
-                  margin-bottom: 2px;
-                  text-align: center;
-                  padding-top: 20px;
-                "
-              >
-                <p
+              <router-link to="/users">
+                <div
+                  class="reza3"
                   style="
-                    font-size: smaller;
-                    font-family: Vazir;
-                    color: aliceblue;
-                    margin-top: -5px;
+                    width: 100%;
+                    height: 80%;
+                    border-radius: 10px;
+                    background-color: rgb(8, 36, 64);
+                    margin: auto;
+                    margin-right: 8px;
+                    margin-bottom: 2px;
+                    text-align: center;
+                    padding-top: 20px;
                   "
                 >
-                  تعریف کاربران
-                </p>
-              </div>
+                  <p
+                    style="
+                      font-size: smaller;
+                      font-family: Vazir;
+                      color: aliceblue;
+                      margin-top: -5px;
+                    "
+                  >
+                    تعریف کاربران
+                  </p>
+                </div>
+              </router-link>
             </div>
             <div class="col-3">
               <div

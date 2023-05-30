@@ -1,17 +1,17 @@
 <template>
-  <!-- <TopBaner /> -->
-  <UserComponent />
+  <TopBaner />
+  <!-- <UserComponent /> -->
 </template>
 
 <script>
-// import TopBaner from "./FirstPageComponents/TopBaner.vue";
-import UserComponent from "./UserComponents/UserComponent.vue";
+import TopBaner from "./FirstPageComponents/TopBaner.vue";
+//import UserComponent from "./UserComponents/UserGetComponent.vue";
 
 export default {
   name: "App",
   components: {
-    // TopBaner,
-    UserComponent,
+    TopBaner,
+    // UserComponent,
   },
   data() {},
   methods: {},
