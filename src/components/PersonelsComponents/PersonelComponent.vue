@@ -273,6 +273,7 @@
     </div>
     <div class="col-2" style="height: 100px"></div>
   </div>
+  <router-view></router-view>
 </template>
 
 <script>
