@@ -1,18 +1,22 @@
 <template>
-  <h1>Users</h1>
+  <h1 v-for="(user, index) in users" :key="index">{{ user.f_name }}</h1>
 </template>
 
 <script>
 import axios from "axios";
+import { ref } from "vue";
 
 export default {
   setup() {
+    const users = ref([]);
+
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users")
         .then(function (response) {
           // handle success
-          console.log(response.data);
+          users.value = response.data;
+          // console.log(response.data);
         })
         .catch(function (error) {
           // handle error
@@ -21,6 +25,7 @@ export default {
     }
 
     getUsers();
+    return { users };
   },
 };
 </script>
