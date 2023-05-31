@@ -4,6 +4,7 @@ import PersonelComponent from './components/PersonelsComponents/PersonelComponen
 import FirstPageComponent from './components/FirstPageComponent.vue'
 import UsersPageComponent from './components/UserComponents/UsersPageComponent.vue'
 import ProfilePageComponent from './components/UserComponents/ProfilePageComponent.vue'
+import GradePageComponent from './components/GradeComponents/GradePageComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -11,6 +12,7 @@ const routes = [
       path: '/personels', component: PersonelComponent, children: [
           { path: '/users', component: UsersPageComponent },
           { path: '/profiles', component: ProfilePageComponent },
+          { path: '/grades', component: GradePageComponent },
       ]
   },
   { path: '/students', component: StudentComponent },

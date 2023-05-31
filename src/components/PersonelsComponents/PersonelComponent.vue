@@ -74,7 +74,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/grades"
               ><p
                 style="
                   font-family: Vazir;
