@@ -1,14 +1,8 @@
 <template>
-  <div class="row mr-2" style="margin-top: 100px; height: 400px">
-    <div class="col-8" style="height: 300px; text-align: center">
+  <div class="row mr-2" style="margin-top: 20px; height: 800px">
+    <div class="col-8" style="height: 450px; text-align: center">
       <div
-        style="
-          width: 95%;
-          height: 100%;
-          background-color: rgb(146, 204, 233);
-          margin-left: 15px;
-          border-radius: 8px;
-        "
+        style="width: 95%; height: 100%; margin-left: 15px; border-radius: 8px"
       >
         <router-view></router-view>
       </div>
@@ -156,7 +150,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/profiles"
               ><p
                 style="
                   font-family: Vazir;

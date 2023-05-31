@@ -1,17 +1,17 @@
 <template>
   <!-- <UserGetComponent /> -->
-  <UserInsertFormComponent />
+  <ProfileInsertFormComponent />
 </template>
 
 <script>
 // import UserGetComponent from "./UserGetComponent.vue";
-import UserInsertFormComponent from "./UserInsertFormComponent.vue";
+import ProfileInsertFormComponent from "./ProfileInsertFormComponent.vue";
 
 export default {
   name: "App",
   components: {
     // UserGetComponent,
-    UserInsertFormComponent,
+    ProfileInsertFormComponent,
   },
   data() {},
   methods: {},
