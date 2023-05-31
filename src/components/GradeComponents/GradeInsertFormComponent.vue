@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 40%">
+  <div class="row" style="height: 20%">
     <div class="col">
       <div
         style="
@@ -21,72 +21,10 @@
                     <input
                       type="email"
                       class="form-control"
-                      placeholder="شغل پدر:"
+                      placeholder=" نام مقطع تحصیلی:"
                     />
                   </div>
                 </div>
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="شغل مادر:"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="شماره تلفن پدر:"
-                    />
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="شماره تلفن مادر:"
-                    />
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      type="password"
-                      class="form-control"
-                      placeholder="تاریخ تولد:"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="آدرس:"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="توضیحات:"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <button type="submit" class="btn btn-primary">ثبت</button>
@@ -96,13 +34,10 @@
             </div>
           </div>
         </form>
-        <div class="row">
-          <div class="col"></div>
-        </div>
       </div>
     </div>
   </div>
-  <div class="row" style="height: 60%">
+  <div class="row" style="height: 80%">
     <div class="col"></div>
   </div>
 </template>
