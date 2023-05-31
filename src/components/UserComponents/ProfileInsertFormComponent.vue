@@ -74,16 +74,30 @@
                     />
                   </div>
                 </div>
-
-                <div class="col"></div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group" style="font-size: x-small">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="توضیحات:"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-group" style="font-size: x-small">
+                    <button type="submit" class="btn btn-primary">ثبت</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </form>
         <div class="row">
-          <div class="col">
-            <button type="submit" class="btn btn-primary">ثبت</button>
-          </div>
+          <div class="col"></div>
         </div>
       </div>
     </div>
