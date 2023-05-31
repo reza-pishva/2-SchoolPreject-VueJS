@@ -1,7 +1,6 @@
 <template>
-  <div class="row mt-2" style="margin-left: 180px">
-    <div class="col-2" style="height: 100px"></div>
-    <div class="col-6" style="text-align: center">
+  <div class="row mr-4" style="margin-left: 180px; margin-top: 245px">
+    <div class="col-8" style="text-align: center">
       <div style="height: 100%">
         <div
           style="
@@ -29,10 +28,11 @@
             تنظیمات
           </p>
         </div>
+
         <div
           style="
             width: 100%;
-            height: 72%;
+            height: 80%;
             border-radius: 10px;
             background-color: darkcyan;
             margin: auto;
@@ -46,7 +46,11 @@
             filter: alpha(opacity=100);
           "
         >
-          <div class="row" style="width: 100%; height: 50%; margin: auto">
+          <div class="row">
+            <div class="col"></div>
+          </div>
+
+          <!-- <div class="row" style="width: 100%; height: 50%; margin: auto">
             <div class="col-3">
               <router-link to="/users">
                 <div
@@ -267,12 +271,15 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-    <div class="col-2" style="height: 100px"></div>
+    <div class="col-4" style="height: 100px">
+      <router-link to="/users">test</router-link>
+    </div>
   </div>
+
   <router-view></router-view>
 </template>
 

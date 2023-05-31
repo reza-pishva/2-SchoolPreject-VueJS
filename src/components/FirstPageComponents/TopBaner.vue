@@ -8,7 +8,6 @@
       width: 30%;
       height: 135px;
       margin-right: 20px;
-      margin-top: ;
     "
   >
     <div class="row">
