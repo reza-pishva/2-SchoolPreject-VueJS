@@ -4,16 +4,6 @@ import PersonelComponent from './components/PersonelsComponents/PersonelComponen
 import FirstPageComponent from './components/FirstPageComponent.vue'
 import UsersPageComponent from './components/UserComponents/UsersPageComponent.vue'
 
-
-// const routes = [
-//     {path:'/home',component:FirstPageComponent},
-//     {path:'/students',component:StudentComponent},
-//     {path:'/personels',component:PersonelComponent},
-//     {path:'/admin',component:AdminComponent},
-//     {path:'/users',component:UsersPageComponent},
-
-// ]
-
 const routes = [
   { path: '/home', component: FirstPageComponent },
   {

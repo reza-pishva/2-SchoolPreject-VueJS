@@ -1,6 +1,252 @@
 <template>
-  <router-link to="/users">test</router-link>
-  <router-view></router-view>
+  <div class="row mr-2" style="margin-top: 100px; height: 400px">
+    <div class="col-8" style="height: 300px; text-align: center">
+      <div
+        style="
+          width: 95%;
+          height: 100%;
+          background-color: rgb(146, 204, 233);
+          margin-left: 15px;
+          border-radius: 8px;
+        "
+      >
+        <router-view></router-view>
+      </div>
+    </div>
+    <div
+      class="col-4"
+      style="
+        height: 300px;
+        background-color: rgb(146, 204, 233);
+        border-radius: 8px;
+      "
+    >
+      <div class="row mt-3">
+        <div class="col">
+          <div
+            style="
+              width: 95%;
+              height: 40px;
+              margin: auto;
+              background-color: rgb(94, 22, 9);
+              border-radius: 5px;
+            "
+          >
+            <p
+              style="
+                font-family: Vazir;
+                font-size: small;
+                color: aliceblue;
+                padding-top: 9px;
+              "
+            >
+              تنظیمات
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                افزودن نام کاربری
+              </p></router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                مقاطع تحصیلی
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                نام دروس
+              </p></router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                کلاسها
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تکمیل مشخصات کاربران
+              </p></router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                انواع امتحانات
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                افزودن امتحان
+              </p></router-link
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                برنامه کلاسی
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
