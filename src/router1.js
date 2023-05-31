@@ -2,7 +2,7 @@ import {createRouter,createWebHistory} from 'vue-router'
 import StudentComponent from './components/StudentsComponents/StudentComponent.vue'
 import PersonelComponent from './components/PersonelsComponents/PersonelComponent.vue'
 // import AdminComponent from './components/AdminComponents/AdminComponent.vue'
-import FirstPageComponent from './components/FirstPageComponent.vue'
+import FirstPageComponent from './components/FirstPageComponent1.vue'
 import UsersPageComponent from './components/UserComponents/UsersPageComponent.vue'
 
 
