@@ -7,6 +7,8 @@ import ProfilePageComponent from './components/UserComponents/ProfilePageCompone
 import GradePageComponent from './components/GradeComponents/GradePageComponent.vue'
 import ClassRoomPageComponent from './components/ClassRoomComponents/ClassRoomPageComponent.vue'
 import LessonPageComponent  from './components/LessonComponents/LessonPageComponent.vue'
+import ExamTypePageComponent  from './components/ExamTypeComponents/ExamTypePageComponent.vue'
+import ExamPageComponent  from './components/ExamComponents/ExamPageComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -17,6 +19,8 @@ const routes = [
           { path: '/grades', component: GradePageComponent },
           { path: '/classes', component: ClassRoomPageComponent },
           { path: '/lessons', component: LessonPageComponent },
+          { path: '/exam-types', component: ExamTypePageComponent },
+          { path: '/exams', component: ExamPageComponent },
 
       ]
   },

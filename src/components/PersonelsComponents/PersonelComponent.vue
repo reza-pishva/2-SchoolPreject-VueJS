@@ -174,7 +174,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/exam-types"
               ><p
                 style="
                   font-family: Vazir;
@@ -200,7 +200,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/exams"
               ><p
                 style="
                   font-family: Vazir;
