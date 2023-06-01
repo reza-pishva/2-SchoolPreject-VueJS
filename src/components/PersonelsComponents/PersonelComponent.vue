@@ -124,7 +124,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/classes"
               ><p
                 style="
                   font-family: Vazir;
