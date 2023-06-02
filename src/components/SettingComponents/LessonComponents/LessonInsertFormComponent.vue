@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 20%">
+  <div class="row" style="height: 12%">
     <div class="col">
       <div
         style="
@@ -19,6 +19,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="نام درس:"
@@ -28,6 +29,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder=" نام مقطع تحصیلی:"
@@ -36,7 +38,13 @@
                 </div>
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
-                    <button type="submit" class="btn btn-primary">ثبت</button>
+                    <button
+                      style="font-size: 12px"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      ثبت
+                    </button>
                   </div>
                 </div>
               </div>
@@ -46,7 +54,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 80%">
+  <div class="row" style="height: 88%">
     <div class="col"></div>
   </div>
 </template>

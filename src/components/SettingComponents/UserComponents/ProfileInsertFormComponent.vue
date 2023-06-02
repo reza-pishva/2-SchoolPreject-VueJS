@@ -19,6 +19,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="شغل پدر:"
@@ -28,6 +29,7 @@
                 <div class="col">
                   <div class="form-group">
                     <input
+                      style="font-size: 12px"
                       type="password"
                       class="form-control"
                       placeholder="شغل مادر:"
@@ -39,6 +41,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="شماره تلفن پدر:"
@@ -48,6 +51,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="شماره تلفن مادر:"
@@ -57,6 +61,7 @@
                 <div class="col">
                   <div class="form-group">
                     <input
+                      style="font-size: 12px"
                       type="password"
                       class="form-control"
                       placeholder="تاریخ تولد:"
@@ -68,17 +73,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
-                      type="text"
-                      class="form-control"
-                      placeholder="آدرس:"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="توضیحات:"
@@ -87,9 +82,25 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col">
+                <div class="col-7">
                   <div class="form-group" style="font-size: x-small">
-                    <button type="submit" class="btn btn-primary">ثبت</button>
+                    <input
+                      style="font-size: 12px"
+                      type="text"
+                      class="form-control"
+                      placeholder="آدرس"
+                    />
+                  </div>
+                </div>
+                <div class="col-5">
+                  <div class="form-group" style="font-size: x-small">
+                    <button
+                      style="font-size: 12px"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      ثبت
+                    </button>
                   </div>
                 </div>
               </div>

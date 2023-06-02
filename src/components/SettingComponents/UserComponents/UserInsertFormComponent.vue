@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 40%">
+  <div class="row" style="height: 32%">
     <div class="col">
       <div
         style="
@@ -19,6 +19,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="پست الکترونیکی"
@@ -28,6 +29,7 @@
                 <div class="col">
                   <div class="form-group">
                     <input
+                      style="font-size: 12px"
                       type="password"
                       class="form-control"
                       placeholder="کلمه عبور"
@@ -37,6 +39,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="نوع کاربر:"
@@ -48,6 +51,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="نام:"
@@ -57,6 +61,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="نام خانوادگی:"
@@ -66,6 +71,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="نام پدر:"
@@ -77,6 +83,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="کد ملی:"
@@ -86,6 +93,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="جنسیت:"
@@ -93,7 +101,13 @@
                   </div>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary">ثبت</button>
+                  <button
+                    style="font-size: 12px"
+                    type="submit"
+                    class="btn btn-primary"
+                  >
+                    ثبت
+                  </button>
                 </div>
               </div>
             </div>
@@ -105,7 +119,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 60%">
+  <div class="row" style="height: 78%">
     <div class="col"></div>
   </div>
 </template>
