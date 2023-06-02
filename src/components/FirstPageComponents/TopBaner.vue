@@ -15,15 +15,15 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <router-link to="/home">
+        <router-link to="/personels">
           <img
-            src="../../../public/main.png"
+            src="../../../public/admin.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </router-link>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            صفحه اصلی
+            کارکنان
           </p>
         </div>
       </div>
@@ -47,20 +47,18 @@
         class="col-4"
         style="height: 200px; text-align: center; padding-top: 15px"
       >
-        <router-link to="/personels">
+        <router-link to="/home">
           <img
-            src="../../../public/admin.png"
+            src="../../../public/main.png"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </router-link>
         <div style="padding-top: 10px">
           <p style="font-family: Vazir; font-size: 13px; color: aliceblue">
-            کارکنان
+            صفحه اصلی
           </p>
         </div>
       </div>
-
-      <!-- <div class="col-9" style="height: 200px"></div> -->
     </div>
   </div>
   <router-view></router-view>
