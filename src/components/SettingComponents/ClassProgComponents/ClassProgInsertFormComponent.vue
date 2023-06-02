@@ -19,6 +19,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="نام کلاس:"
@@ -28,6 +29,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="نام درس:"
@@ -37,6 +39,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="روز هفته:"
@@ -48,6 +51,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="ساعت شروع:"
@@ -57,6 +61,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      style="font-size: 12px"
                       type="email"
                       class="form-control"
                       placeholder="ساعت پایان:"
@@ -65,7 +70,13 @@
                 </div>
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
-                    <button type="submit" class="btn btn-primary">ثبت</button>
+                    <button
+                      style="font-size: 12px"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      ثبت
+                    </button>
                   </div>
                 </div>
               </div>
