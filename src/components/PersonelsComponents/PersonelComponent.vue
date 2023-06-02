@@ -224,7 +224,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/class-prog"
               ><p
                 style="
                   font-family: Vazir;
