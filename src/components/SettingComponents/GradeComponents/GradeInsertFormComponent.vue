@@ -97,8 +97,11 @@ export default {
 </script>
 
 <style>
-.swal2-title,
 .swal2-content {
+  font-size: 14px;
+  font-family: Vazir;
+}
+.swal2-title {
   font-size: 16px;
   font-family: Vazir;
 }

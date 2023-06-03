@@ -50,7 +50,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/users"
+            <router-link to="/profiles"
               ><p
                 style="
                   font-family: Vazir;
@@ -59,7 +59,7 @@
                   padding-top: 9px;
                 "
               >
-                افزودن نام کاربری
+                تکمیل مشخصات کاربران
               </p></router-link
             >
           </div>
@@ -74,7 +74,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/grades"
+            <router-link to="/users"
               ><p
                 style="
                   font-family: Vazir;
@@ -83,7 +83,7 @@
                   padding-top: 9px;
                 "
               >
-                مقاطع تحصیلی
+                افزودن نام کاربری
               </p></router-link
             >
           </div>
@@ -150,7 +150,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/profiles"
+            <router-link to="/grades"
               ><p
                 style="
                   font-family: Vazir;
@@ -159,11 +159,12 @@
                   padding-top: 9px;
                 "
               >
-                تکمیل مشخصات کاربران
+                مقاطع تحصیلی
               </p></router-link
             >
           </div>
         </div>
+
         <div class="col">
           <div
             style="
