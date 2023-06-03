@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
     "md.bootstrappersiandatetimepicker": "^4.1.1",
+    "sweetalert2": "^11.7.10",
     "vue": "^3.2.37",
     "vue-persian-datetime-picker": "^2.10.4",
     "vue-router": "^4.0.16",

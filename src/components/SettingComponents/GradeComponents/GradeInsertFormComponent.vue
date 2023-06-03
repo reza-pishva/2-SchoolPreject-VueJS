@@ -12,15 +12,19 @@
           padding-right: 5px;
         "
       >
-        <form style="direction: rtl; font-family: Vazir">
+        <form
+          @submit.prevent="validate"
+          style="direction: rtl; font-family: Vazir"
+        >
           <div class="row">
             <div class="col">
               <div class="row">
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      v-model.lazy.trim="form.grade_name"
                       style="font-size: 12px"
-                      type="email"
+                      type="text"
                       class="form-control"
                       placeholder=" نام مقطع تحصیلی:"
                     />
@@ -34,6 +38,11 @@
                       class="btn btn-primary"
                     >
                       ثبت
+                      <div
+                        v-if="loading"
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                      ></div>
                     </button>
                   </div>
                 </div>
@@ -50,10 +59,50 @@
 </template>
 
 <script>
+import { reactive, ref } from "vue";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 export default {
-  name: "App",
-  data() {},
-  methods: {},
+  setup() {
+    const form = reactive({
+      grade_name: "",
+      gradeNameErrorText: "",
+    });
+    const loading = ref(false);
+
+    function validate() {
+      if (form.grade_name === "") {
+        form.gradeNameErrorText = "نام مقطع تحصیلی باید وارد شود";
+      } else {
+        form.gradeNameErrorText = "";
+        loading.value = true;
+        createGrade();
+      }
+    }
+
+    function createGrade() {
+      axios
+        .post("http://127.0.0.1:8000/api/school/grade/store", {
+          grade_name: form.grade_name,
+        })
+        .then(function () {
+          loading.value = false;
+
+          Swal.fire({
+            title: "Thanks!",
+            text: "Post created successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+
+    return { form, validate, loading };
+  },
 };
 </script>
 
