@@ -1,17 +1,7 @@
 <template>
   <div class="row" style="height: 12%">
     <div class="col">
-      <div
-        style="
-          background-color: rgb(146, 204, 233);
-          margin-left: 30px;
-          height: 95%;
-          border-radius: 6px;
-          padding-top: 10px;
-          padding-left: 5px;
-          padding-right: 5px;
-        "
-      >
+      <div class="grade-window">
         <form
           @submit.prevent="validate"
           style="direction: rtl; font-family: Vazir"
@@ -28,19 +18,18 @@
                       class="form-control"
                       placeholder=" نام مقطع تحصیلی:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.gradeNameErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
-                    <button
-                      style="font-size: 12px"
-                      type="submit"
-                      class="btn btn-primary"
-                    >
+                    <button type="submit" class="btn btn-primary button-class">
                       ثبت
                       <div
                         v-if="loading"
-                        class="spinner-border spinner-border-sm"
+                        class="spinner-border spinner-grow-sm"
                         role="status"
                       ></div>
                     </button>
@@ -90,10 +79,11 @@ export default {
           loading.value = false;
 
           Swal.fire({
-            title: "Thanks!",
-            text: "Post created successfully",
+            title: "ذخیره شد",
+            text: "مقطع تحصیلی با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
+            position: "top",
           });
         })
         .catch(function (error) {
@@ -106,4 +96,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.swal2-title,
+.swal2-content {
+  font-size: 16px;
+  font-family: Vazir;
+}
+.validation-text {
+  font-size: 12px;
+  font-family: Vazir;
+  margin-top: 1px;
+}
+.button-class {
+  font-size: 12px;
+  width: 20%;
+  height: 35px;
+}
+.grade-window {
+  background-color: rgb(146, 204, 233);
+  margin-left: 30px;
+  height: 95%;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+</style>
