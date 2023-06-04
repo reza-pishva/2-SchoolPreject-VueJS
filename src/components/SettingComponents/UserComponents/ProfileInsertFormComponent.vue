@@ -19,7 +19,21 @@
           <div class="row">
             <div class="col">
               <div class="row">
-                <div class="col">
+                <div class="col-2">
+                  <div class="form-group" style="font-size: xx-small">
+                    <input
+                      v-model.lazy.trim="form.user_id"
+                      style="font-size: 12px"
+                      type="number"
+                      class="form-control"
+                      placeholder="کد کاربری:"
+                    />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.userIdErrorText }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-5">
                   <div class="form-group" style="font-size: xx-small">
                     <input
                       v-model.lazy.trim="form.father_job"
@@ -33,7 +47,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-5">
                   <div class="form-group">
                     <input
                       v-model.lazy.trim="form.mother_job"
@@ -109,7 +123,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-7">
+                <div class="col-6">
                   <div class="form-group" style="font-size: x-small">
                     <input
                       v-model.lazy.trim="form.address"
@@ -123,7 +137,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-5">
+                <div class="col-6">
                   <div class="form-group" style="font-size: x-small">
                     <button
                       style="font-size: 12px"
@@ -248,6 +262,7 @@ export default {
           birthday: form.birthday,
           address: form.address,
           user_id: form.user_id,
+          major: 0,
         })
         .then(function () {
           loading.value = false;
@@ -305,7 +320,7 @@ export default {
 }
 .button-class {
   font-size: 12px;
-  width: 30%;
+  width: 33%;
   height: 35px;
 }
 .user-window {
