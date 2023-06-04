@@ -149,44 +149,49 @@ export default {
 
     function validate() {
       if (form.father_job === "") {
-        form.fatherJobErrorText = "نام کاریر باید وارد گردد";
+        form.fatherJobErrorText = "شغل پدر باید وارد گردد";
       } else {
         form.fatherJobErrorText = "";
       }
       if (form.mother_job === "") {
-        form.motherJobErrorText = "نام خانوادگی کاربر باید وارد شود";
+        form.motherJobErrorText = "شغل مادر باید وارد شود";
       } else {
         form.motherJobErrorText = "";
       }
       if (form.father_phone_number === "") {
-        form.fa = "نام پدر باید وارد شود";
+        form.fa = "شماره همراه پدر باید وارد شود";
       } else {
-        form.fatherNameErrorText = "";
+        form.fatherPhoneNumberErrorText = "";
       }
-      if (form.email === "") {
-        form.emailErrorText = "آدرس پست الکترونیکی کاربر باید وارد شود";
+      if (form.mother_phone_number === "") {
+        form.motherPhoneNumberErrorText = "شماره همراه مادر باید وارد شود";
       } else {
-        form.emailErrorText = "";
+        form.motherPhoneNumberErrorText = "";
       }
-      if (form.role === "") {
-        form.roleErrorText = "نوع کاربر باید وارد شود";
+      if (form.address === "") {
+        form.addressErrorText = "آدرس کاربر باید وارد شود";
       } else {
-        form.roleErrorText = "";
+        form.addressErrorText = "";
       }
-      if (form.password === "") {
-        form.passwordErrorText = "کلمه عبور باید وارد شود";
+      if (form.consideration === "") {
+        form.considerationErrorText = "ملاحظات باید وارد شود";
       } else {
-        form.passwordErrorText = "";
+        form.considerationErrorText = "";
       }
-      if (form.national_code === "") {
-        form.nationalCodeErrorText = "کد ملی باید وارد شود";
+      if (form.birthday === "") {
+        form.birthdayErrorText = "تاریخ تولد کاربر باید وارد شود";
       } else {
-        form.nationalCodeErrorText = "";
+        form.birthdayErrorText = "";
       }
-      if (form.gender === "") {
-        form.genderErrorText = "جنسیت باید وارد شود";
+      if (form.major === "") {
+        form.majorErrorText = "رشته تحصیلی کاربر وارد شود";
       } else {
         form.genderErrorText = "";
+      }
+      if (form.user_id === "") {
+        form.userIdErrorText = "کد کاربر باید وارد شود";
+      } else {
+        form.userIdErrorText = "";
       }
       if (
         form.f_name !== "" &&
