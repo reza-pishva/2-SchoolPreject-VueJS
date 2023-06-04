@@ -60,11 +60,102 @@
 </template>
 
 <script>
+import { reactive, ref } from "vue";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 export default {
-  name: "App",
-  data() {},
-  methods: {},
+  setup() {
+    const form = reactive({
+      lesson_name: "",
+      grade_id: "",
+      lessonNameErrorText: "",
+      gradeIdErrorText: "",
+    });
+    const loading = ref(false);
+
+    function validate() {
+      if (form.lesson_name === "") {
+        form.lessonNameErrorText = "نام کلاس باید وارد شود";
+      } else {
+        form.lessonNameErrorText = "";
+      }
+      if (form.grade_id === "") {
+        form.gradeIdErrorText = "نام سال تحصیلی باید وارد شود";
+      } else {
+        form.yearErrorText = "";
+      }
+      if (form.grade_id !== "" && form.lesson_name !== "") {
+        loading.value = true;
+        createLesson();
+      }
+    }
+
+    function createLesson() {
+      axios
+        .post("http://127.0.0.1:8000/api/school/lesson/store", {
+          grade_id: form.grade_id,
+          year: form.year,
+          name: form.name,
+        })
+        .then(function () {
+          loading.value = false;
+          form.name = "";
+          form.year = "";
+          form.grade_id = "";
+          Swal.fire({
+            title: "ذخیره شد",
+            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
+            icon: "success",
+            confirmButtonText: "Ok",
+            position: "top",
+          });
+        })
+        .catch(function (error) {
+          loading.value = false;
+
+          console.log(error);
+          Swal.fire({
+            title: "پیغام خطا",
+            text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
+            icon: "error",
+            confirmButtonText: "Ok",
+            position: "top",
+          });
+        });
+    }
+
+    return { form, validate, loading };
+  },
 };
 </script>
 
-<style></style>
+<style>
+.swal2-content {
+  font-size: 14px;
+  font-family: Vazir;
+}
+.swal2-title {
+  font-size: 16px;
+  font-family: Vazir;
+}
+.validation-text {
+  font-size: 12px;
+  font-family: Vazir;
+  margin-top: 1px;
+}
+.button-class {
+  font-size: 12px;
+  width: 35%;
+  height: 35px;
+}
+.grade-window {
+  background-color: rgb(146, 204, 233);
+  margin-left: 30px;
+  height: 95%;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+</style>

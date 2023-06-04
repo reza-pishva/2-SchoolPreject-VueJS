@@ -19,7 +19,7 @@
           <div class="row">
             <div class="col">
               <div class="row">
-                <div class="col">
+                <div class="col-3">
                   <div class="form-group" style="font-size: xx-small">
                     <input
                       v-model.lazy.trim="form.name"
@@ -33,7 +33,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-3">
                   <div class="form-group" style="font-size: xx-small">
                     <input
                       v-model.lazy.trim="form.grade_id"
@@ -47,7 +47,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-2">
                   <div class="form-group" style="font-size: xx-small">
                     <input
                       v-model.lazy.trim="form.year"
@@ -61,14 +61,19 @@
                     </div>
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-4">
                   <div class="form-group" style="font-size: x-small">
                     <button
                       style="font-size: 12px"
                       type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-primary button-class"
                     >
                       ثبت
+                      <div
+                        v-if="loading"
+                        class="spinner-border spinner-grow-sm"
+                        role="status"
+                      ></div>
                     </button>
                   </div>
                 </div>
@@ -179,7 +184,7 @@ export default {
 }
 .button-class {
   font-size: 12px;
-  width: 20%;
+  width: 35%;
   height: 35px;
 }
 .grade-window {
