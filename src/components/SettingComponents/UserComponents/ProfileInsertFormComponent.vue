@@ -194,43 +194,46 @@ export default {
         form.userIdErrorText = "";
       }
       if (
-        form.f_name !== "" &&
-        form.l_name !== "" &&
-        form.father_name !== "" &&
-        form.email !== "" &&
-        form.national_code !== "" &&
-        form.role !== "" &&
-        form.gender !== "" &&
-        form.password !== ""
+        form.father_job !== "" &&
+        form.father_phone_number !== "" &&
+        form.mother_job !== "" &&
+        form.mother_phone_number !== "" &&
+        form.address !== "" &&
+        form.consideration !== "" &&
+        form.major !== "" &&
+        form.user_id !== "" &&
+        form.birthday !== ""
       ) {
         loading.value = true;
-        createUser();
+        createProfile();
       }
     }
 
-    function createUser() {
+    function createProfile() {
       axios
-        .post("http://127.0.0.1:8000/api/school/user/store", {
-          f_name: form.f_name,
-          l_name: form.l_name,
-          father_name: form.father_name,
-          national_code: form.national_code,
-          email: form.email,
-          password: form.password,
-          gender: form.gender,
-          role: form.role,
+        .post("http://127.0.0.1:8000/api/school/profile/store", {
+          f_name: form.father_job,
+          l_name: form.father_phone_number,
+          father_name: form.mother_job,
+          national_code: form.mother_phone_number,
+          email: form.consideration,
+          password: form.birthday,
+          gender: form.major,
+          role: form.address,
+          role: form.user_id,
         })
         .then(function () {
           loading.value = false;
 
-          form.f_name = "";
-          form.l_name = "";
-          form.father_name = "";
-          form.national_code = "";
-          form.gender = "";
-          form.email = "";
-          form.password = "";
-          form.role = "";
+          form.father_job = "";
+          form.father_phone_number = "";
+          form.mother_job = "";
+          form.mother_phone_number = "";
+          form.major = "";
+          form.birthday = "";
+          form.address = "";
+          form.user_id = "";
+          form.consideration = "";
 
           Swal.fire({
             title: "ذخیره شد",
