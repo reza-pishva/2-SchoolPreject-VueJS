@@ -13,7 +13,7 @@
     <div class="row">
       <div
         class="col-4"
-        style="height: 200px; text-align: center; padding-top: 15px"
+        style="height: 230px; text-align: center; padding-top: 15px"
       >
         <router-link to="/personels">
           <img
@@ -29,7 +29,7 @@
       </div>
       <div
         class="col-4"
-        style="height: 200px; text-align: center; padding-top: 15px"
+        style="height: 230px; text-align: center; padding-top: 15px"
       >
         <router-link to="/students">
           <img
@@ -45,7 +45,7 @@
       </div>
       <div
         class="col-4"
-        style="height: 200px; text-align: center; padding-top: 15px"
+        style="height: 230px; text-align: center; padding-top: 15px"
       >
         <router-link to="/home">
           <img

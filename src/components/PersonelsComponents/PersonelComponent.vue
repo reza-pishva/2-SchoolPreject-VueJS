@@ -40,6 +40,7 @@
         </div>
       </div>
       <div class="row mt-4">
+        <!-- تکمیل مشخات کاربران -->
         <div class="col">
           <div
             style="
@@ -64,6 +65,7 @@
             >
           </div>
         </div>
+        <!-- افزودن نام کاربری -->
         <div class="col">
           <div
             style="
@@ -90,30 +92,7 @@
         </div>
       </div>
       <div class="row mt-1">
-        <div class="col">
-          <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
-          >
-            <router-link to="/lessons"
-              ><p
-                style="
-                  font-family: Vazir;
-                  font-size: small;
-                  color: aliceblue;
-                  padding-top: 9px;
-                "
-              >
-                نام دروس
-              </p></router-link
-            >
-          </div>
-        </div>
+        <!-- کلاسها -->
         <div class="col">
           <div
             style="
@@ -138,8 +117,8 @@
             >
           </div>
         </div>
-      </div>
-      <div class="row mt-1">
+
+        <!-- مقاطع تحصیلی -->
         <div class="col">
           <div
             style="
@@ -164,7 +143,9 @@
             >
           </div>
         </div>
-
+      </div>
+      <div class="row mt-1">
+        <!-- انواع امتحانات -->
         <div class="col">
           <div
             style="
@@ -189,8 +170,7 @@
             >
           </div>
         </div>
-      </div>
-      <div class="row mt-1">
+        <!-- نام دروس -->
         <div class="col">
           <div
             style="
@@ -201,7 +181,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/exams"
+            <router-link to="/lessons"
               ><p
                 style="
                   font-family: Vazir;
@@ -210,11 +190,14 @@
                   padding-top: 9px;
                 "
               >
-                افزودن امتحان
+                نام دروس
               </p></router-link
             >
           </div>
         </div>
+      </div>
+      <div class="row mt-1">
+        <!-- برنامه کلاسی -->
         <div class="col">
           <div
             style="
@@ -235,6 +218,31 @@
                 "
               >
                 برنامه کلاسی
+              </p></router-link
+            >
+          </div>
+        </div>
+        <!-- تعریف امتحان -->
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/exams"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تعریف امتحان
               </p></router-link
             >
           </div>
