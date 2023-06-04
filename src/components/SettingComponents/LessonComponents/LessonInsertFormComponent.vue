@@ -1,17 +1,7 @@
 <template>
   <div class="row" style="height: 12%">
     <div class="col">
-      <div
-        style="
-          background-color: rgb(146, 204, 233);
-          margin-left: 30px;
-          height: 95%;
-          border-radius: 6px;
-          padding-top: 10px;
-          padding-left: 5px;
-          padding-right: 5px;
-        "
-      >
+      <div class="lesson-window">
         <form style="direction: rtl; font-family: Vazir">
           <div class="row">
             <div class="col">
@@ -19,6 +9,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      v-model.lazy.trim="form.lesson_name"
                       style="font-size: 12px"
                       type="email"
                       class="form-control"
@@ -29,6 +20,7 @@
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      v-model.lazy.trim="form.grade_id"
                       style="font-size: 12px"
                       type="email"
                       class="form-control"
@@ -41,9 +33,14 @@
                     <button
                       style="font-size: 12px"
                       type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-primary button-class"
                     >
                       ثبت
+                      <div
+                        v-if="loading"
+                        class="spinner-border spinner-grow-sm"
+                        role="status"
+                      ></div>
                     </button>
                   </div>
                 </div>
@@ -76,14 +73,14 @@ export default {
 
     function validate() {
       if (form.lesson_name === "") {
-        form.lessonNameErrorText = "نام کلاس باید وارد شود";
+        form.lessonNameErrorText = "نام درس باید وارد شود";
       } else {
         form.lessonNameErrorText = "";
       }
       if (form.grade_id === "") {
-        form.gradeIdErrorText = "نام سال تحصیلی باید وارد شود";
+        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
       } else {
-        form.yearErrorText = "";
+        form.gradeIdErrorText = "";
       }
       if (form.grade_id !== "" && form.lesson_name !== "") {
         loading.value = true;
@@ -105,7 +102,7 @@ export default {
           form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام درس با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -149,7 +146,7 @@ export default {
   width: 35%;
   height: 35px;
 }
-.grade-window {
+.lesson-window {
   background-color: rgb(146, 204, 233);
   margin-left: 30px;
   height: 95%;
