@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 40%">
+  <div class="row" style="height: 50%">
     <div class="col">
       <div
         style="
@@ -12,28 +12,39 @@
           padding-right: 5px;
         "
       >
-        <form style="direction: rtl; font-family: Vazir">
+        <form
+          @submit.prevent="validate"
+          style="direction: rtl; font-family: Vazir"
+        >
           <div class="row">
             <div class="col">
               <div class="row">
                 <div class="col">
                   <div class="form-group" style="font-size: xx-small">
                     <input
+                      v-model.lazy.trim="form.father_job"
                       style="font-size: 12px"
-                      type="email"
+                      type="text"
                       class="form-control"
                       placeholder="شغل پدر:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.fatherJobErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <input
+                      v-model.lazy.trim="form.mother_job"
                       style="font-size: 12px"
-                      type="password"
+                      type="text"
                       class="form-control"
                       placeholder="شغل مادر:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.motherJobErrorText }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -41,31 +52,43 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      v-model.lazy.trim="form.father_phone_number"
                       style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="شماره تلفن پدر:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.fatherPhoneNumberErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      v-model.lazy.trim="form.mother_phone_number"
                       style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="شماره تلفن مادر:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.motherPhoneNumberErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
                   <div class="form-group">
                     <input
+                      v-model.lazy.trim="form.birthday"
                       style="font-size: 12px"
-                      type="password"
+                      type="text"
                       class="form-control"
                       placeholder="تاریخ تولد:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.birthdayErrorText }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -73,11 +96,15 @@
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      v-model.lazy.trim="form.consideration"
                       style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="توضیحات:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.considerationErrorText }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,11 +112,15 @@
                 <div class="col-7">
                   <div class="form-group" style="font-size: x-small">
                     <input
+                      v-model.lazy.trim="form.address"
                       style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="آدرس"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.addressErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col-5">
@@ -97,9 +128,14 @@
                     <button
                       style="font-size: 12px"
                       type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-primary button-class"
                     >
                       ثبت
+                      <div
+                        v-if="loading"
+                        class="spinner-border spinner-grow-sm"
+                        role="status"
+                      ></div>
                     </button>
                   </div>
                 </div>
@@ -113,7 +149,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 60%">
+  <div class="row" style="height: 50%">
     <div class="col"></div>
   </div>
 </template>
@@ -133,7 +169,6 @@ export default {
       address: "",
       consideration: "",
       birthday: "",
-      major: "",
       user_id: "",
       fatherJobErrorText: "",
       motherJobErrorText: "",
@@ -142,7 +177,6 @@ export default {
       addressErrorText: "",
       considerationErrorText: "",
       birthdayErrorText: "",
-      majorErrorText: "",
       userIdErrorText: "",
     });
     const loading = ref(false);
@@ -183,11 +217,6 @@ export default {
       } else {
         form.birthdayErrorText = "";
       }
-      if (form.major === "") {
-        form.majorErrorText = "رشته تحصیلی کاربر وارد شود";
-      } else {
-        form.genderErrorText = "";
-      }
       if (form.user_id === "") {
         form.userIdErrorText = "کد کاربر باید وارد شود";
       } else {
@@ -200,7 +229,6 @@ export default {
         form.mother_phone_number !== "" &&
         form.address !== "" &&
         form.consideration !== "" &&
-        form.major !== "" &&
         form.user_id !== "" &&
         form.birthday !== ""
       ) {
@@ -212,15 +240,14 @@ export default {
     function createProfile() {
       axios
         .post("http://127.0.0.1:8000/api/school/profile/store", {
-          f_name: form.father_job,
-          l_name: form.father_phone_number,
-          father_name: form.mother_job,
-          national_code: form.mother_phone_number,
-          email: form.consideration,
-          password: form.birthday,
-          gender: form.major,
-          role: form.address,
-          role: form.user_id,
+          father_job: form.father_job,
+          father_phone_number: form.father_phone_number,
+          mother_job: form.mother_job,
+          mother_phone_number: form.mother_phone_number,
+          consideration: form.consideration,
+          birthday: form.birthday,
+          address: form.address,
+          user_id: form.user_id,
         })
         .then(function () {
           loading.value = false;
@@ -237,7 +264,7 @@ export default {
 
           Swal.fire({
             title: "ذخیره شد",
-            text: "اطلاعات کاربری با موفقیت در پایگاه داده ثبت گردید",
+            text: "اطلاعات پروفایل با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
