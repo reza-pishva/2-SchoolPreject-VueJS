@@ -2,7 +2,10 @@
   <div class="row" style="height: 12%">
     <div class="col">
       <div class="exam-window">
-        <form style="direction: rtl; font-family: Vazir">
+        <form
+          @submit.prevent="validate"
+          style="direction: rtl; font-family: Vazir"
+        >
           <div class="row">
             <div class="col">
               <div class="row">
@@ -39,7 +42,7 @@
                     <input
                       v-model.lazy.trim="form.grade_id"
                       style="font-size: 12px"
-                      type="email"
+                      type="number"
                       class="form-control"
                       placeholder=" نام مقطع تحصیلی:"
                     />
@@ -53,9 +56,14 @@
                     <button
                       style="font-size: 12px"
                       type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-primary button-class"
                     >
                       ثبت
+                      <div
+                        v-if="loading"
+                        class="spinner-border spinner-grow-sm"
+                        role="status"
+                      ></div>
                     </button>
                   </div>
                 </div>
@@ -169,7 +177,7 @@ export default {
 }
 .button-class {
   font-size: 12px;
-  width: 35%;
+  width: 40%;
   height: 35px;
 }
 .exam-window {

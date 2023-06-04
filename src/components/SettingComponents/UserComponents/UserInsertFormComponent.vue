@@ -38,14 +38,24 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
+                  <div
+                    class="form-group"
+                    style="font-size: x-small; font-family: Vazir"
+                  >
+                    <select style="font-size: 12px" class="form-select">
+                      v-model.lazy.trim="form.role"
+                      <option selected>نوع کاربر:</option>
+                      <option value="1">دانش آموز</option>
+                      <option value="2">معلم</option>
+                      <option value="3">اداری</option>
+                    </select>
+                    <!-- <input
                       v-model.lazy.trim="form.role"
                       style="font-size: 12px"
                       type="text"
                       class="form-control"
                       placeholder="نوع کاربر:"
-                    />
+                    /> -->
                     <div class="form-text text-danger validation-text">
                       {{ form.roleErrorText }}
                     </div>
