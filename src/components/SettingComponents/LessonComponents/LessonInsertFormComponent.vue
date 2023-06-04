@@ -2,7 +2,10 @@
   <div class="row" style="height: 12%">
     <div class="col">
       <div class="lesson-window">
-        <form style="direction: rtl; font-family: Vazir">
+        <form
+          @submit.prevent="validate"
+          style="direction: rtl; font-family: Vazir"
+        >
           <div class="row">
             <div class="col">
               <div class="row">
@@ -11,10 +14,13 @@
                     <input
                       v-model.lazy.trim="form.lesson_name"
                       style="font-size: 12px"
-                      type="email"
+                      type="text"
                       class="form-control"
                       placeholder="نام درس:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.lessonNameErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
@@ -22,10 +28,13 @@
                     <input
                       v-model.lazy.trim="form.grade_id"
                       style="font-size: 12px"
-                      type="email"
+                      type="number"
                       class="form-control"
                       placeholder=" نام مقطع تحصیلی:"
                     />
+                    <div class="form-text text-danger validation-text">
+                      {{ form.gradeIdErrorText }}
+                    </div>
                   </div>
                 </div>
                 <div class="col">
@@ -92,13 +101,11 @@ export default {
       axios
         .post("http://127.0.0.1:8000/api/school/lesson/store", {
           grade_id: form.grade_id,
-          year: form.year,
-          name: form.name,
+          lesson_name: form.lesson_name,
         })
         .then(function () {
           loading.value = false;
-          form.name = "";
-          form.year = "";
+          form.lesson_name = "";
           form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
