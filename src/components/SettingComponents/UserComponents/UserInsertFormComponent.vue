@@ -42,9 +42,12 @@
                     class="form-group"
                     style="font-size: x-small; font-family: Vazir"
                   >
-                    <select style="font-size: 12px" class="form-select">
-                      v-model.lazy.trim="form.role"
-                      <option selected>نوع کاربر:</option>
+                    <select
+                      v-model="form.role"
+                      style="font-size: 12px"
+                      class="form-select"
+                    >
+                      <option value="" selected>نوع کاربر:</option>
                       <option value="1">دانش آموز</option>
                       <option value="2">معلم</option>
                       <option value="3">اداری</option>
