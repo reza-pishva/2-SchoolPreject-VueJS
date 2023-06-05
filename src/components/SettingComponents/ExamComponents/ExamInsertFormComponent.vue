@@ -24,28 +24,42 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.exam_type_id"
-                      style="font-size: 12px"
-                      type="number"
-                      class="form-control"
-                      placeholder="نوع امتحان"
-                    />
+                  <div class="form-group" style="font-family: Vazir">
+                    <select
+                      v-model="form.exam_type_id"
+                      class="form-select"
+                      style="font-size: small"
+                    >
+                      <option value="">انتخاب نوع امتحان:</option>
+                      <option
+                        v-for="(item, index) in examTypes"
+                        :key="index"
+                        :value="item.id"
+                      >
+                        {{ item.exam_type }}
+                      </option>
+                    </select>
                     <div class="form-text text-danger validation-text">
                       {{ form.examTypeIdErrorText }}
                     </div>
                   </div>
                 </div>
                 <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.grade_id"
-                      style="font-size: 12px"
-                      type="number"
-                      class="form-control"
-                      placeholder=" نام مقطع تحصیلی:"
-                    />
+                  <div class="form-group" style="font-family: Vazir">
+                    <select
+                      v-model="form.grade_id"
+                      class="form-select"
+                      style="font-size: small"
+                    >
+                      <option value="">انتخاب مقطع تحصیلی:</option>
+                      <option
+                        v-for="(item, index) in grades"
+                        :key="index"
+                        :value="item.id"
+                      >
+                        {{ item.grade_name }}
+                      </option>
+                    </select>
                     <div class="form-text text-danger validation-text">
                       {{ form.gradeIdErrorText }}
                     </div>
@@ -95,6 +109,8 @@ export default {
       examTypeIdErrorText: "",
     });
     const loading = ref(false);
+    const grades = ref([]);
+    const examTypes = ref([]);
 
     function validate() {
       if (form.lesson_id === "") {
@@ -155,8 +171,36 @@ export default {
           });
         });
     }
+    function getGrades() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .then(function (response) {
+          // handle success
+          grades.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function getExamTypes() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/exam/exam-types")
+        .then(function (response) {
+          // handle success
+          examTypes.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getGrades();
+    getExamTypes();
 
-    return { form, validate, loading };
+    return { examTypes, grades, form, validate, loading };
   },
 };
 </script>
