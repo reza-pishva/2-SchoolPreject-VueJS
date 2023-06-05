@@ -52,13 +52,6 @@
                       <option value="2">معلم</option>
                       <option value="3">اداری</option>
                     </select>
-                    <!-- <input
-                      v-model.lazy.trim="form.role"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="نوع کاربر:"
-                    /> -->
                     <div class="form-text text-danger validation-text">
                       {{ form.roleErrorText }}
                     </div>
