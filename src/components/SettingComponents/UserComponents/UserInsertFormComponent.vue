@@ -38,14 +38,11 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div
-                    class="form-group"
-                    style="font-size: x-small; font-family: Vazir"
-                  >
+                  <div class="form-group" style="font-family: Vazir">
                     <select
                       v-model="form.role"
-                      style="font-size: 12px"
                       class="form-select"
+                      style="font-size: small"
                     >
                       <option value="" selected>نوع کاربر:</option>
                       <option value="1">دانش آموز</option>
@@ -118,7 +115,21 @@
                   </div>
                 </div>
                 <div class="col-3">
-                  <div class="form-group" style="font-size: x-small">
+                  <div class="form-group" style="font-family: Vazir">
+                    <select
+                      v-model="form.gender"
+                      class="form-select"
+                      style="font-size: small"
+                    >
+                      <option value="" selected>جنسیت:</option>
+                      <option value="1">زن</option>
+                      <option value="2">مرد</option>
+                    </select>
+                    <div class="form-text text-danger validation-text">
+                      {{ form.genderErrorText }}
+                    </div>
+                  </div>
+                  <!-- <div class="form-group" style="font-size: x-small">
                     <input
                       v-model.lazy.trim="form.gender"
                       style="font-size: 12px"
@@ -129,7 +140,7 @@
                     <div class="form-text text-danger validation-text">
                       {{ form.genderErrorText }}
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="col-6">
                   <button type="submit" class="btn btn-primary button-class">
