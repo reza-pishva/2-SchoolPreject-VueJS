@@ -24,25 +24,6 @@
                   </div>
                 </div>
                 <div class="col">
-                  <!-- <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="" selected>مقطع تحصیلی:</option>
-                      <option
-                        v-for="(grade, index) in grades"
-                        :key="index"
-                        :value="grade.grade_id"
-                      >
-                        {{ grade.grade_name }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.genderErrorText }}
-                    </div>
-                  </div> -->
                   <div class="form-group" style="font-size: xx-small">
                     <input
                       v-model.lazy.trim="form.grade_id"
@@ -80,7 +61,7 @@
     </div>
   </div>
   <div class="row" style="height: 88%">
-    <div class="col">{{ grades[0].grade_name }}</div>
+    <div class="col">{{ grades }}</div>
   </div>
 </template>
 
@@ -91,7 +72,6 @@ import Swal from "sweetalert2";
 
 export default {
   setup() {
-    // const grades = ref([]);
     const form = reactive({
       lesson_name: "",
       grade_id: "",
@@ -99,6 +79,7 @@ export default {
       gradeIdErrorText: "",
     });
     const loading = ref(false);
+    const grades = ref([]);
 
     function validate() {
       if (form.lesson_name === "") {
@@ -148,22 +129,21 @@ export default {
           });
         });
     }
-    // function getGrades() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
-    //     .then(function (response) {
-    //       // handle success
-    //       grades.value = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getGrades();
-
-    return { form, validate, loading };
+    function getGrades() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .then(function (response) {
+          // handle success
+          grades.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getGrades();
+    return { grades, form, validate, loading };
   },
 };
 </script>
