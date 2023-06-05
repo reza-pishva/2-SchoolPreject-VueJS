@@ -24,14 +24,21 @@
                   </div>
                 </div>
                 <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.grade_id"
-                      style="font-size: 12px"
-                      type="number"
-                      class="form-control"
-                      placeholder=" نام مقطع تحصیلی:"
-                    />
+                  <div class="form-group" style="font-family: Vazir">
+                    <select
+                      v-model="form.grade_id"
+                      class="form-select"
+                      style="font-size: small"
+                    >
+                      <option value="">انتخاب مقطع تحصیلی:</option>
+                      <option
+                        v-for="(item, index) in grades"
+                        :key="index"
+                        :value="item.id"
+                      >
+                        {{ item.grade_name }}
+                      </option>
+                    </select>
                     <div class="form-text text-danger validation-text">
                       {{ form.gradeIdErrorText }}
                     </div>
@@ -61,7 +68,7 @@
     </div>
   </div>
   <div class="row" style="height: 88%">
-    <div class="col">{{ grades }}</div>
+    <div class="col"></div>
   </div>
 </template>
 
