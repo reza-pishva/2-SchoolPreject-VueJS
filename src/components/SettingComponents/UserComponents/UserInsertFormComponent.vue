@@ -129,18 +129,6 @@
                       {{ form.genderErrorText }}
                     </div>
                   </div>
-                  <!-- <div class="form-group" style="font-size: x-small">
-                    <input
-                      v-model.lazy.trim="form.gender"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="جنسیت:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.genderErrorText }}
-                    </div>
-                  </div> -->
                 </div>
                 <div class="col-6">
                   <button type="submit" class="btn btn-primary button-class">
