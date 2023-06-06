@@ -1,10 +1,10 @@
 <template>
-  <div class="row" style="height: 12%">
+  <div class="row" style="height: 20%">
     <div class="col">
       <div class="grade-window">
         <form
           @submit.prevent="validate"
-          style="direction: rtl; font-family: Vazir"
+          style="direction: rtl; font-family: Vazir; margin-top: 15px"
         >
           <div class="row">
             <div class="col">
@@ -46,20 +46,9 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%; margin-top: 10px; overflow-y: scroll">
+  <div class="row" style="height: 80%; margin-top: 10px; overflow-y: scroll">
     <div class="col">
-      <table
-        class="table table-bordered"
-        style="
-          font-family: Vazir;
-          font-size: smaller;
-          text-align: center;
-          margin-top: 10px;
-          margin-left: 40px;
-          direction: rtl;
-          width: 95%;
-        "
-      >
+      <table class="table table-bordered table-class">
         <thead>
           <tr
             class="sticky"
@@ -83,21 +72,23 @@
             :key="index"
             style="text-align: right; font-size: 14px; color: aliceblue"
           >
-            <td style="width: 5%; padding-top: 10px">
+            <td style="width: 5%; padding-top: 25px">
               <a href="#"
                 ><img
                   style="width: 20px; height: 20px"
                   src="../../../../public/select.png"
               /></a>
             </td>
-            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
-            <td style="width: 15%">
+            <td style="width: 15%; padding-top: 25px; text-align: center">
+              {{ item.id }}
+            </td>
+            <td style="width: 45%; padding-top: 25px">{{ item.grade_name }}</td>
+            <td style="width: 15%; padding-top: 18px">
               <button type="button" class="btn btn-success button-table-class">
                 ویرایش
               </button>
             </td>
-            <td style="width: 15%">
+            <td style="width: 15%; padding-top: 18px">
               <button type="button" class="btn btn-danger button-table-class">
                 حذف
               </button>
@@ -212,5 +203,14 @@ export default {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+.table-class {
+  font-family: Vazir;
+  font-size: smaller;
+  text-align: center;
+  margin-top: -10px;
+  margin-left: 40px;
+  direction: rtl;
+  width: 95%;
 }
 </style>

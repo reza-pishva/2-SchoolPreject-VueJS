@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 12%">
+  <div class="row" style="height: 20%">
     <div class="col">
       <div
         style="
@@ -7,7 +7,7 @@
           margin-left: 30px;
           height: 95%;
           border-radius: 6px;
-          padding-top: 10px;
+          padding-top: 25px;
           padding-left: 5px;
           padding-right: 5px;
         "
@@ -91,7 +91,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%">
+  <div class="row" style="height: 80%; overflow-y: scroll">
     <div class="col">
       <table
         class="table table-bordered"
@@ -116,15 +116,16 @@
             "
           >
             <th>--</th>
-            <th>کد مقطع تحصیلی</th>
-            <th>عنوان مقطع تحصیلی</th>
+            <th>کد کلاس</th>
+            <th>نام کلاس</th>
+            <th>نام مقطع تحصیلی</th>
             <th>--</th>
             <th>--</th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="(item, index) in grades"
+            v-for="(item, index) in classes"
             :key="index"
             style="text-align: right; font-size: 14px; color: aliceblue"
           >
@@ -136,6 +137,7 @@
               /></a>
             </td>
             <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 45%; padding-top: 15px">{{ item.name }}</td>
             <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
             <td style="width: 15%">
               <button type="button" class="btn btn-success button-table-class">
@@ -171,6 +173,7 @@ export default {
     });
     const loading = ref(false);
     const grades = ref([]);
+    const classes = ref([]);
 
     function validate() {
       if (form.name === "") {
@@ -203,6 +206,7 @@ export default {
           name: form.name,
         })
         .then(function () {
+          getClasses();
           loading.value = false;
           form.name = "";
           form.year = "";
@@ -241,9 +245,23 @@ export default {
           console.log(error);
         });
     }
+    function getClasses() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
+        .then(function (response) {
+          // handle success
+          classes.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
     getGrades();
+    getClasses();
 
-    return { grades, form, validate, loading };
+    return { classes, grades, form, validate, loading };
   },
 };
 </script>
