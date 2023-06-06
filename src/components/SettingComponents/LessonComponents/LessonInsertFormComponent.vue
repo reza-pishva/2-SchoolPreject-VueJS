@@ -98,7 +98,7 @@
               <a href="#"
                 ><img
                   style="width: 20px; height: 20px"
-                  src="../../../../public/select.png"
+                  src="../../../../public/select.jpg"
               /></a>
             </td>
             <td style="width: 15%; padding-top: 25px; text-align: center">
