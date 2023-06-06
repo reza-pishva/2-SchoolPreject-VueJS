@@ -25,7 +25,11 @@
                 </div>
                 <div class="col">
                   <div class="form-group" style="font-size: x-small">
-                    <button type="submit" class="btn btn-primary button-class">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      style="width: 20%; font-family: Vazir; font-size: 14px"
+                    >
                       ثبت
                       <div
                         v-if="loading"
@@ -58,12 +62,15 @@
       >
         <thead>
           <tr
+            class="sticky"
             style="
+              background-color: cornflowerblue;
               text-align: center;
               font-size: smaller;
               color: rgb(254, 254, 255);
             "
           >
+            <th>--</th>
             <th>کد مقطع تحصیلی</th>
             <th>عنوان مقطع تحصیلی</th>
             <th>--</th>
@@ -74,9 +81,16 @@
           <tr
             v-for="(item, index) in grades"
             :key="index"
-            style="text-align: center; font-size: small; color: aliceblue"
+            style="text-align: right; font-size: 14px; color: aliceblue"
           >
-            <td style="width: 15%; padding-top: 15px">{{ item.id }}</td>
+            <td style="width: 5%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px"
+                  src="../../../../public/select.png"
+              /></a>
+            </td>
+            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
             <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
             <td style="width: 15%">
               <button type="button" class="btn btn-success button-table-class">
@@ -176,7 +190,7 @@ export default {
 }
 .button-class {
   font-size: 12px;
-  width: 20%;
+  width: 15%;
   height: 35px;
 }
 .button-table-class {
@@ -192,5 +206,11 @@ export default {
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
+}
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 </style>

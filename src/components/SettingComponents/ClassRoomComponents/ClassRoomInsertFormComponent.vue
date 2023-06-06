@@ -92,7 +92,65 @@
     </div>
   </div>
   <div class="row" style="height: 88%">
-    <div class="col"></div>
+    <div class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 10px;
+          margin-left: 40px;
+          direction: rtl;
+          width: 95%;
+        "
+      >
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کد مقطع تحصیلی</th>
+            <th>عنوان مقطع تحصیلی</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in grades"
+            :key="index"
+            style="text-align: right; font-size: 14px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px"
+                  src="../../../../public/select.png"
+              /></a>
+            </td>
+            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
+            <td style="width: 15%">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
+            </td>
+            <td style="width: 15%">
+              <button type="button" class="btn btn-danger button-table-class">
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
