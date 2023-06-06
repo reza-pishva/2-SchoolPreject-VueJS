@@ -46,8 +46,57 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%">
-    <div class="col"></div>
+  <div class="row" style="height: 88%; overflow-y: scroll; margin-top: 10px">
+    <div class="col">
+      <table class="table table-bordered table-class">
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کد نوع امتحان</th>
+            <th>نوع امتحان</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in examTypes"
+            :key="index"
+            style="text-align: right; font-size: 14px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 25px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px"
+                  src="../../../../public/select.png"
+              /></a>
+            </td>
+            <td style="width: 10%; padding-top: 25px; text-align: center">
+              {{ item.id }}
+            </td>
+            <td style="width: 40%; padding-top: 25px">{{ item.exam_type }}</td>
+            <td style="width: 10%; padding-top: 18px">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
+            </td>
+            <td style="width: 10%; padding-top: 18px">
+              <button type="button" class="btn btn-danger button-table-class">
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -63,6 +112,7 @@ export default {
       examTypeErrorText: "",
     });
     const loading = ref(false);
+    const examTypes = ref([]);
 
     function validate() {
       if (form.exam_type === "") {
@@ -70,16 +120,17 @@ export default {
       } else {
         form.examTypeErrorText = "";
         loading.value = true;
-        createLesson();
+        createExamType();
       }
     }
 
-    function createLesson() {
+    function createExamType() {
       axios
         .post("http://127.0.0.1:8000/api/school/exam/exam-type/store", {
           exam_type: form.exam_type,
         })
         .then(function () {
+          getExamType();
           loading.value = false;
           form.exam_type = "";
           Swal.fire({
@@ -92,7 +143,6 @@ export default {
         })
         .catch(function (error) {
           loading.value = false;
-
           console.log(error);
           Swal.fire({
             title: "پیغام خطا",
@@ -103,8 +153,22 @@ export default {
           });
         });
     }
+    function getExamType() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/exam/exam-types")
+        .then(function (response) {
+          // handle success
+          examTypes.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getExamType();
 
-    return { form, validate, loading };
+    return { examTypes, form, validate, loading };
   },
 };
 </script>
@@ -125,7 +189,7 @@ export default {
 }
 .button-class {
   font-size: 12px;
-  width: 25%;
+  width: 20%;
   height: 35px;
 }
 .exam-type-window {
@@ -136,5 +200,14 @@ export default {
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
+}
+.table-class {
+  font-family: Vazir;
+  font-size: smaller;
+  text-align: center;
+  margin-top: 12px;
+  margin-left: 40px;
+  direction: rtl;
+  width: 95%;
 }
 </style>

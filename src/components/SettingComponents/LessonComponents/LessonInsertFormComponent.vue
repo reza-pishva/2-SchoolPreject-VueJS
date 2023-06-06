@@ -67,8 +67,61 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%">
-    <div class="col"></div>
+  <div class="row" style="height: 88%; overflow-y: scroll; margin-top: 10px">
+    <div class="col">
+      <table class="table table-bordered table-class">
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کددرس</th>
+            <th>عنوان درس</th>
+            <th>مقطع تحصیلی</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in lessons"
+            :key="index"
+            style="text-align: right; font-size: 14px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 25px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px"
+                  src="../../../../public/select.png"
+              /></a>
+            </td>
+            <td style="width: 15%; padding-top: 25px; text-align: center">
+              {{ item.id }}
+            </td>
+            <td style="width: 30%; padding-top: 25px">
+              {{ item.lesson_name }}
+            </td>
+            <td style="width: 25%; padding-top: 25px">{{ item.grade_name }}</td>
+            <td style="width: 15%; padding-top: 18px">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
+            </td>
+            <td style="width: 15%; padding-top: 18px">
+              <button type="button" class="btn btn-danger button-table-class">
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -87,6 +140,7 @@ export default {
     });
     const loading = ref(false);
     const grades = ref([]);
+    const lessons = ref([]);
 
     function validate() {
       if (form.lesson_name === "") {
@@ -112,6 +166,7 @@ export default {
           lesson_name: form.lesson_name,
         })
         .then(function () {
+          getLessons();
           loading.value = false;
           form.lesson_name = "";
           form.grade_id = "";
@@ -149,8 +204,22 @@ export default {
           console.log(error);
         });
     }
+    function getLessons() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
+        .then(function (response) {
+          // handle success
+          lessons.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
     getGrades();
-    return { grades, form, validate, loading };
+    getLessons();
+    return { lessons, grades, form, validate, loading };
   },
 };
 </script>
@@ -182,5 +251,14 @@ export default {
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
+}
+.table-class {
+  font-family: Vazir;
+  font-size: smaller;
+  text-align: center;
+  margin-top: 12px;
+  margin-left: 40px;
+  direction: rtl;
+  width: 95%;
 }
 </style>
