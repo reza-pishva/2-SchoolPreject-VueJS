@@ -1,6 +1,6 @@
 <template>
   <div class="row" style="direction: rtl; margin-top: 10px">
-    <div class="col-12" style="text-align: center; height: 1200px">
+    <div class="col-12" style="text-align: center; height: 900px">
       <!-- <TopBaner /> -->
 
       <div style="width: 100%; height: 30%">
