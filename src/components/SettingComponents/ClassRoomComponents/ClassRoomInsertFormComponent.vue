@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 20%">
+  <div class="row" style="height: 12%">
     <div class="col">
       <div
         style="
@@ -91,7 +91,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 80%; overflow-y: scroll">
+  <div class="row" style="height: 78%; overflow-y: scroll; margin-top: 30px">
     <div class="col">
       <table
         class="table table-bordered"
@@ -154,6 +154,7 @@
       </table>
     </div>
   </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>

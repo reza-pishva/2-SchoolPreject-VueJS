@@ -150,8 +150,93 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 60%">
-    <div class="col"></div>
+  <div
+    class="row"
+    style="width: 95%; height: 60%; overflow: scroll; margin-left: 45px"
+  >
+    <div class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 0px;
+          margin-left: 40px;
+          direction: rtl;
+          width: 140%;
+        "
+      >
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کدکاربر</th>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>نام پدر</th>
+            <th>آدرس ایمیل</th>
+            <th>نوع کاربر</th>
+            <th>جنسیت</th>
+            <th>کدملی</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in users"
+            :key="index"
+            style="text-align: right; font-size: 14px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px"
+                  src="../../../../public/select.png"
+              /></a>
+            </td>
+            <td style="width: 5%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 10%; padding-top: 10px">
+              {{ item.f_name }}
+            </td>
+            <td style="width: 10%; padding-top: 10px">
+              {{ item.l_name }}
+            </td>
+            <td style="width: 10%; padding-top: 15px">
+              {{ item.father_name }}
+            </td>
+            <td style="width: 15%; padding-top: 15px">
+              {{ item.email }}
+            </td>
+            <td style="width: 10%; padding-top: 15px">{{ item.role }}</td>
+            <td style="width: 5%; padding-top: 15px">
+              {{ item.gender }}
+            </td>
+            <td style="width: 10%; padding-top: 15px">
+              {{ item.national_code }}
+            </td>
+            <td style="width: 10%">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
+            </td>
+            <td style="width: 10%">
+              <button type="button" class="btn btn-danger button-table-class">
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -180,6 +265,7 @@ export default {
       genderErrorText: "",
     });
     const loading = ref(false);
+    const users = ref([]);
 
     function validate() {
       if (form.f_name === "") {
@@ -250,8 +336,9 @@ export default {
           role: form.role,
         })
         .then(function () {
+          getUsers();
           loading.value = false;
-
+          getUsers();
           form.f_name = "";
           form.l_name = "";
           form.father_name = "";
@@ -282,8 +369,22 @@ export default {
           });
         });
     }
+    function getUsers() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/user/users")
+        .then(function (response) {
+          // handle success
+          users.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getUsers();
 
-    return { form, validate, loading };
+    return { users, form, validate, loading };
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 20%">
+  <div class="row" style="height: 12%">
     <div class="col">
       <div class="grade-window">
         <form
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 80%; margin-top: 10px; overflow-y: scroll">
+  <div class="row" style="height: 70%; margin-top: 30px; overflow-y: scroll">
     <div class="col">
       <table class="table table-bordered table-class">
         <thead>
@@ -98,6 +98,7 @@
       </table>
     </div>
   </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>
