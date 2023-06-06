@@ -42,8 +42,56 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%">
-    <div class="col"></div>
+  <div class="row" style="height: 88%; margin-top: 10px; overflow-y: scroll">
+    <div class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 10px;
+          margin-left: 40px;
+          direction: rtl;
+          width: 95%;
+        "
+      >
+        <thead>
+          <tr
+            style="
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>کد مقطع تحصیلی</th>
+            <th>عنوان مقطع تحصیلی</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in grades"
+            :key="index"
+            style="text-align: center; font-size: small; color: aliceblue"
+          >
+            <td style="width: 15%; padding-top: 15px">{{ item.id }}</td>
+            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
+            <td style="width: 15%">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
+            </td>
+            <td style="width: 15%">
+              <button type="button" class="btn btn-danger button-table-class">
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -59,6 +107,7 @@ export default {
       gradeNameErrorText: "",
     });
     const loading = ref(false);
+    const grades = ref([]);
 
     function validate() {
       if (form.grade_name === "") {
@@ -77,7 +126,8 @@ export default {
         })
         .then(function () {
           loading.value = false;
-
+          form.grade_name = "";
+          getGrades();
           Swal.fire({
             title: "ذخیره شد",
             text: "مقطع تحصیلی با موفقیت در پایگاه داده ثبت گردید",
@@ -90,8 +140,22 @@ export default {
           console.log(error);
         });
     }
+    function getGrades() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .then(function (response) {
+          // handle success
+          grades.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getGrades();
 
-    return { form, validate, loading };
+    return { grades, form, validate, loading };
   },
 };
 </script>
@@ -114,6 +178,11 @@ export default {
   font-size: 12px;
   width: 20%;
   height: 35px;
+}
+.button-table-class {
+  font-size: 12px;
+  width: 95%;
+  height: 30px;
 }
 .grade-window {
   background-color: rgb(146, 204, 233);
