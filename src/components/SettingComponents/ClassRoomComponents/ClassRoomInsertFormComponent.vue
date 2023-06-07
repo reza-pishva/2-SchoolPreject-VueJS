@@ -3,7 +3,7 @@
     <div class="col">
       <div
         style="
-          background-color: rgb(89, 99, 133);
+          background-color: rgb(237, 237, 227);
           margin-left: 30px;
           height: 95%;
           border-radius: 6px;
@@ -297,7 +297,7 @@ export default {
   height: 35px;
 }
 .grade-window {
-  background-color: rgb(146, 204, 233);
+  background-color: rgb(237, 237, 227);
   margin-left: 30px;
   height: 95%;
   border-radius: 6px;
