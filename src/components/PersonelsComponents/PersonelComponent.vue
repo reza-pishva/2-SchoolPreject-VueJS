@@ -13,6 +13,8 @@
         height: 300px;
         background-color: rgb(146, 204, 233);
         border-radius: 8px;
+        opacity: 0.7;
+        filter: alpha(opacity=100);
       "
     >
       <div class="row mt-3">
