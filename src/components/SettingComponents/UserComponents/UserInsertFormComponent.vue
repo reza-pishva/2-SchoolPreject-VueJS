@@ -152,7 +152,15 @@
   </div>
   <div
     class="row"
-    style="width: 95%; height: 60%; overflow: scroll; margin-left: 45px"
+    style="
+      width: 95%;
+      height: 60%;
+      overflow: scroll;
+      margin-left: 45px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(61, 61, 73);
+    "
   >
     <div class="col">
       <table

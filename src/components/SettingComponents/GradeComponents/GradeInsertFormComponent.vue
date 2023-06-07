@@ -46,7 +46,17 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 70%; margin-top: 30px; overflow-y: scroll">
+  <div
+    class="row"
+    style="
+      height: 70%;
+      margin-top: 30px;
+      overflow-y: scroll;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(61, 61, 73);
+    "
+  >
     <div class="col">
       <table class="table table-bordered table-class">
         <thead>

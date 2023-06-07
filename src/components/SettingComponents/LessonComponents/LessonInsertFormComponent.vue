@@ -67,7 +67,17 @@
       </div>
     </div>
   </div>
-  <div class="row" style="height: 78%; overflow-y: scroll; margin-top: 10px">
+  <div
+    class="row"
+    style="
+      height: 78%;
+      overflow-y: scroll;
+      margin-top: 10px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(61, 61, 73);
+    "
+  >
     <div class="col">
       <table class="table table-bordered table-class">
         <thead>
@@ -97,7 +107,7 @@
             <td style="width: 5%; padding-top: 25px">
               <a href="#"
                 ><img
-                  style="width: 20px; height: 20px"
+                  style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
               /></a>
             </td>
