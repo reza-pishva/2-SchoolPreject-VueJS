@@ -1,17 +1,7 @@
 <template>
   <div class="row" style="height: 50%">
     <div class="col">
-      <div
-        style="
-          background-color: rgb(146, 204, 233);
-          margin-left: 30px;
-          height: 95%;
-          border-radius: 6px;
-          padding-top: 10px;
-          padding-left: 5px;
-          padding-right: 5px;
-        "
-      >
+      <div class="user-window">
         <form
           @submit.prevent="validate"
           style="direction: rtl; font-family: Vazir"

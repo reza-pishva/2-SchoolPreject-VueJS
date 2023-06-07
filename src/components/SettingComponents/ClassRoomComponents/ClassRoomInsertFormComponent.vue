@@ -3,7 +3,7 @@
     <div class="col">
       <div
         style="
-          background-color: rgb(146, 204, 233);
+          background-color: rgb(89, 99, 133);
           margin-left: 30px;
           height: 95%;
           border-radius: 6px;
