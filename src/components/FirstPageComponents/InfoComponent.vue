@@ -17,7 +17,7 @@
       >
         <p
           style="
-            font-size: 16px;
+            font-size: 22px;
             font-family: Vazir;
             color: aliceblue;
             margin-top: -5px;
@@ -30,11 +30,11 @@
             width: 90%;
             height: 16%;
             border-radius: 10px;
-            background-color: rgb(84, 114, 143);
+            background-color: rgb(215, 233, 125);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
-            margin-top: 45px;
+            margin-top: 20px;
             text-align: center;
             padding-top: 15px;
             opacity: 0.7;
@@ -45,7 +45,7 @@
             style="
               font-size: smaller;
               font-family: Vazir;
-              color: aliceblue;
+              color: rgb(0, 6, 10);
               margin-top: -5px;
             "
           >
@@ -57,7 +57,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(84, 114, 143);
+            background-color: rgb(215, 233, 125);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -71,7 +71,7 @@
             style="
               font-size: smaller;
               font-family: Vazir;
-              color: aliceblue;
+              color: rgb(0, 6, 10);
               margin-top: -5px;
             "
           >
@@ -83,7 +83,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(84, 114, 143);
+            background-color: rgb(215, 233, 125);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -97,7 +97,7 @@
             style="
               font-size: smaller;
               font-family: Vazir;
-              color: aliceblue;
+              color: rgb(0, 6, 10);
               margin-top: -5px;
             "
           >
@@ -109,7 +109,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(84, 114, 143);
+            background-color: rgb(215, 233, 125);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -123,7 +123,7 @@
             style="
               font-size: smaller;
               font-family: Vazir;
-              color: aliceblue;
+              color: rgb(0, 6, 10);
               margin-top: -5px;
             "
           >
@@ -135,7 +135,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(84, 114, 143);
+            background-color: rgb(215, 233, 125);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -149,7 +149,7 @@
             style="
               font-size: smaller;
               font-family: Vazir;
-              color: aliceblue;
+              color: rgb(0, 6, 10);
               margin-top: -5px;
             "
           >
