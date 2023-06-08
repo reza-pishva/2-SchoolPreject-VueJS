@@ -3,19 +3,19 @@
     <div class="col-12" style="text-align: center; height: 900px">
       <!-- <TopBaner /> -->
 
-      <div style="width: 100%; height: 30%">
+      <div style="width: 100%; height: 40%">
         <div class="row mt-2" style="width: 100%; height: 100%">
           <InfoComponent />
           <CarouselComponent />
         </div>
       </div>
-      <div style="width: 100%; height: 20%">
+      <div style="width: 100%; height: 30%">
         <div class="row" style="width: 100%; height: 100%">
           <HistoryComponent />
           <FacilityComponent />
         </div>
       </div>
-      <div style="width: 100%; height: 25%">
+      <div style="width: 100%; height: 20%">
         <div class="row" style="width: 100%; height: 100%">
           <div class="col" style="height: 100%"></div>
         </div>
