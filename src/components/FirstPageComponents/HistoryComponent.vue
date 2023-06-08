@@ -13,6 +13,8 @@
         text-align: right;
         padding-top: 14px;
         padding-right: 20px;
+        opacity: 0.7;
+        filter: alpha(opacity=100);
       "
     >
       <p
