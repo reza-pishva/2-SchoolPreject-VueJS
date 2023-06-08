@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="direction: rtl; margin-top: 10px">
+  <div class="row" style="direction: rtl; margin-top: 20px">
     <div class="col-12" style="text-align: center; height: 900px">
       <!-- <TopBaner /> -->
 
