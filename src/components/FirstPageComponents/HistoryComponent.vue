@@ -5,7 +5,7 @@
         width: 100%;
         height: 18%;
         border-radius: 10px;
-        background-image: url('title_bg.jpg');
+        background-color: rgb(26, 56, 84);
         margin: auto;
         margin-top: 10px;
         margin-right: 8px;

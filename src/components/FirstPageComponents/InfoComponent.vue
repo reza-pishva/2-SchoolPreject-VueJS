@@ -6,7 +6,7 @@
           width: 90%;
           height: 100%;
           border-radius: 10px;
-          background-image: url('title_bg.jpg');
+          background-color: rgb(72, 90, 56);
           margin: auto;
           margin-top: -2px;
           margin-right: 25px;
@@ -28,13 +28,13 @@
         <div
           style="
             width: 90%;
-            height: 12%;
+            height: 16%;
             border-radius: 10px;
-            background-color: rgb(8, 36, 64);
+            background-color: rgb(84, 114, 143);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
-            margin-top: 90px;
+            margin-top: 45px;
             text-align: center;
             padding-top: 15px;
             opacity: 0.7;
@@ -57,7 +57,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(8, 36, 64);
+            background-color: rgb(84, 114, 143);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -83,7 +83,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(8, 36, 64);
+            background-color: rgb(84, 114, 143);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -109,7 +109,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(8, 36, 64);
+            background-color: rgb(84, 114, 143);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;
@@ -135,7 +135,7 @@
             width: 90%;
             height: 12%;
             border-radius: 10px;
-            background-color: rgb(8, 36, 64);
+            background-color: rgb(84, 114, 143);
             margin: auto;
             margin-right: 25px;
             margin-bottom: 5px;

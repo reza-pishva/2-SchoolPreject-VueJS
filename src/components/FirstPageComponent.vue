@@ -1,8 +1,6 @@
 <template>
   <div class="row" style="direction: rtl; margin-top: 20px">
     <div class="col-12" style="text-align: center; height: 900px">
-      <!-- <TopBaner /> -->
-
       <div style="width: 100%; height: 40%">
         <div class="row mt-2" style="width: 100%; height: 100%">
           <InfoComponent />
