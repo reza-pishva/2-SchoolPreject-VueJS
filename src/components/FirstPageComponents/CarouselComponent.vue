@@ -8,14 +8,6 @@
     "
   >
     <div id="demo" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <!-- <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-              </ul> -->
-
-      <!-- The slideshow -->
       <div class="carousel-inner">
         <div class="carousel-item active">
           <img src="12.png" class="carousel_img" />
