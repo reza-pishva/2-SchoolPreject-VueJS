@@ -10,10 +10,10 @@
       margin-right: 20px;
     "
   >
-    <div class="row">
+    <div class="row" style="padding-top: 10px">
       <div
         class="col-4"
-        style="height: 175px; text-align: center; padding-top: 15px"
+        style="height: 165px; text-align: center; padding-top: 15px"
       >
         <router-link to="/personels">
           <img
@@ -29,11 +29,11 @@
       </div>
       <div
         class="col-4"
-        style="height: 175px; text-align: center; padding-top: 15px"
+        style="height: 165px; text-align: center; padding-top: 15px"
       >
         <router-link to="/students">
           <img
-            src="../../../public/student.png"
+            src="../../../public/student.jpg"
             style="height: 40%; width: 75%; border-radius: 5px"
           />
         </router-link>
@@ -45,7 +45,7 @@
       </div>
       <div
         class="col-4"
-        style="height: 175px; text-align: center; padding-top: 15px"
+        style="height: 165px; text-align: center; padding-top: 15px"
       >
         <router-link to="/home">
           <img
