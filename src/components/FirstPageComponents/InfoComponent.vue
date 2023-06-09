@@ -25,22 +25,7 @@
         >
           مجتمع آموزشی دخترانه غیر دولتی ایده آل پارسی
         </p>
-        <div
-          style="
-            width: 90%;
-            height: 16%;
-            border-radius: 10px;
-            background-color: rgb(215, 233, 125);
-            margin: auto;
-            margin-right: 25px;
-            margin-bottom: 5px;
-            margin-top: 20px;
-            text-align: center;
-            padding-top: 15px;
-            opacity: 0.7;
-            filter: alpha(opacity=100);
-          "
-        >
+        <div class="info-interior-box" style="height: 16%">
           <p
             style="
               font-size: smaller;
@@ -52,21 +37,7 @@
             آدرس: شیراز، بلوار پرستار، کوی وحدت، نبش خیابان شهید بانشی
           </p>
         </div>
-        <div
-          style="
-            width: 90%;
-            height: 12%;
-            border-radius: 10px;
-            background-color: rgb(215, 233, 125);
-            margin: auto;
-            margin-right: 25px;
-            margin-bottom: 5px;
-            text-align: center;
-            padding-top: 15px;
-            opacity: 0.7;
-            filter: alpha(opacity=100);
-          "
-        >
+        <div class="info-interior-box">
           <p
             style="
               font-size: smaller;
@@ -78,21 +49,7 @@
             شماره تماس: 62 - 36530360 (071)
           </p>
         </div>
-        <div
-          style="
-            width: 90%;
-            height: 12%;
-            border-radius: 10px;
-            background-color: rgb(215, 233, 125);
-            margin: auto;
-            margin-right: 25px;
-            margin-bottom: 5px;
-            text-align: center;
-            padding-top: 15px;
-            opacity: 0.7;
-            filter: alpha(opacity=100);
-          "
-        >
+        <div class="info-interior-box">
           <p
             style="
               font-size: smaller;
@@ -104,21 +61,7 @@
             کد پستی: 7184884411
           </p>
         </div>
-        <div
-          style="
-            width: 90%;
-            height: 12%;
-            border-radius: 10px;
-            background-color: rgb(215, 233, 125);
-            margin: auto;
-            margin-right: 25px;
-            margin-bottom: 5px;
-            text-align: center;
-            padding-top: 15px;
-            opacity: 0.7;
-            filter: alpha(opacity=100);
-          "
-        >
+        <div class="info-interior-box">
           <p
             style="
               font-size: smaller;
@@ -130,21 +73,7 @@
             رایانامه مجتمع: info@idealparsi.ir
           </p>
         </div>
-        <div
-          style="
-            width: 90%;
-            height: 12%;
-            border-radius: 10px;
-            background-color: rgb(215, 233, 125);
-            margin: auto;
-            margin-right: 25px;
-            margin-bottom: 5px;
-            text-align: center;
-            padding-top: 15px;
-            opacity: 0.7;
-            filter: alpha(opacity=100);
-          "
-        >
+        <div class="info-interior-box">
           <p
             style="
               font-size: smaller;
@@ -168,4 +97,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.info-interior-box {
+  width: 90%;
+  height: 12%;
+  border-radius: 10px;
+  background-color: rgb(215, 233, 125);
+  margin: auto;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  text-align: center;
+  padding-top: 15px;
+  opacity: 0.7;
+  filter: alpha(opacity=100);
+}
+</style>
