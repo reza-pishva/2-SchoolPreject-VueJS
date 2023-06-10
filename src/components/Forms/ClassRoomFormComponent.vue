@@ -77,7 +77,6 @@
 <script>
 import { reactive, ref } from "vue";
 import axios from "axios";
-// import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -144,7 +143,7 @@ export default {
 
     getGrades();
 
-    return { form, validate };
+    return { grades, form, validate };
   },
 };
 </script>
@@ -152,7 +151,7 @@ export default {
 <style>
 .button-class {
   font-size: 12px;
-  width: 45%;
+  width: 55%;
   height: 35px;
 }
 </style>

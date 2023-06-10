@@ -281,7 +281,7 @@ export default {
     // getGrades();
     getClasses();
 
-    return { createClass, loading };
+    return { classes, createClass, loading };
   },
 };
 </script>
@@ -300,11 +300,11 @@ export default {
   font-family: Vazir;
   margin-top: 1px;
 }
-.button-class {
+/* .button-class {
   font-size: 12px;
   width: 35%;
   height: 35px;
-}
+} */
 .grade-window {
   background-color: rgb(237, 237, 227);
   margin-left: 30px;
