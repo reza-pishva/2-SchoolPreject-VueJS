@@ -1,32 +1,76 @@
 <template>
-  <form @submit.prevent="validate">
-    <div class="mb-3">
-      <label class="form-label">Title</label>
-      <input type="text" class="form-control" v-model.lazy.trim="form.title" />
-      <div class="form-text text-danger">
-        {{ form.titleErrorText }}
+  <form @submit.prevent="validate" style="direction: rtl; font-family: Vazir">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col-3">
+            <div class="form-group" style="font-size: xx-small">
+              <input
+                v-model.lazy.trim="form.name"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="نام کلاس درس:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.nameErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group" style="font-family: Vazir">
+              <select
+                v-model="form.grade_id"
+                class="form-select"
+                style="font-size: small"
+              >
+                <option value="">انتخاب مقطع تحصیلی:</option>
+                <option
+                  v-for="(item, index) in grades"
+                  :key="index"
+                  :value="item.id"
+                >
+                  {{ item.grade_name }}
+                </option>
+              </select>
+              <div class="form-text text-danger validation-text">
+                {{ form.gradeIdErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="form-group" style="font-size: xx-small">
+              <input
+                v-model.lazy.trim="form.year"
+                style="font-size: 12px"
+                type="number"
+                class="form-control"
+                placeholder="سال تحصیلی:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.yearErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group" style="font-size: x-small">
+              <button
+                style="font-size: 12px"
+                type="submit"
+                class="btn btn-primary button-class"
+              >
+                {{ buttonText }}
+                <div
+                  v-if="loading"
+                  class="spinner-border spinner-grow-sm"
+                  role="status"
+                ></div>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Body</label>
-      <textarea
-        class="form-control"
-        rows="6"
-        v-model.lazy.trim="form.body"
-      ></textarea>
-      <div class="form-text text-danger">
-        {{ form.bodyErrorText }}
-      </div>
-    </div>
-
-    <button type="submit" class="btn btn-dark" :disabled="buttonLoading">
-      <div
-        v-if="buttonLoading"
-        class="spinner-border spinner-border-sm"
-        role="status"
-      ></div>
-      {{ buttonText }}
-    </button>
   </form>
 </template>
 
@@ -41,33 +85,41 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      title: "",
-      titleErrorText: "",
-      body: "",
-      bodyErrorText: "",
+      name: "",
+      grade_id: "",
+      year: "",
+      nameErrorText: "",
+      gradeIdErrorText: "",
+      yearErrorText: "",
     });
 
     function setInput() {
       if (props.post !== undefined) {
-        form.title = props.post.title;
-        form.body = props.post.body;
+        form.name = props.post.name;
+        form.grade_id = props.post.grade_id;
+        form.year = props.post.year;
       }
     }
     setInput();
 
     function validate() {
-      if (form.title === "") {
-        form.titleErrorText = "Title is required";
+      if (form.name === "") {
+        form.nameErrorText = "نام کلاس باید وارد شود";
       } else {
-        form.titleErrorText = "";
+        form.nameErrorText = "";
       }
-      if (form.body === "") {
-        form.bodyErrorText = "Body is required";
+      if (form.year === "") {
+        form.yearErrorText = "نام سال تحصیلی باید وارد شود";
       } else {
-        form.bodyErrorText = "";
+        form.yearErrorText = "";
+      }
+      if (form.grade_id === "") {
+        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
+      } else {
+        form.gradeIdErrorText = "";
       }
 
-      if (form.title !== "" && form.body !== "") {
+      if (form.grade_id !== "" && form.name !== "" && form.year !== "") {
         emit("formData", form);
       }
     }
