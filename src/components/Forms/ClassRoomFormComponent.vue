@@ -57,11 +57,11 @@
               <button
                 style="font-size: 12px"
                 type="submit"
-                class="btn btn-primary button-class"
+                class="btn btn-primary"
               >
                 {{ buttonText }}
                 <div
-                  v-if="loading"
+                  v-if="buttonLoading"
                   class="spinner-border spinner-grow-sm"
                   role="status"
                 ></div>

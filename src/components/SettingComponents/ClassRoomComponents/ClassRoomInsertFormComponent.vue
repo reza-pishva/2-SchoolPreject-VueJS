@@ -59,7 +59,6 @@
             <th>نام کلاس</th>
             <th>نام مقطع تحصیلی</th>
             <th>--</th>
-            <th>--</th>
           </tr>
         </thead>
         <tbody>
@@ -80,12 +79,7 @@
             <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
             <td style="width: 15%">
               <button type="button" class="btn btn-success button-table-class">
-                ویرایش
-              </button>
-            </td>
-            <td style="width: 15%">
-              <button type="button" class="btn btn-danger button-table-class">
-                حذف
+                مشاهده
               </button>
             </td>
           </tr>
@@ -116,38 +110,15 @@ export default {
       yearErrorText: "",
     });
     const loading = ref(false);
-    // const grades = ref([]);
     const classes = ref([]);
 
-    // function validate() {
-    //   if (form.name === "") {
-    //     form.nameErrorText = "نام کلاس باید وارد شود";
-    //   } else {
-    //     form.nameErrorText = "";
-    //   }
-    //   if (form.year === "") {
-    //     form.yearErrorText = "نام سال تحصیلی باید وارد شود";
-    //   } else {
-    //     form.yearErrorText = "";
-    //   }
-    //   if (form.grade_id === "") {
-    //     form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
-    //   } else {
-    //     form.gradeIdErrorText = "";
-    //   }
-
-    //   if (form.grade_id !== "" && form.name !== "" && form.year !== "") {
-    //     loading.value = true;
-    //     createClass();
-    //   }
-    // }
-
-    function createClass() {
+    function createClass(formData) {
+      loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/classroom/store", {
-          grade_id: form.grade_id,
-          year: form.year,
-          name: form.name,
+          grade_id: formData.grade_id,
+          year: formData.year,
+          name: formData.name,
         })
         .then(function () {
           getClasses();
@@ -176,19 +147,6 @@ export default {
           });
         });
     }
-    // function getGrades() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
-    //     .then(function (response) {
-    //       // handle success
-    //       grades.value = response.data;
-    //       console.log(response.data);
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
     function getClasses() {
       axios
         .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
@@ -202,7 +160,6 @@ export default {
           console.log(error);
         });
     }
-    // getGrades();
     getClasses();
 
     return { classes, createClass, loading };
@@ -224,11 +181,11 @@ export default {
   font-family: Vazir;
   margin-top: 1px;
 }
-/* .button-class {
+.button-table-class {
   font-size: 12px;
-  width: 35%;
-  height: 35px;
-} */
+  width: 95%;
+  height: 30px;
+}
 .grade-window {
   background-color: rgb(237, 237, 227);
   margin-left: 30px;
