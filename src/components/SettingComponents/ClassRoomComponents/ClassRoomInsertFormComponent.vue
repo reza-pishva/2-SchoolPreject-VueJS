@@ -12,7 +12,12 @@
           padding-right: 5px;
         "
       >
-        <form
+        <ClassRoomForm
+          @formData="createClass"
+          :button-loading="loading"
+          button-text="ایجاد کلاس جدید"
+        />
+        <!-- <form
           @submit.prevent="validate"
           style="direction: rtl; font-family: Vazir"
         >
@@ -87,7 +92,7 @@
               </div>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
@@ -171,8 +176,12 @@
 import { reactive, ref } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
+  components: {
+    ClassRoomForm,
+  },
   setup() {
     const form = reactive({
       name: "",
@@ -183,31 +192,31 @@ export default {
       yearErrorText: "",
     });
     const loading = ref(false);
-    const grades = ref([]);
+    // const grades = ref([]);
     const classes = ref([]);
 
-    function validate() {
-      if (form.name === "") {
-        form.nameErrorText = "نام کلاس باید وارد شود";
-      } else {
-        form.nameErrorText = "";
-      }
-      if (form.year === "") {
-        form.yearErrorText = "نام سال تحصیلی باید وارد شود";
-      } else {
-        form.yearErrorText = "";
-      }
-      if (form.grade_id === "") {
-        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
-      } else {
-        form.gradeIdErrorText = "";
-      }
+    // function validate() {
+    //   if (form.name === "") {
+    //     form.nameErrorText = "نام کلاس باید وارد شود";
+    //   } else {
+    //     form.nameErrorText = "";
+    //   }
+    //   if (form.year === "") {
+    //     form.yearErrorText = "نام سال تحصیلی باید وارد شود";
+    //   } else {
+    //     form.yearErrorText = "";
+    //   }
+    //   if (form.grade_id === "") {
+    //     form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
+    //   } else {
+    //     form.gradeIdErrorText = "";
+    //   }
 
-      if (form.grade_id !== "" && form.name !== "" && form.year !== "") {
-        loading.value = true;
-        createClass();
-      }
-    }
+    //   if (form.grade_id !== "" && form.name !== "" && form.year !== "") {
+    //     loading.value = true;
+    //     createClass();
+    //   }
+    // }
 
     function createClass() {
       axios
@@ -243,19 +252,19 @@ export default {
           });
         });
     }
-    function getGrades() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
-        .then(function (response) {
-          // handle success
-          grades.value = response.data;
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
+    // function getGrades() {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
+    //     .then(function (response) {
+    //       // handle success
+    //       grades.value = response.data;
+    //       console.log(response.data);
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
     function getClasses() {
       axios
         .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
@@ -269,10 +278,10 @@ export default {
           console.log(error);
         });
     }
-    getGrades();
+    // getGrades();
     getClasses();
 
-    return { classes, grades, form, validate, loading };
+    return { createClass, loading };
   },
 };
 </script>

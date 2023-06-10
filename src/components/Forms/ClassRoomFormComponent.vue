@@ -75,7 +75,9 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import axios from "axios";
+// import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -92,6 +94,8 @@ export default {
       gradeIdErrorText: "",
       yearErrorText: "",
     });
+
+    const grades = ref([]);
 
     function setInput() {
       if (props.post !== undefined) {
@@ -124,9 +128,31 @@ export default {
       }
     }
 
+    function getGrades() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .then(function (response) {
+          // handle success
+          grades.value = response.data;
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+
+    getGrades();
+
     return { form, validate };
   },
 };
 </script>
 
-<style></style>
+<style>
+.button-class {
+  font-size: 12px;
+  width: 45%;
+  height: 35px;
+}
+</style>
