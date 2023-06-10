@@ -151,7 +151,7 @@ export default {
 <style>
 .button-class {
   font-size: 12px;
-  width: 55%;
+  width: 45%;
   height: 35px;
 }
 </style>
