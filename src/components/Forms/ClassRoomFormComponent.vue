@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import axios from "axios";
 
 export default {
@@ -95,56 +95,16 @@ export default {
       yearErrorText: "",
     });
 
-    const grades = ref([]);
-
     function setInput() {
       if (props.post !== undefined) {
         form.name = props.post.name;
         form.grade_id = props.post.grade_id;
         form.year = props.post.year;
-      }
-    }
-    setInput();
-
-    function validate() {
-      if (form.name === "") {
-        form.nameErrorText = "نام کلاس باید وارد شود";
-      } else {
-        form.nameErrorText = "";
-      }
-      if (form.year === "") {
-        form.yearErrorText = "نام سال تحصیلی باید وارد شود";
-      } else {
-        form.yearErrorText = "";
-      }
-      if (form.grade_id === "") {
-        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
-      } else {
-        form.gradeIdErrorText = "";
-      }
-
-      if (form.grade_id !== "" && form.name !== "" && form.year !== "") {
         emit("formData", form);
       }
     }
-
-    function getGrades() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
-        .then(function (response) {
-          // handle success
-          grades.value = response.data;
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-
-    getGrades();
-
-    return { grades, form, validate };
+    setInput();
+    return { form, setInput };
   },
 };
 </script>

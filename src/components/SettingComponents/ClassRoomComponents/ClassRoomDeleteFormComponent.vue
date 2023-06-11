@@ -13,7 +13,7 @@
         "
       >
         <ClassRoomForm
-          @formData="createClass"
+          @formData="deleteClass"
           :button-loading="loading"
           button-text="حذف"
           button-class="btn btn-danger"
@@ -25,6 +25,7 @@
 
 <script>
 import { reactive, ref } from "vue";
+import { useRoute } from "vue-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
@@ -44,33 +45,23 @@ export default {
     });
     const loading = ref(false);
     const classes = ref([]);
+    const route = useRoute();
 
-    function createClass(formData) {
-      loading.value = true;
+    function deleteClass(formData) {
       axios
-        .post("http://127.0.0.1:8000/api/school/classroom/store", {
-          grade_id: formData.grade_id,
-          year: formData.year,
-          name: formData.name,
-        })
+        .delete(
+          `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
+        )
         .then(function () {
-          getClasses();
-          loading.value = false;
-          form.name = "";
-          form.year = "";
-          form.grade_id = "";
           Swal.fire({
-            title: "ذخیره شد",
-            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
-            icon: "success",
+            title: "Thanks!",
+            text: `کلاس با کد (${route.params.id}) با موفقیت حذف گردید`,
+            icon: "warning",
             confirmButtonText: "Ok",
-            position: "top",
           });
         })
         .catch(function (error) {
-          loading.value = false;
-
-          console.log(error);
+          console.log("hi");
           Swal.fire({
             title: "پیغام خطا",
             text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
@@ -80,13 +71,14 @@ export default {
           });
         });
     }
+
     function getClasses() {
       axios
         .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
         .then(function (response) {
           // handle success
           classes.value = response.data;
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch(function (error) {
           // handle error
@@ -95,7 +87,7 @@ export default {
     }
     getClasses();
 
-    return { classes, createClass, loading };
+    return { classes, createClass, deleteClass, loading };
   },
 };
 </script>
