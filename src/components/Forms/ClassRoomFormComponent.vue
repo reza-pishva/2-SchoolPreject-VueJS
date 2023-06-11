@@ -57,7 +57,7 @@
               <button
                 style="font-size: 12px"
                 type="submit"
-                class="btn btn-primary"
+                :class="buttonClass"
               >
                 {{ buttonText }}
                 <div
@@ -83,6 +83,7 @@ export default {
     buttonLoading: Boolean,
     buttonText: String,
     post: Object,
+    buttonClass: String,
   },
   setup(props, { emit }) {
     const form = reactive({

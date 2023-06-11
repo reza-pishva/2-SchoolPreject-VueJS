@@ -15,92 +15,12 @@
         <ClassRoomForm
           @formData="createClass"
           :button-loading="loading"
-          button-text="ایجاد کلاس جدید"
-          button-class="btn btn-primary"
+          button-text="حذف"
+          button-class="btn btn-danger"
         />
       </div>
     </div>
   </div>
-  <div
-    class="row"
-    style="
-      height: 78%;
-      overflow-y: scroll;
-      margin-top: 35px;
-      border: 1px solid white;
-      border-radius: 5px;
-      background-color: rgb(57, 57, 60);
-      opacity: 0.7;
-      filter: alpha(opacity=100);
-    "
-  >
-    <div class="col">
-      <table
-        class="table table-bordered"
-        style="
-          font-family: Vazir;
-          font-size: smaller;
-          text-align: center;
-          margin-top: 10px;
-          margin-left: 40px;
-          direction: rtl;
-          width: 95%;
-        "
-      >
-        <thead>
-          <tr
-            class="sticky"
-            style="
-              background-color: cornflowerblue;
-              text-align: center;
-              font-size: smaller;
-              color: rgb(254, 254, 255);
-            "
-          >
-            <th>--</th>
-            <th>کد کلاس</th>
-            <th>نام کلاس</th>
-            <th>نام مقطع تحصیلی</th>
-            <th>--</th>
-            <th>--</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(item, index) in classes"
-            :key="index"
-            style="text-align: right; font-size: 14px; color: aliceblue"
-          >
-            <td style="width: 5%; padding-top: 10px">
-              <a href="#"
-                ><img
-                  style="width: 20px; height: 20px; border-radius: 5px"
-                  src="../../../../public/select.jpg"
-              /></a>
-            </td>
-            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 45%; padding-top: 15px">{{ item.name }}</td>
-            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
-            <td style="width: 15%">
-              <router-link
-                to="/classes-edit"
-                class="btn btn-success button-table-class"
-                >اصلاح</router-link
-              >
-            </td>
-            <td style="width: 15%">
-              <router-link
-                to="/classes-delete"
-                class="btn btn-danger button-table-class"
-                >حذف</router-link
-              >
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>

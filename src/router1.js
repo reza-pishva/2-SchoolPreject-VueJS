@@ -10,6 +10,8 @@ import LessonPageComponent  from './components/SettingComponents/LessonComponent
 import ExamTypePageComponent  from './components/SettingComponents/ExamTypeComponents/ExamTypePageComponent.vue'
 import ExamPageComponent  from './components/SettingComponents/ExamComponents/ExamPageComponent.vue'
 import ClassProgPageComponent  from './components/SettingComponents/ClassProgComponents/ClassProgPageComponent.vue'
+import ClassRoomEditFormComponent  from './components/SettingComponents/ClassRoomComponents/ClassRoomEditFormComponent.vue'
+import ClassRoomDeleteFormComponent  from './components/SettingComponents/ClassRoomComponents/ClassRoomDeleteFormComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -19,6 +21,8 @@ const routes = [
           { path: '/profiles', component: ProfilePageComponent },
           { path: '/grades', component: GradePageComponent },
           { path: '/classes', component: ClassRoomPageComponent },
+          { path: '/classes-edit', component: ClassRoomEditFormComponent },
+          { path: '/classes-delete', component: ClassRoomDeleteFormComponent },
           { path: '/lessons', component: LessonPageComponent },
           { path: '/exam-types', component: ExamTypePageComponent },
           { path: '/exams', component: ExamPageComponent },
