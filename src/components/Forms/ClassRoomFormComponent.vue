@@ -12,13 +12,10 @@
                 class="form-control"
                 placeholder="نام کلاس درس:"
               />
-              <div class="form-text text-danger validation-text">
-                {{ form.nameErrorText }}
-              </div>
             </div>
           </div>
           <div class="col-3">
-            <div class="form-group" style="font-family: Vazir">
+            <!-- <div class="form-group" style="font-family: Vazir">
               <select
                 v-model="form.grade_id"
                 class="form-select"
@@ -33,10 +30,7 @@
                   {{ item.grade_name }}
                 </option>
               </select>
-              <div class="form-text text-danger validation-text">
-                {{ form.gradeIdErrorText }}
-              </div>
-            </div>
+            </div> -->
           </div>
           <div class="col-2">
             <div class="form-group" style="font-size: xx-small">
@@ -47,9 +41,6 @@
                 class="form-control"
                 placeholder="سال تحصیلی:"
               />
-              <div class="form-text text-danger validation-text">
-                {{ form.yearErrorText }}
-              </div>
             </div>
           </div>
           <div class="col-4">
@@ -76,13 +67,11 @@
 
 <script>
 import { reactive } from "vue";
-import axios from "axios";
 
 export default {
   props: {
     buttonLoading: Boolean,
     buttonText: String,
-    post: Object,
     buttonClass: String,
   },
   setup(props, { emit }) {
@@ -90,9 +79,6 @@ export default {
       name: "",
       grade_id: "",
       year: "",
-      nameErrorText: "",
-      gradeIdErrorText: "",
-      yearErrorText: "",
     });
 
     function setInput() {

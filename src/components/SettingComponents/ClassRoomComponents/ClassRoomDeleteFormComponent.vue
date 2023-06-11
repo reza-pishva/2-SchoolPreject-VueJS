@@ -48,6 +48,7 @@ export default {
     const route = useRoute();
 
     function deleteClass(formData) {
+      console.log(route.params.id);
       axios
         .delete(
           `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
@@ -55,13 +56,13 @@ export default {
         .then(function () {
           Swal.fire({
             title: "Thanks!",
-            text: `کلاس با کد (${route.params.id}) با موفقیت حذف گردید`,
+            text: `کلاس با کد (${formData.id}) با موفقیت حذف گردید`,
             icon: "warning",
             confirmButtonText: "Ok",
           });
         })
         .catch(function (error) {
-          console.log("hi");
+          console.log(error);
           Swal.fire({
             title: "پیغام خطا",
             text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
@@ -87,7 +88,7 @@ export default {
     }
     getClasses();
 
-    return { classes, createClass, deleteClass, loading };
+    return { form, classes, deleteClass, loading };
   },
 };
 </script>
