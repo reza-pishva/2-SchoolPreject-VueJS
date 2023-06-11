@@ -21,13 +21,12 @@ const routes = [
           { path: '/profiles', component: ProfilePageComponent },
           { path: '/grades', component: GradePageComponent },
           { path: '/classes', component: ClassRoomPageComponent },
-          { path: '/classes-edit', component: ClassRoomEditFormComponent },
-          { path: '/classes-delete', component: ClassRoomDeleteFormComponent },
+          { path: '/classes-edit/:id', name: 'editClass', component: ClassRoomEditFormComponent },
+          { path: '/classes-delete/:id', name: 'deleteClass',component: ClassRoomDeleteFormComponent },
           { path: '/lessons', component: LessonPageComponent },
           { path: '/exam-types', component: ExamTypePageComponent },
           { path: '/exams', component: ExamPageComponent },
           { path: '/class-prog', component: ClassProgPageComponent },
-
       ]
   },
   { path: '/students', component: StudentComponent },

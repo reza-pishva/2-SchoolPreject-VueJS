@@ -83,14 +83,15 @@
             <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
             <td style="width: 15%">
               <router-link
-                to="/classes-edit"
                 class="btn btn-success button-table-class"
-                >اصلاح</router-link
+                :to="{ name: 'editClass', params: { id: item.id } }"
               >
+                اصلاح
+              </router-link>
             </td>
             <td style="width: 15%">
               <router-link
-                to="/classes-delete"
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
                 class="btn btn-danger button-table-class"
                 >حذف</router-link
               >
