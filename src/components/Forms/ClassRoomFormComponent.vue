@@ -4,7 +4,10 @@
       <div class="col">
         <div class="row">
           <div class="col-3">
-            <div class="form-group" style="font-size: xx-small">
+            <div
+              class="form-group"
+              style="font-family: Vazir; font-size: small"
+            >
               <input
                 v-model.lazy.trim="form.name"
                 style="font-size: 12px"
@@ -12,10 +15,16 @@
                 class="form-control"
                 placeholder="نام کلاس درس:"
               />
+              <div class="form-text text-danger">
+                {{ form.nameErrorText }}
+              </div>
             </div>
           </div>
           <div class="col-3">
-            <div class="form-group" style="font-family: Vazir">
+            <div
+              class="form-group"
+              style="font-family: Vazir; font-size: small"
+            >
               <select
                 v-model="form.grade_id"
                 class="form-select"
@@ -30,10 +39,16 @@
                   {{ item.grade_name }}
                 </option>
               </select>
+              <div class="form-text text-danger">
+                {{ form.gradeIdErrorText }}
+              </div>
             </div>
           </div>
           <div class="col-2">
-            <div class="form-group" style="font-size: xx-small">
+            <div
+              class="form-group"
+              style="font-family: Vazir; font-size: small"
+            >
               <input
                 v-model.lazy.trim="form.year"
                 style="font-size: 12px"
@@ -41,6 +56,9 @@
                 class="form-control"
                 placeholder="سال تحصیلی:"
               />
+              <div class="form-text text-danger">
+                {{ form.yearErrorText }}
+              </div>
             </div>
           </div>
           <div class="col-4">
@@ -78,8 +96,11 @@ export default {
   setup(props, { emit }) {
     const form = reactive({
       name: "",
+      nameErrorText: "",
       grade_id: "",
+      gradeIdErrorText: "",
       year: "",
+      yearErrorText: "",
     });
     const grades = ref([]);
     function setInput() {
@@ -103,16 +124,21 @@ export default {
     }
     function validate() {
       if (form.year === "") {
-        // form.titleErrorText = "Title is required";
+        form.yearErrorText = "سال تحصیلی پر نشده";
       } else {
-        // form.titleErrorText = "";
+        form.yearErrorText = "";
       }
-      if (form.body === "") {
-        // form.bodyErrorText = "Body is required";
+      if (form.name === "") {
+        form.nameErrorText = "نام کلاس باید مقدار داشته باشد";
       } else {
-        // form.bodyErrorText = "";
+        form.nameErrorText = "";
       }
-      if (form.year !== "" && form.name !== "") {
+      if (form.grade_id === "") {
+        form.gradeIdErrorText = "مقطع تحصیلی بدون مقدارست";
+      } else {
+        form.gradeIdErrorText = "";
+      }
+      if (form.year !== "" && form.name !== "" && form.grade_id !== "") {
         emit("formData", form);
       }
     }
