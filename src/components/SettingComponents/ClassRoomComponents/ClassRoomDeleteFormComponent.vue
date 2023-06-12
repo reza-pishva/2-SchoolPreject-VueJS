@@ -13,7 +13,7 @@
         "
       >
         <ClassRoomForm
-          @formData="deleteClass"
+          @class_id="deleteClass"
           :button-loading="loading"
           button-text="حذف"
           button-class="btn btn-danger"
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
-import { useRoute } from "vue-router";
+import { ref } from "vue";
+// import { useRoute } from "vue-router";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
@@ -35,28 +35,17 @@ export default {
     ClassRoomForm,
   },
   setup() {
-    const form = reactive({
-      name: "",
-      grade_id: "",
-      year: "",
-      nameErrorText: "",
-      gradeIdErrorText: "",
-      yearErrorText: "",
-    });
     const loading = ref(false);
-    const classes = ref([]);
-    const route = useRoute();
+    // const route = useRoute();
 
-    function deleteClass(formData) {
-      console.log(route.params.id);
+    function deleteClass(class_id) {
+      // console.log(class_id);
       axios
-        .delete(
-          `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
-        )
+        .delete(`http://127.0.0.1:8000/api/school/classroom/remove/${class_id}`)
         .then(function () {
           Swal.fire({
             title: "Thanks!",
-            text: `کلاس با کد (${formData.id}) با موفقیت حذف گردید`,
+            text: `کلاس با کد (${class_id}) با موفقیت حذف گردید`,
             icon: "warning",
             confirmButtonText: "Ok",
           });
@@ -73,22 +62,7 @@ export default {
         });
     }
 
-    function getClasses() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
-        .then(function (response) {
-          // handle success
-          classes.value = response.data;
-          // console.log(response.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getClasses();
-
-    return { form, classes, deleteClass, loading };
+    return { deleteClass, loading };
   },
 };
 </script>

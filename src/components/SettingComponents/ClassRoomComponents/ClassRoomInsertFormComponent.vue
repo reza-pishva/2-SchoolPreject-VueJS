@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
@@ -124,6 +124,7 @@ export default {
       yearErrorText: "",
     });
     const loading = ref(false);
+    const grades = ref([]);
     const classes = ref([]);
 
     function createClass(formData) {
@@ -149,6 +150,7 @@ export default {
           });
         })
         .catch(function (error) {
+          console.log("hiiiiiiiiiiiiiiiiiiiiiiiii");
           loading.value = false;
 
           console.log(error);
@@ -176,7 +178,7 @@ export default {
     }
     getClasses();
 
-    return { classes, createClass, loading };
+    return { grades, classes, createClass, loading };
   },
 };
 </script>
