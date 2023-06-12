@@ -17,6 +17,7 @@
           :button-loading="loading"
           button-text="ایجاد کلاس جدید"
           button-class="btn btn-primary"
+          :post="post"
         />
       </div>
     </div>
@@ -108,6 +109,7 @@
 import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRoute } from "vue-router";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
@@ -126,6 +128,8 @@ export default {
     const loading = ref(false);
     const grades = ref([]);
     const classes = ref([]);
+    const post = ref({});
+    const route = useRoute();
 
     function createClass(formData) {
       loading.value = true;
@@ -150,9 +154,7 @@ export default {
           });
         })
         .catch(function (error) {
-          console.log("hiiiiiiiiiiiiiiiiiiiiiiiii");
           loading.value = false;
-
           console.log(error);
           Swal.fire({
             title: "پیغام خطا",
@@ -176,9 +178,20 @@ export default {
           console.log(error);
         });
     }
+    function getClass() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+        .then(function (response) {
+          post.value = response.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+    getClass();
     getClasses();
 
-    return { grades, classes, createClass, loading };
+    return { post, grades, classes, createClass, loading };
   },
 };
 </script>
