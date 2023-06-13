@@ -17,6 +17,7 @@
           :button-loading="loading"
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
+          :post="oneClass"
         />
       </div>
     </div>
@@ -28,6 +29,7 @@ import { reactive, ref } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
+import { useRoute } from "vue-router";
 
 export default {
   components: {
@@ -44,6 +46,8 @@ export default {
     });
     const loading = ref(false);
     const classes = ref([]);
+    const oneClass = reactive({});
+    const route = useRoute();
 
     function editClass(formData) {
       loading.value = true;
@@ -86,16 +90,27 @@ export default {
         .then(function (response) {
           // handle success
           classes.value = response.data;
-          console.log(response.data);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
+    function getClass() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+        .then(function (response) {
+          oneClass.value = response.data;
+          // console.log(oneClass.value.name);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     getClasses();
+    getClass();
 
-    return { classes, editClass, loading };
+    return { oneClass, classes, editClass, loading };
   },
 };
 </script>

@@ -109,7 +109,7 @@
 import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useRoute } from "vue-router";
+// import { useRoute } from "vue-router";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
@@ -129,7 +129,7 @@ export default {
     const grades = ref([]);
     const classes = ref([]);
     const post = ref({});
-    const route = useRoute();
+    // const route = useRoute();
 
     function createClass(formData) {
       loading.value = true;
@@ -171,25 +171,25 @@ export default {
         .then(function (response) {
           // handle success
           classes.value = response.data;
-          console.log(response.data);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    function getClass() {
-      axios
-        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
-        .then(function (response) {
-          post.value = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-    getClass();
+    // function getClass() {
+    //   axios
+    //     .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+    //     .then(function (response) {
+    //       console.log(response.data);
+    //       post.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // }
     getClasses();
+    // getClass();
 
     return { post, grades, classes, createClass, loading };
   },
