@@ -27,7 +27,7 @@
 <script>
 import { reactive, ref } from "vue";
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 import { useRoute } from "vue-router";
 
@@ -36,53 +36,53 @@ export default {
     ClassRoomForm,
   },
   setup() {
-    const form = reactive({
-      name: "",
-      grade_id: "",
-      year: "",
-      nameErrorText: "",
-      gradeIdErrorText: "",
-      yearErrorText: "",
-    });
+    // const form = reactive({
+    //   name: "",
+    //   grade_id: "",
+    //   year: "",
+    //   nameErrorText: "",
+    //   gradeIdErrorText: "",
+    //   yearErrorText: "",
+    // });
     const loading = ref(false);
     const classes = ref([]);
     const oneClass = reactive({});
     const route = useRoute();
 
     function editClass(formData) {
-      loading.value = true;
-      axios
-        .post("http://127.0.0.1:8000/api/school/classroom/store", {
-          grade_id: formData.grade_id,
-          year: formData.year,
-          name: formData.name,
-        })
-        .then(function () {
-          getClasses();
-          loading.value = false;
-          form.name = "";
-          form.year = "";
-          form.grade_id = "";
-          Swal.fire({
-            title: "ذخیره شد",
-            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
-            icon: "success",
-            confirmButtonText: "Ok",
-            position: "top",
-          });
-        })
-        .catch(function (error) {
-          loading.value = false;
-
-          console.log(error);
-          Swal.fire({
-            title: "پیغام خطا",
-            text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
-            icon: "error",
-            confirmButtonText: "Ok",
-            position: "top",
-          });
-        });
+      console.log(formData);
+      // loading.value = true;
+      // axios
+      //   .put(`http://127.0.0.1:8000/api/classroom/update/${route.params.id}`, {
+      //     grade_id: formData.grade_id,
+      //     year: formData.year,
+      //     name: formData.name,
+      //   })
+      //   .then(function () {
+      //     console.log(form.name);
+      //     // loading.value = false;
+      //     // form.name = "";
+      //     // form.year = "";
+      //     // form.grade_id = "";
+      //     Swal.fire({
+      //       title: "ذخیره شد",
+      //       text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
+      //       icon: "success",
+      //       confirmButtonText: "Ok",
+      //       position: "top",
+      //     });
+      //   })
+      //   .catch(function (error) {
+      //     loading.value = false;
+      //     console.log(error);
+      //     Swal.fire({
+      //       title: "پیغام خطا",
+      //       text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
+      //       icon: "error",
+      //       confirmButtonText: "Ok",
+      //       position: "top",
+      //     });
+      //   });
     }
     function getClasses() {
       axios
