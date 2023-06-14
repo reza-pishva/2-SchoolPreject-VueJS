@@ -107,14 +107,10 @@ export default {
     const grades = ref([]);
 
     function setInput() {
-      // console.log(props.post);
       if (props.post !== undefined) {
-        form.name = props.post.value.name;
-        form.year = props.post.value.year;
-        form.grade_id = props.post.value.grade_id;
-        // console.log("1111111111111111111111");
-        // console.log(props.post.value.name);
-        // console.log("2222222222222222222222");
+        // form.name = props.post.value.name;
+        // form.year = props.post.value.year;
+        // form.grade_id = props.post.value.grade_id;
       }
     }
     setInput();
@@ -131,6 +127,7 @@ export default {
         });
     }
     getGrades();
+
     function validate() {
       if (form.year === "") {
         form.yearErrorText = "سال تحصیلی پر نشده";
@@ -151,7 +148,6 @@ export default {
         emit("formData", form);
       }
     }
-    getGrades();
     return { grades, form, validate };
   },
 };

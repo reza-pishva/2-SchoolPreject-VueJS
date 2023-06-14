@@ -5,12 +5,11 @@ import FirstPageComponent from './components/FirstPageComponent.vue'
 import UsersPageComponent from './components/SettingComponents/UserComponents/UsersPageComponent.vue'
 import ProfilePageComponent from './components/SettingComponents/UserComponents/ProfilePageComponent.vue'
 import GradePageComponent from './components/SettingComponents/GradeComponents/GradePageComponent.vue'
-import ClassRoomPageComponent from './components/SettingComponents/ClassRoomComponents/ClassRoomPageComponent.vue'
+import ClassRoomInsertFormComponent from './components/SettingComponents/ClassRoomComponents/ClassRoomInsertFormComponent.vue'
 import LessonPageComponent  from './components/SettingComponents/LessonComponents/LessonPageComponent.vue'
 import ExamTypePageComponent  from './components/SettingComponents/ExamTypeComponents/ExamTypePageComponent.vue'
 import ExamPageComponent  from './components/SettingComponents/ExamComponents/ExamPageComponent.vue'
 import ClassProgPageComponent  from './components/SettingComponents/ClassProgComponents/ClassProgPageComponent.vue'
-import ClassRoomEditFormComponent  from './components/SettingComponents/ClassRoomComponents/ClassRoomEditFormComponent.vue'
 import ClassRoomDeleteFormComponent  from './components/SettingComponents/ClassRoomComponents/ClassRoomDeleteFormComponent.vue'
 
 const routes = [
@@ -20,8 +19,7 @@ const routes = [
           { path: '/users', component: UsersPageComponent },
           { path: '/profiles', component: ProfilePageComponent },
           { path: '/grades', component: GradePageComponent },
-          { path: '/classes', component: ClassRoomPageComponent },
-          { path: '/classes-edit/:id', name: 'editClass', component: ClassRoomEditFormComponent },
+          { path: '/classes', component: ClassRoomInsertFormComponent },
           { path: '/classes-delete/:id', name: 'deleteClass',component: ClassRoomDeleteFormComponent },
           { path: '/lessons', component: LessonPageComponent },
           { path: '/exam-types', component: ExamTypePageComponent },

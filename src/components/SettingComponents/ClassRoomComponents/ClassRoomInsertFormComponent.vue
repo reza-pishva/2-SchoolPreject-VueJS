@@ -13,7 +13,6 @@
         "
       >
         <ClassRoomForm
-          @formData="createClass"
           :button-loading="loading"
           button-text="ایجاد کلاس جدید"
           button-class="btn btn-primary"
@@ -85,7 +84,7 @@
             <td style="width: 15%">
               <router-link
                 class="btn btn-success button-table-class"
-                :to="{ name: 'editClass', params: { id: item.id } }"
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
               >
                 اصلاح
               </router-link>
@@ -102,14 +101,16 @@
       </table>
     </div>
   </div>
-  <div class="row" style="height: 10%"></div>
+  <div class="row" style="height: 10%">
+    <!-- {{ classes }} -->
+  </div>
 </template>
 
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
@@ -129,7 +130,7 @@ export default {
     const grades = ref([]);
     const classes = ref([]);
     const post = ref({});
-    // const route = useRoute();
+    const route = useRoute();
 
     function createClass(formData) {
       loading.value = true;
@@ -177,19 +178,22 @@ export default {
           console.log(error);
         });
     }
-    // function getClass() {
-    //   axios
-    //     .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
-    //     .then(function (response) {
-    //       console.log(response.data);
-    //       post.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
     getClasses();
-    // getClass();
+
+    function getClass() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+        .then(function (response) {
+          // handle success
+          post.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getClasses();
+    getClass();
 
     return { post, grades, classes, createClass, loading };
   },
