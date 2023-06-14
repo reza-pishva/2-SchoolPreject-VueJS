@@ -109,10 +109,12 @@ export default {
     function setInput() {
       // console.log(props.post);
       if (props.post !== undefined) {
-        // form.name = props.post.value.name;
-        // form.year = props.post.value.year;
-        // form.grade_id = props.post.value.grade_id;
-        console.log(props.post);
+        form.name = props.post.value.name;
+        form.year = props.post.value.year;
+        form.grade_id = props.post.value.grade_id;
+        // console.log("1111111111111111111111");
+        // console.log(props.post.value.name);
+        // console.log("2222222222222222222222");
       }
     }
     setInput();
