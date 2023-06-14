@@ -107,6 +107,7 @@ export default {
     const grades = ref([]);
 
     function setInput() {
+      // console.log(props.post.value);
       if (props.post !== undefined) {
         // form.name = props.post.value.name;
         // form.year = props.post.value.year;

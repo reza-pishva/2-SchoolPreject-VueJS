@@ -12,12 +12,12 @@
           padding-right: 5px;
         "
       >
-        <ClassRoomForm
+        <!-- <ClassRoomForm
           @class_id="deleteClass"
           :button-loading="loading"
           button-text="حذف"
           button-class="btn btn-danger"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -25,29 +25,31 @@
 
 <script>
 import { ref } from "vue";
-// import { useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 import axios from "axios";
 import Swal from "sweetalert2";
-import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
+// import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
-  components: {
-    ClassRoomForm,
-  },
+  // components: {
+  //   ClassRoomForm,
+  // },
   setup() {
     const loading = ref(false);
-    // const route = useRoute();
+    const route = useRoute();
 
-    function deleteClass(class_id) {
-      // console.log(class_id);
+    function deleteClass() {
       axios
-        .delete(`http://127.0.0.1:8000/api/school/classroom/remove/${class_id}`)
+        .delete(
+          `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
+        )
         .then(function () {
           Swal.fire({
             title: "Thanks!",
-            text: `کلاس با کد (${class_id}) با موفقیت حذف گردید`,
+            text: `کلاس با کد (${route.params.id}) با موفقیت حذف گردید`,
             icon: "warning",
             confirmButtonText: "Ok",
+            position: "top",
           });
         })
         .catch(function (error) {
@@ -61,8 +63,9 @@ export default {
           });
         });
     }
+    deleteClass();
 
-    return { deleteClass, loading };
+    return { loading };
   },
 };
 </script>

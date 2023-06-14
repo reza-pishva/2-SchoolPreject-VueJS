@@ -13,6 +13,7 @@
         "
       >
         <ClassRoomForm
+          @formData="createClass"
           :button-loading="loading"
           button-text="ایجاد کلاس جدید"
           button-class="btn btn-primary"
@@ -101,9 +102,7 @@
       </table>
     </div>
   </div>
-  <div class="row" style="height: 10%">
-    <!-- {{ classes }} -->
-  </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>
@@ -184,6 +183,7 @@ export default {
       axios
         .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
         .then(function (response) {
+          console.log(response.data);
           // handle success
           post.value = response.data;
         })
@@ -192,7 +192,6 @@ export default {
           console.log(error);
         });
     }
-    getClasses();
     getClass();
 
     return { post, grades, classes, createClass, loading };
