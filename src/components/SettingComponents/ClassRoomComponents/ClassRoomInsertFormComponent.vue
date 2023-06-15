@@ -91,11 +91,12 @@
               </router-link>
             </td>
             <td style="width: 15%">
-              <router-link
-                :to="{ name: 'deleteClass', params: { id: item.id } }"
+              <button
+                @click="deleteClass(item.id)"
                 class="btn btn-danger button-table-class"
-                >حذف</router-link
               >
+                حذف
+              </button>
             </td>
           </tr>
         </tbody>
@@ -177,8 +178,6 @@ export default {
           console.log(error);
         });
     }
-    getClasses();
-
     function getClass() {
       axios
         .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
@@ -192,9 +191,53 @@ export default {
           console.log(error);
         });
     }
-    getClass();
+    function deleteClass(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        position: "top",
+      }).then((result) => {
+        getClasses();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/classroom/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `کلاس با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
 
-    return { post, grades, classes, createClass, loading };
+              axios
+                .get(
+                  "http://127.0.0.1:8000/api/school/classroom/classrooms-view"
+                )
+                .then(function (response) {
+                  // handle success
+                  classes.value = response.data;
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    getClass();
+    getClasses();
+
+    return { deleteClass, post, grades, classes, createClass, loading };
   },
 };
 </script>
