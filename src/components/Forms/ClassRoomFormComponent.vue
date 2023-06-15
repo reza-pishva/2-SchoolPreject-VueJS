@@ -107,8 +107,8 @@ export default {
     const grades = ref([]);
 
     function setInput() {
-      console.log(props.post.value);
       if (props.post !== undefined) {
+        console.log(props.post.value);
         // form.name = props.post.value.name;
         // form.year = props.post.value.year;
         // form.grade_id = props.post.value.grade_id;

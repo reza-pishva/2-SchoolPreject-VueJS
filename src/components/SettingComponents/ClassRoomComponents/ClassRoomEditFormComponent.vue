@@ -46,7 +46,7 @@ export default {
     });
     const loading = ref(false);
     const classes = ref([]);
-    const post = reactive({});
+    var post = reactive({});
     const route = useRoute();
 
     function editClass(formData) {
