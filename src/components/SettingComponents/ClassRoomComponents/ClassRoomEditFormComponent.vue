@@ -17,7 +17,7 @@
           :button-loading="loading"
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
-          :post="oneClass"
+          :post="post"
         />
       </div>
     </div>
@@ -46,7 +46,7 @@ export default {
     });
     const loading = ref(false);
     const classes = ref([]);
-    const oneClass = reactive({});
+    const post = reactive({});
     const route = useRoute();
 
     function editClass(formData) {
@@ -102,7 +102,7 @@ export default {
       axios
         .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
         .then(function (response) {
-          oneClass.value = response.data;
+          post.value = response.data;
         })
         .catch(function (error) {
           console.log(error);
@@ -110,7 +110,7 @@ export default {
     }
     getClass();
 
-    return { oneClass, classes, editClass, loading };
+    return { post, classes, editClass, loading };
   },
 };
 </script>
