@@ -70,7 +70,7 @@
           <tr
             v-for="(item, index) in classes"
             :key="index"
-            style="text-align: right; font-size: 14px; color: aliceblue"
+            style="text-align: right; font-size: 12px; color: aliceblue"
           >
             <td style="width: 5%; padding-top: 10px">
               <a href="#"
@@ -85,7 +85,7 @@
             <td style="width: 15%">
               <router-link
                 class="btn btn-success button-table-class"
-                :to="{ name: 'deleteClass', params: { id: item.id } }"
+                :to="{ name: 'editClass', params: { id: item.id } }"
               >
                 اصلاح
               </router-link>
