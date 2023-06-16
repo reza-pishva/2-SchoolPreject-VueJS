@@ -14,6 +14,10 @@ import ClassRoomDeleteFormComponent  from './components/SettingComponents/ClassR
 import ClassRoomEditFormComponent  from './components/SettingComponents/ClassRoomComponents/ClassRoomEditFormComponent.vue'
 import GradeDeleteFormComponent  from './components/SettingComponents/GradeComponents/GradeDeleteFormComponent.vue'
 import GradeEditFormComponent  from './components/SettingComponents/GradeComponents/GradeEditFormComponent.vue'
+import ExamTypeDeleteFormComponent  from './components/SettingComponents/ExamTypeComponents/ExamTypeDeleteFormComponent.vue'
+import ExamTypeEditFormComponent  from './components/SettingComponents/ExamTypeComponents/ExamTypeEditFormComponent.vue'
+import LessonDeleteFormComponent  from './components/SettingComponents/LessonComponents/LessonDeleteFormComponent.vue'
+import LessonEditFormComponent  from './components/SettingComponents/LessonComponents/LessonEditFormComponent.vue'
 
 
 const routes = [
@@ -29,7 +33,11 @@ const routes = [
           { path: '/classes-delete/:id', name: 'deleteClass',component: ClassRoomDeleteFormComponent },
           { path: '/classes-edit/:id', name: 'editClass',component: ClassRoomEditFormComponent },
           { path: '/lessons', component: LessonPageComponent },
+          { path: '/lessons-delete/:id', name: 'deleteLesson',component: LessonDeleteFormComponent },
+          { path: '/lessons-edit/:id', name: 'editLesson',component: LessonEditFormComponent },
           { path: '/exam-types', component: ExamTypePageComponent },
+          { path: '/exam-types-delete/:id', name: 'deleteExamType',component: ExamTypeDeleteFormComponent },
+          { path: '/exam-types-edit/:id', name: 'editExamType',component: ExamTypeEditFormComponent },
           { path: '/exams', component: ExamPageComponent },
           { path: '/class-prog', component: ClassProgPageComponent },
       ]

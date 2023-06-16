@@ -12,10 +12,10 @@
           padding-right: 5px;
         "
       >
-        <LessonForm
-          @formData="createLesson"
+        <ClassRoomForm
+          @formData="createClass"
           :button-loading="loading"
-          button-text="ایجاد درس جدید"
+          button-text="ایجاد کلاس جدید"
           button-class="btn btn-primary"
           :post="post"
         />
@@ -59,8 +59,8 @@
             "
           >
             <th>--</th>
-            <th>کد درس</th>
-            <th>نام درس</th>
+            <th>کد کلاس</th>
+            <th>نام کلاس</th>
             <th>نام مقطع تحصیلی</th>
             <th>--</th>
             <th>--</th>
@@ -68,9 +68,9 @@
         </thead>
         <tbody>
           <tr
-            v-for="(item, index) in lessons"
+            v-for="(item, index) in classes"
             :key="index"
-            style="text-align: right; font-size: 12px; color: aliceblue"
+            style="text-align: right; font-size: 14px; color: aliceblue"
           >
             <td style="width: 5%; padding-top: 10px">
               <a href="#"
@@ -80,25 +80,22 @@
               /></a>
             </td>
             <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 45%; padding-top: 15px">
-              {{ item.lesson_name }}
-            </td>
+            <td style="width: 45%; padding-top: 15px">{{ item.name }}</td>
             <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
             <td style="width: 15%">
               <router-link
                 class="btn btn-success button-table-class"
-                :to="{ name: 'editLesson', params: { id: item.id } }"
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
               >
                 اصلاح
               </router-link>
             </td>
             <td style="width: 15%">
-              <button
-                @click="deleteLesson(item.id)"
+              <router-link
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
                 class="btn btn-danger button-table-class"
+                >حذف</router-link
               >
-                حذف
-              </button>
             </td>
           </tr>
         </tbody>
@@ -113,40 +110,77 @@ import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRoute } from "vue-router";
-import LessonForm from "@/components/Forms/LessonFormComponent.vue";
+import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
   components: {
-    LessonForm,
+    ClassRoomForm,
   },
   setup() {
     const form = reactive({
-      lesson_name: "",
+      name: "",
       grade_id: "",
-      LessonNameErrorText: "",
+      year: "",
+      nameErrorText: "",
       gradeIdErrorText: "",
+      yearErrorText: "",
     });
+
     const loading = ref(false);
-    const lessons = ref([]);
     const grades = ref([]);
+    const classes = ref([]);
     const post = ref({});
     const route = useRoute();
 
-    function createLesson(formData) {
+    function deleteClass() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        position: "top",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
+            )
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `کلاس با کد (${route.params.id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    deleteClass();
+    function createClass(formData) {
       loading.value = true;
       axios
-        .post("http://127.0.0.1:8000/api/school/lesson/store", {
+        .post("http://127.0.0.1:8000/api/school/classroom/store", {
           grade_id: formData.grade_id,
-          lesson_name: formData.lesson_name,
+          year: formData.year,
+          name: formData.name,
         })
         .then(function () {
-          getLessons();
+          getClasses();
           loading.value = false;
-          form.lesson_name = "";
+          form.name = "";
+          form.year = "";
           form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام درس با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -164,21 +198,22 @@ export default {
           });
         });
     }
-    function getLessons() {
+    function getClasses() {
       axios
-        .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
         .then(function (response) {
           // handle success
-          lessons.value = response.data;
+          classes.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    function getLesson() {
+
+    function getClass() {
       axios
-        .get(`http://127.0.0.1:8000/api/school/lesson/${route.params.id}`)
+        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
         .then(function (response) {
           console.log(response.data);
           // handle success
@@ -189,51 +224,9 @@ export default {
           console.log(error);
         });
     }
-    function deleteLesson(id) {
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-        position: "top",
-      }).then((result) => {
-        getLessons();
-        if (result.isConfirmed) {
-          axios
-            .delete(`http://127.0.0.1:8000/api/school/lesson/remove/${id}`)
-            .then(function () {
-              Swal.fire({
-                title: "Thanks!",
-                text: `درس با کد (${id}) با موفقیت حذف گردید`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
+    getClass();
 
-              axios
-                .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
-                .then(function (response) {
-                  // handle success
-                  lessons.value = response.data;
-                })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
-    }
-    getLesson();
-    getLessons();
-
-    return { deleteLesson, post, grades, lessons, createLesson, loading };
+    return { post, grades, classes, createClass, loading };
   },
 };
 </script>

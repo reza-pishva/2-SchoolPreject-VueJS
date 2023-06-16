@@ -57,11 +57,11 @@
                   src="../../../../public/select.jpg"
               /></a>
             </td>
-            <td style="width: 10%; padding-top: 25px; text-align: center">
+            <td style="width: 10%; padding-top: 20px; text-align: center">
               {{ item.id }}
             </td>
-            <td style="width: 65%; padding-top: 25px">{{ item.grade_name }}</td>
-            <td style="width: 10%">
+            <td style="width: 65%; padding-top: 20px">{{ item.grade_name }}</td>
+            <td style="width: 10%; padding-top: 15px">
               <router-link
                 class="btn btn-success button-table-class"
                 :to="{ name: 'editGrade', params: { id: item.id } }"
@@ -69,7 +69,7 @@
                 اصلاح
               </router-link>
             </td>
-            <td style="width: 10%">
+            <td style="width: 10%; padding-top: 15px">
               <button
                 @click="deleteGrade(item.id)"
                 class="btn btn-danger button-table-class"

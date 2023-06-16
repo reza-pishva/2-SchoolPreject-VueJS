@@ -13,7 +13,7 @@
     <div class="col-4 mt-2">
       <img
         src="../../../public/idealparsi.png"
-        style="height: 75%; width: 30%; border-radius: 5px; margin-left: -100px"
+        style="height: 75%; width: 25%; border-radius: 5px; margin-left: -100px"
       />
     </div>
     <div class="col-5"></div>
