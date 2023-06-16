@@ -93,6 +93,7 @@ export default {
     buttonText: String,
     buttonClass: String,
     post: Object,
+    classId: String,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -105,16 +106,8 @@ export default {
     });
 
     const grades = ref([]);
+    const classInfo = ref([]);
 
-    function setInput() {
-      if (props.post !== undefined) {
-        console.log(props.post.value);
-        // form.name = props.post.value.name;
-        // form.year = props.post.value.year;
-        // form.grade_id = props.post.value.grade_id;
-      }
-    }
-    setInput();
     function getGrades() {
       axios
         .get("http://127.0.0.1:8000/api/school/grade/grades")
@@ -128,6 +121,23 @@ export default {
         });
     }
     getGrades();
+
+    function getClass() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/classroom/" + props.classId)
+        .then(function (response) {
+          // handle success
+          classInfo.value = response.data;
+          form.name = classInfo.value.name;
+          form.year = classInfo.value.year;
+          form.grade_id = classInfo.value.grade_id;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getClass();
 
     function validate() {
       if (form.year === "") {
@@ -149,7 +159,13 @@ export default {
         emit("formData", form);
       }
     }
-    return { grades, form, validate };
+
+    function setInput() {
+      console.log(form);
+    }
+    setInput();
+
+    return { grades, form, validate, setInput };
   },
 };
 </script>

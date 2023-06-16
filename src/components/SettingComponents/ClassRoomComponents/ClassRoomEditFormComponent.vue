@@ -18,6 +18,7 @@
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
           :post="post"
+          :classId="form.id"
         />
       </div>
     </div>
@@ -37,6 +38,7 @@ export default {
   },
   setup() {
     const form = reactive({
+      id: "",
       name: "",
       grade_id: "",
       year: "",
@@ -84,33 +86,36 @@ export default {
           });
         });
     }
-    function getClasses() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
-        .then(function (response) {
-          // handle success
-          classes.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-          console.log();
-        });
+    // function getClasses() {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
+    //     .then(function (response) {
+    //       // handle success
+    //       classes.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getClasses();
+    // function getClass() {
+    //   axios
+    //     .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+    //     .then(function (response) {
+    //       post.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // }
+    function sendId() {
+      form.id = route.params.id;
     }
-    getClasses();
-    function getClass() {
-      axios
-        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
-        .then(function (response) {
-          post.value = response.data;
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-    getClass();
+    sendId();
+    // getClass();
 
-    return { post, classes, editClass, loading };
+    return { post, classes, editClass, loading, form };
   },
 };
 </script>
