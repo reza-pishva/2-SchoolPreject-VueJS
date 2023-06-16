@@ -55,8 +55,8 @@ export default {
       // console.log(formData);
       loading.value = true;
       axios
-        .put(`http://127.0.0.1:8000/api/classroom/update/${route.params.id}`, {
-          id: route.params.id,
+        .put("http://127.0.0.1:8000/api/school/classroom/update/" + form.id, {
+          id: formData.id,
           grade_id: formData.grade_id,
           year: formData.year,
           name: formData.name,
@@ -75,6 +75,7 @@ export default {
           });
         })
         .catch(function (error) {
+          console.log(formData);
           loading.value = false;
           console.log(error);
           Swal.fire({
