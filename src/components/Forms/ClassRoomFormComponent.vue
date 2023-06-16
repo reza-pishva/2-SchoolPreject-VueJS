@@ -30,7 +30,7 @@
                 class="form-select"
                 style="font-size: small"
               >
-                <option value="">انتخاب مقطع تحصیلی:</option>
+                <option selected value="1000">انتخاب مقطع تحصیلی:</option>
                 <option
                   v-for="(item, index) in grades"
                   :key="index"
@@ -159,13 +159,7 @@ export default {
         emit("formData", form);
       }
     }
-
-    function setInput() {
-      console.log(form);
-    }
-    setInput();
-
-    return { grades, form, validate, setInput };
+    return { grades, form, validate };
   },
 };
 </script>

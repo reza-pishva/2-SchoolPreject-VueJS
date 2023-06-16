@@ -52,7 +52,6 @@ export default {
     const route = useRoute();
 
     function editClass(formData) {
-      // console.log(formData);
       loading.value = true;
       axios
         .put("http://127.0.0.1:8000/api/school/classroom/update/" + form.id, {
@@ -68,7 +67,7 @@ export default {
           form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام کلاس با موفقیت در پایگاه داده اصلاح گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -87,35 +86,10 @@ export default {
           });
         });
     }
-    // function getClasses() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
-    //     .then(function (response) {
-    //       // handle success
-    //       classes.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getClasses();
-    // function getClass() {
-    //   axios
-    //     .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
-    //     .then(function (response) {
-    //       post.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
     function sendId() {
       form.id = route.params.id;
     }
     sendId();
-    // getClass();
-
     return { post, classes, editClass, loading, form };
   },
 };

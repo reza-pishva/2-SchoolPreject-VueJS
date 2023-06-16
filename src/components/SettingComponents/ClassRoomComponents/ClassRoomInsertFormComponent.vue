@@ -120,7 +120,7 @@ export default {
   setup() {
     const form = reactive({
       name: "",
-      grade_id: "",
+      grade_id: "0",
       year: "",
       nameErrorText: "",
       gradeIdErrorText: "",
