@@ -2,47 +2,13 @@
   <div class="row" style="height: 12%">
     <div class="col">
       <div class="grade-window">
-        <form
-          @submit.prevent="validate"
-          style="direction: rtl; font-family: Vazir; margin-top: 15px"
-        >
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.grade_name"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder=" نام مقطع تحصیلی:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeNameErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                      style="width: 20%; font-family: Vazir; font-size: 14px"
-                    >
-                      ثبت
-                      <div
-                        v-if="loading"
-                        class="spinner-border spinner-grow-sm"
-                        role="status"
-                      ></div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+        <GradeForm
+          @formData="createGrade"
+          :button-loading="loading"
+          button-text="ایجاد مقطع جدید"
+          button-class="btn btn-primary"
+          :post="post"
+        />
       </div>
     </div>
   </div>
@@ -55,6 +21,8 @@
       border: 1px solid white;
       border-radius: 5px;
       background-color: rgb(61, 61, 73);
+      opacity: 0.7;
+      filter: alpha(opacity=100);
     "
   >
     <div class="col">
@@ -80,7 +48,7 @@
           <tr
             v-for="(item, index) in grades"
             :key="index"
-            style="text-align: right; font-size: 14px; color: aliceblue"
+            style="text-align: right; font-size: 12px; color: aliceblue"
           >
             <td style="width: 5%; padding-top: 25px">
               <a href="#"
@@ -89,17 +57,23 @@
                   src="../../../../public/select.jpg"
               /></a>
             </td>
-            <td style="width: 15%; padding-top: 25px; text-align: center">
+            <td style="width: 10%; padding-top: 25px; text-align: center">
               {{ item.id }}
             </td>
-            <td style="width: 45%; padding-top: 25px">{{ item.grade_name }}</td>
-            <td style="width: 15%; padding-top: 18px">
-              <button type="button" class="btn btn-success button-table-class">
-                ویرایش
-              </button>
+            <td style="width: 65%; padding-top: 25px">{{ item.grade_name }}</td>
+            <td style="width: 10%">
+              <router-link
+                class="btn btn-success button-table-class"
+                :to="{ name: 'editGrade', params: { id: item.id } }"
+              >
+                اصلاح
+              </router-link>
             </td>
-            <td style="width: 15%; padding-top: 18px">
-              <button type="button" class="btn btn-danger button-table-class">
+            <td style="width: 10%">
+              <button
+                @click="deleteGrade(item.id)"
+                class="btn btn-danger button-table-class"
+              >
                 حذف
               </button>
             </td>
@@ -112,11 +86,16 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRoute } from "vue-router";
+import GradeForm from "@/components/Forms/GradeFormComponent.vue";
 
 export default {
+  components: {
+    GradeForm,
+  },
   setup() {
     const form = reactive({
       grade_name: "",
@@ -124,36 +103,37 @@ export default {
     });
     const loading = ref(false);
     const grades = ref([]);
+    const post = ref({});
+    const route = useRoute();
 
-    function validate() {
-      if (form.grade_name === "") {
-        form.gradeNameErrorText = "نام مقطع تحصیلی باید وارد شود";
-      } else {
-        form.gradeNameErrorText = "";
-        loading.value = true;
-        createGrade();
-      }
-    }
-
-    function createGrade() {
+    function createGrade(formData) {
+      loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/grade/store", {
-          grade_name: form.grade_name,
+          grade_name: formData.grade_name,
         })
         .then(function () {
+          getGrades();
           loading.value = false;
           form.grade_name = "";
-          getGrades();
           Swal.fire({
             title: "ذخیره شد",
-            text: "مقطع تحصیلی با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام مقطع تحصیلی با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
           });
         })
         .catch(function (error) {
+          loading.value = false;
           console.log(error);
+          Swal.fire({
+            title: "پیغام خطا",
+            text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
+            icon: "error",
+            confirmButtonText: "Ok",
+            position: "top",
+          });
         });
     }
     function getGrades() {
@@ -162,16 +142,69 @@ export default {
         .then(function (response) {
           // handle success
           grades.value = response.data;
-          console.log(response.data);
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
+    function getGrade() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/grade/${route.params.id}`)
+        .then(function (response) {
+          // handle success
+          post.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function deleteGrade(id) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        position: "top",
+      }).then((result) => {
+        getGrades();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/grade/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `مقطع تحصیلی با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+
+              axios
+                .get("http://127.0.0.1:8000/api/school/grade/grades")
+                .then(function (response) {
+                  // handle success
+                  grades.value = response.data;
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    getGrade();
     getGrades();
 
-    return { grades, form, validate, loading };
+    return { deleteGrade, post, grades, createGrade, loading };
   },
 };
 </script>
