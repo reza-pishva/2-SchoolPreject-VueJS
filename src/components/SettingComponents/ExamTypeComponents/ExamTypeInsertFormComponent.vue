@@ -25,7 +25,7 @@
       filter: alpha(opacity=100);
     "
   >
-    <div class="col">
+    <div v-if="spinner" class="col">
       <table class="table table-bordered table-class">
         <thead>
           <tr
@@ -81,6 +81,15 @@
         </tbody>
       </table>
     </div>
+    <div v-else class="col">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
   <div class="row" style="height: 10%"></div>
 </template>
@@ -105,6 +114,7 @@ export default {
     const examTypes = ref([]);
     const post = ref({});
     const route = useRoute();
+    const spinner = ref(false);
 
     function createExamType(formData) {
       loading.value = true;
@@ -141,6 +151,7 @@ export default {
         .get("http://127.0.0.1:8000/api/school/exam/exam-types")
         .then(function (response) {
           // handle success
+          spinner.value = true;
           examTypes.value = response.data;
         })
         .catch(function (error) {
@@ -208,7 +219,14 @@ export default {
     getExamType();
     getExamTypes();
 
-    return { deleteExamType, post, examTypes, createExamType, loading };
+    return {
+      spinner,
+      deleteExamType,
+      post,
+      examTypes,
+      createExamType,
+      loading,
+    };
   },
 };
 </script>
