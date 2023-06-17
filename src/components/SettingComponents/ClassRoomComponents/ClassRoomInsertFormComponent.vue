@@ -36,6 +36,15 @@
     "
   >
     <div class="col" v-if="!spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="col">
       <table
         class="table table-bordered"
         style="
@@ -101,15 +110,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div v-else class="col">
-      <div
-        class="spinner-border text-danger"
-        role="status"
-        style="width: 100px; height: 100px; margin-top: 100px"
-      >
-        <span class="visually-hidden">Loading...</span>
-      </div>
     </div>
   </div>
   <div class="row" style="height: 10%"></div>
@@ -181,8 +181,8 @@ export default {
         .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
         .then(function (response) {
           // handle success
-          classes.value = response.data;
           spinner.value = true;
+          classes.value = response.data;
         })
         .catch(function (error) {
           // handle error
@@ -248,7 +248,15 @@ export default {
     getClass();
     getClasses();
 
-    return { deleteClass, post, grades, classes, createClass, loading };
+    return {
+      spinner,
+      deleteClass,
+      post,
+      grades,
+      classes,
+      createClass,
+      loading,
+    };
   },
 };
 </script>
