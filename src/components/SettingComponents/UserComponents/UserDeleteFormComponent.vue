@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 35%">
+  <div class="row" style="height: 12%">
     <div class="col">
       <div
         style="
@@ -25,9 +25,9 @@
   <div
     class="row"
     style="
-      height: 65%;
+      height: 78%;
       overflow-y: scroll;
-      margin-top: 3px;
+      margin-top: 35px;
       border: 1px solid white;
       border-radius: 5px;
       background-color: rgb(57, 57, 60);
@@ -35,16 +35,7 @@
       filter: alpha(opacity=100);
     "
   >
-    <div class="col" v-if="spinner">
-      <div
-        class="spinner-border text-danger"
-        role="status"
-        style="width: 100px; height: 100px; margin-top: 100px"
-      >
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-    <div v-else class="col">
+    <div class="col">
       <table
         class="table table-bordered"
         style="
@@ -103,7 +94,7 @@
             <td style="width: 10%; padding-top: 15px">
               {{ item.father_name }}
             </td>
-            <td style="width: 21%; padding-top: 15px">
+            <td style="width: 15%; padding-top: 15px">
               {{ item.email }}
             </td>
             <td style="width: 10%; padding-top: 15px">{{ item.role }}</td>
@@ -113,19 +104,13 @@
             <td style="width: 10%; padding-top: 15px">
               {{ item.national_code }}
             </td>
-            <td style="width: 7%; padding-top: 10px">
-              <router-link
-                class="btn btn-success button-table-class"
-                :to="{ name: 'editUser', params: { id: item.id } }"
-              >
-                اصلاح
-              </router-link>
+            <td style="width: 10%">
+              <button type="button" class="btn btn-success button-table-class">
+                ویرایش
+              </button>
             </td>
-            <td style="width: 7%; padding-top: 10px">
-              <button
-                @click="deleteUser(item.id)"
-                class="btn btn-danger button-table-class"
-              >
+            <td style="width: 10%">
+              <button type="button" class="btn btn-danger button-table-class">
                 حذف
               </button>
             </td>
@@ -172,8 +157,39 @@ export default {
     const users = ref([]);
     const post = ref({});
     const route = useRoute();
-    const spinner = ref(true);
 
+    function deleteUser() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        position: "top",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `http://127.0.0.1:8000/api/school/user/remove/${route.params.id}`
+            )
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `کاربر با کد (${route.params.id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    deleteUser();
     function createUser(formData) {
       loading.value = true;
       axios
@@ -223,7 +239,6 @@ export default {
         .get("http://127.0.0.1:8000/api/school/user/users")
         .then(function (response) {
           // handle success
-          spinner.value = false;
           users.value = response.data;
         })
         .catch(function (error) {
@@ -231,7 +246,8 @@ export default {
           console.log(error);
         });
     }
-    function getUser() {
+
+    function getClass() {
       axios
         .get(`http://127.0.0.1:8000/api/school/user/${route.params.id}`)
         .then(function (response) {
@@ -244,58 +260,9 @@ export default {
           console.log(error);
         });
     }
-    function deleteUser(id) {
-      Swal.fire({
-        title: "آیا مطمئن هستید؟",
-        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، حذف شود",
-        position: "top",
-      }).then((result) => {
-        getUsers();
-        if (result.isConfirmed) {
-          axios
-            .delete(`http://127.0.0.1:8000/api/school/user/remove/${id}`)
-            .then(function () {
-              Swal.fire({
-                title: "Thanks!",
-                text: `کاربر با کد (${id}) با موفقیت حذف گردید`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
+    getClass();
 
-              axios
-                .get("http://127.0.0.1:8000/api/school/user/users")
-                .then(function (response) {
-                  // handle success
-                  users.value = response.data;
-                })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
-    }
-    getUser();
-    getUsers();
-
-    return {
-      spinner,
-      deleteUser,
-      post,
-      users,
-      createUser,
-      loading,
-    };
+    return { post, users, createUser, loading };
   },
 };
 </script>
@@ -318,5 +285,14 @@ export default {
   font-size: 12px;
   width: 95%;
   height: 30px;
+}
+.grade-window {
+  background-color: rgb(237, 237, 227);
+  margin-left: 30px;
+  height: 95%;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 </style>
