@@ -35,7 +35,7 @@
       filter: alpha(opacity=100);
     "
   >
-    <div class="col">
+    <div class="col" v-if="!spinner">
       <table
         class="table table-bordered"
         style="
@@ -102,6 +102,15 @@
         </tbody>
       </table>
     </div>
+    <div v-else class="col">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
   <div class="row" style="height: 10%"></div>
 </template>
@@ -131,6 +140,7 @@ export default {
     const classes = ref([]);
     const post = ref({});
     const route = useRoute();
+    const spinner = ref(false);
 
     function createClass(formData) {
       loading.value = true;
@@ -172,6 +182,7 @@ export default {
         .then(function (response) {
           // handle success
           classes.value = response.data;
+          spinner.value = true;
         })
         .catch(function (error) {
           // handle error
@@ -193,13 +204,13 @@ export default {
     }
     function deleteClass(id) {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "بله ، حذف شود",
         position: "top",
       }).then((result) => {
         getClasses();

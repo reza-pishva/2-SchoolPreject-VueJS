@@ -162,13 +162,13 @@ export default {
     }
     function deleteGrade(id) {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "بله ، حذف شود",
         position: "top",
       }).then((result) => {
         getGrades();
@@ -177,7 +177,7 @@ export default {
             .delete(`http://127.0.0.1:8000/api/school/grade/remove/${id}`)
             .then(function () {
               Swal.fire({
-                title: "Thanks!",
+                title: "متشکرم!",
                 text: `مقطع تحصیلی با کد (${id}) با موفقیت حذف گردید`,
                 icon: "success",
                 confirmButtonText: "Ok",
@@ -256,5 +256,9 @@ export default {
   margin-left: 40px;
   direction: rtl;
   width: 95%;
+}
+.swal2-popup {
+  font-size: 14px !important;
+  font-family: Vazir;
 }
 </style>

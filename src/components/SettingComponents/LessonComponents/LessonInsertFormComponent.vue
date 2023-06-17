@@ -191,13 +191,13 @@ export default {
     }
     function deleteLesson(id) {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
+        confirmButtonText: "بله ، حذف شود",
         position: "top",
       }).then((result) => {
         getLessons();
