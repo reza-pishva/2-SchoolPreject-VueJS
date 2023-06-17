@@ -35,7 +35,7 @@
       filter: alpha(opacity=100);
     "
   >
-    <div class="col">
+    <div v-if="!spinner" class="col">
       <table
         class="table table-bordered"
         style="
@@ -104,6 +104,15 @@
         </tbody>
       </table>
     </div>
+    <div v-else class="col">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
   <div class="row" style="height: 10%"></div>
 </template>
@@ -131,6 +140,7 @@ export default {
     const grades = ref([]);
     const post = ref({});
     const route = useRoute();
+    const spinner = ref(true);
 
     function createLesson(formData) {
       loading.value = true;
@@ -169,6 +179,7 @@ export default {
         .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
         .then(function (response) {
           // handle success
+          spinner.value = false;
           lessons.value = response.data;
         })
         .catch(function (error) {
@@ -233,7 +244,15 @@ export default {
     getLesson();
     getLessons();
 
-    return { deleteLesson, post, grades, lessons, createLesson, loading };
+    return {
+      spinner,
+      deleteLesson,
+      post,
+      grades,
+      lessons,
+      createLesson,
+      loading,
+    };
   },
 };
 </script>
