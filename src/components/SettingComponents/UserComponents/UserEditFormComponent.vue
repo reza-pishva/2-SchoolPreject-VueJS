@@ -13,7 +13,7 @@
         "
       >
         <UserForm
-          @formData="editClass"
+          @formData="editUser"
           :button-loading="loading"
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
@@ -65,14 +65,14 @@ export default {
       axios
         .put("http://127.0.0.1:8000/api/school/user/update/" + form.id, {
           id: formData.id,
-          f_name: form.f_name,
-          l_name: form.l_name,
-          father_name: form.father_name,
-          email: form.email,
-          password: form.password,
-          gender: form.gender,
-          national_code: form.national_code,
-          role: form.role,
+          f_name: formData.f_name,
+          l_name: formData.l_name,
+          father_name: formData.father_name,
+          email: formData.email,
+          password: formData.password,
+          gender: formData.gender,
+          national_code: formData.national_code,
+          role: formData.role,
         })
         .then(function () {
           loading.value = false;
