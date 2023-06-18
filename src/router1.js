@@ -22,7 +22,8 @@ import UserDeleteFormComponent  from './components/SettingComponents/UserCompone
 import UserEditFormComponent  from './components/SettingComponents/UserComponents/UserEditFormComponent.vue'
 import ProfileDeleteFormComponent  from './components/SettingComponents/UserComponents/ProfileDeleteFormComponent.vue'
 import ProfileEditFormComponent  from './components/SettingComponents/UserComponents/ProfileEditFormComponent.vue'
-
+import ExamDeleteFormComponent  from './components/SettingComponents/ExamComponents/ExamDeleteFormComponent.vue'
+import ExamEditFormComponent  from './components/SettingComponents/ExamComponents/ExamEditFormComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -47,6 +48,8 @@ const routes = [
           { path: '/exam-types-delete/:id', name: 'deleteExamType',component: ExamTypeDeleteFormComponent },
           { path: '/exam-types-edit/:id', name: 'editExamType',component: ExamTypeEditFormComponent },
           { path: '/exams', component: ExamPageComponent },
+          { path: '/exams-delete/:id', name: 'deleteExam',component: ExamDeleteFormComponent },
+          { path: '/exams-edit/:id', name: 'editExam',component: ExamEditFormComponent },
           { path: '/class-prog', component: ClassProgPageComponent },
       ]
   },

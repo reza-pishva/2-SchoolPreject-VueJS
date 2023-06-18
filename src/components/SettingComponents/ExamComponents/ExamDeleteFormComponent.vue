@@ -12,10 +12,10 @@
           padding-right: 5px;
         "
       >
-        <ExamForm
-          @formData="createExam"
+        <ClassRoomForm
+          @formData="createClass"
           :button-loading="loading"
-          button-text="ایجاد آزمون جدید"
+          button-text="ایجاد کلاس جدید"
           button-class="btn btn-primary"
           :post="post"
         />
@@ -35,7 +35,7 @@
       filter: alpha(opacity=100);
     "
   >
-    <div v-if="!spinner" class="col">
+    <div class="col">
       <table
         class="table table-bordered"
         style="
@@ -59,9 +59,8 @@
             "
           >
             <th>--</th>
-            <th>کد آزمون</th>
-            <th>نام آزمون</th>
-            <th>نوع آزمون</th>
+            <th>کد کلاس</th>
+            <th>نام کلاس</th>
             <th>نام مقطع تحصیلی</th>
             <th>--</th>
             <th>--</th>
@@ -69,53 +68,38 @@
         </thead>
         <tbody>
           <tr
-            v-for="(item, index) in exams"
+            v-for="(item, index) in classes"
             :key="index"
-            style="text-align: right; font-size: 12px; color: aliceblue"
+            style="text-align: right; font-size: 14px; color: aliceblue"
           >
-            <td style="width: 5%; padding-top: 13px">
+            <td style="width: 5%; padding-top: 10px">
               <a href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
               /></a>
             </td>
-            <td style="width: 5%; padding-top: 15px">{{ item.id }}</td>
-            <td style="width: 23%; padding-top: 15px">
-              {{ item.lesson_name }}
-            </td>
-            <td style="width: 24%; padding-top: 15px">
-              {{ item.exam_type }}
-            </td>
-            <td style="width: 23%; padding-top: 15px">{{ item.grade_name }}</td>
-            <td style="width: 10%">
+            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 45%; padding-top: 15px">{{ item.name }}</td>
+            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
+            <td style="width: 15%">
               <router-link
                 class="btn btn-success button-table-class"
-                :to="{ name: 'editExam', params: { id: item.id } }"
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
               >
                 اصلاح
               </router-link>
             </td>
-            <td style="width: 10%">
-              <button
-                @click="deleteExam(item.id)"
+            <td style="width: 15%">
+              <router-link
+                :to="{ name: 'deleteClass', params: { id: item.id } }"
                 class="btn btn-danger button-table-class"
+                >حذف</router-link
               >
-                حذف
-              </button>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-    <div v-else class="col">
-      <div
-        class="spinner-border text-danger"
-        role="status"
-        style="width: 100px; height: 100px; margin-top: 100px"
-      >
-        <span class="visually-hidden">Loading...</span>
-      </div>
     </div>
   </div>
   <div class="row" style="height: 10%"></div>
@@ -125,48 +109,78 @@
 import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { useRoute } from "vue-router";
-import ExamForm from "@/components/Forms/ExamFormComponent.vue";
+import { useRoute } from "vue-router";
+import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
 
 export default {
   components: {
-    ExamForm,
+    ClassRoomForm,
   },
   setup() {
     const form = reactive({
-      lesson_id: "",
+      name: "",
       grade_id: "",
-      exam_type_id: "",
-      lessonIdErrorText: "",
+      year: "",
+      nameErrorText: "",
       gradeIdErrorText: "",
-      examTypeIdErrorText: "",
+      yearErrorText: "",
     });
-    const loading = ref(false);
-    const lessons = ref([]);
-    const exams = ref([]);
-    const grades = ref([]);
-    const exam_types = ref([]);
-    const post = ref({});
-    // const route = useRoute();
-    const spinner = ref(true);
 
-    function createExam(formData) {
+    const loading = ref(false);
+    const grades = ref([]);
+    const classes = ref([]);
+    const post = ref({});
+    const route = useRoute();
+
+    function deleteClass() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+        position: "top",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(
+              `http://127.0.0.1:8000/api/school/classroom/remove/${route.params.id}`
+            )
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `کلاس با کد (${route.params.id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    deleteClass();
+    function createClass(formData) {
       loading.value = true;
       axios
-        .post("http://127.0.0.1:8000/api/school/exam/store", {
+        .post("http://127.0.0.1:8000/api/school/classroom/store", {
           grade_id: formData.grade_id,
-          lesson_id: formData.lesson_id,
-          exam_type_id: formData.exam_type_id,
+          year: formData.year,
+          name: formData.name,
         })
         .then(function () {
-          getExams();
+          getClasses();
           loading.value = false;
-          form.lesson_id = "";
+          form.name = "";
+          form.year = "";
           form.grade_id = "";
-          form.exam_type_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام آزمون با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام کلاس با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -184,74 +198,35 @@ export default {
           });
         });
     }
-    function getExams() {
+    function getClasses() {
       axios
-        .get("http://127.0.0.1:8000/api/school/exam/exam-view")
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
         .then(function (response) {
           // handle success
-          spinner.value = false;
-          exams.value = response.data;
+          classes.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    function deleteExam(id) {
-      Swal.fire({
-        title: "آیا مطمئن هستید؟",
-        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، حذف شود",
-        position: "top",
-      }).then((result) => {
-        getExams();
-        if (result.isConfirmed) {
-          axios
-            .delete(`http://127.0.0.1:8000/api/school/exam/remove/${id}`)
-            .then(function () {
-              Swal.fire({
-                title: "Thanks!",
-                text: `آزمون با کد (${id}) با موفقیت حذف گردید`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
 
-              axios
-                .get("http://127.0.0.1:8000/api/school/exam/exam-view")
-                .then(function (response) {
-                  // handle success
-                  exams.value = response.data;
-                })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
+    function getClass() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/classroom/${route.params.id}`)
+        .then(function (response) {
+          console.log(response.data);
+          // handle success
+          post.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
     }
+    getClass();
 
-    getExams();
-
-    return {
-      exams,
-      spinner,
-      deleteExam,
-      post,
-      grades,
-      lessons,
-      exam_types,
-      createExam,
-      loading,
-    };
+    return { post, grades, classes, createClass, loading };
   },
 };
 </script>
