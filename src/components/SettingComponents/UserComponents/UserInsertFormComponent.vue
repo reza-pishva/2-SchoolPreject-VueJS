@@ -106,9 +106,20 @@
             <td style="width: 21%; padding-top: 15px">
               {{ item.email }}
             </td>
-            <td style="width: 10%; padding-top: 15px">{{ item.role }}</td>
-            <td style="width: 5%; padding-top: 15px">
-              {{ item.gender }}
+            <td v-if="item.role == 1" style="width: 10%; padding-top: 15px">
+              دانش آموز
+            </td>
+            <td v-if="item.role == 2" style="width: 10%; padding-top: 15px">
+              معلم
+            </td>
+            <td v-if="item.role == 3" style="width: 10%; padding-top: 15px">
+              اداری
+            </td>
+            <td v-if="item.gender == 1" style="width: 5%; padding-top: 15px">
+              زن
+            </td>
+            <td v-if="item.gender == 2" style="width: 5%; padding-top: 15px">
+              مرد
             </td>
             <td style="width: 10%; padding-top: 15px">
               {{ item.national_code }}

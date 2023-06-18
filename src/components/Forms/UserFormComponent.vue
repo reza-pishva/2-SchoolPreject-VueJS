@@ -22,7 +22,7 @@
               <input
                 v-model.lazy.trim="form.password"
                 style="font-size: 12px"
-                type="password"
+                type="text"
                 class="form-control"
                 placeholder="کلمه عبور"
               />
