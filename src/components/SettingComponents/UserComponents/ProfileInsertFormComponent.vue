@@ -86,21 +86,21 @@
             :key="index"
             style="text-align: right; font-size: 12px; color: aliceblue"
           >
-            <td style="width: 4%; padding-top: 10px">
+            <td style="width: 4%; padding-top: 15px">
               <a href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
               /></a>
             </td>
-            <td style="width: 3%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 7%; padding-top: 10px">
+            <td style="width: 3%; padding-top: 15px">{{ item.id }}</td>
+            <td style="width: 7%; padding-top: 15px">
               {{ item.major }}
             </td>
-            <td style="width: 8%; padding-top: 10px">
+            <td style="width: 8%; padding-top: 15px">
               {{ item.father_job }}
             </td>
-            <td style="width: 8%; padding-top: 10px">
+            <td style="width: 8%; padding-top: 15px">
               {{ item.father_phone_number }}
             </td>
             <td style="width: 8%; padding-top: 15px">

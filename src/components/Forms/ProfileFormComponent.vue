@@ -144,7 +144,7 @@
               >
                 ثبت
                 <div
-                  v-if="loading"
+                  v-if="buttonLoading"
                   class="spinner-border spinner-grow-sm"
                   role="status"
                 ></div>

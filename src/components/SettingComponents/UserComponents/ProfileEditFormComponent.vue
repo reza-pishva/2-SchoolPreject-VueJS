@@ -12,13 +12,13 @@
           padding-right: 5px;
         "
       >
-        <UserForm
-          @formData="editUser"
+        <ProfileForm
+          @formData="editProfile"
           :button-loading="loading"
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
           :post="post"
-          :userId="form.id"
+          :profileId="form.id"
         />
       </div>
     </div>
@@ -29,12 +29,12 @@
 import { reactive, ref } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-import UserForm from "@/components/Forms/UserFormComponent.vue";
+import ProfileForm from "@/components/Forms/ProfileFormComponent.vue";
 import { useRoute } from "vue-router";
 
 export default {
   components: {
-    UserForm,
+    ProfileForm,
   },
   setup() {
     const form = reactive({
@@ -56,37 +56,29 @@ export default {
       roleErrorText: "",
     });
     const loading = ref(false);
-    const users = ref([]);
+    const profiles = ref([]);
     var post = reactive({});
     const route = useRoute();
 
-    function editUser(formData) {
+    function editProfile(formData) {
       loading.value = true;
       axios
-        .put("http://127.0.0.1:8000/api/school/user/update/" + form.id, {
-          id: formData.id,
-          f_name: formData.f_name,
-          l_name: formData.l_name,
-          father_name: formData.father_name,
-          email: formData.email,
-          password: formData.password,
-          gender: formData.gender,
-          national_code: formData.national_code,
-          role: formData.role,
+        .put("http://127.0.0.1:8000/api/school/profile/update/" + form.id, {
+          father_job: formData.father_job,
+          father_phone_number: formData.father_phone_number,
+          mother_job: formData.mother_job,
+          mother_phone_number: formData.mother_phone_number,
+          consideration: formData.consideration,
+          birthday: formData.birthday,
+          address: formData.address,
+          user_id: formData.user_id,
+          major: formData.major,
         })
         .then(function () {
           loading.value = false;
-          form.f_name = "";
-          form.l_name = "";
-          form.father_name = "";
-          form.email = "";
-          form.role = "";
-          form.password = "";
-          form.gender = "";
-          form.national_code = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام کاربر با موفقیت در پایگاه داده اصلاح گردید",
+            text: "پروفایل کاربر با موفقیت در پایگاه داده اصلاح گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -109,7 +101,7 @@ export default {
       form.id = route.params.id;
     }
     sendId();
-    return { post, users, editUser, loading, form };
+    return { post, profiles, editProfile, loading, form };
   },
 };
 </script>
