@@ -20,6 +20,8 @@ import LessonDeleteFormComponent  from './components/SettingComponents/LessonCom
 import LessonEditFormComponent  from './components/SettingComponents/LessonComponents/LessonEditFormComponent.vue'
 import UserDeleteFormComponent  from './components/SettingComponents/UserComponents/UserDeleteFormComponent.vue'
 import UserEditFormComponent  from './components/SettingComponents/UserComponents/UserEditFormComponent.vue'
+import ProfileDeleteFormComponent  from './components/SettingComponents/UserComponents/ProfileDeleteFormComponent.vue'
+import ProfileEditFormComponent  from './components/SettingComponents/UserComponents/ProfileEditFormComponent.vue'
 
 
 const routes = [
@@ -30,6 +32,8 @@ const routes = [
           { path: '/user-delete/:id', name: 'deleteUser',component: UserDeleteFormComponent },
           { path: '/user-edit/:id', name: 'editUser',component: UserEditFormComponent },
           { path: '/profiles', component: ProfilePageComponent },
+          { path: '/profile-delete/:id', name: 'deleteProfile',component: ProfileDeleteFormComponent },
+          { path: '/profile-edit/:id', name: 'editProfile',component: ProfileEditFormComponent },
           { path: '/grades', component: GradePageComponent },
           { path: '/grades-delete/:id', name: 'deleteGrade',component: GradeDeleteFormComponent },
           { path: '/grades-edit/:id', name: 'editGrade',component: GradeEditFormComponent },

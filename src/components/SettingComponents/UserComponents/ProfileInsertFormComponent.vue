@@ -1,169 +1,155 @@
 <template>
-  <div class="row" style="height: 50%">
+  <div class="row" style="height: 45%">
     <div class="col">
-      <div class="user-window">
-        <form
-          @submit.prevent="validate"
-          style="direction: rtl; font-family: Vazir"
-        >
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col-2">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.user_id"
-                      style="font-size: 12px"
-                      type="number"
-                      class="form-control"
-                      placeholder="کد کاربری:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.userIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-5">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.father_job"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="شغل پدر:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.fatherJobErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-5">
-                  <div class="form-group">
-                    <input
-                      v-model.lazy.trim="form.mother_job"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="شغل مادر:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.motherJobErrorText }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      v-model.lazy.trim="form.father_phone_number"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="شماره تلفن پدر:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.fatherPhoneNumberErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      v-model.lazy.trim="form.mother_phone_number"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="شماره تلفن مادر:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.motherPhoneNumberErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group">
-                    <input
-                      v-model.lazy.trim="form.birthday"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="تاریخ تولد:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.birthdayErrorText }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      v-model.lazy.trim="form.consideration"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="توضیحات:"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.considerationErrorText }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group" style="font-size: x-small">
-                    <input
-                      v-model.lazy.trim="form.address"
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="آدرس"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.addressErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-group" style="font-size: x-small">
-                    <button
-                      style="font-size: 12px"
-                      type="submit"
-                      class="btn btn-primary button-class"
-                    >
-                      ثبت
-                      <div
-                        v-if="loading"
-                        class="spinner-border spinner-grow-sm"
-                        role="status"
-                      ></div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        <div class="row">
-          <div class="col"></div>
-        </div>
+      <div
+        style="
+          background-color: rgb(237, 237, 227);
+          margin-left: 30px;
+          height: 95%;
+          border-radius: 6px;
+          padding-top: 15px;
+          padding-left: 5px;
+          padding-right: 5px;
+        "
+      >
+        <ProfileForm
+          @formData="createProfile"
+          :button-loading="loading"
+          button-text="ایجاد پروفایل جدید"
+          button-class="btn btn-primary"
+          :post="post"
+        />
       </div>
     </div>
   </div>
-  <div class="row" style="height: 50%">
-    <div class="col"></div>
+  <div
+    class="row"
+    style="
+      height: 55%;
+      overflow-y: scroll;
+      margin-top: 3px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(57, 57, 60);
+      opacity: 0.7;
+      filter: alpha(opacity=100);
+    "
+  >
+    <div class="col" v-if="spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 0px;
+          margin-left: 40px;
+          direction: rtl;
+          width: 180%;
+        "
+      >
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کد</th>
+            <th>رشته تحصیلی</th>
+            <th>شغل پدر</th>
+            <th>شماره همراه پدر</th>
+            <th>شغل مادر</th>
+            <th>شماره همراه مادر</th>
+            <th>آدرس</th>
+            <th>ملاحظات</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in profiles"
+            :key="index"
+            style="text-align: right; font-size: 12px; color: aliceblue"
+          >
+            <td style="width: 4%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px; border-radius: 5px"
+                  src="../../../../public/select.jpg"
+              /></a>
+            </td>
+            <td style="width: 3%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 7%; padding-top: 10px">
+              {{ item.major }}
+            </td>
+            <td style="width: 8%; padding-top: 10px">
+              {{ item.father_job }}
+            </td>
+            <td style="width: 8%; padding-top: 10px">
+              {{ item.father_phone_number }}
+            </td>
+            <td style="width: 8%; padding-top: 15px">
+              {{ item.mother_job }}
+            </td>
+            <td style="width: 8%; padding-top: 15px">
+              {{ item.mother_phone_number }}
+            </td>
+            <td style="width: 20%; padding-top: 15px">
+              {{ item.address }}
+            </td>
+            <td style="width: 24%; padding-top: 15px">
+              {{ item.consideration }}
+            </td>
+            <td style="width: 5%; padding-top: 10px">
+              <router-link
+                class="btn btn-success button-table-class"
+                :to="{ name: 'editProfile', params: { id: item.id } }"
+              >
+                اصلاح
+              </router-link>
+            </td>
+            <td style="width: 5%; padding-top: 10px">
+              <button
+                @click="deleteProfile(item.id)"
+                class="btn btn-danger button-table-class"
+              >
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRoute } from "vue-router";
+import ProfileForm from "@/components/Forms/ProfileFormComponent.vue";
 
 export default {
+  components: {
+    ProfileForm,
+  },
   setup() {
     const form = reactive({
       father_job: "",
@@ -174,6 +160,7 @@ export default {
       consideration: "",
       birthday: "",
       user_id: "",
+      major: "",
       fatherJobErrorText: "",
       motherJobErrorText: "",
       fatherPhoneNumberErrorText: "",
@@ -182,94 +169,43 @@ export default {
       considerationErrorText: "",
       birthdayErrorText: "",
       userIdErrorText: "",
+      majorErrorText: "",
     });
+
     const loading = ref(false);
+    const profiles = ref([]);
+    const post = ref({});
+    const route = useRoute();
+    const spinner = ref(true);
 
-    function validate() {
-      if (form.father_job === "") {
-        form.fatherJobErrorText = "شغل پدر باید وارد گردد";
-      } else {
-        form.fatherJobErrorText = "";
-      }
-      if (form.mother_job === "") {
-        form.motherJobErrorText = "شغل مادر باید وارد شود";
-      } else {
-        form.motherJobErrorText = "";
-      }
-      if (form.father_phone_number === "") {
-        form.fa = "شماره همراه پدر باید وارد شود";
-      } else {
-        form.fatherPhoneNumberErrorText = "";
-      }
-      if (form.mother_phone_number === "") {
-        form.motherPhoneNumberErrorText = "شماره همراه مادر باید وارد شود";
-      } else {
-        form.motherPhoneNumberErrorText = "";
-      }
-      if (form.address === "") {
-        form.addressErrorText = "آدرس کاربر باید وارد شود";
-      } else {
-        form.addressErrorText = "";
-      }
-      if (form.consideration === "") {
-        form.considerationErrorText = "ملاحظات باید وارد شود";
-      } else {
-        form.considerationErrorText = "";
-      }
-      if (form.birthday === "") {
-        form.birthdayErrorText = "تاریخ تولد کاربر باید وارد شود";
-      } else {
-        form.birthdayErrorText = "";
-      }
-      if (form.user_id === "") {
-        form.userIdErrorText = "کد کاربر باید وارد شود";
-      } else {
-        form.userIdErrorText = "";
-      }
-      if (
-        form.father_job !== "" &&
-        form.father_phone_number !== "" &&
-        form.mother_job !== "" &&
-        form.mother_phone_number !== "" &&
-        form.address !== "" &&
-        form.consideration !== "" &&
-        form.user_id !== "" &&
-        form.birthday !== ""
-      ) {
-        loading.value = true;
-        createProfile();
-      }
-    }
-
-    function createProfile() {
+    function createProfile(formData) {
+      loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/profile/store", {
-          father_job: form.father_job,
-          father_phone_number: form.father_phone_number,
-          mother_job: form.mother_job,
-          mother_phone_number: form.mother_phone_number,
-          consideration: form.consideration,
-          birthday: form.birthday,
-          address: form.address,
-          user_id: form.user_id,
-          major: 0,
+          father_job: formData.father_job,
+          father_phone_number: formData.father_phone_number,
+          mother_job: formData.mother_job,
+          mother_phone_number: formData.mother_phone_number,
+          consideration: formData.consideration,
+          birthday: formData.birthday,
+          address: formData.address,
+          user_id: formData.user_id,
+          major: formData.major,
         })
         .then(function () {
+          getProfiles();
           loading.value = false;
-
           form.father_job = "";
           form.father_phone_number = "";
           form.mother_job = "";
           form.mother_phone_number = "";
-          form.major = "";
-          form.birthday = "";
           form.address = "";
-          form.user_id = "";
           form.consideration = "";
-
+          form.birthday = "";
+          form.major = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "اطلاعات پروفایل با موفقیت در پایگاه داده ثبت گردید",
+            text: "اطلاعات کاربر با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -277,7 +213,6 @@ export default {
         })
         .catch(function (error) {
           loading.value = false;
-
           console.log(error);
           Swal.fire({
             title: "پیغام خطا",
@@ -288,8 +223,84 @@ export default {
           });
         });
     }
+    function getProfiles() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/profile/profiles")
+        .then(function (response) {
+          // handle success
+          spinner.value = false;
+          profiles.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function getProfile() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/profile/${route.params.id}`)
+        .then(function (response) {
+          // console.log(response.data);
+          // handle success
+          post.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function deleteProfile(id) {
+      Swal.fire({
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "بله ، حذف شود",
+        position: "top",
+      }).then((result) => {
+        getProfiles();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/profile/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `اطلاعات کاربر با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
 
-    return { form, validate, loading };
+              axios
+                .get("http://127.0.0.1:8000/api/school/profile/profiles")
+                .then(function (response) {
+                  // handle success
+                  profiles.value = response.data;
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    getProfile();
+    getProfiles();
+
+    return {
+      spinner,
+      deleteProfile,
+      post,
+      profiles,
+      createProfile,
+      loading,
+    };
   },
 };
 </script>
@@ -308,18 +319,9 @@ export default {
   font-family: Vazir;
   margin-top: 1px;
 }
-.button-class {
+.button-table-class {
   font-size: 12px;
-  width: 33%;
-  height: 35px;
-}
-.user-window {
-  background-color: rgb(237, 237, 227);
-  margin-left: 30px;
-  height: 95%;
-  border-radius: 6px;
-  padding-top: 10px;
-  padding-left: 5px;
-  padding-right: 5px;
+  width: 95%;
+  height: 30px;
 }
 </style>

@@ -216,7 +216,7 @@ export default {
           console.log(error);
         });
     }
-    getLesson();
+    getProfile();
 
     function validate() {
       if (form.father_job === "") {
@@ -272,7 +272,7 @@ export default {
         emit("formData", form);
       }
     }
-    return { grades, lessons, form, validate };
+    return { profiles, form, validate };
   },
 };
 </script>
