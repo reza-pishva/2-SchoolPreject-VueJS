@@ -121,7 +121,21 @@
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-3">
+            <div class="form-group" style="font-size: x-small">
+              <input
+                v-model.lazy.trim="form.major"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="رشته تحصیلی"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.majorErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
             <div class="form-group" style="font-size: x-small">
               <button
                 style="font-size: 12px"
@@ -269,6 +283,7 @@ export default {
         form.consideration !== "" &&
         form.major !== ""
       ) {
+        console.log(form);
         emit("formData", form);
       }
     }

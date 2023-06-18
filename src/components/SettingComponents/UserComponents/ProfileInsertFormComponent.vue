@@ -179,6 +179,7 @@ export default {
     const spinner = ref(true);
 
     function createProfile(formData) {
+      console.log(formData);
       loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/profile/store", {
