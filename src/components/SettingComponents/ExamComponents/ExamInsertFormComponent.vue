@@ -1,104 +1,134 @@
 <template>
   <div class="row" style="height: 12%">
     <div class="col">
-      <div class="exam-window">
-        <form
-          @submit.prevent="validate"
-          style="direction: rtl; font-family: Vazir"
-        >
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      v-model.lazy.trim="form.lesson_id"
-                      style="font-size: 12px"
-                      type="number"
-                      class="form-control"
-                      placeholder="نام درس"
-                    />
-                    <div class="form-text text-danger validation-text">
-                      {{ form.lessonIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.exam_type_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب نوع امتحان:</option>
-                      <option
-                        v-for="(item, index) in examTypes"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.exam_type }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.examTypeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب مقطع تحصیلی:</option>
-                      <option
-                        v-for="(item, index) in grades"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.grade_name }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <button
-                      style="font-size: 12px"
-                      type="submit"
-                      class="btn btn-primary button-class"
-                    >
-                      ثبت
-                      <div
-                        v-if="loading"
-                        class="spinner-border spinner-grow-sm"
-                        role="status"
-                      ></div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      <div
+        style="
+          background-color: rgb(237, 237, 227);
+          margin-left: 30px;
+          height: 95%;
+          border-radius: 6px;
+          padding-top: 15px;
+          padding-left: 5px;
+          padding-right: 5px;
+        "
+      >
+        <ExamForm
+          @formData="createExam"
+          :button-loading="loading"
+          button-text="ایجاد آزمون جدید"
+          button-class="btn btn-primary"
+          :post="post"
+        />
       </div>
     </div>
   </div>
-  <div class="row" style="height: 88%">
-    <div class="col"></div>
+  <div
+    class="row"
+    style="
+      height: 78%;
+      overflow-y: scroll;
+      margin-top: 35px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(57, 57, 60);
+      opacity: 0.7;
+      filter: alpha(opacity=100);
+    "
+  >
+    <div v-if="!spinner" class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 10px;
+          margin-left: 40px;
+          direction: rtl;
+          width: 95%;
+        "
+      >
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کد آزمون</th>
+            <th>نام آزمون</th>
+            <th>نوع آزمون</th>
+            <th>نام مقطع تحصیلی</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in exams"
+            :key="index"
+            style="text-align: right; font-size: 12px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px; border-radius: 5px"
+                  src="../../../../public/select.jpg"
+              /></a>
+            </td>
+            <td style="width: 15%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 45%; padding-top: 15px">
+              {{ item.lesson_name }}
+            </td>
+            <td style="width: 45%; padding-top: 15px">{{ item.grade_name }}</td>
+            <td style="width: 15%">
+              <router-link
+                class="btn btn-success button-table-class"
+                :to="{ name: 'editLesson', params: { id: item.id } }"
+              >
+                اصلاح
+              </router-link>
+            </td>
+            <td style="width: 15%">
+              <button
+                @click="deleteLesson(item.id)"
+                class="btn btn-danger button-table-class"
+              >
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div v-else class="col">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+// import { useRoute } from "vue-router";
+import ExamForm from "@/components/Forms/ExamFormComponent.vue";
 
 export default {
+  components: {
+    ExamForm,
+  },
   setup() {
     const form = reactive({
       lesson_id: "",
@@ -109,50 +139,31 @@ export default {
       examTypeIdErrorText: "",
     });
     const loading = ref(false);
+    const lessons = ref([]);
+    const exams = ref([]);
     const grades = ref([]);
-    const examTypes = ref([]);
+    const exam_types = ref([]);
+    const post = ref({});
+    // const route = useRoute();
+    const spinner = ref(true);
 
-    function validate() {
-      if (form.lesson_id === "") {
-        form.lessonIdErrorText = "نام درس باید وارد شود";
-      } else {
-        form.lessonIdErrorText = "";
-      }
-      if (form.grade_id === "") {
-        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
-      } else {
-        form.gradeIdErrorText = "";
-      }
-      if (form.exam_type_id === "") {
-        form.examTypeIdErrorText = "نوع امتحان باید وارد شود";
-      } else {
-        form.examTypeIdErrorText = "";
-      }
-      if (
-        form.exam_type_id !== "" &&
-        form.lesson_id !== "" &&
-        form.grade_id !== ""
-      ) {
-        loading.value = true;
-        creatExam();
-      }
-    }
-
-    function creatExam() {
+    function createExam(formData) {
+      loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/exam/store", {
-          grade_id: form.grade_id,
-          lesson_id: form.lesson_id,
-          exam_type_id: form.exam_type_id,
+          grade_id: formData.grade_id,
+          lesson_id: formData.lesson_id,
+          exam_type_id: formData.exam_type_id,
         })
         .then(function () {
+          getExams();
           loading.value = false;
           form.lesson_id = "";
-          form.exam_type_id = "";
           form.grade_id = "";
+          form.exam_type_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام امتحان با موفقیت در پایگاه داده ثبت گردید",
+            text: "نام آزمون با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -160,7 +171,6 @@ export default {
         })
         .catch(function (error) {
           loading.value = false;
-
           console.log(error);
           Swal.fire({
             title: "پیغام خطا",
@@ -171,13 +181,26 @@ export default {
           });
         });
     }
-    function getGrades() {
+    function getExams() {
       axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .get("http://127.0.0.1:8000/api/school/exam/exams")
         .then(function (response) {
           // handle success
-          grades.value = response.data;
+          spinner.value = false;
+          exams.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function getLessons() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/lesson/lessons`)
+        .then(function (response) {
           console.log(response.data);
+          // handle success
+          lessons.value = response.data;
         })
         .catch(function (error) {
           // handle error
@@ -186,21 +209,72 @@ export default {
     }
     function getExamTypes() {
       axios
-        .get("http://127.0.0.1:8000/api/school/exam/exam-types")
+        .get(`http://127.0.0.1:8000/api/school/exam/exam-types`)
         .then(function (response) {
-          // handle success
-          examTypes.value = response.data;
           console.log(response.data);
+          // handle success
+          exam_types.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    getGrades();
+    function deleteExam(id) {
+      Swal.fire({
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "بله ، حذف شود",
+        position: "top",
+      }).then((result) => {
+        getExams();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/exam/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `آزمون با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+
+              axios
+                .get("http://127.0.0.1:8000/api/school/exam/exams")
+                .then(function (response) {
+                  // handle success
+                  exams.value = response.data;
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    getLessons();
+    getExams();
     getExamTypes();
 
-    return { examTypes, grades, form, validate, loading };
+    return {
+      spinner,
+      deleteExam,
+      post,
+      grades,
+      lessons,
+      exam_types,
+      createExam,
+      loading,
+    };
   },
 };
 </script>
@@ -219,12 +293,12 @@ export default {
   font-family: Vazir;
   margin-top: 1px;
 }
-.button-class {
+.button-table-class {
   font-size: 12px;
-  width: 40%;
-  height: 35px;
+  width: 95%;
+  height: 30px;
 }
-.exam-window {
+.grade-window {
   background-color: rgb(237, 237, 227);
   margin-left: 30px;
   height: 95%;

@@ -5,13 +5,20 @@
         <div class="row">
           <div class="col">
             <div class="form-group" style="font-size: xx-small">
-              <input
-                v-model.lazy.trim="form.lesson_id"
-                style="font-size: 12px"
-                type="number"
-                class="form-control"
-                placeholder="نام آزمون"
-              />
+              <select
+                v-model="form.lesson_id"
+                class="form-select"
+                style="font-size: small"
+              >
+                <option value="">انتخاب درس:</option>
+                <option
+                  v-for="(item, index) in lessons"
+                  :key="index"
+                  :value="item.id"
+                >
+                  {{ item.lesson_name }}
+                </option>
+              </select>
               <div class="form-text text-danger validation-text">
                 {{ form.lessonIdErrorText }}
               </div>
@@ -24,7 +31,7 @@
                 class="form-select"
                 style="font-size: small"
               >
-                <option value="">انتخاب نوع آزمون:</option>
+                <option selected value="">انتخاب نوع آزمون:</option>
                 <option
                   v-for="(item, index) in examTypes"
                   :key="index"
@@ -45,7 +52,7 @@
                 class="form-select"
                 style="font-size: small"
               >
-                <option value="">انتخاب مقطع تحصیلی:</option>
+                <option selected value="">انتخاب مقطع تحصیلی:</option>
                 <option
                   v-for="(item, index) in grades"
                   :key="index"
@@ -105,7 +112,8 @@ export default {
 
     const grades = ref([]);
     const examTypes = ref([]);
-    const examInfo = ref([]);
+    const lessons = ref([]);
+    // const examInfo = ref([]);
 
     function getGrades() {
       axios
@@ -133,8 +141,22 @@ export default {
           console.log(error);
         });
     }
+    function getLessons() {
+      axios
+        .get(`http://127.0.0.1:8000/api/school/lesson/lessons-view`)
+        .then(function (response) {
+          console.log(response.data);
+          // handle success
+          lessons.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
     getGrades();
     getExamTypes();
+    getLessons();
 
     function validate() {
       if (form.lesson_id === "") {
@@ -157,11 +179,10 @@ export default {
         form.lesson_id !== "" &&
         form.grade_id !== ""
       ) {
-        loading.value = true;
         emit("formData", form);
       }
     }
-    return { examTypes, grades, form, validate };
+    return { lessons, examTypes, grades, form, validate };
   },
 };
 </script>
