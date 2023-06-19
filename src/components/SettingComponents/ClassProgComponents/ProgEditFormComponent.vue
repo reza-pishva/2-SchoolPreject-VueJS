@@ -12,13 +12,13 @@
           padding-right: 5px;
         "
       >
-        <ClassRoomForm
-          @formData="editClass"
+        <ProgForm
+          @formData="editProg"
           :button-loading="loading"
           button-text="اعمال تغییرات"
           button-class="btn btn-success"
           :post="post"
-          :classId="form.id"
+          :progId="form.id"
         />
       </div>
     </div>
@@ -29,12 +29,12 @@
 import { reactive, ref } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-import ClassRoomForm from "@/components/Forms/ClassRoomFormComponent.vue";
+import ProgForm from "@/components/Forms/ClassProgFormComponent.vue";
 import { useRoute } from "vue-router";
 
 export default {
   components: {
-    ClassRoomForm,
+    ProgForm,
   },
   setup() {
     const form = reactive({
@@ -47,34 +47,35 @@ export default {
       yearErrorText: "",
     });
     const loading = ref(false);
-    const classes = ref([]);
+    const progs = ref([]);
     var post = reactive({});
     const route = useRoute();
 
-    function editClass(formData) {
+    function editProg(formData) {
       loading.value = true;
       axios
-        .put("http://127.0.0.1:8000/api/school/classroom/update/" + form.id, {
-          id: formData.id,
-          grade_id: formData.grade_id,
-          year: formData.year,
-          name: formData.name,
-        })
+        .put(
+          "http://127.0.0.1:8000/api/school/class-program/update/" + form.id,
+          {
+            id: formData.id,
+            lesson_id: formData.lesson_id,
+            dayOfWeek: formData.DayOfWeek,
+            time_start: formData.time_start,
+            time_end: formData.time_end,
+            class_id: formData.class_id,
+          }
+        )
         .then(function () {
           loading.value = false;
-          form.name = "";
-          form.year = "";
-          form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام کلاس با موفقیت در پایگاه داده اصلاح گردید",
+            text: "برنامه کلاسی با موفقیت در پایگاه داده اصلاح گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
           });
         })
         .catch(function (error) {
-          console.log(formData);
           loading.value = false;
           console.log(error);
           Swal.fire({
@@ -90,7 +91,7 @@ export default {
       form.id = route.params.id;
     }
     sendId();
-    return { post, classes, editClass, loading, form };
+    return { post, progs, editProg, loading, form };
   },
 };
 </script>

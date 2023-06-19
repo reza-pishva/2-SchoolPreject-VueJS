@@ -93,23 +93,42 @@
               /></a>
             </td>
             <td style="width: 5%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 17%; padding-top: 15px">{{ item.class_id }}</td>
-            <td style="width: 18%; padding-top: 15px">{{ item.lesson_id }}</td>
+            <td style="width: 17%; padding-top: 15px">{{ item.name }}</td>
+            <td style="width: 18%; padding-top: 15px">
+              {{ item.lesson_name }}
+            </td>
             <td style="width: 15%; padding-top: 15px"></td>
-            <td style="width: 8%; padding-top: 15px">{{ item.dayOfWeek }}</td>
+            <td v-if="item.dayOfWeek == 0" style="width: 8%; padding-top: 15px">
+              شنبه
+            </td>
+            <td v-if="item.dayOfWeek == 1" style="width: 8%; padding-top: 15px">
+              یکشنبه
+            </td>
+            <td v-if="item.dayOfWeek == 2" style="width: 8%; padding-top: 15px">
+              دوشنبه
+            </td>
+            <td v-if="item.dayOfWeek == 3" style="width: 8%; padding-top: 15px">
+              سه شنبه
+            </td>
+            <td v-if="item.dayOfWeek == 4" style="width: 8%; padding-top: 15px">
+              چهارشنبه
+            </td>
+            <td v-if="item.dayOfWeek == 5" style="width: 8%; padding-top: 15px">
+              پنج شنبه
+            </td>
             <td style="width: 8%; padding-top: 15px">{{ item.time_start }}</td>
             <td style="width: 8%; padding-top: 15px">{{ item.time_end }}</td>
             <td style="width: 8%">
               <router-link
                 class="btn btn-success button-table-class"
-                :to="{ name: 'editClass', params: { id: item.id } }"
+                :to="{ name: 'editProg', params: { id: item.id } }"
               >
                 اصلاح
               </router-link>
             </td>
             <td style="width: 8%">
               <button
-                @click="deleteClass(item.id)"
+                @click="deleteProg(item.id)"
                 class="btn btn-danger button-table-class"
               >
                 حذف
@@ -138,7 +157,7 @@ export default {
     const form = reactive({
       class_id: "",
       lesson_id: "",
-      dayOfWeek: "",
+      DayOfWeek: "",
       time_start: "",
       time_end: "",
       dayOfWeekErrorText: "",
@@ -156,9 +175,9 @@ export default {
     function createProg(formData) {
       loading.value = true;
       axios
-        .post("http://127.0.0.1:8000/api/school/class-prog/store", {
+        .post("http://127.0.0.1:8000/api/school/class-program/store", {
           lesson_id: formData.lesson_id,
-          dayOfWeek: formData.class_id,
+          dayOfWeek: formData.DayOfWeek,
           time_start: formData.time_start,
           time_end: formData.time_end,
           class_id: formData.class_id,
@@ -228,29 +247,21 @@ export default {
         confirmButtonText: "بله ، حذف شود",
         position: "top",
       }).then((result) => {
-        getProgs();
+        // getProgs();
         if (result.isConfirmed) {
           axios
-            .delete(`http://127.0.0.1:8000/api/school/class-prog/remove/${id}`)
+            .delete(
+              `http://127.0.0.1:8000/api/school/class-program/remove/${id}`
+            )
             .then(function () {
               Swal.fire({
                 title: "Thanks!",
-                text: `برنامه با کد (${id}) با موفقیت حذف گردید`,
+                text: `برنامه کلاسی با کد (${id}) با موفقیت حذف گردید`,
                 icon: "success",
                 confirmButtonText: "Ok",
                 position: "top",
               });
-
-              axios
-                .get("http://127.0.0.1:8000/api/school/class-prog/class-progs")
-                .then(function (response) {
-                  // handle success
-                  progs.value = response.data;
-                })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                });
+              getProgs();
             })
             .catch(function (error) {
               console.log(error);

@@ -130,13 +130,13 @@ export default {
     buttonText: String,
     buttonClass: String,
     post: Object,
-    profileId: String,
+    progId: String,
   },
   setup(props, { emit }) {
     const form = reactive({
       class_id: "",
       lesson_id: "",
-      dayOfWeek: "",
+      DayOfWeek: "",
       time_start: "",
       time_end: "",
       dayOfWeekErrorText: "",
@@ -146,49 +146,10 @@ export default {
       timeEndErrorText: "",
     });
 
-    const profiles = ref([]);
     const classes = ref([]);
     const lessons = ref([]);
-    const profileInfo = ref([]);
+    const progInfo = ref([]);
 
-    function getProfiles() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/class-program/programs")
-        .then(function (response) {
-          // handle success
-          profiles.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getProfiles();
-
-    function getProfile() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/profile/" + props.profileId)
-        .then(function (response) {
-          // handle success
-
-          profileInfo.value = response.data;
-
-          form.father_job = profileInfo.value.father_job;
-          form.mother_job = profileInfo.value.mother_job;
-          form.father_phone_number = profileInfo.value.father_phone_number;
-          form.mother_phone_number = profileInfo.value.mother_phone_number;
-          form.address = profileInfo.value.address;
-          form.consideration = profileInfo.value.consideration;
-          form.birthday = profileInfo.value.birthday;
-          form.major = profileInfo.value.major;
-          form.user_id = profileInfo.value.user_id;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getProfile();
     function getLessons() {
       axios
         .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
@@ -227,7 +188,7 @@ export default {
       } else {
         form.lessonIdErrorText = "";
       }
-      if (form.dayOfWeek === "") {
+      if (form.DayOfWeek === "") {
         form.dayOfWeekErrorText = "روز هفته پر نشده";
       } else {
         form.dayOfWeekErrorText = "";
@@ -247,13 +208,35 @@ export default {
         form.lesson_id !== "" &&
         form.time_start !== "" &&
         form.time_end !== "" &&
-        form.dayOfWeek !== ""
+        form.DayOfWeek !== ""
       ) {
-        // console.log(form);
         emit("formData", form);
       }
+
+      function getProg() {
+        axios
+          .get(
+            "http://127.0.0.1:8000/api/school/class-program/program/" +
+              props.progId
+          )
+          .then(function (response) {
+            // handle success
+
+            progInfo.value = response.data;
+            form.class_id = progInfo.value.class_id;
+            form.lesson_id = progInfo.value.lesson_id;
+            form.time_start = progInfo.value.time_start;
+            form.time_end = progInfo.value.time_end;
+            form.DayOfWeek = progInfo.value.dayOfWeek;
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+      }
+      getProg();
     }
-    return { classes, lessons, profiles, form, validate };
+    return { form, validate };
   },
 };
 </script>
