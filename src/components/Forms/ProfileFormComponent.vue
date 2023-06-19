@@ -211,77 +211,46 @@ export default {
           console.log(error);
         });
     }
-    function getGrades() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
-        .then(function (response) {
-          // handle success
-          grades.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
     getClasses();
-    getGrades();
     getLessons();
     function validate() {
-      if (form.father_job === "") {
-        form.fatherJobErrorText = "شغل پدر پر نشده";
+      if (form.class_id === "") {
+        form.classIdErrorText = "نام کلاس پر نشده";
       } else {
-        form.fatherJobErrorText = "";
+        form.classIdErrorText = "";
       }
-      if (form.mother_job === "") {
-        form.motherJobErrorText = "شغل مادر پر نشده";
+      if (form.lesson_id === "") {
+        form.lessonIdErrorText = " نام درس پر نشده";
       } else {
-        form.motherJobErrorText = "";
+        form.lessonIdErrorText = "";
       }
-      if (form.father_phone_number === "") {
-        form.fatherPhoneNumberErrorText = "شماره همراه پدر پر نشده";
+      if (form.dayOfWeek === "") {
+        form.dayOfWeekErrorText = "روز هفته پر نشده";
       } else {
-        form.fatherPhoneNumberErrorText = "";
+        form.dayOfWeekErrorText = "";
       }
-      if (form.mother_phone_number === "") {
-        form.motherPhoneNumberErrorText = "شماره همراه مادر پر نشده";
+      if (form.time_start === "") {
+        form.timeStartErrorText = "ساعت شروع پر نشده";
       } else {
-        form.motherPhoneNumberErrorText = "";
+        form.timeStartErrorText = "";
       }
-      if (form.birthday === "") {
-        form.birthdayErrorText = "تاریخ تولد پر نشده";
+      if (form.time_end === "") {
+        form.timeEndErrorText = "ساعت اتمام پر نشده";
       } else {
-        form.birthdayErrorText = "";
-      }
-      if (form.consideration === "") {
-        form.considerationErrorText = "ملاحظات پر نشده";
-      } else {
-        form.considerationErrorText = "";
-      }
-      if (form.major === "") {
-        form.majorErrorText = "رشته تحصیلی پر نشده";
-      } else {
-        form.majorErrorText = "";
-      }
-      if (form.address === "") {
-        form.addressErrorText = "آدرس پر نشده";
-      } else {
-        form.addressErrorText = "";
+        form.timeEndErrorText = "";
       }
       if (
-        form.father_job !== "" &&
-        form.mother_job !== "" &&
-        form.father_phone_number !== "" &&
-        form.mother_phone_number !== "" &&
-        form.birthday !== "" &&
-        form.address !== "" &&
-        form.consideration !== "" &&
-        form.major !== ""
+        form.class_id !== "" &&
+        form.lesson_id !== "" &&
+        form.time_start !== "" &&
+        form.time_end !== "" &&
+        form.dayOfWeek !== ""
       ) {
         // console.log(form);
         emit("formData", form);
       }
     }
-    return { classes, grades, lessons, profiles, form, validate };
+    return { classes, lessons, profiles, form, validate };
   },
 };
 </script>
