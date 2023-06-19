@@ -1,5 +1,5 @@
 <template>
-  <form style="direction: rtl; font-family: Vazir">
+  <form @submit.prevent="validate" style="direction: rtl; font-family: Vazir">
     <div class="row">
       <div class="col">
         <div class="row">
@@ -213,6 +213,7 @@ export default {
     }
     getClasses();
     getLessons();
+
     function validate() {
       if (form.class_id === "") {
         form.classIdErrorText = "نام کلاس پر نشده";
