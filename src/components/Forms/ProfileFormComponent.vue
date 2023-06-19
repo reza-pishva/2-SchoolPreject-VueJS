@@ -3,106 +3,146 @@
     <div class="row">
       <div class="col">
         <div class="row">
-          <div class="col">
-            <div class="form-group" style="font-family: Vazir">
-              <select
-                v-model="form.class_id"
-                class="form-select"
-                style="font-size: small"
-              >
-                <option value="">انتخاب کلاس:</option>
-                <option
-                  v-for="(item, index) in classes"
-                  :key="index"
-                  :value="item.id"
-                >
-                  {{ item.name }}
-                </option>
-              </select>
+          <div class="col-2">
+            <div class="form-group" style="font-size: xx-small">
+              <input
+                v-model.lazy.trim="form.user_id"
+                style="font-size: 12px"
+                type="number"
+                class="form-control"
+                placeholder="کد کاربری:"
+              />
               <div class="form-text text-danger validation-text">
-                {{ form.ClassIdErrorText }}
+                {{ form.userIdErrorText }}
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="form-group" style="font-family: Vazir">
-              <select
-                v-model="form.lesson_id"
-                class="form-select"
-                style="font-size: small"
-              >
-                <option value="">انتخاب درس:</option>
-                <option
-                  v-for="(item, index) in lessons"
-                  :key="index"
-                  :value="item.id"
-                >
-                  {{ item.lesson_name }}
-                </option>
-              </select>
+          <div class="col-5">
+            <div class="form-group" style="font-size: xx-small">
+              <input
+                v-model.lazy.trim="form.father_job"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="شغل پدر:"
+              />
               <div class="form-text text-danger validation-text">
-                {{ form.LessonIdErrorText }}
+                {{ form.fatherJobErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="form-group">
+              <input
+                v-model.lazy.trim="form.mother_job"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="شغل مادر:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.motherJobErrorText }}
               </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <div class="form-group" style="font-family: Vazir">
-              <select
-                v-model="form.DayOfWeek"
-                class="form-select"
-                style="font-size: small"
-              >
-                <option value="">انتخاب روز هفته:</option>
-                <option value="0">شنبه</option>
-                <option value="1">یکشنبه</option>
-                <option value="2">دوشنبه</option>
-                <option value="3">سه شنبه</option>
-                <option value="4">چهارشنبه</option>
-                <option value="5">پنج شنبه</option>
-              </select>
-              <div class="form-text text-danger validation-text">
-                {{ form.DayOfWeekErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group" style="font-size: xx-small">
+            <div class="form-group" style="font-size: x-small">
               <input
-                v-model="form.time_start"
+                v-model.lazy.trim="form.father_phone_number"
                 style="font-size: 12px"
                 type="text"
                 class="form-control"
-                placeholder="ساعت شروع:"
+                placeholder="شماره تلفن پدر:"
               />
               <div class="form-text text-danger validation-text">
-                {{ form.timeStartErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group" style="font-size: xx-small">
-              <input
-                v-model="form.time_end"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="ساعت پایان:"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.timeEndErrorText }}
+                {{ form.fatherPhoneNumberErrorText }}
               </div>
             </div>
           </div>
           <div class="col">
             <div class="form-group" style="font-size: x-small">
+              <input
+                v-model.lazy.trim="form.mother_phone_number"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="شماره تلفن مادر:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.motherPhoneNumberErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <input
+                v-model.lazy.trim="form.birthday"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="تاریخ تولد:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.birthdayErrorText }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group" style="font-size: x-small">
+              <input
+                v-model.lazy.trim="form.consideration"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="توضیحات:"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.considerationErrorText }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group" style="font-size: x-small">
+              <input
+                v-model.lazy.trim="form.address"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="آدرس"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.addressErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group" style="font-size: x-small">
+              <input
+                v-model.lazy.trim="form.major"
+                style="font-size: 12px"
+                type="text"
+                class="form-control"
+                placeholder="رشته تحصیلی"
+              />
+              <div class="form-text text-danger validation-text">
+                {{ form.majorErrorText }}
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="form-group" style="font-size: x-small">
               <button
                 style="font-size: 12px"
                 type="submit"
-                :class="buttonClass"
+                class="btn btn-primary button-class"
               >
-                {{ buttonText }}
+                ثبت
                 <div
                   v-if="buttonLoading"
                   class="spinner-border spinner-grow-sm"
@@ -131,22 +171,26 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      class_id: "",
-      lesson_id: "",
-      dayOfWeek: "",
-      time_start: "",
-      time_end: "",
-      dayOfWeekErrorText: "",
-      classIdErrorText: "",
-      lessonIdErrorText: "",
-      timeStartErrorText: "",
-      timeEndErrorText: "",
+      father_job: "",
+      fatherJobErrorText: "",
+      mother_job: "",
+      motherJobErrorText: "",
+      father_phone_number: "",
+      fatherPhoneNumberErrorText: "",
+      mother_phone_number: "",
+      motherPhoneNumberErrorText: "",
+      address: "",
+      addressErrorText: "",
+      consideration: "",
+      considerationErrorText: "",
+      birthday: "",
+      birthdayErrorText: "",
+      major: "",
+      majorErrorText: "",
+      user_id: "",
     });
 
     const profiles = ref([]);
-    const classes = ref([]);
-    const grades = ref([]);
-    const lessons = ref([]);
     const profileInfo = ref([]);
 
     function getProfiles() {
@@ -187,71 +231,63 @@ export default {
         });
     }
     getProfile();
-    function getLessons() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
-        .then(function (response) {
-          // handle success
-          lessons.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    function getClasses() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/classroom/classrooms-view")
-        .then(function (response) {
-          // handle success
-          classes.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getClasses();
-    getLessons();
 
     function validate() {
-      if (form.class_id === "") {
-        form.classIdErrorText = "نام کلاس پر نشده";
+      if (form.father_job === "") {
+        form.fatherJobErrorText = "شغل پدر پر نشده";
       } else {
-        form.classIdErrorText = "";
+        form.fatherJobErrorText = "";
       }
-      if (form.lesson_id === "") {
-        form.lessonIdErrorText = " نام درس پر نشده";
+      if (form.mother_job === "") {
+        form.motherJobErrorText = "شغل مادر پر نشده";
       } else {
-        form.lessonIdErrorText = "";
+        form.motherJobErrorText = "";
       }
-      if (form.dayOfWeek === "") {
-        form.dayOfWeekErrorText = "روز هفته پر نشده";
+      if (form.father_phone_number === "") {
+        form.fatherPhoneNumberErrorText = "شماره همراه پدر پر نشده";
       } else {
-        form.dayOfWeekErrorText = "";
+        form.fatherPhoneNumberErrorText = "";
       }
-      if (form.time_start === "") {
-        form.timeStartErrorText = "ساعت شروع پر نشده";
+      if (form.mother_phone_number === "") {
+        form.motherPhoneNumberErrorText = "شماره همراه مادر پر نشده";
       } else {
-        form.timeStartErrorText = "";
+        form.motherPhoneNumberErrorText = "";
       }
-      if (form.time_end === "") {
-        form.timeEndErrorText = "ساعت اتمام پر نشده";
+      if (form.birthday === "") {
+        form.birthdayErrorText = "تاریخ تولد پر نشده";
       } else {
-        form.timeEndErrorText = "";
+        form.birthdayErrorText = "";
+      }
+      if (form.consideration === "") {
+        form.considerationErrorText = "ملاحظات پر نشده";
+      } else {
+        form.considerationErrorText = "";
+      }
+      if (form.major === "") {
+        form.majorErrorText = "رشته تحصیلی پر نشده";
+      } else {
+        form.majorErrorText = "";
+      }
+      if (form.address === "") {
+        form.addressErrorText = "آدرس پر نشده";
+      } else {
+        form.addressErrorText = "";
       }
       if (
-        form.class_id !== "" &&
-        form.lesson_id !== "" &&
-        form.time_start !== "" &&
-        form.time_end !== "" &&
-        form.dayOfWeek !== ""
+        form.father_job !== "" &&
+        form.mother_job !== "" &&
+        form.father_phone_number !== "" &&
+        form.mother_phone_number !== "" &&
+        form.birthday !== "" &&
+        form.address !== "" &&
+        form.consideration !== "" &&
+        form.major !== ""
       ) {
-        // console.log(form);
+        console.log(form);
         emit("formData", form);
       }
     }
-    return { classes, lessons, profiles, form, validate };
+    return { profiles, form, validate };
   },
 };
 </script>

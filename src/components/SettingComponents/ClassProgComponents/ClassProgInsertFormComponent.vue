@@ -1,199 +1,179 @@
 <template>
   <div class="row" style="height: 20%">
     <div class="col">
-      <div class="prog-window">
-        <form style="direction: rtl; font-family: Vazir">
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب مقطع تحصیلی:</option>
-                      <option
-                        v-for="(item, index) in grades"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.grade_name }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب درس:</option>
-                      <option
-                        v-for="(item, index) in grades"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.grade_name }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب کلاس:</option>
-                      <option
-                        v-for="(item, index) in grades"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.grade_name }}
-                      </option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div class="form-group" style="font-family: Vazir">
-                    <select
-                      v-model="form.grade_id"
-                      class="form-select"
-                      style="font-size: small"
-                    >
-                      <option value="">انتخاب روز هفته:</option>
-                      <option value="0">شنبه</option>
-                      <option value="1">یکشنبه</option>
-                      <option value="2">دوشنبه</option>
-                      <option value="3">سه شنبه</option>
-                      <option value="4">چهارشنبه</option>
-                      <option value="5">پنج شنبه</option>
-                    </select>
-                    <div class="form-text text-danger validation-text">
-                      {{ form.gradeIdErrorText }}
-                    </div>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="ساعت شروع:"
-                    />
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: xx-small">
-                    <input
-                      style="font-size: 12px"
-                      type="text"
-                      class="form-control"
-                      placeholder="ساعت پایان:"
-                    />
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-group" style="font-size: x-small">
-                    <button
-                      style="font-size: 12px"
-                      type="submit"
-                      class="btn btn-primary button-class"
-                    >
-                      ثبت
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      <div
+        style="
+          background-color: rgb(237, 237, 227);
+          margin-left: 30px;
+          height: 95%;
+          border-radius: 6px;
+          padding-top: 15px;
+          padding-left: 5px;
+          padding-right: 5px;
+        "
+      >
+        <ClassProgForm
+          @formData="createProg"
+          :button-loading="loading"
+          button-text="ایجاد برنامه جدید"
+          button-class="btn btn-primary"
+          :post="post"
+        />
       </div>
     </div>
   </div>
-  <div class="row" style="height: 80%">
-    <div class="col"></div>
+  <div
+    class="row"
+    style="
+      height: 70%;
+      overflow-y: scroll;
+      margin-top: 25px;
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: rgb(57, 57, 60);
+      opacity: 0.7;
+      filter: alpha(opacity=100);
+    "
+  >
+    <div class="col" v-if="!spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="col">
+      <table
+        class="table table-bordered"
+        style="
+          font-family: Vazir;
+          font-size: smaller;
+          text-align: center;
+          margin-top: 10px;
+          margin-left: 3px;
+          direction: rtl;
+          width: 100%;
+        "
+      >
+        <thead>
+          <tr
+            class="sticky"
+            style="
+              background-color: cornflowerblue;
+              text-align: center;
+              font-size: smaller;
+              color: rgb(254, 254, 255);
+            "
+          >
+            <th>--</th>
+            <th>کد برنامه</th>
+            <th>نام کلاس</th>
+            <th>نام درس</th>
+            <th>مقطع تحصیلی</th>
+            <th>روز هفته</th>
+            <th>ساعت شروع</th>
+            <th>ساعت پایان</th>
+            <th>--</th>
+            <th>--</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="(item, index) in progs"
+            :key="index"
+            style="text-align: right; font-size: 12px; color: aliceblue"
+          >
+            <td style="width: 5%; padding-top: 10px">
+              <a href="#"
+                ><img
+                  style="width: 20px; height: 20px; border-radius: 5px"
+                  src="../../../../public/select.jpg"
+              /></a>
+            </td>
+            <td style="width: 5%; padding-top: 10px">{{ item.id }}</td>
+            <td style="width: 17%; padding-top: 15px">{{ item.class_id }}</td>
+            <td style="width: 18%; padding-top: 15px">{{ item.lesson_id }}</td>
+            <td style="width: 15%; padding-top: 15px"></td>
+            <td style="width: 8%; padding-top: 15px">{{ item.dayOfWeek }}</td>
+            <td style="width: 8%; padding-top: 15px">{{ item.time_start }}</td>
+            <td style="width: 8%; padding-top: 15px">{{ item.time_end }}</td>
+            <td style="width: 8%">
+              <router-link
+                class="btn btn-success button-table-class"
+                :to="{ name: 'editClass', params: { id: item.id } }"
+              >
+                اصلاح
+              </router-link>
+            </td>
+            <td style="width: 8%">
+              <button
+                @click="deleteClass(item.id)"
+                class="btn btn-danger button-table-class"
+              >
+                حذف
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <div class="row" style="height: 10%"></div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRoute } from "vue-router";
+import ClassProgForm from "@/components/Forms/ClassProgFormComponent.vue";
 
 export default {
+  components: {
+    ClassProgForm,
+  },
   setup() {
     const form = reactive({
+      class_id: "",
       lesson_id: "",
-      grade_id: "",
-      exam_type_id: "",
+      dayOfWeek: "",
+      time_start: "",
+      time_end: "",
+      dayOfWeekErrorText: "",
+      classIdErrorText: "",
       lessonIdErrorText: "",
-      gradeIdErrorText: "",
-      examTypeIdErrorText: "",
+      timeStartErrorText: "",
+      timeEndErrorText: "",
     });
     const loading = ref(false);
-    const grades = ref([]);
-    const examTypes = ref([]);
+    const progs = ref([]);
+    const post = ref({});
+    const route = useRoute();
+    const spinner = ref(false);
 
-    function validate() {
-      if (form.lesson_id === "") {
-        form.lessonIdErrorText = "نام درس باید وارد شود";
-      } else {
-        form.lessonIdErrorText = "";
-      }
-      if (form.grade_id === "") {
-        form.gradeIdErrorText = "نام مقطع تحصیلی باید وارد شود";
-      } else {
-        form.gradeIdErrorText = "";
-      }
-      if (form.exam_type_id === "") {
-        form.examTypeIdErrorText = "نوع امتحان باید وارد شود";
-      } else {
-        form.examTypeIdErrorText = "";
-      }
-      if (
-        form.exam_type_id !== "" &&
-        form.lesson_id !== "" &&
-        form.grade_id !== ""
-      ) {
-        loading.value = true;
-        creatExam();
-      }
-    }
-
-    function creatExam() {
+    function createProg(formData) {
+      loading.value = true;
       axios
-        .post("http://127.0.0.1:8000/api/school/exam/store", {
-          grade_id: form.grade_id,
-          lesson_id: form.lesson_id,
-          exam_type_id: form.exam_type_id,
+        .post("http://127.0.0.1:8000/api/school/class-prog/store", {
+          lesson_id: formData.lesson_id,
+          dayOfWeek: formData.class_id,
+          time_start: formData.time_start,
+          time_end: formData.time_end,
+          class_id: formData.class_id,
         })
         .then(function () {
+          getProgs();
           loading.value = false;
+          form.class_id = "";
           form.lesson_id = "";
-          form.exam_type_id = "";
-          form.grade_id = "";
+          form.dayOfWeek = "";
+          form.time_start = "";
+          form.time_end = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نام امتحان با موفقیت در پایگاه داده ثبت گردید",
+            text: " این برنامه با موفقیت در پایگاه داده ثبت گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -201,7 +181,6 @@ export default {
         })
         .catch(function (error) {
           loading.value = false;
-
           console.log(error);
           Swal.fire({
             title: "پیغام خطا",
@@ -212,36 +191,84 @@ export default {
           });
         });
     }
-    function getGrades() {
+    function getProgs() {
       axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .get("http://127.0.0.1:8000/api/school/class-program/programs")
         .then(function (response) {
           // handle success
-          grades.value = response.data;
-          console.log(response.data);
+          spinner.value = true;
+          progs.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    function getExamTypes() {
+    function getProg() {
       axios
-        .get("http://127.0.0.1:8000/api/school/exam/exam-types")
+        .get(`http://127.0.0.1:8000/api/school/class-prog/${route.params.id}`)
         .then(function (response) {
-          // handle success
-          examTypes.value = response.data;
           console.log(response.data);
+          // handle success
+          post.value = response.data;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    getGrades();
-    getExamTypes();
+    function deleteProg(id) {
+      Swal.fire({
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "بله ، حذف شود",
+        position: "top",
+      }).then((result) => {
+        getProgs();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/class-prog/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `برنامه با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
 
-    return { examTypes, grades, form, validate, loading };
+              axios
+                .get("http://127.0.0.1:8000/api/school/class-prog/class-progs")
+                .then(function (response) {
+                  // handle success
+                  progs.value = response.data;
+                })
+                .catch(function (error) {
+                  // handle error
+                  console.log(error);
+                });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    getProg();
+    getProgs();
+
+    return {
+      spinner,
+      deleteProg,
+      post,
+      progs,
+      createProg,
+      loading,
+    };
   },
 };
 </script>
@@ -260,12 +287,12 @@ export default {
   font-family: Vazir;
   margin-top: 1px;
 }
-.button-class {
+.button-table-class {
   font-size: 12px;
-  width: 40%;
-  height: 35px;
+  width: 95%;
+  height: 30px;
 }
-.prog-window {
+.grade-window {
   background-color: rgb(237, 237, 227);
   margin-left: 30px;
   height: 95%;
