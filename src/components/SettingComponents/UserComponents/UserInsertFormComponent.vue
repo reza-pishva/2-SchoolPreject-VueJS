@@ -106,19 +106,34 @@
             <td style="width: 21%; padding-top: 15px">
               {{ item.email }}
             </td>
-            <td v-if="item.role == 1" style="width: 10%; padding-top: 15px">
+            <td
+              v-if="item.role == 1"
+              style="width: 10%; padding-top: 15px; font-size: 12px"
+            >
               دانش آموز
             </td>
-            <td v-if="item.role == 2" style="width: 10%; padding-top: 15px">
+            <td
+              v-if="item.role == 2"
+              style="width: 10%; padding-top: 15px; font-size: 12px"
+            >
               معلم
             </td>
-            <td v-if="item.role == 3" style="width: 10%; padding-top: 15px">
+            <td
+              v-if="item.role == 3"
+              style="width: 10%; padding-top: 15px; font-size: 12px"
+            >
               اداری
             </td>
-            <td v-if="item.gender == 1" style="width: 5%; padding-top: 15px">
+            <td
+              v-if="item.gender == 1"
+              style="width: 5%; padding-top: 15px; font-size: 12px"
+            >
               زن
             </td>
-            <td v-if="item.gender == 2" style="width: 5%; padding-top: 15px">
+            <td
+              v-if="item.gender == 2"
+              style="width: 5%; padding-top: 15px; font-size: 12px"
+            >
               مرد
             </td>
             <td style="width: 10%; padding-top: 15px">
