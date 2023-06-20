@@ -216,6 +216,7 @@ export default {
         .then(function (response) {
           // handle success
           spinner.value = true;
+          form.class_id = "";
           progs.value = response.data;
         })
         .catch(function (error) {

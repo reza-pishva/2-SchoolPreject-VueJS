@@ -113,7 +113,6 @@ export default {
     const grades = ref([]);
     const examTypes = ref([]);
     const lessons = ref([]);
-    // const examInfo = ref([]);
 
     function getGrades() {
       axios

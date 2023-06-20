@@ -12,8 +12,10 @@
                 v-model="form.class_id"
                 class="form-select"
                 style="font-size: 12px"
+                value="100"
               >
-                <option value="">انتخاب کلاس:</option>
+                <option selected value="">انتخاب کلاس:</option>
+
                 <option
                   v-for="(item, index) in classes"
                   :key="index"
@@ -34,7 +36,7 @@
                 class="form-select"
                 style="font-size: 12px"
               >
-                <option value="">انتخاب درس:</option>
+                <option selected value="">انتخاب درس:</option>
                 <option
                   v-for="(item, index) in lessons"
                   :key="index"
@@ -134,30 +136,21 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      buttonLoading: Boolean,
-      buttonText: String,
-      buttonClass: String,
-      post: Object,
-      progId: String,
+      class_id: "",
+      classIdErrorText: "",
+      lesson_id: "",
+      lessonIdErrorText: "",
+      DayOfWeek: "",
+      dayOfWeekErrorText: "",
+      time_start: "",
+      timeStartErrorText: "",
+      time_end: "",
+      timeEndErrorText: "",
     });
 
     const lessons = ref([]);
     const classes = ref([]);
     const progInfo = ref([]);
-
-    // function getProgs() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
-    //     .then(function (response) {
-    //       // handle success
-    //       grades.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getProgs();
 
     function getProg() {
       axios
