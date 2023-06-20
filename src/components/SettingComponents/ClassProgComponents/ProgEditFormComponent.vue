@@ -36,26 +36,63 @@ export default {
   components: {
     ProgForm,
   },
+  props: {
+    buttonLoading: Boolean,
+    buttonText: String,
+    buttonClass: String,
+    progId: String,
+  },
   setup() {
     const form = reactive({
-      id: "",
-      name: "",
-      grade_id: "",
-      year: "",
-      nameErrorText: "",
-      gradeIdErrorText: "",
-      yearErrorText: "",
+      class_id: "",
+      lesson_id: "",
+      DayOfWeek: "",
+      time_start: "",
+      time_end: "",
+      dayOfWeekErrorText: "",
+      classIdErrorText: "",
+      lessonIdErrorText: "",
+      timeStartErrorText: "",
+      timeEndErrorText: "",
     });
     const loading = ref(false);
     const progs = ref([]);
-    var post = reactive({});
+    // const progInfo = ref([]);
+    // var post = reactive({});
     const route = useRoute();
 
+    // function getProg() {
+    //   axios
+    //     .get(
+    //       "http://127.0.0.1:8000/api/school/class-program/program/" +
+    //         props.progId
+    //     )
+    //     .then(function (response) {
+    //       // handle success
+
+    //       progInfo.value = response.data;
+    //       form.class_id = progInfo.value.class_id;
+    //       form.lesson_id = progInfo.value.lesson_id;
+    //       form.time_start = progInfo.value.time_start;
+    //       form.time_end = progInfo.value.time_end;
+    //       form.DayOfWeek = progInfo.value.dayOfWeek;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getProg();
+
     function editProg(formData) {
+      console.log("1221122121");
+      console.log(formData);
+      console.log("2332323232");
       loading.value = true;
       axios
         .put(
-          "http://127.0.0.1:8000/api/school/class-program/update/" + form.id,
+          "http://127.0.0.1:8000/api/school/class-program/update/" +
+            formData.id,
           {
             id: formData.id,
             lesson_id: formData.lesson_id,
@@ -67,6 +104,11 @@ export default {
         )
         .then(function () {
           loading.value = false;
+          // form.DayOfWeek = "";
+          // form.time_start = "";
+          // form.time_end = "";
+          // form.class_id = "";
+          // form.lesson_id = "";
           Swal.fire({
             title: "ذخیره شد",
             text: "برنامه کلاسی با موفقیت در پایگاه داده اصلاح گردید",
@@ -87,11 +129,13 @@ export default {
           });
         });
     }
+
     function sendId() {
       form.id = route.params.id;
     }
     sendId();
-    return { post, progs, editProg, loading, form };
+
+    return { progs, editProg, loading, form };
   },
 };
 </script>

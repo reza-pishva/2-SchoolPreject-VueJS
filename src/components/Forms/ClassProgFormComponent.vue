@@ -150,6 +150,30 @@ export default {
     const lessons = ref([]);
     const progInfo = ref([]);
 
+    console.log(props.progId);
+    function getProg() {
+      axios
+        .get(
+          "http://127.0.0.1:8000/api/school/class-program/program/" +
+            props.progId
+        )
+        .then(function (response) {
+          // handle success
+
+          progInfo.value = response.data;
+          form.class_id = progInfo.value.class_id;
+          form.lesson_id = progInfo.value.lesson_id;
+          form.time_start = progInfo.value.time_start;
+          form.time_end = progInfo.value.time_end;
+          form.DayOfWeek = progInfo.value.dayOfWeek;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getProg();
+
     function getLessons() {
       axios
         .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
@@ -214,6 +238,7 @@ export default {
       }
 
       function getProg() {
+        console.log(props.progId);
         axios
           .get(
             "http://127.0.0.1:8000/api/school/class-program/program/" +
@@ -236,7 +261,7 @@ export default {
       }
       getProg();
     }
-    return { form, validate };
+    return { form, validate, classes, lessons };
   },
 };
 </script>

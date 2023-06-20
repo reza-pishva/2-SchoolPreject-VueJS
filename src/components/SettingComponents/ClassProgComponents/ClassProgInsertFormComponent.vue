@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="height: 20%">
+  <div class="row" style="height: 30%">
     <div class="col">
       <div
         style="
@@ -224,10 +224,10 @@ export default {
         });
     }
     function getProg() {
+      console.log(route.params.id);
       axios
         .get(`http://127.0.0.1:8000/api/school/class-prog/${route.params.id}`)
         .then(function (response) {
-          console.log(response.data);
           // handle success
           post.value = response.data;
         })
