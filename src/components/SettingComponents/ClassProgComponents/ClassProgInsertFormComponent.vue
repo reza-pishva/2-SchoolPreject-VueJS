@@ -25,9 +25,9 @@
   <div
     class="row"
     style="
-      height: 70%;
+      height: 60%;
       overflow-y: scroll;
-      margin-top: 25px;
+      margin-top: 5px;
       border: 1px solid white;
       border-radius: 5px;
       background-color: rgb(57, 57, 60);

@@ -134,23 +134,31 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      class_id: "",
-      lesson_id: "",
-      DayOfWeek: "",
-      time_start: "",
-      time_end: "",
-      dayOfWeekErrorText: "",
-      classIdErrorText: "",
-      lessonIdErrorText: "",
-      timeStartErrorText: "",
-      timeEndErrorText: "",
+      buttonLoading: Boolean,
+      buttonText: String,
+      buttonClass: String,
+      post: Object,
+      progId: String,
     });
 
-    const classes = ref([]);
     const lessons = ref([]);
+    const classes = ref([]);
     const progInfo = ref([]);
 
-    console.log(props.progId);
+    // function getProgs() {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
+    //     .then(function (response) {
+    //       // handle success
+    //       grades.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getProgs();
+
     function getProg() {
       axios
         .get(
@@ -159,7 +167,6 @@ export default {
         )
         .then(function (response) {
           // handle success
-
           progInfo.value = response.data;
           form.class_id = progInfo.value.class_id;
           form.lesson_id = progInfo.value.lesson_id;
@@ -173,33 +180,6 @@ export default {
         });
     }
     getProg();
-
-    function getLessons() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
-        .then(function (response) {
-          // handle success
-          lessons.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    function getClasses() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
-        .then(function (response) {
-          // handle success
-          classes.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getClasses();
-    getLessons();
 
     function validate() {
       if (form.class_id === "") {
@@ -236,32 +216,34 @@ export default {
       ) {
         emit("formData", form);
       }
-
-      function getProg() {
-        console.log(props.progId);
-        axios
-          .get(
-            "http://127.0.0.1:8000/api/school/class-program/program/" +
-              props.progId
-          )
-          .then(function (response) {
-            // handle success
-
-            progInfo.value = response.data;
-            form.class_id = progInfo.value.class_id;
-            form.lesson_id = progInfo.value.lesson_id;
-            form.time_start = progInfo.value.time_start;
-            form.time_end = progInfo.value.time_end;
-            form.DayOfWeek = progInfo.value.dayOfWeek;
-          })
-          .catch(function (error) {
-            // handle error
-            console.log(error);
-          });
-      }
-      getProg();
     }
-    return { form, validate, classes, lessons };
+    function getLessons() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/lesson/lessons-view")
+        .then(function (response) {
+          // handle success
+          lessons.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    function getClasses() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
+        .then(function (response) {
+          // handle success
+          classes.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getClasses();
+    getLessons();
+    return { classes, lessons, form, validate };
   },
 };
 </script>
