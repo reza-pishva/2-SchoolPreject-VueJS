@@ -159,7 +159,7 @@ export default {
     const grades = ref([]);
     // const exam_types = ref([]);
     const post = ref({});
-    const spinner = ref(true);
+    const spinner = ref(false);
     // const route = useRoute();
 
     function createExam(formData) {
