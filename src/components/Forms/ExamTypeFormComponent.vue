@@ -93,7 +93,9 @@ export default {
           console.log(error);
         });
     }
-    getExamType();
+    if (props.examTypeId !== undefined) {
+      getExamType();
+    }
 
     function validate() {
       if (form.exam_type === "") {

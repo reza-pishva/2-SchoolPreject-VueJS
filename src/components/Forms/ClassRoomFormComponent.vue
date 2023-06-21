@@ -30,7 +30,7 @@
                 class="form-select"
                 style="font-size: small"
               >
-                <option selected value="1000">انتخاب مقطع تحصیلی:</option>
+                <option selected value="">انتخاب مقطع تحصیلی:</option>
                 <option
                   v-for="(item, index) in grades"
                   :key="index"
@@ -137,7 +137,9 @@ export default {
           console.log(error);
         });
     }
-    getClass();
+    if (props.classId !== undefined) {
+      getClass();
+    }
 
     function validate() {
       if (form.year === "") {

@@ -209,7 +209,9 @@ export default {
           console.log(error);
         });
     }
-    getUser();
+    if (props.userId !== undefined) {
+      getUser();
+    }
 
     function validate() {
       if (form.f_name === "") {

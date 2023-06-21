@@ -172,7 +172,9 @@ export default {
           console.log(error);
         });
     }
-    getProg();
+    if (props.progId !== undefined) {
+      getProg();
+    }
 
     function validate() {
       if (form.class_id === "") {

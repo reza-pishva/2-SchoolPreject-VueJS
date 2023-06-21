@@ -155,6 +155,7 @@ export default {
         });
     }
     function getExam() {
+      console.log(props.examId);
       axios
         .get("http://127.0.0.1:8000/api/school/exam/" + props.examId)
         .then(function (response) {
@@ -169,7 +170,10 @@ export default {
           console.log(error);
         });
     }
-    getExam();
+    if (props.examId !== undefined) {
+      getExam();
+    }
+
     getGrades();
     getExamTypes();
     getLessons();
