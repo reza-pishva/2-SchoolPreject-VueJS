@@ -253,7 +253,6 @@ export default {
       axios
         .get(`http://127.0.0.1:8000/api/school/profile/${route.params.id}`)
         .then(function (response) {
-          // console.log(response.data);
           // handle success
           post.value = response.data;
         })

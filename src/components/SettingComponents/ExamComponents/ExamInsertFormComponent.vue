@@ -126,7 +126,6 @@
 import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
-// import { useRoute } from "vue-router";
 import ExamForm from "@/components/Forms/ExamFormComponent.vue";
 
 export default {
@@ -209,19 +208,6 @@ export default {
           console.log(error);
         });
     }
-    // function getExam() {
-    //   axios
-    //     .get(`http://127.0.0.1:8000/api//school/exam/${route.params.id}`)
-    //     .then(function (response) {
-    //       console.log(response.data);
-    //       // handle success
-    //       post.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
     function deleteExam(id) {
       Swal.fire({
         title: "آیا مطمئن هستید؟",
@@ -264,7 +250,6 @@ export default {
         }
       });
     }
-    // getExam();
     getExams();
 
     return {
