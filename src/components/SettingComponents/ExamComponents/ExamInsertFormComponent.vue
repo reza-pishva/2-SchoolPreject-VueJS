@@ -35,7 +35,16 @@
       filter: alpha(opacity=100);
     "
   >
-    <div v-if="!spinner" class="col">
+    <div class="col" v-if="!spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+    <div v-else class="col">
       <table
         class="table table-bordered"
         style="
@@ -72,9 +81,10 @@
             v-for="(item, index) in exams"
             :key="index"
             style="text-align: right; font-size: 12px; color: aliceblue"
+            v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 13px">
-              <a href="#"
+              <a v-on:click="selectRow(index)" href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -108,15 +118,6 @@
         </tbody>
       </table>
     </div>
-    <div v-else class="col">
-      <div
-        class="spinner-border text-danger"
-        role="status"
-        style="width: 100px; height: 100px; margin-top: 100px"
-      >
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
   </div>
   <div class="row" style="height: 10%"></div>
 </template>
@@ -129,6 +130,17 @@ import Swal from "sweetalert2";
 import ExamForm from "@/components/Forms/ExamFormComponent.vue";
 
 export default {
+  data() {
+    return {
+      selectedRowIndex: -1,
+    };
+  },
+  methods: {
+    selectRow(index) {
+      console.log(index);
+      this.selectedRowIndex = index;
+    },
+  },
   components: {
     ExamForm,
   },
@@ -142,13 +154,13 @@ export default {
       examTypeIdErrorText: "",
     });
     const loading = ref(false);
-    const lessons = ref([]);
+    // const lessons = ref([]);
     const exams = ref([]);
     const grades = ref([]);
-    const exam_types = ref([]);
+    // const exam_types = ref([]);
     const post = ref({});
-    // const route = useRoute();
     const spinner = ref(true);
+    // const route = useRoute();
 
     function createExam(formData) {
       loading.value = true;
@@ -161,9 +173,9 @@ export default {
         .then(function () {
           getExams();
           loading.value = false;
+          form.exam_type_id = "";
           form.lesson_id = "";
           form.grade_id = "";
-          form.exam_type_id = "";
           Swal.fire({
             title: "ذخیره شد",
             text: "نام آزمون با موفقیت در پایگاه داده ثبت گردید",
@@ -189,7 +201,7 @@ export default {
         .get("http://127.0.0.1:8000/api/school/exam/exam-view")
         .then(function (response) {
           // handle success
-          spinner.value = false;
+          spinner.value = true;
           exams.value = response.data;
         })
         .catch(function (error) {
@@ -197,6 +209,19 @@ export default {
           console.log(error);
         });
     }
+    // function getExam() {
+    //   axios
+    //     .get(`http://127.0.0.1:8000/api//school/exam/${route.params.id}`)
+    //     .then(function (response) {
+    //       console.log(response.data);
+    //       // handle success
+    //       post.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
     function deleteExam(id) {
       Swal.fire({
         title: "آیا مطمئن هستید؟",
@@ -223,6 +248,7 @@ export default {
 
               axios
                 .get("http://127.0.0.1:8000/api/school/exam/exam-view")
+
                 .then(function (response) {
                   // handle success
                   exams.value = response.data;
@@ -238,17 +264,15 @@ export default {
         }
       });
     }
-
+    // getExam();
     getExams();
 
     return {
-      exams,
       spinner,
       deleteExam,
       post,
       grades,
-      lessons,
-      exam_types,
+      exams,
       createExam,
       loading,
     };
@@ -283,5 +307,10 @@ export default {
   padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
+}
+.selected-row {
+  background-color: rgb(94, 119, 148);
+  color: rgb(234, 241, 19) !important;
+  font-size: 16px !important;
 }
 </style>

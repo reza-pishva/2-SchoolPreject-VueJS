@@ -7,7 +7,7 @@
           margin-left: 30px;
           height: 95%;
           border-radius: 6px;
-          padding-top: 10px;
+          padding-top: 15px;
           padding-left: 5px;
           padding-right: 5px;
         "
@@ -47,26 +47,27 @@ export default {
       lessonIdErrorText: "",
     });
     const loading = ref(false);
-    // const exams = ref([]);
+    const exams = ref([]);
     var post = reactive({});
     const route = useRoute();
 
     function editExam(formData) {
       loading.value = true;
       axios
-        .put(
-          "http://127.0.0.1:8000/api/school/exam/exam-type/update/" + form.id,
-          {
-            id: form.id,
-            exam_type: formData.exam_type,
-          }
-        )
+        .put("http://127.0.0.1:8000/api/school/exam/update/" + form.id, {
+          id: formData.id,
+          grade_id: formData.grade_id,
+          exam_type_id: formData.exam_type_id,
+          lesson_id: formData.lesson_id,
+        })
         .then(function () {
           loading.value = false;
-          form.exam_type_id = "";
+          // form.name = "";
+          // form.year = "";
+          // form.grade_id = "";
           Swal.fire({
             title: "ذخیره شد",
-            text: "نوع آزمون با موفقیت در پایگاه داده اصلاح گردید",
+            text: "نام آزمون با موفقیت در پایگاه داده اصلاح گردید",
             icon: "success",
             confirmButtonText: "Ok",
             position: "top",
@@ -89,7 +90,7 @@ export default {
       form.id = route.params.id;
     }
     sendId();
-    return { post, editExam, loading, form };
+    return { post, exams, editExam, loading, form };
   },
 };
 </script>

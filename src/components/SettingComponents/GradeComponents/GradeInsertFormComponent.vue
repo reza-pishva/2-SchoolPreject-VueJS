@@ -49,9 +49,10 @@
             v-for="(item, index) in grades"
             :key="index"
             style="text-align: right; font-size: 12px; color: aliceblue"
+            v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 25px">
-              <a href="#"
+              <a v-on:click="selectRow(index)" href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -102,6 +103,17 @@ import { useRoute } from "vue-router";
 import GradeForm from "@/components/Forms/GradeFormComponent.vue";
 
 export default {
+  data() {
+    return {
+      selectedRowIndex: -1,
+    };
+  },
+  methods: {
+    selectRow(index) {
+      console.log(index);
+      this.selectedRowIndex = index;
+    },
+  },
   components: {
     GradeForm,
   },
@@ -271,5 +283,10 @@ export default {
 .swal2-popup {
   font-size: 14px !important;
   font-family: Vazir;
+}
+.selected-row {
+  background-color: rgb(94, 119, 148);
+  color: rgb(234, 241, 19) !important;
+  font-size: 16px !important;
 }
 </style>

@@ -85,9 +85,10 @@
             v-for="(item, index) in profiles"
             :key="index"
             style="text-align: right; font-size: 12px; color: aliceblue"
+            v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 4%; padding-top: 15px">
-              <a href="#"
+              <a v-on:click="selectRow(index)" href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -147,6 +148,17 @@ import { useRoute } from "vue-router";
 import ProfileForm from "@/components/Forms/ProfileFormComponent.vue";
 
 export default {
+  data() {
+    return {
+      selectedRowIndex: -1,
+    };
+  },
+  methods: {
+    selectRow(index) {
+      console.log(index);
+      this.selectedRowIndex = index;
+    },
+  },
   components: {
     ProfileForm,
   },
@@ -324,5 +336,10 @@ export default {
   font-size: 12px;
   width: 95%;
   height: 30px;
+}
+.selected-row {
+  background-color: rgb(94, 119, 148);
+  color: rgb(234, 241, 19) !important;
+  font-size: 16px !important;
 }
 </style>

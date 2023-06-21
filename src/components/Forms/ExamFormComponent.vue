@@ -69,11 +69,11 @@
           <div class="col">
             <div class="form-group" style="font-size: x-small">
               <button
-                style="font-size: 12px"
+                style="font-size: 12px; width: 75%"
                 type="submit"
                 class="btn btn-primary button-class"
               >
-                ثبت
+                {{ buttonText }}
                 <div
                   v-if="buttonLoading"
                   class="spinner-border spinner-grow-sm"
@@ -98,21 +98,22 @@ export default {
     buttonText: String,
     buttonClass: String,
     post: Object,
-    classId: String,
+    examId: String,
   },
   setup(props, { emit }) {
     const form = reactive({
-      name: "",
-      nameErrorText: "",
+      lesson_id: "",
       grade_id: "",
+      exam_type_id: "",
+      lessonIdErrorText: "",
       gradeIdErrorText: "",
-      year: "",
-      yearErrorText: "",
+      examTypeIdErrorText: "",
     });
 
     const grades = ref([]);
     const examTypes = ref([]);
     const lessons = ref([]);
+    const examInfo = ref([]);
 
     function getGrades() {
       axios
@@ -153,6 +154,22 @@ export default {
           console.log(error);
         });
     }
+    function getExam() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/exam/" + props.examId)
+        .then(function (response) {
+          // handle success
+          examInfo.value = response.data;
+          form.lesson_id = examInfo.value.lesson_id;
+          form.grade_id = examInfo.value.grade_id;
+          form.exam_type_id = examInfo.value.exam_type_id;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getExam();
     getGrades();
     getExamTypes();
     getLessons();
