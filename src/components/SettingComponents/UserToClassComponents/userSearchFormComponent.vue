@@ -1,17 +1,7 @@
 <template>
   <div class="row" style="height: 35%">
     <div class="col">
-      <div
-        style="
-          background-color: rgb(237, 237, 227);
-          margin-left: 30px;
-          height: 95%;
-          border-radius: 6px;
-          padding-top: 15px;
-          padding-left: 5px;
-          padding-right: 5px;
-        "
-      >
+      <div>
         <UserForm
           @formData="createUser"
           :button-loading="loading"
@@ -114,7 +104,7 @@ import { ref, reactive } from "vue";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRoute } from "vue-router";
-import UserForm from "@/components/Forms/UserFormComponent.vue";
+import UserForm from "@/components/Forms/UserToClassFormComponent.vue";
 
 export default {
   data() {

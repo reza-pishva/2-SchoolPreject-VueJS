@@ -1,143 +1,185 @@
 <template>
-  <form @submit.prevent="validate" style="direction: rtl; font-family: Vazir">
-    <div class="row">
-      <div class="col">
+  <div class="row" style="width: 100%; margin: auto; direction: rtl">
+    <div
+      style="
+        width: 50%;
+        height: 155px;
+        margin-top: -5px;
+        border-radius: 5px;
+        background-color: dimgrey;
+      "
+    >
+      <form
+        @submit.prevent="validate"
+        style="direction: rtl; font-family: Vazir; margin-top: 10px"
+      >
         <div class="row">
           <div class="col">
-            <div class="form-group" style="font-size: xx-small">
-              <input
-                v-model.lazy.trim="form.email"
-                style="font-size: 12px"
-                type="email"
-                class="form-control"
-                placeholder="پست الکترونیکی"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.emailErrorText }}
+            <div class="row"></div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group" style="font-size: x-small">
+                  <input
+                    v-model.lazy.trim="form.f_name"
+                    style="font-size: 12px"
+                    type="text"
+                    class="form-control"
+                    placeholder="نام:"
+                  />
+                  <div class="form-text text-danger validation-text">
+                    {{ form.fnameErrorText }}
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group" style="font-size: x-small">
+                  <input
+                    v-model.lazy.trim="form.f_name"
+                    style="font-size: 12px"
+                    type="text"
+                    class="form-control"
+                    placeholder="نام خانوادگی:"
+                  />
+                  <div class="form-text text-danger validation-text">
+                    {{ form.fnameErrorText }}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <input
-                v-model.lazy.trim="form.password"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="کلمه عبور"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.passwordErrorText }}
+            <div class="row">
+              <div class="col">
+                <div class="form-group" style="font-family: Vazir">
+                  <select
+                    v-model="form.grade_id"
+                    class="form-select"
+                    style="font-size: small"
+                  >
+                    <option selected value="">انتخاب مقطع تحصیلی:</option>
+                    <option
+                      v-for="(item, index) in grades"
+                      :key="index"
+                      :value="item.id"
+                    >
+                      {{ item.grade_name }}
+                    </option>
+                  </select>
+                  <div class="form-text text-danger validation-text">
+                    {{ form.gradeIdErrorText }}
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div
+                  class="form-group"
+                  style="font-family: Vazir; font-size: 12px"
+                >
+                  <select
+                    v-model="form.lesson_id"
+                    class="form-select"
+                    style="font-size: 12px"
+                  >
+                    <option selected value="">انتخاب کلاس:</option>
+                    <option
+                      v-for="(item, index) in classes1"
+                      :key="index"
+                      :value="item.id"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="form-text text-danger validation-text">
+                    {{ form.lessonIdErrorText }}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="form-group" style="font-family: Vazir">
-              <select
-                v-model="form.role"
-                class="form-select"
-                style="font-size: small"
-              >
-                <option value="" selected>نوع کاربر:</option>
-                <option value="1">دانش آموز</option>
-                <option value="2">معلم</option>
-                <option value="3">اداری</option>
-              </select>
-              <div class="form-text text-danger validation-text">
-                {{ form.roleErrorText }}
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group" style="font-size: x-small">
+                  <input
+                    v-model.lazy.trim="form.national_code"
+                    style="font-size: 12px"
+                    type="text"
+                    class="form-control"
+                    placeholder="کد ملی:"
+                  />
+                  <div class="form-text text-danger validation-text">
+                    {{ form.nationalCodeErrorText }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <button type="submit" class="btn btn-primary button-class">
+                  جستجو
+                  <div
+                    v-if="buttonLoading"
+                    class="spinner-border spinner-grow-sm"
+                    role="status"
+                  ></div>
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col">
-            <div class="form-group" style="font-size: x-small">
-              <input
-                v-model.lazy.trim="form.f_name"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="نام:"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.fnameErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group" style="font-size: x-small">
-              <input
-                v-model.lazy.trim="form.l_name"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="نام خانوادگی:"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.lnameErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group" style="font-size: x-small">
-              <input
-                v-model.lazy.trim="form.father_name"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="نام پدر:"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.fatherNameErrorText }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-3">
-            <div class="form-group" style="font-size: x-small">
-              <input
-                v-model.lazy.trim="form.national_code"
-                style="font-size: 12px"
-                type="text"
-                class="form-control"
-                placeholder="کد ملی:"
-              />
-              <div class="form-text text-danger validation-text">
-                {{ form.nationalCodeErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="form-group" style="font-family: Vazir">
-              <select
-                v-model="form.gender"
-                class="form-select"
-                style="font-size: small"
-              >
-                <option value="" selected>جنسیت:</option>
-                <option value="1">زن</option>
-                <option value="2">مرد</option>
-              </select>
-              <div class="form-text text-danger validation-text">
-                {{ form.genderErrorText }}
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary button-class">
-              ثبت
-              <div
-                v-if="buttonLoading"
-                class="spinner-border spinner-grow-sm"
-                role="status"
-              ></div>
-            </button>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
-  </form>
+    <div style="width: 50%; height: 100px">
+      <form
+        @submit.prevent="validate"
+        style="direction: rtl; font-family: Vazir; margin-top: 10px"
+      >
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-6">
+                <div
+                  class="form-group"
+                  style="
+                    font-family: Vazir;
+                    font-size: 12px;
+                    width: 100%;
+                    margin-right: 70px;
+                  "
+                >
+                  <select
+                    v-model="form.lesson_id"
+                    class="form-select"
+                    style="font-size: 12px"
+                  >
+                    <option selected value="">انتخاب کلاس:</option>
+                    <option
+                      v-for="(item, index) in classes2"
+                      :key="index"
+                      :value="item.id"
+                    >
+                      {{ item.name }}
+                    </option>
+                  </select>
+                  <div class="form-text text-danger validation-text">
+                    {{ form.lessonIdErrorText }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <button
+                  type="submit"
+                  class="btn btn-info button-class"
+                  style="height: 28px; margin-top: 2px"
+                >
+                  ثبت کلاس
+                  <div
+                    v-if="buttonLoading"
+                    class="spinner-border spinner-grow-sm"
+                    role="status"
+                  ></div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -173,6 +215,8 @@ export default {
     });
 
     const users = ref([]);
+    const classes1 = ref([]);
+    const classes2 = ref([]);
     const userInfo = ref([]);
 
     function getUsers() {
@@ -209,6 +253,20 @@ export default {
           console.log(error);
         });
     }
+    function getClasses() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
+        .then(function (response) {
+          // handle success
+          classes1.value = response.data;
+          classes2.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getClasses();
     if (props.userId !== undefined) {
       getUser();
     }
@@ -267,7 +325,7 @@ export default {
         emit("formData", form);
       }
     }
-    return { users, form, validate };
+    return { classes1, classes2, users, form, validate };
   },
 };
 </script>
