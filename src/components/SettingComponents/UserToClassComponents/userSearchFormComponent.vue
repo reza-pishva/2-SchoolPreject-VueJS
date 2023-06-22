@@ -58,6 +58,7 @@
             <th>نام خانوادگی</th>
             <th>کد ملی</th>
             <th>کلاس</th>
+            <th>سال تحصیلی</th>
             <th>مقطع تحصیلی</th>
           </tr>
         </thead>
@@ -79,16 +80,19 @@
             <td style="width: 15%; padding-top: 10px">
               {{ item.f_name }}
             </td>
-            <td style="width: 20%; padding-top: 10px">
+            <td style="width: 17%; padding-top: 10px">
               {{ item.l_name }}
             </td>
-            <td style="width: 15%; padding-top: 15px">
+            <td style="width: 13%; padding-top: 15px">
               {{ item.national_code }}
             </td>
-            <td style="width: 20%; padding-top: 15px">
+            <td style="width: 17%; padding-top: 15px">
               {{ item.name }}
             </td>
-            <td style="width: 20%; padding-top: 15px">
+            <td style="width: 10%; padding-top: 15px">
+              {{ item.year }}
+            </td>
+            <td style="width: 18%; padding-top: 15px">
               {{ item.grade_name }}
             </td>
           </tr>

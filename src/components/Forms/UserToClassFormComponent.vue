@@ -26,15 +26,12 @@
                     class="form-control"
                     placeholder="نام:"
                   />
-                  <div class="form-text text-danger validation-text">
-                    {{ form.fnameErrorText }}
-                  </div>
                 </div>
               </div>
               <div class="col">
                 <div class="form-group" style="font-size: x-small">
                   <input
-                    v-model.lazy.trim="form.f_name"
+                    v-model.lazy.trim="form.l_name"
                     style="font-size: 12px"
                     type="text"
                     class="form-control"
@@ -52,7 +49,7 @@
                   <select
                     v-model="form.grade_id"
                     class="form-select"
-                    style="font-size: small"
+                    style="font-size: 12px"
                   >
                     <option selected value="">انتخاب مقطع تحصیلی:</option>
                     <option
@@ -63,9 +60,6 @@
                       {{ item.grade_name }}
                     </option>
                   </select>
-                  <div class="form-text text-danger validation-text">
-                    {{ form.gradeIdErrorText }}
-                  </div>
                 </div>
               </div>
               <div class="col">
@@ -74,7 +68,7 @@
                   style="font-family: Vazir; font-size: 12px"
                 >
                   <select
-                    v-model="form.lesson_id"
+                    v-model="form.class_id"
                     class="form-select"
                     style="font-size: 12px"
                   >
@@ -87,14 +81,11 @@
                       {{ item.name }}
                     </option>
                   </select>
-                  <div class="form-text text-danger validation-text">
-                    {{ form.lessonIdErrorText }}
-                  </div>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-6">
+              <div class="col-4">
                 <div class="form-group" style="font-size: x-small">
                   <input
                     v-model.lazy.trim="form.national_code"
@@ -103,13 +94,30 @@
                     class="form-control"
                     placeholder="کد ملی:"
                   />
-                  <div class="form-text text-danger validation-text">
-                    {{ form.nationalCodeErrorText }}
-                  </div>
                 </div>
               </div>
-              <div class="col-6">
-                <button type="submit" class="btn btn-primary button-class">
+              <div class="col-4">
+                <div class="form-group" style="font-family: Vazir">
+                  <select
+                    v-model="form.year"
+                    class="form-select"
+                    style="font-size: 12px"
+                  >
+                    <option selected value="">سال تحصیلی:</option>
+                    <option value="1400">1400-1401</option>
+                    <option value="1401">1401-1402</option>
+                    <option value="1402">1402-1403</option>
+                    <option value="1403">1403-1404</option>
+                    <option value="1404">1404-1405</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-4">
+                <button
+                  type="submit"
+                  class="btn btn-primary button-class"
+                  style="width: 80%; height: 30px; margin-top: 1px"
+                >
                   جستجو
                   <div
                     v-if="buttonLoading"
@@ -199,25 +207,17 @@ export default {
     const form = reactive({
       f_name: "",
       l_name: "",
-      father_name: "",
       national_code: "",
-      role: "",
-      email: "",
-      password: "",
-      gender: "",
-      fnameErrorText: "",
-      lnameErrorText: "",
-      fatherNameErrorText: "",
-      nationalCodeErrorText: "",
-      roleErrorText: "",
-      emailErrorText: "",
-      genderErrorText: "",
+      year: "",
+      class_id: "",
+      grade_id: "",
     });
 
     const users = ref([]);
     const classes1 = ref([]);
     const classes2 = ref([]);
     const userInfo = ref([]);
+    const grades = ref([]);
 
     function getUsers() {
       axios
@@ -267,6 +267,19 @@ export default {
         });
     }
     getClasses();
+    function getGrades() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/grade/grades")
+        .then(function (response) {
+          // handle success
+          grades.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getGrades();
     if (props.userId !== undefined) {
       getUser();
     }
@@ -325,7 +338,7 @@ export default {
         emit("formData", form);
       }
     }
-    return { classes1, classes2, users, form, validate };
+    return { grades, classes1, classes2, users, form, validate };
   },
 };
 </script>
