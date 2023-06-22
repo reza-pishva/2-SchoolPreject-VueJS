@@ -52,39 +52,30 @@
           font-size: smaller;
           text-align: center;
           margin-top: 0px;
-          margin-left: 40px;
+          margin-left: 20px;
           direction: rtl;
-          width: 140%;
+          width: 95%;
         "
       >
         <thead>
           <tr
             class="sticky"
-            style="
-              background-color: cornflowerblue;
-              text-align: center;
-              font-size: smaller;
-              color: rgb(254, 254, 255);
-            "
+            style="background-color: cornflowerblue; color: rgb(254, 254, 255)"
           >
             <th>--</th>
             <th>کدکاربر</th>
             <th>نام</th>
             <th>نام خانوادگی</th>
-            <th>نام پدر</th>
-            <th>آدرس ایمیل</th>
-            <th>نوع کاربر</th>
-            <th>جنسیت</th>
-            <th>کدملی</th>
-            <th>--</th>
-            <th>--</th>
+            <th>کد ملی</th>
+            <th>کلاس</th>
+            <th>مقطع تحصیلی</th>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="(item, index) in users"
             :key="index"
-            style="text-align: right; font-size: 14px; color: aliceblue"
+            style="text-align: right; font-size: 12px; color: aliceblue"
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
@@ -94,67 +85,21 @@
                   src="../../../../public/select.jpg"
               /></a>
             </td>
-            <td style="width: 5%; padding-top: 10px">{{ item.id }}</td>
-            <td style="width: 10%; padding-top: 10px">
+            <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
+            <td style="width: 15%; padding-top: 10px">
               {{ item.f_name }}
             </td>
-            <td style="width: 10%; padding-top: 10px">
+            <td style="width: 20%; padding-top: 10px">
               {{ item.l_name }}
             </td>
-            <td style="width: 10%; padding-top: 15px">
-              {{ item.father_name }}
-            </td>
-            <td style="width: 21%; padding-top: 15px">
-              {{ item.email }}
-            </td>
-            <td
-              v-if="item.role == 1"
-              style="width: 10%; padding-top: 15px; font-size: 12px"
-            >
-              دانش آموز
-            </td>
-            <td
-              v-if="item.role == 2"
-              style="width: 10%; padding-top: 15px; font-size: 12px"
-            >
-              معلم
-            </td>
-            <td
-              v-if="item.role == 3"
-              style="width: 10%; padding-top: 15px; font-size: 12px"
-            >
-              اداری
-            </td>
-            <td
-              v-if="item.gender == 1"
-              style="width: 5%; padding-top: 15px; font-size: 12px"
-            >
-              زن
-            </td>
-            <td
-              v-if="item.gender == 2"
-              style="width: 5%; padding-top: 15px; font-size: 12px"
-            >
-              مرد
-            </td>
-            <td style="width: 10%; padding-top: 15px">
+            <td style="width: 15%; padding-top: 15px">
               {{ item.national_code }}
             </td>
-            <td style="width: 7%; padding-top: 10px">
-              <router-link
-                class="btn btn-success button-table-class"
-                :to="{ name: 'editUser', params: { id: item.id } }"
-              >
-                اصلاح
-              </router-link>
+            <td style="width: 20%; padding-top: 15px">
+              {{ item.name }}
             </td>
-            <td style="width: 7%; padding-top: 10px">
-              <button
-                @click="deleteUser(item.id)"
-                class="btn btn-danger button-table-class"
-              >
-                حذف
-              </button>
+            <td style="width: 20%; padding-top: 15px">
+              {{ item.grade_name }}
             </td>
           </tr>
         </tbody>
@@ -258,11 +203,14 @@ export default {
     }
     function getUsers() {
       axios
-        .get("http://127.0.0.1:8000/api/school/user/users")
+        .get("http://127.0.0.1:8000/api/school/user/users-view")
         .then(function (response) {
           // handle success
           spinner.value = false;
           users.value = response.data;
+          console.log("1111111111");
+          console.log(users.value);
+          console.log("2222222222");
         })
         .catch(function (error) {
           // handle error
