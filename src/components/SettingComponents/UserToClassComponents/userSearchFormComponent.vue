@@ -1,4 +1,5 @@
 <template>
+  <!-- {{ selectedIds }} -->
   <div class="row" style="height: 35%">
     <div class="col">
       <div>
@@ -69,11 +70,18 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <a v-on:click="selectRow(index)" href="#"
+              <!-- <a v-on:click="selectRow(index)" href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
-              /></a>
+              /></a> -->
+              <input
+                v-model="selectedIds"
+                class="form-check-input"
+                type="checkbox"
+                :value="item.user_id"
+                style="width: 2%; height: 4%"
+              />
             </td>
             <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
             <td style="width: 15%; padding-top: 10px">
@@ -137,6 +145,7 @@ export default {
     const loading = ref(false);
     const users = ref([]);
     const spinner = ref(true);
+    const selectedIds = ref([]);
 
     function searchUser(formData) {
       loading.value = true;
@@ -199,6 +208,7 @@ export default {
       spinner,
       searchUser,
       loading,
+      selectedIds,
     };
   },
 };

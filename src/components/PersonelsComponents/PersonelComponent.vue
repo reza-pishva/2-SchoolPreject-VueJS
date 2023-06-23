@@ -10,7 +10,7 @@
     <div
       class="col-4"
       style="
-        height: 390px;
+        height: 430px;
         background-color: rgb(146, 204, 233);
         border-radius: 8px;
         opacity: 0.7;
@@ -275,31 +275,6 @@
         </div>
       </div>
       <div class="row mt-2">
-        <!-- افزودن نام کاربری -->
-        <div class="col">
-          <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
-          >
-            <router-link to="/user-search"
-              ><p
-                style="
-                  font-family: Vazir;
-                  font-size: small;
-                  color: aliceblue;
-                  padding-top: 9px;
-                "
-              >
-                تخصیص نمره به دانش آموز
-              </p></router-link
-            >
-          </div>
-        </div>
         <!-- تکمیل مشخات کاربران -->
         <div class="col">
           <div
@@ -320,7 +295,84 @@
                   padding-top: 9px;
                 "
               >
-                تخصیص دانش آموز به کلاس
+                تخصیص نمره به دانش آموز
+              </p></router-link
+            >
+          </div>
+        </div>
+        <!-- افزودن نام کاربری -->
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/user-search"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تخصیص کلاس به دانش آموز
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <!-- تکمیل مشخات کاربران -->
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/profiles"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تخصیص درس به معلم
+              </p></router-link
+            >
+          </div>
+        </div>
+        <!-- افزودن نام کاربری -->
+        <div class="col">
+          <div
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+              background-color: darkslateblue;
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/user-search"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تخصیص کلاس به معلم
               </p></router-link
             >
           </div>

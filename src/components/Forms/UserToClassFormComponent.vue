@@ -132,60 +132,86 @@
       </form>
     </div>
     <div style="width: 50%; height: 100px">
-      <form
-        @submit.prevent="validate"
-        style="direction: rtl; font-family: Vazir; margin-top: 10px"
-      >
-        <div class="row">
-          <div class="col">
+      <div class="row">
+        <div
+          style="
+            height: 40px;
+            width: 85%;
+            background-color: rgb(81, 74, 93);
+            margin: auto;
+            border-radius: 5px;
+          "
+        >
+          <p
+            style="
+              font-size: 14px;
+              font-family: Vazir;
+              color: aliceblue;
+              margin-top: 10px;
+            "
+          >
+            تخصیص کلاس به کاربران انتخابی
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <form
+            @submit.prevent="validate"
+            style="direction: rtl; font-family: Vazir; margin-top: 10px"
+          >
             <div class="row">
-              <div class="col-6">
-                <div
-                  class="form-group"
-                  style="
-                    font-family: Vazir;
-                    font-size: 12px;
-                    width: 100%;
-                    margin-right: 70px;
-                  "
-                >
-                  <select
-                    v-model="form.lesson_id"
-                    class="form-select"
-                    style="font-size: 12px"
-                  >
-                    <option selected value="">انتخاب کلاس:</option>
-                    <option
-                      v-for="(item, index) in classes2"
-                      :key="index"
-                      :value="item.id"
+              <div class="col">
+                <div class="row">
+                  <div class="col-6">
+                    <div
+                      class="form-group"
+                      style="
+                        font-family: Vazir;
+                        font-size: 12px;
+                        width: 100%;
+                        margin-right: 70px;
+                      "
                     >
-                      {{ item.name }}
-                    </option>
-                  </select>
-                  <div class="form-text text-danger validation-text">
-                    {{ form.lessonIdErrorText }}
+                      <select
+                        v-model="form.lesson_id"
+                        class="form-select"
+                        style="font-size: 12px"
+                      >
+                        <option selected value="">انتخاب کلاس:</option>
+                        <option
+                          v-for="(item, index) in classes2"
+                          :key="index"
+                          :value="item.id"
+                        >
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <div class="form-text text-danger validation-text">
+                        {{ form.lessonIdErrorText }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <button
+                      type="submit"
+                      class="btn btn-info button-class"
+                      style="height: 28px; margin-top: 2px"
+                    >
+                      ثبت کلاس
+                      <div
+                        v-if="buttonLoading"
+                        class="spinner-border spinner-grow-sm"
+                        role="status"
+                      ></div>
+                    </button>
                   </div>
                 </div>
               </div>
-              <div class="col-6">
-                <button
-                  type="submit"
-                  class="btn btn-info button-class"
-                  style="height: 28px; margin-top: 2px"
-                >
-                  ثبت کلاس
-                  <div
-                    v-if="buttonLoading"
-                    class="spinner-border spinner-grow-sm"
-                    role="status"
-                  ></div>
-                </button>
-              </div>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </template>
