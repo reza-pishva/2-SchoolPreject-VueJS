@@ -199,11 +199,8 @@ export default {
     buttonLoading: Boolean,
     buttonText: String,
     buttonClass: String,
-    post: Object,
-    userId: String,
   },
   setup(props, { emit }) {
-    console.log(props);
     const form = reactive({
       f_name: "",
       l_name: "",
@@ -216,7 +213,6 @@ export default {
     const users = ref([]);
     const classes1 = ref([]);
     const classes2 = ref([]);
-    const userInfo = ref([]);
     const grades = ref([]);
 
     function getUsers() {
@@ -233,26 +229,6 @@ export default {
     }
     getUsers();
 
-    function getUser() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/user/" + props.userId)
-        .then(function (response) {
-          // handle success
-          userInfo.value = response.data;
-          form.f_name = userInfo.value.f_name;
-          form.l_name = userInfo.value.l_name;
-          form.father_name = userInfo.value.father_name;
-          form.national_code = userInfo.value.national_code;
-          form.role = userInfo.value.role;
-          form.email = userInfo.value.email;
-          form.password = userInfo.value.password;
-          form.gender = userInfo.value.gender;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
     function getClasses() {
       axios
         .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
@@ -280,63 +256,9 @@ export default {
         });
     }
     getGrades();
-    if (props.userId !== undefined) {
-      getUser();
-    }
 
     function validate() {
-      if (form.f_name === "") {
-        form.fnameErrorText = "نام کاریر باید وارد گردد";
-      } else {
-        form.fnameErrorText = "";
-      }
-      if (form.l_name === "") {
-        form.lnameErrorText = "نام خانوادگی کاربر باید وارد شود";
-      } else {
-        form.lnameErrorText = "";
-      }
-      if (form.father_name === "") {
-        form.fatherNameErrorText = "نام پدر باید وارد شود";
-      } else {
-        form.fatherNameErrorText = "";
-      }
-      if (form.email === "") {
-        form.emailErrorText = "آدرس پست الکترونیکی کاربر باید وارد شود";
-      } else {
-        form.emailErrorText = "";
-      }
-      if (form.role === "") {
-        form.roleErrorText = "نوع کاربر باید وارد شود";
-      } else {
-        form.roleErrorText = "";
-      }
-      if (form.password === "") {
-        form.passwordErrorText = "کلمه عبور باید وارد شود";
-      } else {
-        form.passwordErrorText = "";
-      }
-      if (form.national_code === "") {
-        form.nationalCodeErrorText = "کد ملی باید وارد شود";
-      } else {
-        form.nationalCodeErrorText = "";
-      }
-      if (form.gender === "") {
-        form.genderErrorText = "جنسیت باید وارد شود";
-      } else {
-        form.genderErrorText = "";
-      }
-      if (
-        form.f_name !== "" &&
-        form.l_name !== "" &&
-        form.father_name !== "" &&
-        form.email !== "" &&
-        form.national_code !== "" &&
-        form.role !== "" &&
-        form.gender !== "" &&
-        form.password !== ""
-      ) {
-        emit("formData", form);
-      }
+      emit("formData", form);
     }
     return { grades, classes1, classes2, users, form, validate };
   },

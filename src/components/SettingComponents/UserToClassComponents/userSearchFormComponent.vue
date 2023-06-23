@@ -3,11 +3,10 @@
     <div class="col">
       <div>
         <UserForm
-          @formData="createUser"
+          @formData="searchUser"
           :button-loading="loading"
-          button-text="ایجاد کاربر جدید"
+          button-text="جستجو"
           button-class="btn btn-primary"
-          :post="post"
         />
       </div>
     </div>
@@ -106,8 +105,8 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-import Swal from "sweetalert2";
-import { useRoute } from "vue-router";
+// import Swal from "sweetalert2";
+// import { useRoute } from "vue-router";
 import UserForm from "@/components/Forms/UserToClassFormComponent.vue";
 
 export default {
@@ -129,70 +128,56 @@ export default {
     const form = reactive({
       f_name: "",
       l_name: "",
-      father_name: "",
-      email: "",
-      password: "",
-      gender: "",
       national_code: "",
-      role: "",
-      fNameErrorText: "",
-      lNameErrorText: "",
-      fatherNameErrorText: "",
-      emailErrorText: "",
-      passwordErrorText: "",
-      genderErrorText: "",
-      nationalCodeErrorText: "",
-      roleErrorText: "",
+      year: "",
+      class_id: "",
+      grade_id: "",
     });
 
     const loading = ref(false);
     const users = ref([]);
-    const post = ref({});
-    const route = useRoute();
     const spinner = ref(true);
 
-    function createUser(formData) {
+    function searchUser(formData) {
       loading.value = true;
       axios
-        .post("http://127.0.0.1:8000/api/school/user/store", {
+        .post("http://127.0.0.1:8000/api/school/user/users-view-search", {
           f_name: formData.f_name,
           l_name: formData.l_name,
-          father_name: formData.father_name,
-          email: formData.email,
-          password: formData.password,
-          gender: formData.gender,
           national_code: formData.national_code,
-          role: formData.role,
+          year: formData.year,
+          class_id: formData.class_id,
+          grade_id: formData.grade_id,
         })
-        .then(function () {
-          getUsers();
+        .then(function (response) {
+          console.log(response);
+          users.value = response.data;
           loading.value = false;
           form.f_name = "";
           form.l_name = "";
-          form.father_name = "";
-          form.email = "";
-          form.role = "";
-          form.password = "";
-          form.gender = "";
           form.national_code = "";
-          Swal.fire({
-            title: "ذخیره شد",
-            text: "نام کاربر با موفقیت در پایگاه داده ثبت گردید",
-            icon: "success",
-            confirmButtonText: "Ok",
-            position: "top",
-          });
+          form.year = "";
+          form.class_id = "";
+          form.grade_id = "";
+          // Swal.fire({
+          //   title: "ذخیره شد",
+          //   text: "نام کاربر با موفقیت در پایگاه داده ثبت گردید",
+          //   icon: "success",
+          //   confirmButtonText: "Ok",
+          //   position: "top",
+          // });
         })
         .catch(function (error) {
+          console.log("errorerrorerrorerrorerrorerrorerror");
           loading.value = false;
           console.log(error);
-          Swal.fire({
-            title: "پیغام خطا",
-            text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
-            icon: "error",
-            confirmButtonText: "Ok",
-            position: "top",
-          });
+          // Swal.fire({
+          //   title: "پیغام خطا",
+          //   text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
+          //   icon: "error",
+          //   confirmButtonText: "Ok",
+          //   position: "top",
+          // });
         });
     }
     function getUsers() {
@@ -202,78 +187,17 @@ export default {
           // handle success
           spinner.value = false;
           users.value = response.data;
-          console.log("1111111111");
-          console.log(users.value);
-          console.log("2222222222");
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    function getUser() {
-      axios
-        .get(`http://127.0.0.1:8000/api/school/user/${route.params.id}`)
-        .then(function (response) {
-          console.log(response.data);
-          // handle success
-          post.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    function deleteUser(id) {
-      Swal.fire({
-        title: "آیا مطمئن هستید؟",
-        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، حذف شود",
-        position: "top",
-      }).then((result) => {
-        getUsers();
-        if (result.isConfirmed) {
-          axios
-            .delete(`http://127.0.0.1:8000/api/school/user/remove/${id}`)
-            .then(function () {
-              Swal.fire({
-                title: "Thanks!",
-                text: `کاربر با کد (${id}) با موفقیت حذف گردید`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
-
-              axios
-                .get("http://127.0.0.1:8000/api/school/user/users")
-                .then(function (response) {
-                  // handle success
-                  users.value = response.data;
-                })
-                .catch(function (error) {
-                  // handle error
-                  console.log(error);
-                });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
-    }
-    getUser();
     getUsers();
-
     return {
-      spinner,
-      deleteUser,
-      post,
       users,
-      createUser,
+      spinner,
+      searchUser,
       loading,
     };
   },
