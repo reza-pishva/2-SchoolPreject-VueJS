@@ -174,7 +174,7 @@
                       "
                     >
                       <select
-                        v-model="form.lesson_id"
+                        v-model="form.class_id2"
                         class="form-select"
                         style="font-size: 12px"
                       >
@@ -235,6 +235,7 @@ export default {
       national_code: "",
       year: "",
       class_id: "",
+      class_id2: "",
       grade_id: "",
     });
 
@@ -246,6 +247,7 @@ export default {
     function addClassTouUser() {
       console.log(11111111111111);
       console.log(props.dataList);
+      console.log(form.class_id2);
       console.log(22222222222222);
       // Swal.fire({
       //   title: "تخصیص کلاس به افراد انتخابی",
