@@ -168,25 +168,10 @@ export default {
           form.year = "";
           form.class_id = "";
           form.grade_id = "";
-          // Swal.fire({
-          //   title: "ذخیره شد",
-          //   text: "نام کاربر با موفقیت در پایگاه داده ثبت گردید",
-          //   icon: "success",
-          //   confirmButtonText: "Ok",
-          //   position: "top",
-          // });
         })
         .catch(function (error) {
-          console.log("errorerrorerrorerrorerrorerrorerror");
           loading.value = false;
           console.log(error);
-          // Swal.fire({
-          //   title: "پیغام خطا",
-          //   text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
-          //   icon: "error",
-          //   confirmButtonText: "Ok",
-          //   position: "top",
-          // });
         });
     }
     function getUsers() {
