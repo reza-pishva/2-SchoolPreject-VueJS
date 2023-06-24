@@ -101,7 +101,7 @@
                   <select
                     v-model="form.year"
                     class="form-select"
-                    style="font-size: 12px"
+                    style="font-size: 12px; width: 110%"
                   >
                     <option selected value="">سال تحصیلی:</option>
                     <option value="1400">1400-1401</option>
@@ -205,6 +205,12 @@ export default {
 
     function validate1() {
       emit("formData", form);
+      // form.f_name = "";
+      // form.l_name = "";
+      // form.national_code = "";
+      // form.class_id = "";
+      // form.grade_id = "";
+      // form.year = "";
     }
     return {
       grades,

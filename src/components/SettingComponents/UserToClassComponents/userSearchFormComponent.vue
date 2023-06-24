@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 import SearchForm from "@/components/Forms/UserToClassFormComponent1.vue";
 import AddClassForm from "@/components/Forms/UserToClassFormComponent2.vue";
@@ -139,14 +139,14 @@ export default {
     AddClassForm,
   },
   setup() {
-    const form = reactive({
-      f_name: "",
-      l_name: "",
-      national_code: "",
-      year: "",
-      class_id: "",
-      grade_id: "",
-    });
+    // const form = reactive({
+    //   f_name: "",
+    //   l_name: "",
+    //   national_code: "",
+    //   year: "",
+    //   class_id: "",
+    //   grade_id: "",
+    // });
 
     const loading = ref(false);
     const users = ref([]);
@@ -166,16 +166,11 @@ export default {
           class_id: formData.class_id,
           grade_id: formData.grade_id,
         })
+
         .then(function (response) {
           users.value = response.data;
           spinner.value = false;
           loading.value = false;
-          form.f_name = "";
-          form.l_name = "";
-          form.national_code = "";
-          form.year = "";
-          form.class_id = "";
-          form.grade_id = "";
         })
         .catch(function (error) {
           loading.value = false;

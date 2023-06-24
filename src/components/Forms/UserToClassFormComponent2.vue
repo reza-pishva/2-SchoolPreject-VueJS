@@ -130,6 +130,7 @@ export default {
               data: [props.dataList, form.class_id2],
             })
             .then(function () {
+              form.class_id2 = "";
               emit("formData2", []);
               Swal.fire({
                 title: "Thanks!",
