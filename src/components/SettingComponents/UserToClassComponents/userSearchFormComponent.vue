@@ -1,5 +1,5 @@
 <template>
-  {{ selectedIds }}
+  <!-- {{ selectedIds }} -->
   <div class="row" style="height: 35%">
     <div class="col">
       <div>
@@ -160,7 +160,7 @@ export default {
           grade_id: formData.grade_id,
         })
         .then(function (response) {
-          selectedIds.value = [];
+          // selectedIds.value = [];
           users.value = response.data;
           loading.value = false;
           form.f_name = "";

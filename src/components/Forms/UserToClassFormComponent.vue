@@ -260,8 +260,7 @@ export default {
             .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
               data: [props.dataList, form.class_id2],
             })
-            .then(function (response) {
-              console.log(response);
+            .then(function () {
               Swal.fire({
                 title: "Thanks!",
                 text: `به افراد انتخابی کلاس مورد نظر تخصیص داده شد`,
