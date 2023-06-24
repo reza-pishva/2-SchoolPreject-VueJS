@@ -3,7 +3,7 @@
     <div class="col">
       <div>
         <AddClassForm
-          @formData="searchUser"
+          @formData2="afterAddingClass"
           :button-loading="loading"
           button-text="جستجو"
           button-class="btn btn-primary"
@@ -182,6 +182,10 @@ export default {
           console.log(error);
         });
     }
+    function afterAddingClass(formData2) {
+      selectedIds.value = formData2;
+      getUsers();
+    }
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users-view")
@@ -203,6 +207,7 @@ export default {
       searchUser,
       loading,
       selectedIds,
+      afterAddingClass,
     };
   },
 };

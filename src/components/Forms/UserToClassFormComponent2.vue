@@ -130,6 +130,7 @@ export default {
               data: [props.dataList, form.class_id2],
             })
             .then(function () {
+              emit("formData2", []);
               Swal.fire({
                 title: "Thanks!",
                 text: `به افراد انتخابی کلاس مورد نظر تخصیص داده شد`,
