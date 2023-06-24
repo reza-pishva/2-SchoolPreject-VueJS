@@ -17,7 +17,7 @@
       >
         <p
           style="
-            font-size: 22px;
+            font-size: 18px;
             font-family: Vazir;
             color: aliceblue;
             margin-top: -5px;
