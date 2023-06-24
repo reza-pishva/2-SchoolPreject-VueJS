@@ -1,9 +1,19 @@
 <template>
-  <!-- {{ selectedIds }} -->
   <div class="row" style="height: 35%">
     <div class="col">
       <div>
-        <UserForm
+        <AddClassForm
+          @formData="searchUser"
+          :button-loading="loading"
+          button-text="جستجو"
+          button-class="btn btn-primary"
+          :dataList="selectedIds"
+        />
+      </div>
+    </div>
+    <div class="col">
+      <div>
+        <SearchForm
           @formData="searchUser"
           :button-loading="loading"
           button-text="جستجو"
@@ -71,17 +81,12 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <!-- <a v-on:click="selectRow(index)" href="#"
-                ><img
-                  style="width: 20px; height: 20px; border-radius: 5px"
-                  src="../../../../public/select.jpg"
-              /></a> -->
               <input
                 v-model="selectedIds"
                 class="form-check-input"
                 type="checkbox"
                 :value="item.user_id"
-                style="width: 2%; height: 4%"
+                style="width: 20px; height: 20px; margin: auto"
               />
             </td>
             <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
@@ -114,9 +119,8 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-// import Swal from "sweetalert2";
-// import { useRoute } from "vue-router";
-import UserForm from "@/components/Forms/UserToClassFormComponent.vue";
+import SearchForm from "@/components/Forms/UserToClassFormComponent1.vue";
+import AddClassForm from "@/components/Forms/UserToClassFormComponent2.vue";
 
 export default {
   data() {
@@ -131,7 +135,8 @@ export default {
     },
   },
   components: {
-    UserForm,
+    SearchForm,
+    AddClassForm,
   },
   setup() {
     const form = reactive({
@@ -149,6 +154,8 @@ export default {
     const selectedIds = ref([]);
 
     function searchUser(formData) {
+      spinner.value = true;
+      selectedIds.value = [];
       loading.value = true;
       axios
         .post("http://127.0.0.1:8000/api/school/user/users-view-search", {
@@ -160,8 +167,8 @@ export default {
           grade_id: formData.grade_id,
         })
         .then(function (response) {
-          // selectedIds.value = [];
           users.value = response.data;
+          spinner.value = false;
           loading.value = false;
           form.f_name = "";
           form.l_name = "";

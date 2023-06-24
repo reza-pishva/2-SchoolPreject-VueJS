@@ -2,7 +2,7 @@
   <div class="row" style="width: 100%; margin: auto; direction: rtl">
     <div
       style="
-        width: 50%;
+        width: 100%;
         height: 155px;
         margin-top: -5px;
         border-radius: 5px;
@@ -131,95 +131,13 @@
         </div>
       </form>
     </div>
-    <div style="width: 50%; height: 100px">
-      <div class="row">
-        <div
-          style="
-            height: 40px;
-            width: 85%;
-            background-color: rgb(81, 74, 93);
-            margin: auto;
-            border-radius: 5px;
-          "
-        >
-          <p
-            style="
-              font-size: 14px;
-              font-family: Vazir;
-              color: aliceblue;
-              margin-top: 10px;
-            "
-          >
-            تخصیص کلاس به کاربران انتخابی
-          </p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <form
-            @submit.prevent="validate2"
-            style="direction: rtl; font-family: Vazir; margin-top: 10px"
-          >
-            <div class="row">
-              <div class="col">
-                <div class="row">
-                  <div class="col-6">
-                    <div
-                      class="form-group"
-                      style="
-                        font-family: Vazir;
-                        font-size: 12px;
-                        width: 100%;
-                        margin-right: 70px;
-                      "
-                    >
-                      <select
-                        v-model="form.class_id2"
-                        class="form-select"
-                        style="font-size: 12px"
-                      >
-                        <option selected value="">انتخاب کلاس:</option>
-                        <option
-                          v-for="(item, index) in classes2"
-                          :key="index"
-                          :value="item.id"
-                        >
-                          {{ item.name }}
-                        </option>
-                      </select>
-                      <div class="form-text text-danger validation-text">
-                        {{ form.lessonIdErrorText }}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6">
-                    <button
-                      @click="addClassTouUser"
-                      class="btn btn-info button-class"
-                      style="height: 28px; margin-top: 2px"
-                    >
-                      ثبت کلاس
-                      <div
-                        v-if="buttonLoading2"
-                        class="spinner-border spinner-grow-sm"
-                        role="status"
-                      ></div>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -235,7 +153,6 @@ export default {
       national_code: "",
       year: "",
       class_id: "",
-      class_id2: "",
       grade_id: "",
     });
 
@@ -244,37 +161,6 @@ export default {
     const classes2 = ref([]);
     const grades = ref([]);
 
-    function addClassTouUser() {
-      Swal.fire({
-        title: "تخصیص کلاس به افراد انتخابی",
-        text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، تخصیص داده شود",
-        position: "top",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios
-            .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
-              data: [props.dataList, form.class_id2],
-            })
-            .then(function () {
-              Swal.fire({
-                title: "Thanks!",
-                text: `به افراد انتخابی کلاس مورد نظر تخصیص داده شد`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
-    }
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users")
@@ -320,18 +206,13 @@ export default {
     function validate1() {
       emit("formData", form);
     }
-    function validate2() {
-      // emit("formData", form);
-    }
     return {
-      addClassTouUser,
       grades,
       classes1,
       classes2,
       users,
       form,
       validate1,
-      validate2,
     };
   },
 };
