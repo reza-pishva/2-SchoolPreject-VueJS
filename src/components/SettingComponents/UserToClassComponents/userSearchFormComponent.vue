@@ -8,6 +8,7 @@
           :button-loading="loading"
           button-text="جستجو"
           button-class="btn btn-primary"
+          :dataList="selectedIds"
         />
       </div>
     </div>
@@ -188,6 +189,7 @@ export default {
         });
     }
     getUsers();
+
     return {
       users,
       spinner,

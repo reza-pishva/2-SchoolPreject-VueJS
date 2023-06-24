@@ -194,13 +194,13 @@
                   </div>
                   <div class="col-6">
                     <button
-                      type="submit"
+                      @click="addClassTouUser"
                       class="btn btn-info button-class"
                       style="height: 28px; margin-top: 2px"
                     >
                       ثبت کلاس
                       <div
-                        v-if="buttonLoading"
+                        v-if="buttonLoading2"
                         class="spinner-border spinner-grow-sm"
                         role="status"
                       ></div>
@@ -219,12 +219,14 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
+// import Swal from "sweetalert2";
 
 export default {
   props: {
     buttonLoading: Boolean,
     buttonText: String,
     buttonClass: String,
+    dataList: Array,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -241,6 +243,40 @@ export default {
     const classes2 = ref([]);
     const grades = ref([]);
 
+    function addClassTouUser() {
+      console.log(11111111111111);
+      console.log(props.dataList);
+      console.log(22222222222222);
+      // Swal.fire({
+      //   title: "تخصیص کلاس به افراد انتخابی",
+      //   text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
+      //   icon: "warning",
+      //   showCancelButton: true,
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "بله ، تخصیص داده شود",
+      //   position: "top",
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     axios
+      //       .post(`http://127.0.0.1:8000/api/school/classroom/add-class`, {
+      //         data: props.dataList,
+      //       })
+      //       .then(function () {
+      //         Swal.fire({
+      //           title: "Thanks!",
+      //           text: `به افراد انتخابی کلاس مورد نظر تخصیص داده شد`,
+      //           icon: "success",
+      //           confirmButtonText: "Ok",
+      //           position: "top",
+      //         });
+      //       })
+      //       .catch(function (error) {
+      //         console.log(error);
+      //       });
+      //   }
+      // });
+    }
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users")
@@ -286,7 +322,15 @@ export default {
     function validate() {
       emit("formData", form);
     }
-    return { grades, classes1, classes2, users, form, validate };
+    return {
+      addClassTouUser,
+      grades,
+      classes1,
+      classes2,
+      users,
+      form,
+      validate,
+    };
   },
 };
 </script>
