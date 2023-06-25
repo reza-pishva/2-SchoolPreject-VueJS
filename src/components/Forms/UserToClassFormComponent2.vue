@@ -134,7 +134,7 @@ export default {
               emit("formData2", []);
               Swal.fire({
                 title: "Thanks!",
-                text: `به افراد انتخابی کلاس مورد نظر تخصیص داده شد`,
+                text: `به افراد با کدهای ${props.dataList} انتخابی کلاس مورد نظر تخصیص داده شد`,
                 icon: "success",
                 confirmButtonText: "Ok",
                 position: "top",
