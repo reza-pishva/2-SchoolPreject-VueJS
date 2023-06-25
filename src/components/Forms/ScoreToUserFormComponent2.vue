@@ -1,5 +1,4 @@
 <template>
-  <!-- {{ exams }} -->
   <div class="row" style="width: 100%; margin: auto; direction: rtl">
     <div style="width: 100%; height: 100px">
       <div class="row">
@@ -26,7 +25,7 @@
       </div>
       <div class="row mt-2">
         <div class="col" style="color: aliceblue">
-          <!-- {{ examList }} -->
+          {{ f_name }} {{ l_name }}
         </div>
       </div>
       <div class="row">

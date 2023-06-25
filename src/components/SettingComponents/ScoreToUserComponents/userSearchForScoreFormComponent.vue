@@ -90,7 +90,11 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <a v-on:click="selectRow(item.grade_id)" href="#"
+              <a
+                v-on:click="
+                  selectRow(index, item.grade_id, item.f_name, item.l_name)
+                "
+                href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -132,10 +136,9 @@ import AddScoreForm from "@/components/Forms/ScoreToUserFormComponent2.vue";
 export default {
   data() {
     return {
-      selectedRowIndex: -1,
       userId: 0,
-      f_name: "",
-      l_name: "",
+      // f_name: "",
+      // l_name: "",
     };
   },
   methods: {},
@@ -150,14 +153,16 @@ export default {
     const selectedIds = ref([]);
     const exams = ref([]);
     const grade_id = ref("");
+    const selectedRowIndex = ref("");
 
-    function selectRow(gradeId) {
-      // this.selectedRowIndex = index;
-      // this.userId = id;
-      // this.f_name = f_name;
-      // this.l_name = l_name;
+    const l_name = ref("");
+    const f_name = ref("");
+
+    function selectRow(index, gradeId, fName, lName) {
+      selectedRowIndex.value = index;
+      f_name.value = fName;
+      l_name.value = lName;
       grade_id.value = gradeId;
-      console.log(grade_id.value);
 
       axios
         // .get("http://127.0.0.1:8000/api/school/user/users-view")
@@ -231,6 +236,9 @@ export default {
       selectRow,
       exams,
       grade_id,
+      selectedRowIndex,
+      f_name,
+      l_name,
     };
   },
 };
@@ -258,6 +266,5 @@ export default {
 .selected-row {
   background-color: rgb(94, 119, 148);
   color: rgb(234, 241, 19) !important;
-  font-size: 16px !important;
 }
 </style>
