@@ -23,6 +23,11 @@
           </p>
         </div>
       </div>
+      <div class="row mt-2">
+        <div class="col" style="color: aliceblue">
+          {{ l_name }} {{ f_name }}
+        </div>
+      </div>
       <div class="row">
         <div class="col">
           <form
@@ -88,14 +93,17 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 export default {
   props: {
     buttonLoading: Boolean,
     buttonText: String,
     buttonClass: String,
-    dataList: Array,
+    userId: String,
+    f_name: String,
+    l_name: String,
+    grade_id: String,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -113,39 +121,43 @@ export default {
     const classes2 = ref([]);
     const grades = ref([]);
     const lessons = ref([]);
+    const grade_id = ref("");
 
     function addScoreToUser() {
-      Swal.fire({
-        title: "تخصیص کلاس به افراد انتخابی",
-        text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، تخصیص داده شود",
-        position: "top",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios
-            .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
-              data: [props.dataList, form.class_id2],
-            })
-            .then(function () {
-              form.class_id2 = "";
-              emit("formData2", []);
-              Swal.fire({
-                title: "Thanks!",
-                text: `به افراد با کدهای ${props.dataList} انتخابی کلاس مورد نظر تخصیص داده شد`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
+      console.log("111111111111");
+      console.log(props.grade_id);
+      console.log("222222222222");
+      // Swal.fire({
+      //   title: "تخصیص کلاس به افراد انتخابی",
+      //   text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
+      //   icon: "warning",
+      //   showCancelButton: true,
+      //   confirmButtonColor: "#3085d6",
+      //   cancelButtonColor: "#d33",
+      //   confirmButtonText: "بله ، تخصیص داده شود",
+      //   position: "top",
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //     axios
+      //       .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
+      //         data: [props.dataList, form.class_id2],
+      //       })
+      //       .then(function () {
+      //         form.class_id2 = "";
+      //         emit("formData2", []);
+      //         Swal.fire({
+      //           title: "Thanks!",
+      //           text: `به افراد با کدهای ${props.dataList} انتخابی کلاس مورد نظر تخصیص داده شد`,
+      //           icon: "success",
+      //           confirmButtonText: "Ok",
+      //           position: "top",
+      //         });
+      //       })
+      //       .catch(function (error) {
+      //         console.log(error);
+      //       });
+      //   }
+      // });
     }
     function getUsers() {
       axios
@@ -162,10 +174,13 @@ export default {
     getUsers();
 
     function getLessons() {
+      grade_id.value = props.grade_id;
       axios
-        .get(`http://127.0.0.1:8000/api/school/lesson/lessons-view`)
+        .get(
+          `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
+        )
         .then(function (response) {
-          console.log(response.data);
+          // console.log(response.data);
           // handle success
           lessons.value = response.data;
         })

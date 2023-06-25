@@ -7,7 +7,10 @@
           :button-loading="loading"
           button-text="جستجو"
           button-class="btn btn-primary"
-          :dataList="selectedIds"
+          :userId="userId"
+          :f_name="f_name"
+          :l_name="l_name"
+          :grade_id="grade_id"
         />
       </div>
     </div>
@@ -27,6 +30,7 @@
     class="row"
     style="
       height: 65%;
+      width: 97%;
       overflow-y: scroll;
       margin-top: 3px;
       border: 1px solid white;
@@ -34,6 +38,7 @@
       background-color: rgb(57, 57, 60);
       opacity: 0.7;
       filter: alpha(opacity=100);
+      margin-left: 24px;
     "
   >
     <div class="col" v-if="spinner">
@@ -53,15 +58,18 @@
           font-size: smaller;
           text-align: center;
           margin-top: 0px;
-          margin-left: 20px;
+          margin-left: -1px;
           direction: rtl;
-          width: 95%;
+          width: 100%;
         "
       >
         <thead>
           <tr
             class="sticky"
-            style="background-color: cornflowerblue; color: rgb(254, 254, 255)"
+            style="
+              background-color: rgb(83, 112, 166);
+              color: rgb(254, 254, 255);
+            "
           >
             <th>--</th>
             <th>کدکاربر</th>
@@ -69,8 +77,8 @@
             <th>نام خانوادگی</th>
             <th>کد ملی</th>
             <th>کلاس</th>
-            <th>سال تحصیلی</th>
-            <th>مقطع تحصیلی</th>
+            <th>تحصیلی</th>
+            <th>مقطع</th>
           </tr>
         </thead>
         <tbody>
@@ -81,7 +89,17 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <a v-on:click="selectRow(index)" href="#"
+              <a
+                v-on:click="
+                  selectRow(
+                    index,
+                    item.user_id,
+                    item.f_name,
+                    item.l_name,
+                    item.grade_id
+                  )
+                "
+                href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -124,12 +142,19 @@ export default {
   data() {
     return {
       selectedRowIndex: -1,
+      userId: 0,
+      f_name: "",
+      l_name: "",
+      grade_id: "",
     };
   },
   methods: {
-    selectRow(index) {
-      console.log(index);
+    selectRow(index, id, f_name, l_name, grade_id) {
       this.selectedRowIndex = index;
+      this.userId = id;
+      this.f_name = f_name;
+      this.l_name = l_name;
+      this.grade_id = grade_id;
     },
   },
   components: {
@@ -137,15 +162,6 @@ export default {
     AddScoreForm,
   },
   setup() {
-    // const form = reactive({
-    //   f_name: "",
-    //   l_name: "",
-    //   national_code: "",
-    //   year: "",
-    //   class_id: "",
-    //   grade_id: "",
-    // });
-
     const loading = ref(false);
     const users = ref([]);
     const spinner = ref(true);

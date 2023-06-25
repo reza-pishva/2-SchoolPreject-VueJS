@@ -61,7 +61,10 @@
         <thead>
           <tr
             class="sticky"
-            style="background-color: cornflowerblue; color: rgb(254, 254, 255)"
+            style="
+              background-color: rgb(53, 73, 110);
+              color: rgb(254, 254, 255);
+            "
           >
             <th>--</th>
             <th>کدکاربر</th>
@@ -69,8 +72,8 @@
             <th>نام خانوادگی</th>
             <th>کد ملی</th>
             <th>کلاس</th>
-            <th>سال تحصیلی</th>
-            <th>مقطع تحصیلی</th>
+            <th>سال</th>
+            <th>مقطع</th>
           </tr>
         </thead>
         <tbody>
