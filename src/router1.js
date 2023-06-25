@@ -26,6 +26,7 @@ import ExamDeleteFormComponent  from './components/SettingComponents/ExamCompone
 import ExamEditFormComponent  from './components/SettingComponents/ExamComponents/ExamEditFormComponent.vue'
 import ProgEditFormComponent  from './components/SettingComponents/ClassProgComponents/ProgEditFormComponent.vue'
 import userSearchFormComponent  from './components/SettingComponents/UserToClassComponents/userSearchFormComponent.vue'
+import userSearchForScoreFormComponent  from './components/SettingComponents/ScoreToUserComponents/userSearchForScoreFormComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -55,6 +56,7 @@ const routes = [
           { path: '/class-prog', component: ClassProgPageComponent },
           { path: '/progs-edit/:id', name: 'editProg',component: ProgEditFormComponent },
           { path: '/user-search', name: 'userSearch',component: userSearchFormComponent },
+          { path: '/user-score-search', name: 'userScoreSearch',component: userSearchForScoreFormComponent },
       ]
   },
   { path: '/students', component: StudentComponent },

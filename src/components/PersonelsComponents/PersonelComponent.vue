@@ -286,7 +286,7 @@
               border-radius: 5px;
             "
           >
-            <router-link to="/profiles"
+            <router-link to="/user-score-search"
               ><p
                 style="
                   font-family: Vazir;
