@@ -1,4 +1,5 @@
 <template>
+  <!-- {{ exams }} -->
   <div class="row" style="width: 100%; margin: auto; direction: rtl">
     <div style="width: 100%; height: 100px">
       <div class="row">
@@ -25,7 +26,7 @@
       </div>
       <div class="row mt-2">
         <div class="col" style="color: aliceblue">
-          {{ l_name }} {{ f_name }}
+          <!-- {{ examList }} -->
         </div>
       </div>
       <div class="row">
@@ -54,11 +55,11 @@
                       >
                         <option selected value="">انتخاب درس:</option>
                         <option
-                          v-for="(item, index) in lessons"
+                          v-for="(item, index) in exams"
                           :key="index"
                           :value="item.id"
                         >
-                          {{ item.lesson_name }}
+                          {{ item.lesson_name }}--{{ item.exam_type }}
                         </option>
                       </select>
                       <div class="form-text text-danger validation-text">
@@ -92,7 +93,7 @@
 
 <script>
 import { ref, reactive } from "vue";
-import axios from "axios";
+//import axios from "axios";
 // import Swal from "sweetalert2";
 
 export default {
@@ -104,6 +105,7 @@ export default {
     f_name: String,
     l_name: String,
     grade_id: String,
+    exams: Array,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -117,108 +119,22 @@ export default {
     });
 
     const users = ref([]);
-    const classes1 = ref([]);
-    const classes2 = ref([]);
     const grades = ref([]);
     const lessons = ref([]);
-    const grade_id = ref("");
-
-    function addScoreToUser() {
-      console.log("111111111111");
-      console.log(props.grade_id);
-      console.log("222222222222");
-      // Swal.fire({
-      //   title: "تخصیص کلاس به افراد انتخابی",
-      //   text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
-      //   icon: "warning",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "بله ، تخصیص داده شود",
-      //   position: "top",
-      // }).then((result) => {
-      //   if (result.isConfirmed) {
-      //     axios
-      //       .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
-      //         data: [props.dataList, form.class_id2],
-      //       })
-      //       .then(function () {
-      //         form.class_id2 = "";
-      //         emit("formData2", []);
-      //         Swal.fire({
-      //           title: "Thanks!",
-      //           text: `به افراد با کدهای ${props.dataList} انتخابی کلاس مورد نظر تخصیص داده شد`,
-      //           icon: "success",
-      //           confirmButtonText: "Ok",
-      //           position: "top",
-      //         });
-      //       })
-      //       .catch(function (error) {
-      //         console.log(error);
-      //       });
-      //   }
-      // });
-    }
-    function getUsers() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/user/users")
-        .then(function (response) {
-          // handle success
-          users.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getUsers();
-
-    function getLessons() {
-      grade_id.value = props.grade_id;
-      axios
-        .get(
-          `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
-        )
-        .then(function (response) {
-          // console.log(response.data);
-          // handle success
-          lessons.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getLessons();
-    function getGrades() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
-        .then(function (response) {
-          // handle success
-          grades.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getGrades();
+    // const grade_id = ref("");
 
     function validate1() {
       emit("formData", form);
     }
-    function validate2() {
-      // emit("formData", form);
-    }
+    // function validate2() {
+    //    emit("formData", form);
+    // }
     return {
-      addScoreToUser,
       grades,
-      classes1,
-      classes2,
       users,
       form,
       validate1,
-      validate2,
+      // validate2,
       lessons,
     };
   },

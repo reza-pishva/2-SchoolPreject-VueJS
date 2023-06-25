@@ -11,6 +11,7 @@
           :f_name="f_name"
           :l_name="l_name"
           :grade_id="grade_id"
+          :exams="exams"
         />
       </div>
     </div>
@@ -89,17 +90,7 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <a
-                v-on:click="
-                  selectRow(
-                    index,
-                    item.user_id,
-                    item.f_name,
-                    item.l_name,
-                    item.grade_id
-                  )
-                "
-                href="#"
+              <a v-on:click="selectRow(item.grade_id)" href="#"
                 ><img
                   style="width: 20px; height: 20px; border-radius: 5px"
                   src="../../../../public/select.jpg"
@@ -145,18 +136,9 @@ export default {
       userId: 0,
       f_name: "",
       l_name: "",
-      grade_id: "",
     };
   },
-  methods: {
-    selectRow(index, id, f_name, l_name, grade_id) {
-      this.selectedRowIndex = index;
-      this.userId = id;
-      this.f_name = f_name;
-      this.l_name = l_name;
-      this.grade_id = grade_id;
-    },
-  },
+  methods: {},
   components: {
     SearchForm,
     AddScoreForm,
@@ -166,6 +148,35 @@ export default {
     const users = ref([]);
     const spinner = ref(true);
     const selectedIds = ref([]);
+    const exams = ref([]);
+    const grade_id = ref("");
+
+    function selectRow(gradeId) {
+      // this.selectedRowIndex = index;
+      // this.userId = id;
+      // this.f_name = f_name;
+      // this.l_name = l_name;
+      grade_id.value = gradeId;
+      console.log(grade_id.value);
+
+      axios
+        // .get("http://127.0.0.1:8000/api/school/user/users-view")
+        .get(
+          `http://127.0.0.1:8000/api/school/exam/exam-view/${grade_id.value}`
+        )
+        .then(function (response) {
+          // handle success
+
+          spinner.value = false;
+          exams.value = response.data;
+          console.log(exams.value);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    selectRow();
 
     function searchUser(formData) {
       spinner.value = true;
@@ -217,6 +228,9 @@ export default {
       loading,
       selectedIds,
       afterAddingClass,
+      selectRow,
+      exams,
+      grade_id,
     };
   },
 };
