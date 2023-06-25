@@ -63,7 +63,7 @@
                   </div>
                   <div class="col-6">
                     <button
-                      @click="addClassTouUser"
+                      @click="addScoreToUser"
                       class="btn btn-info button-class"
                       style="height: 28px; margin-top: 2px"
                     >
@@ -114,7 +114,7 @@ export default {
     const grades = ref([]);
     const lessons = ref([]);
 
-    function addClassTouUser() {
+    function addScoreToUser() {
       Swal.fire({
         title: "تخصیص کلاس به افراد انتخابی",
         text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
@@ -196,7 +196,7 @@ export default {
       // emit("formData", form);
     }
     return {
-      addClassTouUser,
+      addScoreToUser,
       grades,
       classes1,
       classes2,

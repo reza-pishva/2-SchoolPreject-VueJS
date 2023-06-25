@@ -81,13 +81,11 @@
             v-bind:class="{ 'selected-row': index === selectedRowIndex }"
           >
             <td style="width: 5%; padding-top: 10px">
-              <input
-                v-model="selectedIds"
-                class="form-check-input"
-                type="checkbox"
-                :value="item.user_id"
-                style="width: 20px; height: 20px; margin: auto"
-              />
+              <a v-on:click="selectRow(index)" href="#"
+                ><img
+                  style="width: 20px; height: 20px; border-radius: 5px"
+                  src="../../../../public/select.jpg"
+              /></a>
             </td>
             <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
             <td style="width: 15%; padding-top: 10px">
