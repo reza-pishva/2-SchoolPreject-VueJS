@@ -347,7 +347,7 @@
             @click="changeColor11"
             style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
-            <router-link to="/user-search"
+            <router-link to="/reports"
               ><p
                 style="
                   font-family: Vazir;
