@@ -76,6 +76,7 @@
                   </div>
                   <div class="col-4">
                     <button
+                      id="liveToastBtn"
                       @click="addScoreToUser"
                       class="btn btn-info button-class"
                       style="
@@ -106,8 +107,9 @@
 </template>
 
 <script>
-import { ref, reactive } from "vue";
+import { reactive } from "vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -127,11 +129,6 @@ export default {
       exam_id: "",
     });
 
-    // const users = ref([]);
-    // const grades = ref([]);
-    // const lessons = ref([]);
-    const toast1 = ref(false);
-
     function addScoreToUser() {
       form.user_id = props.userId;
       axios
@@ -142,11 +139,17 @@ export default {
           date_shamsi: "12345678",
         })
         .then(function () {
-          toast1.value = true;
           form.user_id = "";
           form.exam_id = "";
           form.score = "";
           form.date_shamsi = "";
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: `با موفقیت ثبت شد ${props.f_name} ${props.l_name} نمره مربوط به`,
+            showConfirmButton: false,
+            timer: 3500,
+          });
         })
         .catch(function (error) {
           console.log(error);
@@ -155,11 +158,8 @@ export default {
     function validate1() {}
 
     return {
-      // grades,
-      // users,
       form,
       addScoreToUser,
-      // lessons,
       validate1,
     };
   },
