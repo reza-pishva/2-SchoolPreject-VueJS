@@ -10,7 +10,7 @@
     <div
       class="col-4"
       style="
-        height: 430px;
+        height: 450px;
         background-color: rgb(146, 204, 233);
         border-radius: 8px;
         opacity: 0.7;
@@ -22,18 +22,18 @@
           <div
             style="
               width: 95%;
-              height: 40px;
+              height: 30px;
               margin: auto;
-              background-color: rgb(94, 22, 9);
+              background-color: rgb(78, 72, 93);
               border-radius: 5px;
             "
           >
             <p
               style="
                 font-family: Vazir;
-                font-size: small;
+                font-size: 12px;
                 color: aliceblue;
-                padding-top: 9px;
+                padding-top: 6px;
               "
             >
               اطلاعات پایه
@@ -250,26 +250,26 @@
           </div>
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row mt-2">
         <div class="col">
           <div
             style="
               width: 95%;
-              height: 40px;
+              height: 30px;
               margin: auto;
-              background-color: rgb(46, 91, 46);
+              background-color: rgb(78, 72, 93);
               border-radius: 5px;
             "
           >
             <p
               style="
                 font-family: Vazir;
-                font-size: small;
+                font-size: 12px;
                 color: aliceblue;
-                padding-top: 9px;
+                padding-top: 6px;
               "
             >
-              تخصیص اطلاعات دانش آموز و معلم
+              تخصیص اطلاعات دانش آموز
             </p>
           </div>
         </div>
@@ -326,32 +326,33 @@
           </div>
         </div>
       </div>
-      <div class="row mt-1">
-        <!-- تکمیل مشخات کاربران -->
+      <div class="row mt-2">
         <div class="col">
           <div
             style="
-              width: 90%;
-              height: 40px;
+              width: 95%;
+              height: 30px;
               margin: auto;
-              background-color: darkslateblue;
+              background-color: rgb(78, 72, 93);
               border-radius: 5px;
             "
           >
-            <router-link to="/profiles"
-              ><p
-                style="
-                  font-family: Vazir;
-                  font-size: small;
-                  color: aliceblue;
-                  padding-top: 9px;
-                "
-              >
-                تخصیص درس به معلم
-              </p></router-link
+            <p
+              style="
+                font-family: Vazir;
+                font-size: 12px;
+                color: aliceblue;
+                padding-top: 6px;
+              "
             >
+              گزارش گیری
+            </p>
           </div>
         </div>
+      </div>
+      <div class="row mt-2">
+        <!-- تکمیل مشخات کاربران -->
+        <div class="col"></div>
         <!-- افزودن نام کاربری -->
         <div class="col">
           <div
@@ -372,7 +373,7 @@
                   padding-top: 9px;
                 "
               >
-                تخصیص کلاس به معلم
+                گزارش گیری
               </p></router-link
             >
           </div>
