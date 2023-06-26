@@ -134,14 +134,6 @@ import SearchForm from "@/components/Forms/ScoreToUserFormComponent1.vue";
 import AddScoreForm from "@/components/Forms/ScoreToUserFormComponent2.vue";
 
 export default {
-  data() {
-    return {
-      userId: 0,
-      // f_name: "",
-      // l_name: "",
-    };
-  },
-  methods: {},
   components: {
     SearchForm,
     AddScoreForm,
@@ -165,7 +157,6 @@ export default {
       grade_id.value = gradeId;
 
       axios
-        // .get("http://127.0.0.1:8000/api/school/user/users-view")
         .get(
           `http://127.0.0.1:8000/api/school/exam/exam-view/${grade_id.value}`
         )

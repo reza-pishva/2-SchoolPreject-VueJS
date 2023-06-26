@@ -19,7 +19,7 @@
               margin-top: 10px;
             "
           >
-            تخصیص نمره به کاربرانتخابی
+            تخصیص نمره به کاربر انتخابی
           </p>
         </div>
       </div>
@@ -37,18 +37,18 @@
             <div class="row">
               <div class="col">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col">
                     <div
                       class="form-group"
                       style="
                         font-family: Vazir;
                         font-size: 12px;
-                        width: 100%;
+                        width: 60%;
                         margin-right: 70px;
                       "
                     >
                       <select
-                        v-model="form.class_id2"
+                        v-model="form.exam_id"
                         class="form-select"
                         style="font-size: 12px"
                       >
@@ -61,16 +61,29 @@
                           {{ item.lesson_name }}--{{ item.exam_type }}
                         </option>
                       </select>
-                      <div class="form-text text-danger validation-text">
-                        {{ form.lessonIdErrorText }}
-                      </div>
                     </div>
                   </div>
-                  <div class="col-6">
+                </div>
+                <div class="row" style="margin-top: -8px; margin-right: 60px">
+                  <div class="col-4">
+                    <input
+                      v-model.lazy.trim="form.score"
+                      style="font-size: 12px; width: 110%"
+                      class="form-control"
+                      type="number"
+                      placeholder="نمره درس"
+                    />
+                  </div>
+                  <div class="col-4">
                     <button
                       @click="addScoreToUser"
                       class="btn btn-info button-class"
-                      style="height: 28px; margin-top: 2px"
+                      style="
+                        height: 28px;
+                        margin-top: 2px;
+                        width: 80%;
+                        margin-right: -35px;
+                      "
                     >
                       ثبت نمره
                       <div
@@ -80,6 +93,8 @@
                       ></div>
                     </button>
                   </div>
+
+                  <div class="col-4"></div>
                 </div>
               </div>
             </div>
@@ -92,8 +107,6 @@
 
 <script>
 import { ref, reactive } from "vue";
-//import axios from "axios";
-// import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -115,25 +128,22 @@ export default {
       class_id: "",
       class_id2: "",
       grade_id: "",
+      score: "",
+      exam_id: "",
     });
 
     const users = ref([]);
     const grades = ref([]);
     const lessons = ref([]);
-    // const grade_id = ref("");
 
     function validate1() {
-      emit("formData", form);
+      emit("formData3", form);
     }
-    // function validate2() {
-    //    emit("formData", form);
-    // }
     return {
       grades,
       users,
       form,
       validate1,
-      // validate2,
       lessons,
     };
   },
