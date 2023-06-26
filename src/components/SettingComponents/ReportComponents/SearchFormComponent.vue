@@ -11,9 +11,11 @@
         />
       </div>
     </div>
-    <div class="col-7 bg-primary">
+    <div class="col-7">
       <div class="row" style="height: 170px; direction: rtl">
-        <div class="col bg-warning"></div>
+        <div class="col" style="padding-top: 30px">
+          <ReportFormComponent2 />
+        </div>
         <div class="col bg-danger"></div>
       </div>
     </div>
@@ -35,11 +37,13 @@ import { ref } from "vue";
 import axios from "axios";
 import SearchForm from "@/components/Forms/ScoreToUserFormComponent1.vue";
 import StudentsList from "@/components/SettingComponents/ReportComponents/StudentsListComponent.vue";
+import ReportFormComponent2 from "@/components/SettingComponents/ReportComponents/ReportFormComponent2.vue";
 
 export default {
   components: {
     SearchForm,
     StudentsList,
+    ReportFormComponent2,
   },
   setup() {
     const loading = ref(false);

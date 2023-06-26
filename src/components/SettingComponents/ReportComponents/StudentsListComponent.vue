@@ -24,7 +24,11 @@
       <thead>
         <tr
           class="sticky"
-          style="background-color: rgb(83, 112, 166); color: rgb(254, 254, 255)"
+          style="
+            background-color: rgb(83, 112, 166);
+            color: rgb(254, 254, 255);
+            font-size: 12px;
+          "
         >
           <th>--</th>
           <th>کدکاربر</th>
@@ -67,15 +71,6 @@
           <td style="width: 25%; padding-top: 15px">
             {{ item.national_code }}
           </td>
-          <!-- <td style="width: 17%; padding-top: 15px">
-            {{ item.name }}
-          </td>
-          <td style="width: 10%; padding-top: 15px">
-            {{ item.year }}
-          </td>
-          <td style="width: 18%; padding-top: 15px">
-            {{ item.grade_name }}
-          </td> -->
         </tr>
       </tbody>
     </table>
@@ -90,9 +85,7 @@ export default {
   props: {
     formData2: Array,
   },
-  setup(props) {
-    console.log("پگاه");
-    console.log(props.formData2);
+  setup() {
     const loading = ref(false);
     const users = ref([]);
     const spinner = ref(true);
@@ -106,6 +99,7 @@ export default {
     const f_name = ref("");
 
     function selectRow(index, gradeId, fName, lName, user_id) {
+      // spinner.value = true;
       selectedRowIndex.value = index;
       f_name.value = fName;
       l_name.value = lName;
@@ -121,7 +115,6 @@ export default {
 
           spinner.value = false;
           exams.value = response.data;
-          console.log(exams.value);
         })
         .catch(function (error) {
           // handle error
@@ -154,24 +147,25 @@ export default {
           console.log(error);
         });
     }
-    function afterAddingClass(formData2) {
-      selectedIds.value = formData2;
-      getUsers();
-    }
-    function getUsers() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/user/users-view")
-        .then(function (response) {
-          // handle success
-          spinner.value = false;
-          users.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getUsers();
+    // function afterAddingClass(formData2) {
+    //   selectedIds.value = formData2;
+    //   getUsers();
+    // }
+    // function getUsers() {
+    //   spinner.value = true;
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/user/users-view")
+    //     .then(function (response) {
+    //       // handle success
+    //       spinner.value = false;
+    //       users.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getUsers();
 
     return {
       users,
@@ -179,7 +173,7 @@ export default {
       searchUser,
       loading,
       selectedIds,
-      afterAddingClass,
+      // afterAddingClass,
       selectRow,
       exams,
       grade_id,
