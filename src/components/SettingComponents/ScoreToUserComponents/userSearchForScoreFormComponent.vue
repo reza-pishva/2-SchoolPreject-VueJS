@@ -92,7 +92,13 @@
             <td style="width: 5%; padding-top: 10px">
               <a
                 v-on:click="
-                  selectRow(index, item.grade_id, item.f_name, item.l_name)
+                  selectRow(
+                    index,
+                    item.grade_id,
+                    item.f_name,
+                    item.l_name,
+                    item.user_id
+                  )
                 "
                 href="#"
                 ><img
@@ -146,15 +152,17 @@ export default {
     const exams = ref([]);
     const grade_id = ref("");
     const selectedRowIndex = ref("");
+    const userId = ref("");
 
     const l_name = ref("");
     const f_name = ref("");
 
-    function selectRow(index, gradeId, fName, lName) {
+    function selectRow(index, gradeId, fName, lName, user_id) {
       selectedRowIndex.value = index;
       f_name.value = fName;
       l_name.value = lName;
       grade_id.value = gradeId;
+      userId.value = user_id;
 
       axios
         .get(
@@ -230,6 +238,7 @@ export default {
       selectedRowIndex,
       f_name,
       l_name,
+      userId,
     };
   },
 };

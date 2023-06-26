@@ -31,7 +31,7 @@
       <div class="row">
         <div class="col">
           <form
-            @submit.prevent="validate2"
+            @submit.prevent="validate1"
             style="direction: rtl; font-family: Vazir; margin-top: 10px"
           >
             <div class="row">
@@ -107,6 +107,7 @@
 
 <script>
 import { ref, reactive } from "vue";
+import axios from "axios";
 
 export default {
   props: {
@@ -119,32 +120,47 @@ export default {
     grade_id: String,
     exams: Array,
   },
-  setup(props, { emit }) {
+  setup(props) {
     const form = reactive({
-      f_name: "",
-      l_name: "",
-      national_code: "",
-      year: "",
-      class_id: "",
-      class_id2: "",
-      grade_id: "",
+      user_id: "",
       score: "",
       exam_id: "",
     });
 
-    const users = ref([]);
-    const grades = ref([]);
-    const lessons = ref([]);
+    // const users = ref([]);
+    // const grades = ref([]);
+    // const lessons = ref([]);
+    const toast1 = ref(false);
 
-    function validate1() {
-      emit("formData3", form);
+    function addScoreToUser() {
+      form.user_id = props.userId;
+      axios
+        .post("http://127.0.0.1:8000/api/school/user-exam/store", {
+          user_id: form.user_id,
+          exam_id: form.exam_id,
+          score: form.score,
+          date_shamsi: "12345678",
+        })
+        .then(function () {
+          toast1.value = true;
+          form.user_id = "";
+          form.exam_id = "";
+          form.score = "";
+          form.date_shamsi = "";
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
+    function validate1() {}
+
     return {
-      grades,
-      users,
+      // grades,
+      // users,
       form,
+      addScoreToUser,
+      // lessons,
       validate1,
-      lessons,
     };
   },
 };
