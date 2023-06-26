@@ -41,69 +41,14 @@
           </div>
         </div>
       </div>
-      <div class="row mt-2">
-        <!-- تکمیل مشخات کاربران -->
-        <div class="col">
-          <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
-          >
-            <router-link to="/profiles"
-              ><p
-                style="
-                  font-family: Vazir;
-                  font-size: small;
-                  color: aliceblue;
-                  padding-top: 9px;
-                "
-              >
-                تکمیل مشخصات کاربران
-              </p></router-link
-            >
-          </div>
-        </div>
-        <!-- افزودن نام کاربری -->
-        <div class="col">
-          <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
-          >
-            <router-link to="/users"
-              ><p
-                style="
-                  font-family: Vazir;
-                  font-size: small;
-                  color: aliceblue;
-                  padding-top: 9px;
-                "
-              >
-                افزودن نام کاربری
-              </p></router-link
-            >
-          </div>
-        </div>
-      </div>
+
       <div class="row mt-1">
         <!-- کلاسها -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            @click="changeColor3"
+            :class="btn3"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/classes"
               ><p
@@ -123,13 +68,9 @@
         <!-- مقاطع تحصیلی -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            @click="changeColor4"
+            :class="btn4"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/grades"
               ><p
@@ -150,13 +91,9 @@
         <!-- انواع امتحانات -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            @click="changeColor5"
+            :class="btn5"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/exam-types"
               ><p
@@ -175,11 +112,13 @@
         <!-- نام دروس -->
         <div class="col">
           <div
+            @click="changeColor6"
+            :class="btn6"
             style="
               width: 90%;
               height: 40px;
               margin: auto;
-              background-color: darkslateblue;
+
               border-radius: 5px;
             "
           >
@@ -202,13 +141,9 @@
         <!-- برنامه کلاسی -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            @click="changeColor7"
+            :class="btn7"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/class-prog"
               ><p
@@ -227,13 +162,9 @@
         <!-- تعریف امتحان -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            @click="changeColor8"
+            :class="btn8"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/exams"
               ><p
@@ -278,11 +209,63 @@
         <!-- تکمیل مشخات کاربران -->
         <div class="col">
           <div
+            @click="changeColor1"
+            :class="btn1"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
+          >
+            <router-link to="/profiles"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                تکمیل مشخصات کاربران
+              </p></router-link
+            >
+          </div>
+        </div>
+        <!-- افزودن نام کاربری -->
+        <div class="col">
+          <div
+            @click="changeColor2"
+            :class="btn2"
             style="
               width: 90%;
               height: 40px;
               margin: auto;
-              background-color: darkslateblue;
+
+              border-radius: 5px;
+            "
+          >
+            <router-link to="/users"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                افزودن نام کاربری
+              </p></router-link
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <!-- تکمیل مشخات کاربران -->
+        <div class="col">
+          <div
+            @click="changeColor9"
+            :class="btn9"
+            style="
+              width: 90%;
+              height: 40px;
+              margin: auto;
+
               border-radius: 5px;
             "
           >
@@ -303,11 +286,13 @@
         <!-- افزودن نام کاربری -->
         <div class="col">
           <div
+            @click="changeColor10"
+            :class="btn10"
             style="
               width: 90%;
               height: 40px;
               margin: auto;
-              background-color: darkslateblue;
+
               border-radius: 5px;
             "
           >
@@ -329,6 +314,8 @@
       <div class="row mt-2">
         <div class="col">
           <div
+            @click="changeColor11"
+            :class="btn11"
             style="
               width: 95%;
               height: 30px;
@@ -356,13 +343,9 @@
         <!-- افزودن نام کاربری -->
         <div class="col">
           <div
-            style="
-              width: 90%;
-              height: 40px;
-              margin: auto;
-              background-color: darkslateblue;
-              border-radius: 5px;
-            "
+            :class="btn11"
+            @click="changeColor11"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
           >
             <router-link to="/user-search"
               ><p
@@ -384,9 +367,190 @@
 </template>
 
 <script>
+import { ref } from "vue";
 export default {
-  data() {},
-  methods: {},
+  setup() {
+    const btn1 = ref("class1");
+    const btn2 = ref("class1");
+    const btn3 = ref("class1");
+    const btn4 = ref("class1");
+    const btn5 = ref("class1");
+    const btn6 = ref("class1");
+    const btn7 = ref("class1");
+    const btn8 = ref("class1");
+    const btn9 = ref("class1");
+    const btn10 = ref("class1");
+    const btn11 = ref("class1");
+
+    function changeColor1() {
+      btn1.value = "class2";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor2() {
+      btn1.value = "class1";
+      btn2.value = "class2";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor3() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class2";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor4() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class2";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor5() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class2";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor6() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class2";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor7() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class2";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor8() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class2";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor9() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class2";
+      btn10.value = "class1";
+      btn11.value = "class1";
+    }
+    function changeColor10() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class2";
+      btn11.value = "class1";
+    }
+    function changeColor11() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class2";
+    }
+
+    return {
+      btn1,
+      btn2,
+      btn3,
+      btn4,
+      btn5,
+      btn6,
+      btn7,
+      btn8,
+      btn9,
+      btn10,
+      btn11,
+      changeColor1,
+      changeColor2,
+      changeColor3,
+      changeColor4,
+      changeColor5,
+      changeColor6,
+      changeColor7,
+      changeColor8,
+      changeColor9,
+      changeColor10,
+      changeColor11,
+    };
+  },
 };
 </script>
 
@@ -404,5 +568,11 @@ div.reza3 {
   opacity: 0.7;
   filter: alpha(opacity=100);
   color: hsl(0, 0%, 97%);
+}
+.class1 {
+  background-color: darkslateblue;
+}
+.class2 {
+  background-color: rgb(38, 46, 35);
 }
 </style>
