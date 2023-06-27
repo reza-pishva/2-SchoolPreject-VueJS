@@ -116,6 +116,7 @@ export default {
       l_name.value = lName;
       grade_id.value = gradeId;
       userId.value = user_id;
+
       axios
         .get(
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
@@ -203,7 +204,7 @@ export default {
   height: 30px;
 }
 .selected-row {
-  background-color: rgb(94, 119, 148);
+  background-color: rgb(10, 35, 62);
   color: rgb(234, 241, 19) !important;
 }
 </style>

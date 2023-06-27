@@ -44,7 +44,7 @@
                       "
                     >
                       <select
-                        v-model="form.class_id2"
+                        v-model="form.lesson_id"
                         class="form-select"
                         style="font-size: 12px; margin-right: -40px"
                       >
@@ -108,22 +108,28 @@ export default {
       l_name: "",
       national_code: "",
       year: "",
-      class_id: "",
-      class_id2: "",
+      lesson_id: "",
       grade_id: "",
     });
 
     const users = ref([]);
+    const exams = ref([]);
     const classes1 = ref([]);
     const classes2 = ref([]);
     const grades = ref([]);
 
     function scoreList() {
+      console.log(
+        `http://127.0.0.1:8000/api/school/exam-user/exams-view/${props.LessonList[1]}/${form.lesson_id}/${props.LessonList[2]}`
+      );
       axios
-        .post(`http://127.0.0.1:8000/api/school/user/add-class`)
-        .then(function () {
-          form.class_id2 = "";
-          emit("formData2", []);
+        // user/lesson/grade
+        .get(
+          `http://127.0.0.1:8000/api/school/exam-user/exams-view/${props.LessonList[1]}/${form.lesson_id}/${props.LessonList[2]}`
+        )
+        .then(function (response) {
+          exams.value = response.data;
+          console.log(exams.value);
         })
         .catch(function (error) {
           console.log(error);
@@ -179,6 +185,7 @@ export default {
       // emit("formData", form);
     }
     return {
+      exams,
       scoreList,
       grades,
       classes1,
