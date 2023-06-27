@@ -116,14 +116,18 @@ export default {
       l_name.value = lName;
       grade_id.value = gradeId;
       userId.value = user_id;
-
       axios
         .get(
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
           lessons.value = response.data;
-          emit("Lesson", lessons.value);
+          if (user_id !== undefined && gradeId !== undefined) {
+            emit("Lesson", [response.data, user_id, gradeId]);
+          } else {
+            emit("Lesson", [response.data, 0, 0]);
+          }
+
           // handle success
           spinner.value = false;
           // exams.value = response.data;

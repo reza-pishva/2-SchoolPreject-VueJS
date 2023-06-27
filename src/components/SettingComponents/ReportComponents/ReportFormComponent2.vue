@@ -1,4 +1,5 @@
 <template>
+  {{ LessonList[2] }}
   <div class="row" style="width: 100%; margin: auto; direction: rtl">
     <div style="width: 100%; height: 100px">
       <div class="row">
@@ -49,11 +50,11 @@
                       >
                         <option selected value="">انتخاب درس:</option>
                         <option
-                          v-for="(item, index) in LessonList"
+                          v-for="(item, index) in LessonList[0]"
                           :key="index"
                           :value="item.id"
                         >
-                          {{ item.grade_id }}--{{ item.lesson_name }}
+                          {{ item.grade_id }} . {{ item.lesson_name }}
                         </option>
                       </select>
                     </div>
@@ -90,7 +91,7 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 export default {
   props: {
@@ -98,6 +99,8 @@ export default {
     buttonText: String,
     buttonClass: String,
     LessonList: Array,
+    UserId: String,
+    GradeId: String,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -116,38 +119,17 @@ export default {
     const grades = ref([]);
 
     function scoreList() {
-      Swal.fire({
-        title: "تخصیص کلاس به افراد انتخابی",
-        text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "بله ، تخصیص داده شود",
-        position: "top",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios
-            .post(`http://127.0.0.1:8000/api/school/user/add-class`, {
-              data: [props.dataList, form.class_id2],
-            })
-            .then(function () {
-              form.class_id2 = "";
-              emit("formData2", []);
-              Swal.fire({
-                title: "Thanks!",
-                text: `به افراد با کدهای ${props.dataList} انتخابی کلاس مورد نظر تخصیص داده شد`,
-                icon: "success",
-                confirmButtonText: "Ok",
-                position: "top",
-              });
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-        }
-      });
+      axios
+        .post(`http://127.0.0.1:8000/api/school/user/add-class`)
+        .then(function () {
+          form.class_id2 = "";
+          emit("formData2", []);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
+
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users")
