@@ -6,9 +6,6 @@
       overflow: scroll;
       border: 1px solid beige;
       border-radius: 5px;
-      /* background-color: dimgray;
-      opacity: 0.6;
-      filter: alpha(opacity=100); */
     "
   >
     <table
