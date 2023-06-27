@@ -73,7 +73,7 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
-          <td style="width: 5%; padding-top: 15px">{{ item.user_id }}</td>
+          <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
           <td style="width: 25%; padding-top: 15px">
             {{ item.f_name }}
           </td>
@@ -123,15 +123,13 @@ export default {
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
+          spinner.value = false;
           lessons.value = response.data;
           if (user_id !== undefined && gradeId !== undefined) {
             emit("Lesson", [response.data, user_id, gradeId]);
           } else {
             emit("Lesson", [response.data, 0, 0]);
           }
-          // handle success
-          spinner.value = false;
-          // exams.value = response.data;
         })
         .catch(function (error) {
           // handle error
@@ -141,6 +139,7 @@ export default {
     selectRow();
 
     function searchUser(formData) {
+      console.log(spinner.value);
       spinner.value = true;
       selectedIds.value = [];
       loading.value = true;

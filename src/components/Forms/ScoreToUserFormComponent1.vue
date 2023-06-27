@@ -137,8 +137,6 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-// import Swal from "sweetalert2";
-
 export default {
   props: {
     buttonLoading: Boolean,
@@ -154,6 +152,7 @@ export default {
       year: "",
       class_id: "",
       grade_id: "",
+      spinner: true,
     });
 
     const users = ref([]);

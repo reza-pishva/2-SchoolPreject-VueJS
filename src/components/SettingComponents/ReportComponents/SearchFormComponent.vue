@@ -26,7 +26,11 @@
     </div>
   </div>
   <div class="row" style="direction: rtl">
-    <StudentsList @Lesson="sendLessons" :formData2="users" />
+    <StudentsList
+      @Lesson="sendLessons"
+      :formData2="users"
+      :button-loading="loading"
+    />
   </div>
   <div class="col"></div>
 </template>
@@ -47,7 +51,7 @@ export default {
     ScoreListComponent,
   },
   setup() {
-    const loading = ref(false);
+    const loading = ref(true);
     const scores = ref([]);
     const users = ref([]);
     const lessons = ref([]);
@@ -57,7 +61,6 @@ export default {
     const grade_id = ref("");
     const selectedRowIndex = ref("");
     const userId = ref("");
-
     const l_name = ref("");
     const f_name = ref("");
 
@@ -86,7 +89,6 @@ export default {
     selectRow();
 
     function searchUser(formData) {
-      spinner.value = true;
       selectedIds.value = [];
       loading.value = true;
       axios
@@ -101,7 +103,6 @@ export default {
 
         .then(function (response) {
           users.value = response.data;
-          console.log(users.value);
           spinner.value = false;
           loading.value = false;
         })
