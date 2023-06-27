@@ -14,9 +14,14 @@
     <div class="col-7">
       <div class="row" style="height: 170px; direction: rtl">
         <div class="col" style="padding-top: 30px">
-          <ReportFormComponent2 :LessonList="lessons" />
+          <ReportFormComponent2 @ScoreList="createList" :LessonList="lessons" />
         </div>
         <div class="col"></div>
+      </div>
+      <div class="row">
+        <div>
+          <ScoreListComponent :usersScore="scores" />
+        </div>
       </div>
     </div>
   </div>
@@ -32,15 +37,18 @@ import axios from "axios";
 import SearchForm from "@/components/Forms/ScoreToUserFormComponent1.vue";
 import StudentsList from "@/components/SettingComponents/ReportComponents/StudentsListComponent.vue";
 import ReportFormComponent2 from "@/components/SettingComponents/ReportComponents/ReportFormComponent2.vue";
+import ScoreListComponent from "@/components/SettingComponents/ReportComponents/ScoreListComponent.vue";
 
 export default {
   components: {
     SearchForm,
     StudentsList,
     ReportFormComponent2,
+    ScoreListComponent,
   },
   setup() {
     const loading = ref(false);
+    const scores = ref([]);
     const users = ref([]);
     const lessons = ref([]);
     const spinner = ref(true);
@@ -124,16 +132,20 @@ export default {
 
     function sendLessons(Lesson) {
       lessons.value = Lesson;
-      console.log("111111111111111111");
-      console.log(Lesson);
-      console.log("222222222222222222");
+    }
+
+    function createList(ScoreList) {
+      console.log(ScoreList);
+      scores.value = ScoreList;
     }
 
     return {
       users,
+      scores,
       // spinner,
       searchUser,
       sendLessons,
+      createList,
       // loading,
       // selectedIds,
       afterAddingClass,

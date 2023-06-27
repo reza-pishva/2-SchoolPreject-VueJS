@@ -17,6 +17,8 @@
       background-color: dimgray;
       opacity: 0.6;
       filter: alpha(opacity=100);
+      border: 1px solid beige;
+      border-radius: 5px;
     "
   >
     <table

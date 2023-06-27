@@ -1,5 +1,4 @@
 <template>
-  {{ LessonList[2] }}
   <div class="row" style="width: 100%; margin: auto; direction: rtl">
     <div style="width: 100%; height: 100px">
       <div class="row">
@@ -119,9 +118,6 @@ export default {
     const grades = ref([]);
 
     function scoreList() {
-      console.log(
-        `http://127.0.0.1:8000/api/school/exam-user/exams-view/${props.LessonList[1]}/${form.lesson_id}/${props.LessonList[2]}`
-      );
       axios
         // user/lesson/grade
         .get(
@@ -129,7 +125,7 @@ export default {
         )
         .then(function (response) {
           exams.value = response.data;
-          console.log(exams.value);
+          emit("ScoreList", exams.value);
         })
         .catch(function (error) {
           console.log(error);
