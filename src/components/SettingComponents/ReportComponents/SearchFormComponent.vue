@@ -77,7 +77,6 @@ export default {
 
           spinner.value = false;
           exams.value = response.data;
-          console.log(exams.value);
         })
         .catch(function (error) {
           // handle error
@@ -142,21 +141,11 @@ export default {
     return {
       users,
       scores,
-      // spinner,
       searchUser,
       sendLessons,
       createList,
-      // loading,
-      // selectedIds,
       afterAddingClass,
       lessons,
-      // selectRow,
-      // exams,
-      // grade_id,
-      // selectedRowIndex,
-      // f_name,
-      // l_name,
-      // userId,
     };
   },
 };

@@ -73,11 +73,11 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
-          <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
-          <td style="width: 25%; padding-top: 10px">
+          <td style="width: 5%; padding-top: 15px">{{ item.user_id }}</td>
+          <td style="width: 25%; padding-top: 15px">
             {{ item.f_name }}
           </td>
-          <td style="width: 25%; padding-top: 10px">
+          <td style="width: 25%; padding-top: 15px">
             {{ item.l_name }}
           </td>
           <td style="width: 25%; padding-top: 15px">
@@ -103,7 +103,7 @@ export default {
     const lessons = ref([]);
     const spinner = ref(true);
     const selectedIds = ref([]);
-    const exams = ref([]);
+    // const exams = ref([]);
     const grade_id = ref("");
     const selectedRowIndex = ref("");
     const userId = ref("");
@@ -112,7 +112,6 @@ export default {
     const f_name = ref("");
 
     function selectRow(index, gradeId, fName, lName, user_id) {
-      // spinner.value = true;
       selectedRowIndex.value = index;
       f_name.value = fName;
       l_name.value = lName;
@@ -130,7 +129,6 @@ export default {
           } else {
             emit("Lesson", [response.data, 0, 0]);
           }
-
           // handle success
           spinner.value = false;
           // exams.value = response.data;
@@ -173,9 +171,7 @@ export default {
       searchUser,
       loading,
       selectedIds,
-      // afterAddingClass,
       selectRow,
-      exams,
       grade_id,
       selectedRowIndex,
       f_name,
