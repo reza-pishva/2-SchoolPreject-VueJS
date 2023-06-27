@@ -90,36 +90,20 @@
 <script>
 import { ref, reactive } from "vue";
 import axios from "axios";
-// import Swal from "sweetalert2";
 
 export default {
   props: {
-    buttonLoading: Boolean,
-    buttonText: String,
-    buttonClass: String,
     LessonList: Array,
-    UserId: String,
-    GradeId: String,
   },
   setup(props, { emit }) {
     const form = reactive({
-      f_name: "",
-      l_name: "",
-      national_code: "",
-      year: "",
       lesson_id: "",
       grade_id: "",
     });
-
-    const users = ref([]);
     const exams = ref([]);
-    const classes1 = ref([]);
-    const classes2 = ref([]);
-    const grades = ref([]);
 
     function scoreList() {
       axios
-        // user/lesson/grade
         .get(
           `http://127.0.0.1:8000/api/school/exam-user/exams-view/${props.LessonList[1]}/${form.lesson_id}/${props.LessonList[2]}`
         )
@@ -132,73 +116,16 @@ export default {
         });
     }
 
-    function getUsers() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/user/users")
-        .then(function (response) {
-          // handle success
-          users.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getUsers();
-
-    function getClasses() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
-        .then(function (response) {
-          // handle success
-          classes1.value = response.data;
-          classes2.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getClasses();
-    function getGrades() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/grade/grades")
-        .then(function (response) {
-          // handle success
-          grades.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getGrades();
-
     function validate1() {
       emit("formData", form);
     }
-    function validate2() {
-      // emit("formData", form);
-    }
     return {
-      exams,
       scoreList,
-      grades,
-      classes1,
-      classes2,
-      users,
       form,
       validate1,
-      validate2,
     };
   },
 };
 </script>
 
-<style>
-.button-class {
-  font-size: 12px;
-  width: 45%;
-  height: 35px;
-}
-</style>
+<style></style>
