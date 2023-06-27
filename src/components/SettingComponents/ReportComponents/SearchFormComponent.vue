@@ -14,20 +14,14 @@
     <div class="col-7">
       <div class="row" style="height: 170px; direction: rtl">
         <div class="col" style="padding-top: 30px">
-          <ReportFormComponent2 />
+          <ReportFormComponent2 :LessonList="lessons" />
         </div>
-        <div class="col bg-danger"></div>
+        <div class="col"></div>
       </div>
     </div>
   </div>
   <div class="row" style="direction: rtl">
-    <StudentsList
-      @formData="searchUser"
-      :button-loading="loading"
-      button-text="جستجو"
-      button-class="btn btn-primary"
-      :formData2="users"
-    />
+    <StudentsList @Lesson="sendLessons" :formData2="users" />
   </div>
   <div class="col"></div>
 </template>
@@ -48,6 +42,7 @@ export default {
   setup() {
     const loading = ref(false);
     const users = ref([]);
+    const lessons = ref([]);
     const spinner = ref(true);
     const selectedIds = ref([]);
     const exams = ref([]);
@@ -127,13 +122,22 @@ export default {
     }
     getUsers();
 
+    function sendLessons(Lesson) {
+      lessons.value = Lesson;
+      console.log("111111111111111111");
+      console.log(Lesson);
+      console.log("222222222222222222");
+    }
+
     return {
       users,
       // spinner,
       searchUser,
+      sendLessons,
       // loading,
       // selectedIds,
       afterAddingClass,
+      lessons,
       // selectRow,
       // exams,
       // grade_id,

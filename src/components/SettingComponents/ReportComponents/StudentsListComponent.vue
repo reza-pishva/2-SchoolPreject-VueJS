@@ -8,7 +8,17 @@
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
-  <div v-else style="width: 36%; height: 300px; overflow: scroll">
+  <div
+    v-else
+    style="
+      width: 36%;
+      height: 300px;
+      overflow: scroll;
+      background-color: dimgray;
+      opacity: 0.6;
+      filter: alpha(opacity=100);
+    "
+  >
     <table
       class="table table-bordered"
       style="
@@ -85,9 +95,10 @@ export default {
   props: {
     formData2: Array,
   },
-  setup() {
+  setup(props, { emit }) {
     const loading = ref(false);
     const users = ref([]);
+    const lessons = ref([]);
     const spinner = ref(true);
     const selectedIds = ref([]);
     const exams = ref([]);
@@ -108,13 +119,14 @@ export default {
 
       axios
         .get(
-          `http://127.0.0.1:8000/api/school/exam/exam-view/${grade_id.value}`
+          `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
+          lessons.value = response.data;
+          emit("Lesson", lessons.value);
           // handle success
-
           spinner.value = false;
-          exams.value = response.data;
+          // exams.value = response.data;
         })
         .catch(function (error) {
           // handle error
@@ -147,25 +159,6 @@ export default {
           console.log(error);
         });
     }
-    // function afterAddingClass(formData2) {
-    //   selectedIds.value = formData2;
-    //   getUsers();
-    // }
-    // function getUsers() {
-    //   spinner.value = true;
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/user/users-view")
-    //     .then(function (response) {
-    //       // handle success
-    //       spinner.value = false;
-    //       users.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getUsers();
 
     return {
       users,

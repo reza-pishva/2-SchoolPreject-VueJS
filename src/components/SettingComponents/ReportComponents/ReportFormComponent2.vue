@@ -49,18 +49,18 @@
                       >
                         <option selected value="">انتخاب درس:</option>
                         <option
-                          v-for="(item, index) in classes2"
+                          v-for="(item, index) in LessonList"
                           :key="index"
                           :value="item.id"
                         >
-                          {{ item.name }}
+                          {{ item.grade_id }}--{{ item.lesson_name }}
                         </option>
                       </select>
                     </div>
                   </div>
                   <div class="col-6">
                     <button
-                      @click="addClassTouUser"
+                      @click="scoreList"
                       class="btn btn-info button-class"
                       style="
                         height: 28px;
@@ -97,7 +97,7 @@ export default {
     buttonLoading: Boolean,
     buttonText: String,
     buttonClass: String,
-    dataList: Array,
+    LessonList: Array,
   },
   setup(props, { emit }) {
     const form = reactive({
@@ -115,7 +115,7 @@ export default {
     const classes2 = ref([]);
     const grades = ref([]);
 
-    function addClassTouUser() {
+    function scoreList() {
       Swal.fire({
         title: "تخصیص کلاس به افراد انتخابی",
         text: "کلاس انتخابی به افرادی که در لیست پایین انتخاب شده اند تخصیص داده شود؟",
@@ -197,7 +197,7 @@ export default {
       // emit("formData", form);
     }
     return {
-      addClassTouUser,
+      scoreList,
       grades,
       classes1,
       classes2,
