@@ -45,6 +45,8 @@
           <th>مقطع تحصیلی</th>
           <th>تاریخ</th>
           <th>نمره</th>
+          <th>--</th>
+          <th>--</th>
         </tr>
       </thead>
       <tbody>
@@ -71,20 +73,36 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
-          <td style="width: 20%; padding-top: 10px">
+          <td style="width: 13%; padding-top: 10px">
             {{ item.lesson_name }}
           </td>
-          <td style="width: 20%; padding-top: 10px">
+          <td style="width: 16%; padding-top: 10px">
             {{ item.exam_type }}
           </td>
-          <td style="width: 20%; padding-top: 10px">
+          <td style="width: 18%; padding-top: 10px">
             {{ item.grade_name }}
           </td>
           <td style="width: 20%; padding-top: 15px">
             {{ item.updated_at }}
           </td>
-          <td style="width: 15%; padding-top: 15px; text-align: center">
+          <td style="width: 10%; padding-top: 15px; text-align: center">
             {{ item.score }}
+          </td>
+          <td style="width: 9%">
+            <router-link
+              class="btn btn-primary button-table-class"
+              :to="{ name: 'editLesson', params: { id: item.id } }"
+            >
+              اصلاح
+            </router-link>
+          </td>
+          <td style="width: 9%">
+            <button
+              @click="deleteScore(item.id)"
+              class="btn btn-danger button-table-class"
+            >
+              حذف
+            </button>
           </td>
         </tr>
       </tbody>
@@ -93,13 +111,60 @@
 </template>
 
 <script>
+import axios from "axios";
+import Swal from "sweetalert2";
+
 export default {
   props: {
     usersScore: Array,
     spinner: Boolean,
   },
   setup() {
-    return {};
+    function deleteScore(id) {
+      Swal.fire({
+        title: "آیا مطمئن هستید؟",
+        text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "بله ، حذف شود",
+        position: "top",
+      }).then((result) => {
+        // getExams();
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://127.0.0.1:8000/api/school/exam-user/remove/${id}`)
+            .then(function () {
+              Swal.fire({
+                title: "Thanks!",
+                text: `آزمون با کد (${id}) با موفقیت حذف گردید`,
+                icon: "success",
+                confirmButtonText: "Ok",
+                position: "top",
+              });
+
+              // axios
+              //   .get("http://127.0.0.1:8000/api/school/exam/exam-view")
+
+              //   .then(function (response) {
+              //     // handle success
+              //     exams.value = response.data;
+              //   })
+              //   .catch(function (error) {
+              //     // handle error
+              //     console.log(error);
+              //   });
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+      });
+    }
+    return {
+      deleteScore,
+    };
   },
 };
 </script>
