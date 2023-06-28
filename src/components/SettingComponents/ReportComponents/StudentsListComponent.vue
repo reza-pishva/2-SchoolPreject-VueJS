@@ -97,15 +97,14 @@ import axios from "axios";
 export default {
   props: {
     formData2: Array,
-    // spinner: Boolean,
+    spinner: Boolean,
   },
   setup(props, { emit }) {
     const loading = ref(false);
     const users = ref([]);
     const lessons = ref([]);
-    const spinner = ref(true);
+    // const spinner = ref(true);
     const selectedIds = ref([]);
-    // const exams = ref([]);
     const grade_id = ref("");
     const selectedRowIndex = ref("");
     const userId = ref("");
@@ -125,7 +124,7 @@ export default {
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
-          spinner.value = false;
+          // spinner.value = false;
           lessons.value = response.data;
           if (user_id !== undefined && gradeId !== undefined) {
             emit("Lesson", [response.data, user_id, gradeId]);
@@ -168,7 +167,7 @@ export default {
 
     return {
       users,
-      spinner,
+      // spinner,
       // searchUser,
       loading,
       selectedIds,

@@ -189,6 +189,7 @@ export default {
     function validate1() {
       console.log("firsttttttttttttttttttttttt");
       emit("formData", form);
+      form.spinner = false;
     }
     return {
       grades,

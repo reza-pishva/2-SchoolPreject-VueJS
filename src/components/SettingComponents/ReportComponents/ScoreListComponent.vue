@@ -1,5 +1,15 @@
 <template>
+  <div style="width: 90%" v-if="spinner">
+    <div
+      class="spinner-border text-danger"
+      role="status"
+      style="width: 100px; height: 100px; margin-top: 100px"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
   <div
+    v-else
     style="
       width: 95%;
       height: 300px;
@@ -86,6 +96,7 @@
 export default {
   props: {
     usersScore: Array,
+    spinner: Boolean,
   },
   setup() {
     return {};

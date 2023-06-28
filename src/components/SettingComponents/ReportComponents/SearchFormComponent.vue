@@ -2,7 +2,7 @@
   <div class="row" style="height: 170px; direction: rtl">
     <div class="col-5">
       <div style="width: 85%; margin-top: 5px; margin-right: 12px">
-        <SearchForm
+        <ReportFormComponent1
           @formData="searchUser"
           :button-loading="loading"
           button-text="جستجو"
@@ -20,7 +20,7 @@
       </div>
       <div class="row">
         <div>
-          <ScoreListComponent :usersScore="scores" />
+          <ScoreListComponent :usersScore="scores" :spinner="ScoreSpinner" />
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
       @Lesson="sendLessons"
       :formData2="users"
       :button-loading="loading"
-      :spinner="true"
+      :spinner="ListSpinner"
     />
   </div>
   <div class="col"></div>
@@ -39,20 +39,22 @@
 <script>
 import { ref } from "vue";
 import axios from "axios";
-import SearchForm from "@/components/SettingComponents/ReportComponents/ReportFormComponent1.vue";
+import ReportFormComponent1 from "@/components/SettingComponents/ReportComponents/ReportFormComponent1.vue";
 import StudentsList from "@/components/SettingComponents/ReportComponents/StudentsListComponent.vue";
 import ReportFormComponent2 from "@/components/SettingComponents/ReportComponents/ReportFormComponent2.vue";
 import ScoreListComponent from "@/components/SettingComponents/ReportComponents/ScoreListComponent.vue";
 
 export default {
   components: {
-    SearchForm,
-    StudentsList,
+    ReportFormComponent1,
     ReportFormComponent2,
+    StudentsList,
     ScoreListComponent,
   },
   setup() {
     const loading = ref(true);
+    const ListSpinner = ref(false);
+    const ScoreSpinner = ref(false);
     const scores = ref([]);
     const users = ref([]);
     const lessons = ref([]);
@@ -90,6 +92,7 @@ export default {
     selectRow();
 
     function searchUser(formData) {
+      ListSpinner.value = true;
       selectedIds.value = [];
       loading.value = true;
       axios
@@ -103,6 +106,7 @@ export default {
         })
 
         .then(function (response) {
+          ListSpinner.value = false;
           users.value = response.data;
           spinner.value = false;
           loading.value = false;
@@ -136,11 +140,17 @@ export default {
     }
 
     function createList(ScoreList) {
-      console.log(ScoreList);
+      ScoreSpinner.value = true;
+      setInterval(function () {
+        ScoreSpinner.value = false;
+      }, 2500);
+
       scores.value = ScoreList;
     }
 
     return {
+      ListSpinner,
+      ScoreSpinner,
       users,
       scores,
       searchUser,
