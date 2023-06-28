@@ -4,7 +4,7 @@
       style="
         width: 100%;
         height: 155px;
-        margin-top: -5px;
+        margin-top: 5px;
         border-radius: 5px;
         background-color: dimgrey;
       "
@@ -13,7 +13,7 @@
         @submit.prevent="validate1"
         style="direction: rtl; font-family: Vazir; margin-top: 10px"
       >
-        <div class="row">
+        <div class="row mt-3">
           <div class="col">
             <div class="row"></div>
             <div class="row">
