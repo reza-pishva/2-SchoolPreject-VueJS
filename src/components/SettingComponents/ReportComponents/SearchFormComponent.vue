@@ -30,6 +30,7 @@
       @Lesson="sendLessons"
       :formData2="users"
       :button-loading="loading"
+      :spinner="true"
     />
   </div>
   <div class="col"></div>
@@ -38,7 +39,7 @@
 <script>
 import { ref } from "vue";
 import axios from "axios";
-import SearchForm from "@/components/Forms/ScoreToUserFormComponent1.vue";
+import SearchForm from "@/components/SettingComponents/ReportComponents/ReportFormComponent1.vue";
 import StudentsList from "@/components/SettingComponents/ReportComponents/StudentsListComponent.vue";
 import ReportFormComponent2 from "@/components/SettingComponents/ReportComponents/ReportFormComponent2.vue";
 import ScoreListComponent from "@/components/SettingComponents/ReportComponents/ScoreListComponent.vue";

@@ -14,11 +14,12 @@
       width: 36%;
       height: 300px;
       overflow: scroll;
-      background-color: dimgray;
+      background-color: rgb(55, 47, 47);
       opacity: 0.6;
       filter: alpha(opacity=100);
       border: 1px solid beige;
       border-radius: 5px;
+      margin-right: 25px;
     "
   >
     <table
@@ -28,7 +29,7 @@
         font-size: smaller;
         text-align: center;
         margin-top: 0px;
-        margin-right: 15px;
+        margin-right: 2px;
         direction: rtl;
         width: 100%;
       "
@@ -96,6 +97,7 @@ import axios from "axios";
 export default {
   props: {
     formData2: Array,
+    // spinner: Boolean,
   },
   setup(props, { emit }) {
     const loading = ref(false);
@@ -138,36 +140,36 @@ export default {
     }
     selectRow();
 
-    function searchUser(formData) {
-      console.log(spinner.value);
-      spinner.value = true;
-      selectedIds.value = [];
-      loading.value = true;
-      axios
-        .post("http://127.0.0.1:8000/api/school/user/users-view-search", {
-          f_name: formData.f_name,
-          l_name: formData.l_name,
-          national_code: formData.national_code,
-          year: formData.year,
-          class_id: formData.class_id,
-          grade_id: formData.grade_id,
-        })
+    // function searchUser(formData) {
+    //   console.log(spinner.value);
+    //   spinner.value = true;
+    //   selectedIds.value = [];
+    //   loading.value = true;
+    //   axios
+    //     .post("http://127.0.0.1:8000/api/school/user/users-view-search", {
+    //       f_name: formData.f_name,
+    //       l_name: formData.l_name,
+    //       national_code: formData.national_code,
+    //       year: formData.year,
+    //       class_id: formData.class_id,
+    //       grade_id: formData.grade_id,
+    //     })
 
-        .then(function (response) {
-          users.value = response.data;
-          spinner.value = false;
-          loading.value = false;
-        })
-        .catch(function (error) {
-          loading.value = false;
-          console.log(error);
-        });
-    }
+    //     .then(function (response) {
+    //       users.value = response.data;
+    //       spinner.value = false;
+    //       loading.value = false;
+    //     })
+    //     .catch(function (error) {
+    //       loading.value = false;
+    //       console.log(error);
+    //     });
+    // }
 
     return {
       users,
       spinner,
-      searchUser,
+      // searchUser,
       loading,
       selectedIds,
       selectRow,
