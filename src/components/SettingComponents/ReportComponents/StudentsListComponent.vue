@@ -54,7 +54,7 @@
         <tr
           v-for="(item, index) in formData2"
           :key="index"
-          style="text-align: right; font-size: 12px; color: aliceblue"
+          style="text-align: right; font-size: 13px; color: aliceblue"
           v-bind:class="{ 'selected-row': index === selectedRowIndex }"
         >
           <td style="width: 5%; padding-top: 10px">
@@ -74,7 +74,7 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
-          <td style="width: 5%; padding-top: 10px">{{ item.user_id }}</td>
+          <td style="width: 5%; padding-top: 15px">{{ item.user_id }}</td>
           <td style="width: 25%; padding-top: 15px">
             {{ item.f_name }}
           </td>

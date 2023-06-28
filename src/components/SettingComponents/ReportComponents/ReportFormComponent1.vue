@@ -157,22 +157,7 @@ export default {
 
     const users = ref([]);
     const classes1 = ref([]);
-    const classes2 = ref([]);
     const grades = ref([]);
-
-    function getUsers() {
-      axios
-        .get("http://127.0.0.1:8000/api/school/user/users")
-        .then(function (response) {
-          // handle success
-          users.value = response.data;
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    getUsers();
 
     function getClasses() {
       axios
@@ -180,7 +165,6 @@ export default {
         .then(function (response) {
           // handle success
           classes1.value = response.data;
-          classes2.value = response.data;
         })
         .catch(function (error) {
           // handle error
@@ -209,7 +193,6 @@ export default {
     return {
       grades,
       classes1,
-      classes2,
       users,
       form,
       validate1,
