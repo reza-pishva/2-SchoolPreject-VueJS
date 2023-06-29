@@ -1,6 +1,4 @@
 <template>
-  <p style="color: aliceblue; font-size: 22px">{{ grade_id }}</p>
-
   <div class="row" style="height: 170px; direction: rtl">
     <div class="col-5">
       <div style="width: 85%; margin-top: 5px; margin-right: 12px">
@@ -146,9 +144,9 @@ export default {
       l_name.value = Lesson[4];
       grade_id.value = Lesson[2];
       lessons.value = Lesson;
-      console.log("8888888888888888888");
+      console.log("searchformcomponent");
       console.log(grade_id.value);
-      console.log("9999999999999999999");
+      console.log("searchformcomponent");
     }
 
     function createList(ScoreList) {
@@ -171,6 +169,7 @@ export default {
       lessons,
       f_name,
       l_name,
+      grade_id,
     };
   },
 };

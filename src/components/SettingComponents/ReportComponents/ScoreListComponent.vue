@@ -163,7 +163,7 @@
                   >
                     <option selected value="">انتخاب درس:</option>
                     <option
-                      v-for="(item, index) in exams"
+                      v-for="(item, index) in exams2"
                       :key="index"
                       :value="item.id"
                     >
@@ -229,15 +229,13 @@ export default {
 
     const scores = ref([]);
     const exams = ref([]);
-    // const grade_id = ref([]);
-    // const userId = ref([]);
+    const exams2 = ref([]);
 
     function sendProps() {
       scores.value = props.usersScore;
     }
     sendProps();
     function deleteScore(id, index) {
-      console.log(props.gradeId);
       Swal.fire({
         title: "آیا مطمئن هستید؟",
         text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
@@ -260,18 +258,6 @@ export default {
                 confirmButtonText: "Ok",
                 position: "top",
               });
-
-              // axios
-              //   .get("http://127.0.0.1:8000/api/school/exam/exam-view")
-
-              //   .then(function (response) {
-              //     // handle success
-              //     exams.value = response.data;
-              //   })
-              //   .catch(function (error) {
-              //     // handle error
-              //     console.log(error);
-              //   });
             })
             .catch(function (error) {
               console.log(error);
@@ -281,11 +267,19 @@ export default {
     }
 
     function fillingExams() {
+      exams2.value = [];
       axios
         .get(`http://127.0.0.1:8000/api/school/exam/exam-view/${props.gradeId}`)
         .then(function (response) {
           // handle success
-          exams.value = response.data;
+          exams2.value = response.data;
+          console.log("fillingExams");
+          console.log(exams2.value);
+          console.log(props.gradeId);
+          console.log(
+            `http://127.0.0.1:8000/api/school/exam/exam-view-grade/${props.gradeId}`
+          );
+          console.log("fillingExams");
         })
         .catch(function (error) {
           // handle error
@@ -297,6 +291,7 @@ export default {
     return {
       deleteScore,
       exams,
+      exams2,
       scores,
       form,
     };
