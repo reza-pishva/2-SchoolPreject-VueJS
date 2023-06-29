@@ -91,15 +91,25 @@
             {{ item.score }}
           </td>
           <td style="width: 9%">
-            <router-link
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#EditModal"
+            >
+              Launch demo modal
+            </button>
+            <!-- <router-link
               class="btn btn-primary button-table-class"
               :to="{ name: 'scoreEdit', params: { id: item.id } }"
             >
               اصلاح
-            </router-link>
+            </router-link> -->
           </td>
           <td style="width: 9%">
             <button
+              data-toggle="modal"
+              data-target="#EditModal"
               @click="deleteScore(item.id, index)"
               class="btn btn-danger button-table-class"
             >
@@ -110,10 +120,96 @@
       </tbody>
     </table>
   </div>
+
+  <div
+    class="modal fade"
+    id="EditModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-5">
+            <div class="col-3"></div>
+            <div class="col-6">
+              <form>
+                <div
+                  class="form-group"
+                  style="
+                    font-family: Vazir;
+                    font-size: 12px;
+                    width: 60%;
+                    margin-right: 70px;
+                  "
+                >
+                  <select
+                    v-model="form.exam_id"
+                    class="form-select"
+                    style="font-size: 12px"
+                  >
+                    <option selected value="">انتخاب درس:</option>
+                    <option
+                      v-for="(item, index) in examsList"
+                      :key="index"
+                      :value="item.id"
+                    >
+                      {{ item.lesson_name }}--{{ item.exam_type }}
+                    </option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    placeholder="Password"
+                  />
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="exampleCheck1"
+                  />
+                  <label class="form-check-label" for="exampleCheck1"
+                    >Check me out</label
+                  >
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div class="col-3"></div>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from "axios";
+import { reactive } from "vue";
 import Swal from "sweetalert2";
 import { ref } from "vue";
 
@@ -121,9 +217,22 @@ export default {
   props: {
     usersScore: Array,
     spinner: Boolean,
+    grade_id: String,
+    examsList: Array,
   },
+
   setup(props) {
+    const form = reactive({
+      user_id: "",
+      score: "",
+      exam_id: "",
+    });
+
     const scores = ref([]);
+    const exams = ref([]);
+    // const grade_id = ref([]);
+    const userId = ref([]);
+
     function sendProps() {
       scores.value = props.usersScore;
     }
@@ -170,9 +279,32 @@ export default {
         }
       });
     }
+
+    function fillingExams(index, gradeId, fName, lName, user_id) {
+      // selectedRowIndex.value = index;
+      // grade_id.value = gradeId;
+      userId.value = user_id;
+
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/school/exam/exam-view/${props.grade_id}`
+        )
+        .then(function (response) {
+          // handle success
+          exams.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    fillingExams();
+
     return {
       deleteScore,
+      exams,
       scores,
+      form,
     };
   },
 };

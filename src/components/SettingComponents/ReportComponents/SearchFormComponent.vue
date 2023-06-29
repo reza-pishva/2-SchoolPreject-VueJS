@@ -51,7 +51,11 @@
       </div>
       <div class="row">
         <div>
-          <ScoreListComponent :usersScore="scores" :spinner="ScoreSpinner" />
+          <ScoreListComponent
+            :usersScore="scores"
+            :spinner="ScoreSpinner"
+            :examsList="exams"
+          />
         </div>
       </div>
     </div>
@@ -114,6 +118,7 @@ export default {
 
           spinner.value = false;
           exams.value = response.data;
+          console.log(response.data);
         })
         .catch(function (error) {
           // handle error
