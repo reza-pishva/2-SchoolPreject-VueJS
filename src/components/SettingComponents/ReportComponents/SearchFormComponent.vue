@@ -153,7 +153,7 @@ export default {
       ScoreSpinner.value = true;
       setInterval(function () {
         ScoreSpinner.value = false;
-      }, 2500);
+      }, 1500);
 
       scores.value = ScoreList;
     }

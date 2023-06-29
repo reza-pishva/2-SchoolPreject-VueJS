@@ -96,6 +96,7 @@
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#EditModal"
+              @click="fillingExams(item.exam_id, item.score, item.user_id)"
             >
               Launch demo modal
             </button>
@@ -172,23 +173,12 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
                   <input
-                    type="password"
+                    v-model="form.score"
+                    type="number"
                     class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
+                    placeholder="نمره امتحان"
                   />
-                </div>
-                <div class="form-check">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label class="form-check-label" for="exampleCheck1"
-                    >Check me out</label
-                  >
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>
@@ -265,35 +255,28 @@ export default {
         }
       });
     }
-
-    function fillingExams() {
-      exams2.value = [];
+    function fillingExams(exam_id, score, user_id) {
       axios
         .get(`http://127.0.0.1:8000/api/school/exam/exam-view/${props.gradeId}`)
         .then(function (response) {
           // handle success
           exams2.value = response.data;
-          console.log("fillingExams");
-          console.log(exams2.value);
-          console.log(props.gradeId);
-          console.log(
-            `http://127.0.0.1:8000/api/school/exam/exam-view-grade/${props.gradeId}`
-          );
-          console.log("fillingExams");
+          form.exam_id = exam_id;
+          form.score = score;
+          form.user_id = user_id;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
-    fillingExams();
-
     return {
       deleteScore,
       exams,
       exams2,
       scores,
       form,
+      fillingExams,
     };
   },
 };
