@@ -144,9 +144,6 @@ export default {
       l_name.value = Lesson[4];
       grade_id.value = Lesson[2];
       lessons.value = Lesson;
-      console.log("searchformcomponent");
-      console.log(grade_id.value);
-      console.log("searchformcomponent");
     }
 
     function createList(ScoreList) {

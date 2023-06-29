@@ -52,13 +52,13 @@
       </thead>
       <tbody>
         <tr
-          v-for="(item, index) in usersScore"
+          v-for="(item, index) in scores"
           :key="index"
           :id="item.id"
           style="text-align: right; font-size: 12px; color: aliceblue"
           v-bind:class="{ 'selected-row': index === selectedRowIndex }"
         >
-          <td style="width: 5%; padding-top: 10px">
+          <td style="width: 5%; padding-top: 13px">
             <a
               v-on:click="
                 selectRow(
@@ -75,6 +75,7 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
+
           <td style="width: 13%; padding-top: 10px">
             {{ item.lesson_name }}
           </td>
@@ -119,7 +120,6 @@
       </tbody>
     </table>
   </div>
-
   <div
     class="modal fade"
     id="EditModal"
@@ -141,6 +141,7 @@
         >
           <div class="col-2">
             <button
+              style="color: aliceblue"
               type="button"
               class="close"
               data-dismiss="modal"
@@ -166,56 +167,52 @@
         </div>
         <div class="modal-body">
           <div class="row mt-2">
-            <div class="col-1"></div>
-            <div class="col-10">
-              <form>
-                <div class="row" style="text-align: center; margin: auto">
-                  <div
-                    class="col form-group"
-                    style="
-                      font-family: Vazir;
-                      font-size: 12px;
-                      width: 60%;
-                      margin-right: 70px;
-                    "
-                  >
-                    <select
-                      v-model="form.exam_id"
-                      class="form-select"
-                      style="font-size: 12px; height: 30px"
-                    >
-                      <option selected value="">انتخاب درس:</option>
-                      <option
-                        v-for="(item, index) in exams2"
-                        :key="index"
-                        :value="item.id"
-                      >
-                        {{ item.lesson_name }}--{{ item.exam_type }}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="col form-group">
-                    <input
-                      style="width: 50%; height: 30px"
-                      v-model="form.score"
-                      type="number"
-                      class="form-control"
-                      placeholder="نمره امتحان"
-                    />
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  style="height: 30px"
-                  @click="updateScore"
+            <form>
+              <div class="row" style="text-align: center; margin: auto">
+                <div
+                  class="col-7 form-group"
+                  style="
+                    font-family: Vazir;
+                    font-size: 12px;
+                    width: 50%;
+                    margin-right: 70px;
+                  "
                 >
-                  <p style="font-size: 12px; font-family: Vazir">اصلاح</p>
-                </button>
-              </form>
-            </div>
-            <div class="col-1"></div>
+                  <select
+                    v-model="form.exam_id"
+                    class="form-select"
+                    style="font-size: 12px; height: 30px"
+                  >
+                    <option selected value="">انتخاب درس:</option>
+                    <option
+                      v-for="(item, index) in exams2"
+                      :key="index"
+                      :value="item.id"
+                    >
+                      {{ item.lesson_name }}--{{ item.exam_type }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-5 form-group">
+                  <input
+                    style="width: 50%; height: 30px; margin-right: 70px"
+                    v-model="form.score"
+                    type="number"
+                    class="form-control"
+                    placeholder="نمره امتحان"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-success"
+                style="height: 30px"
+                @click="updateScore"
+              >
+                <p style="font-size: 12px; font-family: Vazir">اصلاح</p>
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -225,11 +222,22 @@
 
 <script>
 import axios from "axios";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import Swal from "sweetalert2";
 import { ref } from "vue";
 
 export default {
+  data() {
+    return {
+      selectedRowIndex: -1,
+    };
+  },
+  methods: {
+    selectRow(index) {
+      console.log(index);
+      this.selectedRowIndex = index;
+    },
+  },
   props: {
     usersScore: Array,
     spinner: Boolean,
@@ -237,6 +245,12 @@ export default {
   },
 
   setup(props) {
+    watch(
+      () => props.usersScore,
+      (newValue) => {
+        scores.value = newValue;
+      }
+    );
     const form = reactive({
       user_id: "",
       score: "",
@@ -247,11 +261,6 @@ export default {
     const scores = ref([]);
     const exams = ref([]);
     const exams2 = ref([]);
-
-    function sendProps() {
-      scores.value = props.usersScore;
-    }
-    sendProps();
     function deleteScore(id, index) {
       Swal.fire({
         title: "آیا مطمئن هستید؟",
@@ -299,17 +308,10 @@ export default {
         });
     }
     function updateScore() {
-      console.log(form.exam_user_id);
-      console.log(form.score);
-      console.log(form.exam_id);
-      console.log(
-        `http://127.0.0.1:8000/api/school/exam-user/update/${form.exam_user_id}`
-      );
       axios
         .put(
           `http://127.0.0.1:8000/api/school/exam-user/update/${form.exam_user_id}`,
           {
-            id: form.exam_user_id,
             score: form.score,
             exam_id: form.exam_id,
           }
@@ -335,9 +337,9 @@ export default {
     }
 
     return {
+      scores,
       exams,
       exams2,
-      scores,
       form,
       fillingExams,
       updateScore,
@@ -347,4 +349,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.selected-row {
+  background-color: rgb(94, 119, 148);
+  color: rgb(234, 241, 19) !important;
+  font-size: 12px !important;
+}
+</style>
