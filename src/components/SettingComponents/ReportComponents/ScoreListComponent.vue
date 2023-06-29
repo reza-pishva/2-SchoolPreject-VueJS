@@ -163,7 +163,7 @@
                   >
                     <option selected value="">انتخاب درس:</option>
                     <option
-                      v-for="(item, index) in examsList"
+                      v-for="(item, index) in exams"
                       :key="index"
                       :value="item.id"
                     >
@@ -217,8 +217,7 @@ export default {
   props: {
     usersScore: Array,
     spinner: Boolean,
-    grade_id: String,
-    examsList: Array,
+    gradeId: String,
   },
 
   setup(props) {
@@ -231,13 +230,14 @@ export default {
     const scores = ref([]);
     const exams = ref([]);
     // const grade_id = ref([]);
-    const userId = ref([]);
+    // const userId = ref([]);
 
     function sendProps() {
       scores.value = props.usersScore;
     }
     sendProps();
     function deleteScore(id, index) {
+      console.log(props.gradeId);
       Swal.fire({
         title: "آیا مطمئن هستید؟",
         text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
@@ -280,15 +280,9 @@ export default {
       });
     }
 
-    function fillingExams(index, gradeId, fName, lName, user_id) {
-      // selectedRowIndex.value = index;
-      // grade_id.value = gradeId;
-      userId.value = user_id;
-
+    function fillingExams() {
       axios
-        .get(
-          `http://127.0.0.1:8000/api/school/exam/exam-view/${props.grade_id}`
-        )
+        .get(`http://127.0.0.1:8000/api/school/exam/exam-view/${props.gradeId}`)
         .then(function (response) {
           // handle success
           exams.value = response.data;

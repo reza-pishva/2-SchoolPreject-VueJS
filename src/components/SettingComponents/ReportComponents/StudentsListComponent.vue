@@ -122,7 +122,6 @@ export default {
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
-          // spinner.value = false;
           lessons.value = response.data;
           if (
             user_id !== undefined &&
@@ -133,7 +132,7 @@ export default {
             emit("Lesson", [
               response.data,
               user_id,
-              gradeId,
+              grade_id.value,
               f_name.value,
               l_name.value,
             ]);
@@ -148,36 +147,8 @@ export default {
     }
     selectRow();
 
-    // function searchUser(formData) {
-    //   console.log(spinner.value);
-    //   spinner.value = true;
-    //   selectedIds.value = [];
-    //   loading.value = true;
-    //   axios
-    //     .post("http://127.0.0.1:8000/api/school/user/users-view-search", {
-    //       f_name: formData.f_name,
-    //       l_name: formData.l_name,
-    //       national_code: formData.national_code,
-    //       year: formData.year,
-    //       class_id: formData.class_id,
-    //       grade_id: formData.grade_id,
-    //     })
-
-    //     .then(function (response) {
-    //       users.value = response.data;
-    //       spinner.value = false;
-    //       loading.value = false;
-    //     })
-    //     .catch(function (error) {
-    //       loading.value = false;
-    //       console.log(error);
-    //     });
-    // }
-
     return {
       users,
-      // spinner,
-      // searchUser,
       loading,
       selectedIds,
       selectRow,

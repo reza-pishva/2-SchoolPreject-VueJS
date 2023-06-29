@@ -1,4 +1,6 @@
 <template>
+  <p style="color: aliceblue; font-size: 22px">{{ grade_id }}</p>
+
   <div class="row" style="height: 170px; direction: rtl">
     <div class="col-5">
       <div style="width: 85%; margin-top: 5px; margin-right: 12px">
@@ -54,7 +56,7 @@
           <ScoreListComponent
             :usersScore="scores"
             :spinner="ScoreSpinner"
-            :examsList="exams"
+            :gradeId="grade_id"
           />
         </div>
       </div>
@@ -95,37 +97,9 @@ export default {
     const lessons = ref([]);
     const spinner = ref(true);
     const selectedIds = ref([]);
-    const exams = ref([]);
     const grade_id = ref("");
-    const selectedRowIndex = ref("");
-    const userId = ref("");
     const l_name = ref("نام:");
     const f_name = ref("نام خانوادگی:");
-
-    function selectRow(index, gradeId, fName, lName, user_id) {
-      selectedRowIndex.value = index;
-      f_name.value = fName;
-      l_name.value = lName;
-      grade_id.value = gradeId;
-      userId.value = user_id;
-
-      axios
-        .get(
-          `http://127.0.0.1:8000/api/school/exam/exam-view/${grade_id.value}`
-        )
-        .then(function (response) {
-          // handle success
-
-          spinner.value = false;
-          exams.value = response.data;
-          console.log(response.data);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
-    }
-    selectRow();
 
     function searchUser(formData) {
       ListSpinner.value = true;
@@ -152,10 +126,6 @@ export default {
           console.log(error);
         });
     }
-    function afterAddingClass(formData2) {
-      selectedIds.value = formData2;
-      getUsers();
-    }
     function getUsers() {
       axios
         .get("http://127.0.0.1:8000/api/school/user/users-view")
@@ -174,7 +144,11 @@ export default {
     function sendLessons(Lesson) {
       f_name.value = Lesson[3];
       l_name.value = Lesson[4];
+      grade_id.value = Lesson[2];
       lessons.value = Lesson;
+      console.log("8888888888888888888");
+      console.log(grade_id.value);
+      console.log("9999999999999999999");
     }
 
     function createList(ScoreList) {
@@ -194,7 +168,6 @@ export default {
       searchUser,
       sendLessons,
       createList,
-      afterAddingClass,
       lessons,
       f_name,
       l_name,
