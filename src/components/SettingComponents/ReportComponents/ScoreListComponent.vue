@@ -20,6 +20,7 @@
   >
     <table
       class="table table-bordered"
+      id="ScoreTable"
       style="
         font-family: Vazir;
         font-size: smaller;
@@ -53,6 +54,7 @@
         <tr
           v-for="(item, index) in usersScore"
           :key="index"
+          :id="item.id"
           style="text-align: right; font-size: 12px; color: aliceblue"
           v-bind:class="{ 'selected-row': index === selectedRowIndex }"
         >
@@ -91,14 +93,14 @@
           <td style="width: 9%">
             <router-link
               class="btn btn-primary button-table-class"
-              :to="{ name: 'editLesson', params: { id: item.id } }"
+              :to="{ name: 'scoreEdit', params: { id: item.id } }"
             >
               اصلاح
             </router-link>
           </td>
           <td style="width: 9%">
             <button
-              @click="deleteScore(item.id)"
+              @click="deleteScore(item.id, index)"
               class="btn btn-danger button-table-class"
             >
               حذف
@@ -113,14 +115,20 @@
 <script>
 import axios from "axios";
 import Swal from "sweetalert2";
+import { ref } from "vue";
 
 export default {
   props: {
     usersScore: Array,
     spinner: Boolean,
   },
-  setup() {
-    function deleteScore(id) {
+  setup(props) {
+    const scores = ref([]);
+    function sendProps() {
+      scores.value = props.usersScore;
+    }
+    sendProps();
+    function deleteScore(id, index) {
       Swal.fire({
         title: "آیا مطمئن هستید؟",
         text: "امکان تغییر نظرتان در آینده وجود نخواهد داشت",
@@ -131,11 +139,11 @@ export default {
         confirmButtonText: "بله ، حذف شود",
         position: "top",
       }).then((result) => {
-        // getExams();
         if (result.isConfirmed) {
           axios
             .delete(`http://127.0.0.1:8000/api/school/exam-user/remove/${id}`)
             .then(function () {
+              document.getElementById("ScoreTable").deleteRow(index + 1);
               Swal.fire({
                 title: "Thanks!",
                 text: `آزمون با کد (${id}) با موفقیت حذف گردید`,
@@ -164,6 +172,7 @@ export default {
     }
     return {
       deleteScore,
+      scores,
     };
   },
 };

@@ -136,8 +136,8 @@
 <script>
 import { ref } from "vue";
 import axios from "axios";
-import SearchForm from "@/components/Forms/ScoreToUserFormComponent1.vue";
-import AddScoreForm from "@/components/Forms/ScoreToUserFormComponent2.vue";
+import SearchForm from "@/components/SettingComponents/ScoreToUserComponents/ScoreToUserFormComponent1.vue";
+import AddScoreForm from "@/components/SettingComponents/ScoreToUserComponents/ScoreToUserFormComponent2.vue";
 
 export default {
   components: {

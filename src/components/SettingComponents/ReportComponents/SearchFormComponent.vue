@@ -14,9 +14,40 @@
     <div class="col-7">
       <div class="row" style="height: 170px; direction: rtl">
         <div class="col" style="padding-top: 30px">
-          <ReportFormComponent2 @ScoreList="createList" :LessonList="lessons" />
+          <ReportFormComponent2
+            @ScoreList="createList"
+            :LessonList="lessons"
+            :fName="f_name"
+            :lName="l_name"
+          />
         </div>
-        <div class="col"></div>
+        <div class="col">
+          <div
+            style="
+              font-family: Vazir;
+              color: aliceblue;
+              height: 70px;
+              width: 45%;
+              padding-top: 13px;
+              margin-top: 35px;
+              background-color: dimgray;
+              border-radius: 10px;
+            "
+          >
+            <div class="row">
+              <div class="col"></div>
+              <div class="col"></div>
+              <div class="col">{{ f_name }}</div>
+              <div class="col"></div>
+              <div class="col"></div>
+            </div>
+            <div class="row">
+              <div class="col"></div>
+              <div class="col">{{ l_name }}</div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div>
@@ -64,8 +95,8 @@ export default {
     const grade_id = ref("");
     const selectedRowIndex = ref("");
     const userId = ref("");
-    const l_name = ref("");
-    const f_name = ref("");
+    const l_name = ref("نام:");
+    const f_name = ref("نام خانوادگی:");
 
     function selectRow(index, gradeId, fName, lName, user_id) {
       selectedRowIndex.value = index;
@@ -136,6 +167,8 @@ export default {
     getUsers();
 
     function sendLessons(Lesson) {
+      f_name.value = Lesson[3];
+      l_name.value = Lesson[4];
       lessons.value = Lesson;
     }
 
@@ -158,6 +191,8 @@ export default {
       createList,
       afterAddingClass,
       lessons,
+      f_name,
+      l_name,
     };
   },
 };

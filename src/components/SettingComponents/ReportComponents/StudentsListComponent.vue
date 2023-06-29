@@ -103,12 +103,10 @@ export default {
     const loading = ref(false);
     const users = ref([]);
     const lessons = ref([]);
-    // const spinner = ref(true);
     const selectedIds = ref([]);
     const grade_id = ref("");
     const selectedRowIndex = ref("");
     const userId = ref("");
-
     const l_name = ref("");
     const f_name = ref("");
 
@@ -126,10 +124,21 @@ export default {
         .then(function (response) {
           // spinner.value = false;
           lessons.value = response.data;
-          if (user_id !== undefined && gradeId !== undefined) {
-            emit("Lesson", [response.data, user_id, gradeId]);
+          if (
+            user_id !== undefined &&
+            gradeId !== undefined &&
+            fName !== undefined &&
+            lName !== undefined
+          ) {
+            emit("Lesson", [
+              response.data,
+              user_id,
+              gradeId,
+              f_name.value,
+              l_name.value,
+            ]);
           } else {
-            emit("Lesson", [response.data, 0, 0]);
+            emit("Lesson", [response.data, 0, 0, "---", "---"]);
           }
         })
         .catch(function (error) {

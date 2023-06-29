@@ -135,6 +135,7 @@ export default {
         .post("http://127.0.0.1:8000/api/school/user-exam/store", {
           user_id: form.user_id,
           exam_id: form.exam_id,
+          grade_id: props.grade_id,
           score: form.score,
           date_shamsi: "12345678",
         })

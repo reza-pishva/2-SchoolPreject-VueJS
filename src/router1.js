@@ -28,6 +28,7 @@ import ProgEditFormComponent  from './components/SettingComponents/ClassProgComp
 import userSearchFormComponent  from './components/SettingComponents/UserToClassComponents/userSearchFormComponent.vue'
 import userSearchForScoreFormComponent  from './components/SettingComponents/ScoreToUserComponents/userSearchForScoreFormComponent.vue'
 import SearchReportComponent  from './components/SettingComponents/ReportComponents/SearchFormComponent.vue'
+import ScoreEditComponent  from './components/SettingComponents/ReportComponents/ScoreEditComponent.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -62,6 +63,8 @@ const routes = [
   },
   { path: '/students', component: StudentComponent },
   { path: '/reports', component: SearchReportComponent },
+  { path: '/score-edit',name: 'scoreEdit', component: ScoreEditComponent },
+
 ]
 
 const router= createRouter({

@@ -94,6 +94,8 @@ import axios from "axios";
 export default {
   props: {
     LessonList: Array,
+    fName: String,
+    lName: String,
   },
   setup(props, { emit }) {
     const form = reactive({
