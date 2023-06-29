@@ -92,25 +92,23 @@
           </td>
           <td style="width: 9%">
             <button
+              style="height: 30px; font-size: 12px; font-family: Vazir"
               type="button"
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#EditModal"
-              @click="fillingExams(item.exam_id, item.score, item.user_id)"
-            >
-              Launch demo modal
-            </button>
-            <!-- <router-link
-              class="btn btn-primary button-table-class"
-              :to="{ name: 'scoreEdit', params: { id: item.id } }"
+              @click="
+                fillingExams(item.exam_id, item.score, item.user_id, item.id)
+              "
             >
               اصلاح
-            </router-link> -->
+            </button>
           </td>
           <td style="width: 9%">
             <button
+              style="height: 30px; font-size: 12px; font-family: Vazir"
               data-toggle="modal"
-              data-target="#EditModal"
+              data-target="#ِDeleteModal"
               @click="deleteScore(item.id, index)"
               class="btn btn-danger button-table-class"
             >
@@ -132,66 +130,94 @@
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button
-            type="button"
-            class="close"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div
+          class="row"
+          style="
+            background-color: darkblue;
+            width: 100%;
+            height: 35px;
+            margin: auto;
+          "
+        >
+          <div class="col-2">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="col-2">
+            <p
+              style="
+                font-size: 14px;
+                font-family: Vazir;
+                color: aliceblue;
+                margin-top: 10px;
+                margin-right: -30px;
+              "
+            >
+              اصلاح نمره
+            </p>
+          </div>
+          <div class="col-8"></div>
         </div>
         <div class="modal-body">
-          <div class="row mt-5">
-            <div class="col-3"></div>
-            <div class="col-6">
+          <div class="row mt-2">
+            <div class="col-1"></div>
+            <div class="col-10">
               <form>
-                <div
-                  class="form-group"
-                  style="
-                    font-family: Vazir;
-                    font-size: 12px;
-                    width: 60%;
-                    margin-right: 70px;
-                  "
-                >
-                  <select
-                    v-model="form.exam_id"
-                    class="form-select"
-                    style="font-size: 12px"
+                <div class="row" style="text-align: center; margin: auto">
+                  <div
+                    class="col form-group"
+                    style="
+                      font-family: Vazir;
+                      font-size: 12px;
+                      width: 60%;
+                      margin-right: 70px;
+                    "
                   >
-                    <option selected value="">انتخاب درس:</option>
-                    <option
-                      v-for="(item, index) in exams2"
-                      :key="index"
-                      :value="item.id"
+                    <select
+                      v-model="form.exam_id"
+                      class="form-select"
+                      style="font-size: 12px; height: 30px"
                     >
-                      {{ item.lesson_name }}--{{ item.exam_type }}
-                    </option>
-                  </select>
+                      <option selected value="">انتخاب درس:</option>
+                      <option
+                        v-for="(item, index) in exams2"
+                        :key="index"
+                        :value="item.id"
+                      >
+                        {{ item.lesson_name }}--{{ item.exam_type }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col form-group">
+                    <input
+                      style="width: 50%; height: 30px"
+                      v-model="form.score"
+                      type="number"
+                      class="form-control"
+                      placeholder="نمره امتحان"
+                    />
+                  </div>
                 </div>
-                <div class="form-group">
-                  <input
-                    v-model="form.score"
-                    type="number"
-                    class="form-control"
-                    placeholder="نمره امتحان"
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  style="height: 30px"
+                  @click="updateScore"
+                >
+                  <p style="font-size: 12px; font-family: Vazir">اصلاح</p>
+                </button>
               </form>
             </div>
-            <div class="col-3"></div>
+            <div class="col-1"></div>
           </div>
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div> -->
       </div>
     </div>
   </div>
@@ -215,6 +241,7 @@ export default {
       user_id: "",
       score: "",
       exam_id: "",
+      exam_user_id: "",
     });
 
     const scores = ref([]);
@@ -255,7 +282,7 @@ export default {
         }
       });
     }
-    function fillingExams(exam_id, score, user_id) {
+    function fillingExams(exam_id, score, user_id, exam_user_id) {
       axios
         .get(`http://127.0.0.1:8000/api/school/exam/exam-view/${props.gradeId}`)
         .then(function (response) {
@@ -264,19 +291,57 @@ export default {
           form.exam_id = exam_id;
           form.score = score;
           form.user_id = user_id;
+          form.exam_user_id = exam_user_id;
         })
         .catch(function (error) {
           // handle error
           console.log(error);
         });
     }
+    function updateScore() {
+      console.log(form.exam_user_id);
+      console.log(form.score);
+      console.log(form.exam_id);
+      console.log(
+        `http://127.0.0.1:8000/api/school/exam-user/update/${form.exam_user_id}`
+      );
+      axios
+        .put(
+          `http://127.0.0.1:8000/api/school/exam-user/update/${form.exam_user_id}`,
+          {
+            id: form.exam_user_id,
+            score: form.score,
+            exam_id: form.exam_id,
+          }
+        )
+        .then(function () {
+          Swal.fire({
+            title: "ذخیره شد",
+            text: "تغییرات شما در پایگاه داده اعمال گردید",
+            icon: "success",
+            confirmButtonText: "Ok",
+            position: "top",
+          });
+        })
+        .catch(function () {
+          Swal.fire({
+            title: "پیغام خطا",
+            text: "مشکلاتی در مورد ثبت اطلاعات در پایگاه داده مشاهده گردیده",
+            icon: "error",
+            confirmButtonText: "Ok",
+            position: "top",
+          });
+        });
+    }
+
     return {
-      deleteScore,
       exams,
       exams2,
       scores,
       form,
       fillingExams,
+      updateScore,
+      deleteScore,
     };
   },
 };
