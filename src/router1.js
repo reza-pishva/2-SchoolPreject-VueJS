@@ -29,6 +29,7 @@ import userSearchFormComponent  from './components/SettingComponents/UserToClass
 import userSearchForScoreFormComponent  from './components/SettingComponents/ScoreToUserComponents/userSearchForScoreFormComponent.vue'
 import SearchReportComponent  from './components/SettingComponents/ReportComponents/SearchFormComponent.vue'
 import ScoreEditComponent  from './components/SettingComponents/ReportComponents/ScoreEditComponent.vue'
+import ReportGraphic  from './components/SettingComponents/GraphicReportComponents/ReportGraphic.vue'
 
 const routes = [
   { path: '/home', component: FirstPageComponent },
@@ -59,10 +60,12 @@ const routes = [
           { path: '/progs-edit/:id', name: 'editProg',component: ProgEditFormComponent },
           { path: '/user-search', name: 'userSearch',component: userSearchFormComponent },
           { path: '/user-score-search', name: 'userScoreSearch',component: userSearchForScoreFormComponent },
+          
       ]
   },
   { path: '/students', component: StudentComponent },
   { path: '/reports', component: SearchReportComponent },
+  { path: '/report-graphic', name: 'reportGraphic',component: ReportGraphic },
   { path: '/score-edit',name: 'scoreEdit', component: ScoreEditComponent },
 
 ]

@@ -361,6 +361,27 @@
             >
           </div>
         </div>
+        <!-- افزودن نام کاربری -->
+        <div class="col">
+          <div
+            :class="btn12"
+            @click="changeColor12"
+            style="width: 90%; height: 40px; margin: auto; border-radius: 5px"
+          >
+            <router-link to="/report-graphic"
+              ><p
+                style="
+                  font-family: Vazir;
+                  font-size: small;
+                  color: aliceblue;
+                  padding-top: 9px;
+                "
+              >
+                گزارش گرافیکی
+              </p></router-link
+            >
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -381,6 +402,7 @@ export default {
     const btn9 = ref("class1");
     const btn10 = ref("class1");
     const btn11 = ref("class1");
+    const btn12 = ref("class1");
 
     function changeColor1() {
       btn1.value = "class2";
@@ -394,6 +416,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor2() {
       btn1.value = "class1";
@@ -407,6 +430,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor3() {
       btn1.value = "class1";
@@ -420,6 +444,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor4() {
       btn1.value = "class1";
@@ -433,6 +458,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor5() {
       btn1.value = "class1";
@@ -446,6 +472,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor6() {
       btn1.value = "class1";
@@ -459,6 +486,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor7() {
       btn1.value = "class1";
@@ -472,6 +500,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor8() {
       btn1.value = "class1";
@@ -485,6 +514,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor9() {
       btn1.value = "class1";
@@ -498,6 +528,7 @@ export default {
       btn9.value = "class2";
       btn10.value = "class1";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor10() {
       btn1.value = "class1";
@@ -511,6 +542,7 @@ export default {
       btn9.value = "class1";
       btn10.value = "class2";
       btn11.value = "class1";
+      btn12.value = "class1";
     }
     function changeColor11() {
       btn1.value = "class1";
@@ -524,6 +556,21 @@ export default {
       btn9.value = "class1";
       btn10.value = "class1";
       btn11.value = "class2";
+      btn12.value = "class1";
+    }
+    function changeColor12() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class1";
+      btn4.value = "class1";
+      btn5.value = "class1";
+      btn6.value = "class1";
+      btn7.value = "class1";
+      btn8.value = "class1";
+      btn9.value = "class1";
+      btn10.value = "class1";
+      btn11.value = "class1";
+      btn12.value = "class2";
     }
 
     return {
@@ -538,6 +585,7 @@ export default {
       btn9,
       btn10,
       btn11,
+      btn12,
       changeColor1,
       changeColor2,
       changeColor3,
@@ -549,6 +597,7 @@ export default {
       changeColor9,
       changeColor10,
       changeColor11,
+      changeColor12,
     };
   },
 };
