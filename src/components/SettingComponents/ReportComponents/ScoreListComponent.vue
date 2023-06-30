@@ -205,6 +205,7 @@
               </div>
 
               <button
+                data-dismiss="modal"
                 type="button"
                 class="btn btn-success"
                 style="height: 30px"
