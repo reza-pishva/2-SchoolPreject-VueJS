@@ -242,6 +242,7 @@ export default {
     usersScore: Array,
     spinner: Boolean,
     gradeId: String,
+    userId: String,
   },
 
   setup(props) {
@@ -259,8 +260,12 @@ export default {
     });
 
     const scores = ref([]);
+    const exam = ref("");
     const exams = ref([]);
     const exams2 = ref([]);
+    const lesson_id = ref("");
+    const grade_id = ref("");
+    const user_id = ref("");
     function deleteScore(id, index) {
       Swal.fire({
         title: "آیا مطمئن هستید؟",
@@ -334,16 +339,44 @@ export default {
             position: "top",
           });
         });
+
+      axios
+        .get(`http://127.0.0.1:8000/api/school/exam/exam-view2/${form.exam_id}`)
+        .then(function (response) {
+          exam.value = response.data;
+          user_id.value = props.userId;
+          grade_id.value = exam.value[0]["grade_id"];
+          lesson_id.value = exam.value[0]["lesson_id"];
+
+          axios
+            .get(
+              `http://127.0.0.1:8000/api/school/exam-user/exams-view/${user_id.value}/${lesson_id.value}/${grade_id.value}`
+            )
+            .then(function (response) {
+              scores.value = response.data;
+              console.log(scores.value);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
 
     return {
       scores,
+      exam,
       exams,
       exams2,
       form,
       fillingExams,
       updateScore,
       deleteScore,
+      lesson_id,
+      grade_id,
+      user_id,
     };
   },
 };

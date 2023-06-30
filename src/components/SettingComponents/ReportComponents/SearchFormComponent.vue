@@ -55,6 +55,7 @@
             :usersScore="scores"
             :spinner="ScoreSpinner"
             :gradeId="grade_id"
+            :userId="user_id"
           />
         </div>
       </div>
@@ -96,8 +97,9 @@ export default {
     const spinner = ref(true);
     const selectedIds = ref([]);
     const grade_id = ref("");
-    const l_name = ref("نام:");
-    const f_name = ref("نام خانوادگی:");
+    const user_id = ref("");
+    const l_name = ref("---");
+    const f_name = ref("---");
 
     function searchUser(formData) {
       ListSpinner.value = true;
@@ -143,6 +145,7 @@ export default {
       f_name.value = Lesson[3];
       l_name.value = Lesson[4];
       grade_id.value = Lesson[2];
+      user_id.value = Lesson[1];
       lessons.value = Lesson;
     }
 
@@ -167,6 +170,7 @@ export default {
       f_name,
       l_name,
       grade_id,
+      user_id,
     };
   },
 };
