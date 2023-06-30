@@ -1,6 +1,6 @@
 <template>
   <div class="row mt-4" style="direction: rtl">
-    <div class="col-3 bg-danger" style="height: 400px">
+    <div class="col-2 bg-danger" style="height: 400px">
       <div class="row">
         <div
           style="
@@ -44,17 +44,17 @@
         <div class="col bg-primary" style="height: 40px"></div>
       </div>
     </div>
-    <div class="col-9">
+    <div class="col-10">
       <div class="row">
-        <div class="col-5 bg-dark" style="height: 400px">
+        <div class="col-5" style="height: 400px">
           <div class="row" style="height: 10%; font-family: Vazir">
-            <div class="col bg-info">
+            <div class="col">
               <select
                 v-model="class_id"
                 class="form-select"
                 style="font-size: 12px"
               >
-                <option selected value="">انتخاب مقطع تحصیلی:</option>
+                <option selected value="">انتخاب کلاس:</option>
                 <option
                   v-for="(item, index) in classes"
                   :key="index"
@@ -64,11 +64,12 @@
                 </option>
               </select>
             </div>
-            <div class="col bg-info">
+            <div class="col">
               <button
                 type="button"
                 class="btn btn-primary button-class"
                 style="width: 50%; height: 30px; margin-top: 1px"
+                @click="searchList"
               >
                 جستجو
                 <div
@@ -80,8 +81,8 @@
             </div>
           </div>
           <div class="row" style="height: 80%">
-            <div class="col bg-danger">
-              <StudentList />
+            <div class="col">
+              <StudentList :formData2="users" />
             </div>
           </div>
           <div class="row" style="height: 10%">
@@ -107,7 +108,7 @@ export default {
   //   buttonLoading: Boolean,
   //   buttonText: String,
   //   buttonClass: String,
-  //   dataList: Array,
+  //   formData2: Array,
   // },
   components: {
     Report1,
@@ -115,6 +116,7 @@ export default {
   },
   setup() {
     const classes = ref([]);
+    const users = ref([]);
     const class_id = ref("");
 
     function getClasses() {
@@ -130,6 +132,20 @@ export default {
         });
     }
     getClasses();
+    function searchList() {
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/school/user/users-view-by-class-id/${class_id.value}`
+        )
+        .then(function (response) {
+          // handle success
+          users.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
     // const form = reactive({
     //   f_name: "",
     //   l_name: "",
@@ -179,7 +195,8 @@ export default {
       // grades,
       classes,
       class_id,
-      // users,
+      searchList,
+      users,
       // form,
       // validate1,
     };

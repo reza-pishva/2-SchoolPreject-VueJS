@@ -75,7 +75,9 @@
                 src="../../../../public/select.jpg"
             /></a>
           </td>
-          <td style="width: 5%; padding-top: 15px">{{ item.user_id }}</td>
+          <td style="width: 5%; padding-top: 15px; text-align: center">
+            {{ item.user_id }}
+          </td>
           <td style="width: 25%; padding-top: 15px">
             {{ item.f_name }}
           </td>
@@ -98,7 +100,6 @@ import axios from "axios";
 export default {
   props: {
     formData2: Array,
-    spinner: Boolean,
   },
   setup(props, { emit }) {
     const loading = ref(false);
