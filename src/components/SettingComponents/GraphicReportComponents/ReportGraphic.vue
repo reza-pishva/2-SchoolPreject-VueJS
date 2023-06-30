@@ -1,6 +1,6 @@
 <template>
   <div class="row mt-4" style="direction: rtl">
-    <div class="col-3 bg-danger" style="height: 350px">
+    <div class="col-3 bg-danger" style="height: 400px">
       <div class="row">
         <div
           style="
@@ -46,8 +46,50 @@
     </div>
     <div class="col-9">
       <div class="row">
-        <div class="col-5 bg-dark" style="height: 350px"></div>
-        <div class="col-7 bg-light pt-5" style="height: 350px">
+        <div class="col-5 bg-dark" style="height: 400px">
+          <div class="row" style="height: 10%; font-family: Vazir">
+            <div class="col bg-info">
+              <select
+                v-model="class_id"
+                class="form-select"
+                style="font-size: 12px"
+              >
+                <option selected value="">انتخاب مقطع تحصیلی:</option>
+                <option
+                  v-for="(item, index) in classes"
+                  :key="index"
+                  :value="item.id"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col bg-info">
+              <button
+                type="button"
+                class="btn btn-primary button-class"
+                style="width: 50%; height: 30px; margin-top: 1px"
+              >
+                جستجو
+                <div
+                  v-if="buttonLoading"
+                  class="spinner-border spinner-grow-sm"
+                  role="status"
+                ></div>
+              </button>
+            </div>
+          </div>
+          <div class="row" style="height: 80%">
+            <div class="col bg-danger">
+              <StudentList />
+            </div>
+          </div>
+          <div class="row" style="height: 10%">
+            <div class="col bg-info"></div>
+            <div class="col bg-info"></div>
+          </div>
+        </div>
+        <div class="col-7 bg-light pt-5" style="height: 400px">
           <Report1 />
         </div>
       </div>
@@ -57,9 +99,90 @@
 
 <script>
 import Report1 from "./Report1.vue";
-
+import StudentList from "./StudentsListComponent.vue";
+import { ref } from "vue";
+import axios from "axios";
 export default {
-  name: "App",
-  components: { Report1 },
+  // props: {
+  //   buttonLoading: Boolean,
+  //   buttonText: String,
+  //   buttonClass: String,
+  //   dataList: Array,
+  // },
+  components: {
+    Report1,
+    StudentList,
+  },
+  setup() {
+    const classes = ref([]);
+    const class_id = ref("");
+
+    function getClasses() {
+      axios
+        .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
+        .then(function (response) {
+          // handle success
+          classes.value = response.data;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    }
+    getClasses();
+    // const form = reactive({
+    //   f_name: "",
+    //   l_name: "",
+    //   national_code: "",
+    //   year: "",
+    //   class_id: "",
+    //   grade_id: "",
+    //   spinner: true,
+    // });
+
+    // const users = ref([]);
+    // const classes1 = ref([]);
+    // const grades = ref([]);
+
+    // function getClasses() {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
+    //     .then(function (response) {
+    //       // handle success
+    //       classes1.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getClasses();
+    // function getGrades() {
+    //   axios
+    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
+    //     .then(function (response) {
+    //       // handle success
+    //       grades.value = response.data;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     });
+    // }
+    // getGrades();
+
+    // function validate1() {
+    //   emit("formData", form);
+    //   form.spinner = false;
+    // }
+    return {
+      // grades,
+      classes,
+      class_id,
+      // users,
+      // form,
+      // validate1,
+    };
+  },
 };
 </script>

@@ -187,7 +187,6 @@ export default {
     getGrades();
 
     function validate1() {
-      console.log("firsttttttttttttttttttttttt");
       emit("formData", form);
       form.spinner = false;
     }
