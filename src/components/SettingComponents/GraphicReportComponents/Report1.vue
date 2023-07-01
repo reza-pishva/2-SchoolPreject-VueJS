@@ -7,7 +7,7 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 // import axios from "axios";
 
 import {
@@ -40,16 +40,15 @@ export default {
     LessonList: Array,
   },
   setup(props) {
-    watch(
-      () => props.LessonList,
-      (newValue) => {
-        chartData.value.labels = newValue;
-        console.log(chartData.value);
-      }
-    );
+    //watch();
+    // () => props.LessonList,
+    // (newValue) => {
+    //   chartData.value.labels = newValue;
+    //   console.log(chartData.value);
+    // }
     const chartData = ref({
-      labels: ["January", "February", "March"],
-      datasets: [{ data: [40, 20, 12], backgroundColor: "blue" }],
+      labels: props.LessonList,
+      datasets: [{ data: [40, 20], backgroundColor: "blue" }],
     });
     const chartOptions = ref({
       responsive: true,
