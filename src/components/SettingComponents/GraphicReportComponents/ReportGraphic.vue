@@ -80,18 +80,19 @@
               </button>
             </div>
           </div>
-          <div class="row" style="height: 80%">
-            <div class="col">
-              <StudentList :formData2="users" />
-            </div>
-          </div>
           <div class="row" style="height: 10%">
             <div class="col bg-info"></div>
             <div class="col bg-info"></div>
           </div>
+          <div class="row" style="height: 80%">
+            <div class="col">
+              {{ letGraphicShow }}
+              <StudentList @graphicShow="graphicReport" :formData2="users" />
+            </div>
+          </div>
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
-          <Report1 />
+          <Report1 :letShow="letGraphicShow" />
         </div>
       </div>
     </div>
@@ -118,6 +119,7 @@ export default {
     const classes = ref([]);
     const users = ref([]);
     const class_id = ref("");
+    const letGraphicShow = ref(false);
 
     function getClasses() {
       axios
@@ -191,13 +193,17 @@ export default {
     //   emit("formData", form);
     //   form.spinner = false;
     // }
+    function graphicReport(graphicShow) {
+      letGraphicShow.value = graphicShow;
+    }
     return {
       // grades,
       classes,
       class_id,
       searchList,
       users,
-      // form,
+      letGraphicShow,
+      graphicReport,
       // validate1,
     };
   },

@@ -1,5 +1,8 @@
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  {{ letShow }}
+  <div v-if="letShow">
+    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  </div>
 </template>
 
 <script>
@@ -26,6 +29,9 @@ ChartJS.register(
 export default {
   name: "BarChart",
   components: { Bar },
+  props: {
+    letShow: Boolean,
+  },
   data() {
     return {
       chartData: {

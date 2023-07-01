@@ -13,7 +13,7 @@
     style="
       margin-top: 10px;
       width: 100%;
-      height: 300px;
+      height: 320px;
       overflow: scroll;
       background-color: rgb(55, 47, 47);
       opacity: 0.6;
@@ -111,9 +111,11 @@ export default {
     const userId = ref("");
     const l_name = ref("");
     const f_name = ref("");
+    const graphicShow = ref(false);
 
-    function selectRow(index, gradeId, fName, lName, user_id) {
+    function selectRow(index, fName, lName, gradeId, user_id) {
       selectedRowIndex.value = index;
+      graphicShow.value = true;
       f_name.value = fName;
       l_name.value = lName;
       grade_id.value = gradeId;
@@ -146,8 +148,8 @@ export default {
           // handle error
           console.log(error);
         });
+      emit("graphicShow", graphicShow.value);
     }
-    selectRow();
 
     return {
       users,
@@ -159,6 +161,7 @@ export default {
       f_name,
       l_name,
       userId,
+      graphicShow,
     };
   },
 };
