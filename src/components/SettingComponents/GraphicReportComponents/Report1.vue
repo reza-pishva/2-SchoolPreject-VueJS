@@ -1,5 +1,5 @@
 <template>
-  {{ letShow }}
+  {{ LessonList }}
   <div v-if="letShow">
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
@@ -7,6 +7,9 @@
 
 <script>
 import { Bar } from "vue-chartjs";
+import { ref, watch } from "vue";
+// import axios from "axios";
+
 import {
   Chart as ChartJS,
   Title,
@@ -31,16 +34,33 @@ export default {
   components: { Bar },
   props: {
     letShow: Boolean,
+    f_name1: String,
+    l_name1: String,
+    grade_id1: String,
+    LessonList: Array,
   },
-  data() {
+  setup(props) {
+    watch(
+      () => props.grade_id1,
+      (newValue) => {
+        grade_id.value = newValue;
+      }
+    );
+    const chartData = ref({
+      labels: ["January", "February", "March"],
+      datasets: [{ data: [40, 20, 12], backgroundColor: "blue" }],
+    });
+    const chartOptions = ref({
+      responsive: true,
+    });
+    const lessons = ref([]);
+    const grade_id = ref("");
+
     return {
-      chartData: {
-        labels: ["January", "February", "March"],
-        datasets: [{ data: [40, 20, 12], backgroundColor: "blue" }],
-      },
-      chartOptions: {
-        responsive: true,
-      },
+      chartData,
+      chartOptions,
+      lessons,
+      grade_id,
     };
   },
 };

@@ -203,7 +203,6 @@ export default {
     getGrades();
 
     function validate1() {
-      console.log("firsttttttttttttttttttttttt");
       emit("formData", form);
     }
     return {

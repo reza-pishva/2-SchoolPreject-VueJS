@@ -86,13 +86,18 @@
           </div>
           <div class="row" style="height: 80%">
             <div class="col">
-              {{ letGraphicShow }}
               <StudentList @graphicShow="graphicReport" :formData2="users" />
             </div>
           </div>
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
-          <Report1 :letShow="letGraphicShow" />
+          <Report1
+            :letShow="letGraphicShow"
+            :f_name1="f_name"
+            :l_name1="l_name"
+            :grade_id1="grade_id"
+            :LessonList="lessons"
+          />
         </div>
       </div>
     </div>
@@ -117,9 +122,13 @@ export default {
   },
   setup() {
     const classes = ref([]);
+    const lessons = ref([]);
     const users = ref([]);
     const class_id = ref("");
     const letGraphicShow = ref(false);
+    const f_name = ref("");
+    const l_name = ref("");
+    const grade_id = ref("");
 
     function getClasses() {
       axios
@@ -148,6 +157,7 @@ export default {
           console.log(error);
         });
     }
+
     // const form = reactive({
     //   f_name: "",
     //   l_name: "",
@@ -194,17 +204,33 @@ export default {
     //   form.spinner = false;
     // }
     function graphicReport(graphicShow) {
-      letGraphicShow.value = graphicShow;
+      letGraphicShow.value = graphicShow[0];
+      f_name.value = graphicShow[1];
+      l_name.value = graphicShow[2];
+      grade_id.value = graphicShow[3];
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
+        )
+        .then(function (response) {
+          lessons.value = response.data;
+          console.log(response.lesson_name);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
     return {
-      // grades,
+      lessons,
       classes,
       class_id,
       searchList,
       users,
       letGraphicShow,
       graphicReport,
-      // validate1,
+      f_name,
+      l_name,
+      grade_id,
     };
   },
 };

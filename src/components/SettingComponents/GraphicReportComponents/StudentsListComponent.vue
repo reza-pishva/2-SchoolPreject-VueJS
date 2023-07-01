@@ -113,7 +113,7 @@ export default {
     const f_name = ref("");
     const graphicShow = ref(false);
 
-    function selectRow(index, fName, lName, gradeId, user_id) {
+    function selectRow(index, gradeId, fName, lName, user_id) {
       selectedRowIndex.value = index;
       graphicShow.value = true;
       f_name.value = fName;
@@ -148,7 +148,7 @@ export default {
           // handle error
           console.log(error);
         });
-      emit("graphicShow", graphicShow.value);
+      emit("graphicShow", [graphicShow.value, fName, lName, gradeId]);
     }
 
     return {
