@@ -148,7 +148,7 @@ export default {
           // handle error
           console.log(error);
         });
-      emit("graphicShow", [graphicShow.value, fName, lName, gradeId]);
+      emit("graphicShow", [graphicShow.value, fName, lName, gradeId, user_id]);
     }
 
     return {

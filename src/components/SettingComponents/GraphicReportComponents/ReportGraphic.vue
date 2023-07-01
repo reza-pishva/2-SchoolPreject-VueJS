@@ -97,6 +97,7 @@
             :l_name1="l_name"
             :grade_id1="grade_id"
             :LessonList="lessons"
+            :ScoresList="scores"
           />
         </div>
       </div>
@@ -122,13 +123,16 @@ export default {
   },
   setup() {
     const classes = ref([]);
+    const scores = ref([]);
     const lessons = ref([]);
+    const lesson_ids = ref([]);
     const users = ref([]);
     const class_id = ref("");
     const letGraphicShow = ref(false);
     const f_name = ref("");
     const l_name = ref("");
     const grade_id = ref("");
+    const user_id = ref("");
 
     function getClasses() {
       axios
@@ -162,12 +166,27 @@ export default {
       f_name.value = graphicShow[1];
       l_name.value = graphicShow[2];
       grade_id.value = graphicShow[3];
+      user_id.value = graphicShow[4];
       axios
         .get(
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
           lessons.value = response.data.map((item) => item.lesson_name);
+          console.log(lessons.value);
+          // lesson_ids.value = response.data.map((item) => item.lesson_id);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      axios
+        .get(
+          `http://127.0.0.1:8000/api/school/exam-user/user/${grade_id.value}/${user_id.value}`
+        )
+        .then(function (response) {
+          scores.value = response.data;
+          console.log(scores.value);
         })
         .catch(function (error) {
           console.log(error);
@@ -175,6 +194,7 @@ export default {
     }
     return {
       lessons,
+      lesson_ids,
       classes,
       class_id,
       searchList,
@@ -184,6 +204,8 @@ export default {
       f_name,
       l_name,
       grade_id,
+      scores,
+      user_id,
     };
   },
 };

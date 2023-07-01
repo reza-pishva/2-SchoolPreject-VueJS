@@ -1,5 +1,5 @@
 <template>
-  {{ LessonList }}
+  {{ ScoresList }} {{ LessonList }}
   <div v-if="letShow">
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
@@ -38,6 +38,7 @@ export default {
     l_name1: String,
     grade_id1: String,
     LessonList: Array,
+    ScoresList: Array,
   },
   setup(props) {
     //watch();
@@ -48,7 +49,7 @@ export default {
     // }
     const chartData = ref({
       labels: props.LessonList,
-      datasets: [{ data: [40, 20], backgroundColor: "blue" }],
+      datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
     });
     const chartOptions = ref({
       responsive: true,
