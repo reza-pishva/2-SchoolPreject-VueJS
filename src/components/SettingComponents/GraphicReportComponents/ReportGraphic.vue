@@ -157,52 +157,6 @@ export default {
           console.log(error);
         });
     }
-
-    // const form = reactive({
-    //   f_name: "",
-    //   l_name: "",
-    //   national_code: "",
-    //   year: "",
-    //   class_id: "",
-    //   grade_id: "",
-    //   spinner: true,
-    // });
-
-    // const users = ref([]);
-    // const classes1 = ref([]);
-    // const grades = ref([]);
-
-    // function getClasses() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/classroom/classrooms")
-    //     .then(function (response) {
-    //       // handle success
-    //       classes1.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getClasses();
-    // function getGrades() {
-    //   axios
-    //     .get("http://127.0.0.1:8000/api/school/grade/grades")
-    //     .then(function (response) {
-    //       // handle success
-    //       grades.value = response.data;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     });
-    // }
-    // getGrades();
-
-    // function validate1() {
-    //   emit("formData", form);
-    //   form.spinner = false;
-    // }
     function graphicReport(graphicShow) {
       letGraphicShow.value = graphicShow[0];
       f_name.value = graphicShow[1];
@@ -213,8 +167,7 @@ export default {
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
         )
         .then(function (response) {
-          lessons.value = response.data;
-          console.log(response.lesson_name);
+          lessons.value = response.data.map((item) => item.lesson_name);
         })
         .catch(function (error) {
           console.log(error);

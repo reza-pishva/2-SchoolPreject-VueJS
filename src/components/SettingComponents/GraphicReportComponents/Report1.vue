@@ -41,9 +41,10 @@ export default {
   },
   setup(props) {
     watch(
-      () => props.grade_id1,
+      () => props.LessonList,
       (newValue) => {
-        grade_id.value = newValue;
+        chartData.value.labels = newValue;
+        console.log(chartData.value);
       }
     );
     const chartData = ref({
