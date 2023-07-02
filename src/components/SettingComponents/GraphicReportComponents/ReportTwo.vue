@@ -36,17 +36,10 @@ export default {
     letShow: Boolean,
     f_name1: String,
     l_name1: String,
-    grade_id1: String,
     LessonList: Array,
     ScoresList: Array,
   },
   setup(props) {
-    //watch();
-    // () => props.LessonList,
-    // (newValue) => {
-    //   chartData.value.labels = newValue;
-    //   console.log(chartData.value);
-    // }
     const chartData = ref({
       labels: props.LessonList,
       datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
@@ -54,14 +47,10 @@ export default {
     const chartOptions = ref({
       responsive: true,
     });
-    const lessons = ref([]);
-    const grade_id = ref("");
 
     return {
       chartData,
       chartOptions,
-      lessons,
-      grade_id,
     };
   },
 };

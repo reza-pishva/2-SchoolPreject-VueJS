@@ -91,13 +91,10 @@
           </div>
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
-          <Report1
-            :letShow="letGraphicShow"
-            :f_name1="f_name"
-            :l_name1="l_name"
-            :grade_id1="grade_id"
+          <ReportOne
             :LessonList="lessons"
             :ScoresList="scores"
+            :letShow="letGraphicShow"
           />
         </div>
       </div>
@@ -106,19 +103,13 @@
 </template>
 
 <script>
-import Report1 from "./Report1.vue";
+import ReportOne from "./ReportOne.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
 export default {
-  // props: {
-  //   buttonLoading: Boolean,
-  //   buttonText: String,
-  //   buttonClass: String,
-  //   formData2: Array,
-  // },
   components: {
-    Report1,
+    ReportOne,
     StudentList,
   },
   setup() {
