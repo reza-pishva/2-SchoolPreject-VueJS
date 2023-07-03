@@ -36,17 +36,18 @@
       filter: alpha(opacity=100);
     "
   >
-    <div class="col" v-if="spinner">
-      <div
-        class="spinner-border text-danger"
-        role="status"
-        style="width: 100px; height: 100px; margin-top: 100px"
-      >
-        <span class="visually-hidden">Loading...</span>
+    <div class="col">
+      <div class="col" v-if="spinner">
+        <div
+          class="spinner-border text-danger"
+          role="status"
+          style="width: 100px; height: 100px; margin-top: 100px"
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
-    </div>
-    <div v-else class="col">
       <table
+        v-else
         class="table table-bordered"
         style="
           font-family: Vazir;

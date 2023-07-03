@@ -1,7 +1,6 @@
 <template>
   {{ ScoresList }} {{ LessonList }}
   <div v-if="letShow">
-    <button @click="shuffleData">Shuffle</button>
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
 </template>
@@ -9,7 +8,6 @@
 <script>
 import { Bar } from "vue-chartjs";
 import { ref } from "vue";
-import { shuffle } from "lodash";
 // import axios from "axios";
 
 import {
@@ -50,14 +48,9 @@ export default {
       responsive: true,
     });
 
-    function shuffleData() {
-      chartData.value = shuffle(chartData.value);
-    }
-
     return {
       chartData,
       chartOptions,
-      shuffleData,
     };
   },
 };
