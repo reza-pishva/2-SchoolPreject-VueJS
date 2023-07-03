@@ -43,6 +43,7 @@ export default {
     });
 
     const updateChartData = () => {
+      // console.log(props.LessonList, props.ScoresList);
       chartData.value.datasets[0].data = props.ScoresList;
       chartData.value.labels = props.LessonList;
     };

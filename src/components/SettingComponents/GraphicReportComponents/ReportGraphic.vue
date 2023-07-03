@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import ReportOne2 from "./ReportOne2.vue";
+import ReportOne2 from "./ReportTwo.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
