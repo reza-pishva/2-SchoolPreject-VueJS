@@ -1,46 +1,89 @@
 <template>
+  {{ ScoresList }}{{ LessonList }}
   <div>
-    <Bar :data="chartData" :options="chartOptions" />
-    <button @click="updateChartData">Update Chart</button>
+    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import { Bar } from "chart.js";
+import { ref, onMounted, watch } from "vue";
+import { Bar } from "vue-chartjs";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export default {
-  components: {
-    Bar,
+  name: "BarChart",
+  components: { Bar },
+  props: {
+    ScoresList: {
+      type: Array,
+      required: true,
+    },
+    LessonList: {
+      type: Array,
+      required: true,
+    },
   },
-  setup() {
+  setup(props) {
     const chartData = ref({
-      labels: ["January", "February", "March", "April", "May"],
+      labels: ["--", "--"],
       datasets: [
         {
-          label: "Sales",
-          data: [50, 60, 70, 80, 90],
+          label: "Scores",
+          data: [1, 1],
           backgroundColor: "rgba(75, 192, 192, 0.2)",
           borderColor: "rgba(75, 192, 192, 1)",
           borderWidth: 1,
         },
       ],
     });
+    const scores = ref([]);
+    const lessons = ref([]);
 
+    onMounted(() => {
+      updateChartData();
+    });
+    watch(
+      () => props.ScoresList,
+      (newValue) => {
+        chartData.value.datasets[0].data = newValue;
+        chartData.value.labels = props.LessonList;
+      }
+    );
+    // watch([props.ScoresList, props.LessonList], () => {
+    //   console.log("11111111111111111111111111111");
+    //   updateChartData();
+    // });
     const chartOptions = ref({
       responsive: true,
-      maintainAspectRatio: false,
+      // maintainAspectRatio: false,
     });
-
     const updateChartData = () => {
-      // Example of updating the chart data
-      chartData.value.datasets[0].data = [30, 40, 50, 60, 70];
+      chartData.value.datasets[0].data = props.ScoresList;
+      chartData.value.labels = props.LessonList;
     };
 
     return {
       chartData,
       chartOptions,
-      updateChartData,
+      scores,
+      lessons,
     };
   },
 };

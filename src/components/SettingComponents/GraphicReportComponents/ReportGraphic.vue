@@ -160,10 +160,8 @@ export default {
         )
         .then(function (response) {
           lessons.value = response.data.map((item) => item.lesson_name);
-          console.log(lessons.value);
         })
         .catch(function (error) {
-          console.log("lessons error");
           console.log(error);
         });
 
@@ -173,10 +171,8 @@ export default {
         )
         .then(function (response) {
           scores.value = response.data;
-          console.log(scores.value);
         })
         .catch(function (error) {
-          console.log("scores error");
           console.log(error);
         });
     }
