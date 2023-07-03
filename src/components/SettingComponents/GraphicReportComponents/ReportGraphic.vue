@@ -91,11 +91,7 @@
           </div>
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
-          <ReportOne
-            :LessonList="lessons"
-            :ScoresList="scores"
-            :letShow="letGraphicShow"
-          />
+          <ReportOne2 :LessonList="lessons" :ScoresList="scores" />
         </div>
       </div>
     </div>
@@ -103,13 +99,13 @@
 </template>
 
 <script>
-import ReportOne from "./ReportOne.vue";
+import ReportOne2 from "./ReportOne2.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
 export default {
   components: {
-    ReportOne,
+    ReportOne2,
     StudentList,
   },
   setup() {
@@ -165,9 +161,9 @@ export default {
         .then(function (response) {
           lessons.value = response.data.map((item) => item.lesson_name);
           console.log(lessons.value);
-          // lesson_ids.value = response.data.map((item) => item.lesson_id);
         })
         .catch(function (error) {
+          console.log("lessons error");
           console.log(error);
         });
 
@@ -180,6 +176,7 @@ export default {
           console.log(scores.value);
         })
         .catch(function (error) {
+          console.log("scores error");
           console.log(error);
         });
     }

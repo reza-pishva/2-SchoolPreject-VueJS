@@ -7,7 +7,7 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import { ref } from "vue";
+import { ref, watch, onMounted } from "vue";
 // import axios from "axios";
 
 import {
@@ -40,12 +40,28 @@ export default {
     ScoresList: Array,
   },
   setup(props) {
+    const scores = ref([]);
+    const lessons = ref([]);
+
     const chartData = ref({
       labels: props.LessonList,
       datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
     });
     const chartOptions = ref({
       responsive: true,
+    });
+    onMounted(() => {
+      scores.value = props.ScoresList;
+      lessons.value = props.LessonList;
+    });
+    watch([scores, lessons], () => {
+      chartData.value = {
+        labels: props.LessonList,
+        datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
+      };
+      chartOptions.value = {
+        responsive: true,
+      };
     });
 
     return {
