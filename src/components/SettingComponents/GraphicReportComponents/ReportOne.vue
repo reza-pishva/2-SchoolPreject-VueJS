@@ -1,6 +1,6 @@
 <template>
   {{ ScoresList }} {{ LessonList }}
-  <div v-if="letShow">
+  <div>
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
 </template>
