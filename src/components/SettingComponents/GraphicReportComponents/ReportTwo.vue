@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
@@ -59,13 +59,19 @@ export default {
     onMounted(() => {
       updateChartData();
     });
-    watch(
-      () => props.ScoresList,
-      (newValue) => {
-        chartData.value.datasets[0].data = newValue;
-        chartData.value.labels = props.LessonList;
-      }
-    );
+    watchEffect(() => {
+      chartData.value.datasets[0].data = props.ScoresList;
+      chartData.value.labels = props.LessonList;
+    });
+    //   () => [props.ScoresList, props.LessonList],
+    //   () => {
+    //     chartData.value.datasets[0].data = [10, 12];
+    //     chartData.value.labels = ["aa", "aa"];
+    //     // console.log(chartData.value.datasets[0].data);
+    //     // console.log(chartData.value.labels);
+    //   }
+    // );
+
     // watch([props.ScoresList, props.LessonList], () => {
     //   console.log("11111111111111111111111111111");
     //   updateChartData();
