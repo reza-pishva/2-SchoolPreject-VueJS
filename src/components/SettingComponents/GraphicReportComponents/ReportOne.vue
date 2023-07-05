@@ -1,5 +1,7 @@
 <template>
-  {{ ScoresList }} {{ LessonList }}
+  {{ scores }} {{ lessons }}
+  <!-- {{ chartData }}
+  {{ chartOptions }} -->
   <div>
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
@@ -8,7 +10,6 @@
 <script>
 import { Bar } from "vue-chartjs";
 import { ref, watch, onMounted } from "vue";
-// import axios from "axios";
 
 import {
   Chart as ChartJS,
@@ -65,6 +66,8 @@ export default {
     });
 
     return {
+      scores,
+      lessons,
       chartData,
       chartOptions,
     };

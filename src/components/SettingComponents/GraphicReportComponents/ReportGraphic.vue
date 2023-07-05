@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
-          <ReportOne2 :LessonList="lessons" :ScoresList="scores" />
+          <ReportThree :LessonList="lessons" :ScoresList="scores" />
           <!-- <ReportOne2 /> -->
         </div>
       </div>
@@ -100,13 +100,13 @@
 </template>
 
 <script>
-import ReportOne2 from "./ReportOne.vue";
+import ReportThree from "./ReportOne.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
 export default {
   components: {
-    ReportOne2,
+    ReportThree,
     StudentList,
   },
   setup() {
