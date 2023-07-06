@@ -1,7 +1,7 @@
 <template>
-  {{ scores }} {{ lessons }}
-  <!-- {{ chartData }}
-  {{ chartOptions }} -->
+  <!-- {{ scores }} {{ lessons }} -->
+  {{ chartData }}
+  {{ chartOptions }}
   <div>
     <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
   </div>
@@ -54,6 +54,7 @@ export default {
     onMounted(() => {
       scores.value = props.ScoresList;
       lessons.value = props.LessonList;
+      console.log(scores.value, lessons.value);
     });
     watch([scores, lessons], () => {
       chartData.value = {
