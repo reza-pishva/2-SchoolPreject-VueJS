@@ -92,7 +92,6 @@
         </div>
         <div class="col-7 bg-light pt-5" style="height: 400px">
           <ReportThree :LessonList="lessons" :ScoresList="scores" />
-          <!-- <ReportOne2 /> -->
         </div>
       </div>
     </div>

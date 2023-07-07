@@ -1,16 +1,17 @@
 <template>
-  <!-- {{ scores }} {{ lessons }} -->
-  {{ chartData }}
-  {{ chartOptions }}
   <div>
-    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+    {{ chartData }}
+  </div>
+  <div>{{ ScoresList }}{{ LessonList }}</div>
+
+  <div>
+    <Bar :options="{ responsive: true }" :data="chartData" />
   </div>
 </template>
 
 <script>
 import { Bar } from "vue-chartjs";
-import { ref, watch, onMounted } from "vue";
-
+import { ref, watch } from "vue";
 import {
   Chart as ChartJS,
   Title,
@@ -31,46 +32,37 @@ ChartJS.register(
 );
 
 export default {
-  name: "BarChart",
   components: { Bar },
   props: {
-    letShow: Boolean,
-    f_name1: String,
-    l_name1: String,
-    LessonList: Array,
     ScoresList: Array,
+    LessonList: Array,
   },
   setup(props) {
-    const scores = ref([]);
-    const lessons = ref([]);
-
     const chartData = ref({
-      labels: props.LessonList,
-      datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
+      labels: [],
+      datasets: [
+        {
+          data: [],
+        },
+      ],
     });
-    const chartOptions = ref({
-      responsive: true,
+
+    watch(props.ScoresList, (newScoresList) => {
+      chartData.value.labels = newScoresList.map((score) => score.name);
+      chartData.value.datasets[0].data = newScoresList.map(
+        (score) => score.score
+      );
     });
-    onMounted(() => {
-      scores.value = props.ScoresList;
-      lessons.value = props.LessonList;
-      console.log(scores.value, lessons.value);
-    });
-    watch([scores, lessons], () => {
-      chartData.value = {
-        labels: props.LessonList,
-        datasets: [{ data: props.ScoresList, backgroundColor: "blue" }],
-      };
-      chartOptions.value = {
-        responsive: true,
-      };
+
+    watch(props.LessonList, (newLessonList) => {
+      chartData.value.labels = newLessonList.map((lesson) => lesson.name);
+      chartData.value.datasets[0].data = newLessonList.map(
+        (lesson) => lesson.score
+      );
     });
 
     return {
-      scores,
-      lessons,
       chartData,
-      chartOptions,
     };
   },
 };
