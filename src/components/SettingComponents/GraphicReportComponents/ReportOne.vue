@@ -1,6 +1,4 @@
 <template>
-  <div>{{ ScoresList }}{{ LessonList }}</div>
-
   <div>
     <Bar
       :options="{ responsive: true }"
@@ -8,10 +6,17 @@
         labels: LessonList,
         datasets: [
           {
-            label: 'نمرات',
+            label: 'میانگین نمرات دانش آموز',
             data: ScoresList,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+          {
+            label: 'میانگین نمرات کلاس',
+            data: ScoresList,
+            backgroundColor: 'rgba(194, 49, 41, 0.2)',
+            borderColor: 'rgba(194, 49, 41, 0.5)',
             borderWidth: 1,
           },
         ],
