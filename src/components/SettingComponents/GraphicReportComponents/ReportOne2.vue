@@ -1,64 +1,85 @@
 <template>
-  {{ LessonList }}{{ ScoresList }}
   <div>
-    <Bar :data="chartData" :options="chartOptions" />
+    <Bar
+      :options="{ responsive: true }"
+      :data="{
+        labels: LessonList,
+        datasets: [
+          {
+            label: 'میانگین نمرات دانش آموز',
+            data: ScoresList,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+          {
+            label: 'میانگین نمرات دانش آموزان این مقطع تحصیلی',
+            data: ScoresList2,
+            backgroundColor: 'rgba(194, 49, 41, 0.2)',
+            borderColor: 'rgba(194, 49, 41, 0.5)',
+            borderWidth: 1,
+          },
+        ],
+      }"
+    />
   </div>
 </template>
 
 <script>
-import { ref, watch, onMounted } from "vue";
-import { Bar } from "chart.js";
+import { Bar } from "vue-chartjs";
+import { ref } from "vue";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export default {
-  components: {
-    Bar,
-  },
+  components: { Bar },
   props: {
-    ScoresList: {
-      type: Array,
-      required: true,
-    },
-    LessonList: {
-      type: Array,
-      required: true,
-    },
+    ScoresList: Array,
+    ScoresList2: Array,
+    LessonList: Array,
   },
-  setup(props) {
+  setup() {
     const chartData = ref({
-      labels: props.LessonList,
+      labels: [],
       datasets: [
         {
-          label: "Scores",
-          data: props.ScoresList,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1,
+          data: [],
         },
       ],
     });
 
-    const chartOptions = ref({
-      responsive: true,
-      maintainAspectRatio: false,
-    });
+    // watch(props.ScoresList, (newScoresList) => {
+    //   chartData.value.labels = newScoresList.map((score) => score.name);
+    //   chartData.value.datasets[0].data = newScoresList.map(
+    //     (score) => score.score
+    //   );
+    // });
 
-    const updateChartData = () => {
-      // console.log(props.LessonList, props.ScoresList);
-      chartData.value.datasets[0].data = props.ScoresList;
-      chartData.value.labels = props.LessonList;
-    };
-
-    watch([props.ScoresList, props.LessonList], () => {
-      updateChartData();
-    });
-
-    onMounted(() => {
-      updateChartData();
-    });
+    // watch(props.LessonList, (newLessonList) => {
+    //   chartData.value.labels = newLessonList.map((lesson) => lesson.name);
+    //   chartData.value.datasets[0].data = newLessonList.map(
+    //     (lesson) => lesson.score
+    //   );
+    // });
 
     return {
       chartData,
-      chartOptions,
     };
   },
 };

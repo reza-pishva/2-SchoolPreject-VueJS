@@ -1,14 +1,15 @@
 <template>
-  <div class="row mt-4" style="direction: rtl">
-    <div class="col-2 bg-danger" style="height: 400px">
+  <div class="row mt-4" style="direction: rtl; margin-right: 10px">
+    <div class="col-2" style="height: 400px">
       <div class="row">
         <div
           style="
-            height: 40px;
+            height: 35px;
             border-radius: 5px;
-            width: 80%;
-            background-color: blue;
-            margin: auto;
+            width: 70%;
+            background-color: rgba(51, 51, 144, 0.726);
+            margin-right: 48px;
+            margin-top: 90px;
           "
         >
           <p
@@ -23,32 +24,100 @@
           </p>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col bg-warning" style="height: 40px"></div>
-        <div class="col bg-primary" style="height: 40px"></div>
-      </div>
-      <div class="row mt-1">
-        <div class="col bg-primary" style="height: 40px"></div>
-        <div class="col bg-warning" style="height: 40px"></div>
-      </div>
-      <div class="row mt-1">
-        <div class="col bg-warning" style="height: 40px"></div>
-        <div class="col bg-primary" style="height: 40px"></div>
-      </div>
-      <div class="row mt-1">
-        <div class="col bg-primary" style="height: 40px"></div>
-        <div class="col bg-warning" style="height: 40px"></div>
-      </div>
-      <div class="row mt-1">
-        <div class="col bg-warning" style="height: 40px"></div>
-        <div class="col bg-primary" style="height: 40px"></div>
+      <div
+        class="row"
+        style="
+          background-color: rgba(20, 16, 63, 0.656);
+          margin-top: 10px;
+          height: 200px;
+          width: 90%;
+          margin-right: 25px;
+          border-radius: 5px;
+        "
+      >
+        <div class="row mt-1" style="margin-right: 2px">
+          <div style="height: 40px; width: 80%; padding-right: 27px">
+            <button
+              type="button"
+              class="btn btn-primary button-class"
+              style="
+                width: 120%;
+                height: 30px;
+                margin-top: 5px;
+                padding-top: 5px;
+                margin-right: -7px;
+              "
+              @click="searchList"
+            >
+              <p style="font-size: 13px; font-family: Vazir">Bar chart</p>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-1" style="margin-right: 2px">
+          <div style="height: 40px; width: 80%; padding-right: 27px">
+            <button
+              type="button"
+              class="btn btn-primary button-class"
+              style="
+                width: 120%;
+                height: 30px;
+                margin-top: 5px;
+                padding-top: 5px;
+                margin-right: -7px;
+              "
+              @click="searchList"
+            >
+              <p style="font-size: 13px; font-family: Vazir">Line chart</p>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-1" style="margin-right: 2px">
+          <div style="height: 40px; width: 80%; padding-right: 27px">
+            <button
+              type="button"
+              class="btn btn-primary button-class"
+              style="
+                width: 120%;
+                height: 30px;
+                margin-top: 5px;
+                padding-top: 5px;
+                margin-right: -7px;
+              "
+              @click="searchList"
+            >
+              <p style="font-size: 13px; font-family: Vazir">Pie chart</p>
+            </button>
+          </div>
+        </div>
+        <div class="row mt-1" style="margin-right: 2px">
+          <div style="height: 40px; width: 80%; padding-right: 27px">
+            <button
+              type="button"
+              class="btn btn-primary button-class"
+              style="
+                width: 120%;
+                height: 30px;
+                margin-top: 5px;
+                padding-top: 5px;
+                margin-right: -7px;
+              "
+              @click="searchList"
+            >
+              <p style="font-size: 13px; font-family: Vazir">Radar chart</p>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-10">
       <div class="row">
         <div class="col-5" style="height: 400px">
           <div class="row" style="height: 10%; font-family: Vazir">
-            <div class="col">
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+          <div class="row" style="height: 10%">
+            <div class="col" style="padding-right: 35px">
               <select
                 v-model="class_id"
                 class="form-select"
@@ -64,11 +133,16 @@
                 </option>
               </select>
             </div>
-            <div class="col">
+            <div class="col" style="padding-left: 50px">
               <button
                 type="button"
                 class="btn btn-primary button-class"
-                style="width: 50%; height: 30px; margin-top: 1px"
+                style="
+                  width: 50%;
+                  height: 30px;
+                  margin-top: 1px;
+                  padding-top: 2px;
+                "
                 @click="searchList"
               >
                 جستجو
@@ -80,18 +154,18 @@
               </button>
             </div>
           </div>
-          <div class="row" style="height: 10%">
-            <div class="col bg-info"></div>
-            <div class="col bg-info"></div>
-          </div>
           <div class="row" style="height: 80%">
             <div class="col">
               <StudentList @graphicShow="graphicReport" :formData2="users" />
             </div>
           </div>
         </div>
-        <div class="col-7 bg-light pt-5" style="height: 400px">
-          <ReportThree :LessonList="lessons" :ScoresList="scores" />
+        <div class="col-7 pt-5" style="height: 400px">
+          <ReportThree
+            :LessonList="lessons"
+            :ScoresList="scores"
+            :ScoresList2="scores2"
+          />
         </div>
       </div>
     </div>
@@ -111,6 +185,7 @@ export default {
   setup() {
     const classes = ref([]);
     const scores = ref([]);
+    const scores2 = ref([]);
     const lessons = ref([]);
     const lesson_ids = ref([]);
     const users = ref([]);
@@ -170,7 +245,8 @@ export default {
           `http://127.0.0.1:8000/api/school/exam-user/user/${grade_id.value}/${user_id.value}`
         )
         .then(function (response) {
-          scores.value = response.data;
+          scores.value = response.data[0];
+          scores2.value = response.data[1];
         })
         .catch(function (error) {
           console.log(error);
@@ -189,6 +265,7 @@ export default {
       l_name,
       grade_id,
       scores,
+      scores2,
       user_id,
     };
   },
