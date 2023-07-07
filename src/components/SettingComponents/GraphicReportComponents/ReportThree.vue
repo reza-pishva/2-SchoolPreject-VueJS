@@ -1,70 +1,80 @@
 <template>
+  <div>{{ ScoresList }}{{ LessonList }}</div>
+
   <div>
-    <canvas ref="chart" width="400" height="400"></canvas>
+    <Bar
+      :options="{ responsive: true }"
+      :data="{
+        labels: `${LessonList}`,
+        datasets: [
+          {
+            label: 'Scores',
+            data: `${ScoresList}`,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1,
+          },
+        ],
+      }"
+    />
   </div>
 </template>
 
 <script>
-import { Line } from "vue-chartjs";
+import { Bar } from "vue-chartjs";
+import { ref, watch } from "vue";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export default {
-  extends: Line,
+  components: { Bar },
   props: {
-    scoresList: {
-      type: Array,
-      required: true,
-    },
-    lessonList: {
-      type: Array,
-      required: true,
-    },
+    ScoresList: Array,
+    LessonList: Array,
   },
-  data() {
-    return {
-      chartData: {
-        labels: [],
-        datasets: [
-          {
-            data: [],
-          },
-        ],
-      },
-      chartOptions: {
-        scales: {
-          xAxes: [
-            {
-              ticks: {
-                max: 0,
-              },
-            },
-          ],
+  setup(props) {
+    const chartData = ref({
+      labels: [],
+      datasets: [
+        {
+          data: [],
         },
-      },
-    };
-  },
-  methods: {
-    updateChartData() {
-      this.chartData.labels = this.scoresList.map((score) => score.name);
-      this.chartData.datasets[0].data = this.scoresList.map(
+      ],
+    });
+
+    watch(props.ScoresList, (newScoresList) => {
+      chartData.value.labels = newScoresList.map((score) => score.name);
+      chartData.value.datasets[0].data = newScoresList.map(
         (score) => score.score
       );
-      this.chartOptions.scales.xAxes[0].ticks.max = this.lessonList.length;
-      // Call the update() method provided by the vue-chartjs library to update the chart
-      this.$data._chart.update();
-    },
-  },
-  // watch: {
-  //   scoresList() {
-  //     this.updateChartData();
-  //   },
-  //   lessonList() {
-  //     this.updateChartData();
-  //   },
-  // },
-  mounted() {
-    // this.updateChartData();
-    // // Render the chart using the renderChart() method provided by the vue-chartjs library
-    // this.renderChart(this.chartData, this.chartOptions);
+    });
+
+    watch(props.LessonList, (newLessonList) => {
+      chartData.value.labels = newLessonList.map((lesson) => lesson.name);
+      chartData.value.datasets[0].data = newLessonList.map(
+        (lesson) => lesson.score
+      );
+    });
+
+    return {
+      chartData,
+    };
   },
 };
 </script>

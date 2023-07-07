@@ -5,11 +5,11 @@
     <Bar
       :options="{ responsive: true }"
       :data="{
-        labels: `${LessonList}`,
+        labels: LessonList,
         datasets: [
           {
-            label: 'Scores',
-            data: `${ScoresList}`,
+            label: 'نمرات',
+            data: ScoresList,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
@@ -22,7 +22,7 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import {
   Chart as ChartJS,
   Title,
@@ -48,7 +48,7 @@ export default {
     ScoresList: Array,
     LessonList: Array,
   },
-  setup(props) {
+  setup() {
     const chartData = ref({
       labels: [],
       datasets: [
@@ -58,19 +58,19 @@ export default {
       ],
     });
 
-    watch(props.ScoresList, (newScoresList) => {
-      chartData.value.labels = newScoresList.map((score) => score.name);
-      chartData.value.datasets[0].data = newScoresList.map(
-        (score) => score.score
-      );
-    });
+    // watch(props.ScoresList, (newScoresList) => {
+    //   chartData.value.labels = newScoresList.map((score) => score.name);
+    //   chartData.value.datasets[0].data = newScoresList.map(
+    //     (score) => score.score
+    //   );
+    // });
 
-    watch(props.LessonList, (newLessonList) => {
-      chartData.value.labels = newLessonList.map((lesson) => lesson.name);
-      chartData.value.datasets[0].data = newLessonList.map(
-        (lesson) => lesson.score
-      );
-    });
+    // watch(props.LessonList, (newLessonList) => {
+    //   chartData.value.labels = newLessonList.map((lesson) => lesson.name);
+    //   chartData.value.datasets[0].data = newLessonList.map(
+    //     (lesson) => lesson.score
+    //   );
+    // });
 
     return {
       chartData,
