@@ -16,10 +16,16 @@
         labels: ExamList,
         datasets: [
           {
-            label: 'تغییرات نمرات این درس',
-            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-            borderColor: 'rgba(255,99,132,1)',
-            data: ScoresList,
+            label: 'تغییرات نمرات دانش آموز',
+            // backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            borderColor: 'rgba(232,240,74,1)',
+            data: ScoresList1,
+          },
+          {
+            label: 'تغییرات میانگین نمرات کلیه دانش آموزان',
+            // backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            borderColor: 'rgba(82,226,223,1)',
+            data: ScoresList2,
           },
         ],
       }"
@@ -54,7 +60,8 @@ ChartJS.register(
 export default {
   components: { Line },
   props: {
-    ScoresList: Array,
+    ScoresList1: Array,
+    ScoresList2: Array,
     ExamList: Array,
   },
   setup() {

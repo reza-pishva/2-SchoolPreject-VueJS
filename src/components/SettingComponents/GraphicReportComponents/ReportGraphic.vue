@@ -47,7 +47,7 @@
                 padding-top: 5px;
                 margin-right: -7px;
               "
-              @click="searchList"
+              @click="barchart"
             >
               <p style="font-size: 13px; font-family: Vazir">Bar chart</p>
             </button>
@@ -65,7 +65,7 @@
                 padding-top: 5px;
                 margin-right: -7px;
               "
-              @click="searchList"
+              @click="linechart"
             >
               <p style="font-size: 13px; font-family: Vazir">Line chart</p>
             </button>
@@ -83,7 +83,7 @@
                 padding-top: 5px;
                 margin-right: -7px;
               "
-              @click="searchList"
+              @click="piechart"
             >
               <p style="font-size: 13px; font-family: Vazir">Pie chart</p>
             </button>
@@ -101,7 +101,7 @@
                 padding-top: 5px;
                 margin-right: -7px;
               "
-              @click="searchList"
+              @click="radarchart"
             >
               <p style="font-size: 13px; font-family: Vazir">Radar chart</p>
             </button>
@@ -176,8 +176,19 @@
             </div>
           </div>
         </div>
-        <div class="col-7 pt-5" style="height: 400px">
-          <ReportTwo :ScoresList="scores3" :ExamList="exam_ids" />
+        <div v-if="report1" class="col-7 pt-5" style="height: 400px">
+          <ReportOne
+            :LessonList="lessons"
+            :ScoresList="scores"
+            :ScoresList2="scores2"
+          />
+        </div>
+        <div v-if="report2" class="col-7 pt-5" style="height: 400px">
+          <ReportTwo
+            :ScoresList1="scores3"
+            :ScoresList2="scores4"
+            :ExamList="exam_ids"
+          />
         </div>
       </div>
     </div>
@@ -185,12 +196,14 @@
 </template>
 
 <script>
+import ReportOne from "./ReportOne.vue";
 import ReportTwo from "./ReportTwo.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
 export default {
   components: {
+    ReportOne,
     ReportTwo,
     StudentList,
   },
@@ -212,6 +225,10 @@ export default {
     const grade_id = ref("");
     const user_id = ref("");
     const lesson_id = ref("");
+    const report1 = ref(true);
+    const report2 = ref(false);
+    const report3 = ref(false);
+    const report4 = ref(false);
 
     function getClasses() {
       axios
@@ -294,6 +311,32 @@ export default {
           console.log(error);
         });
     }
+
+    function barchart() {
+      report1.value = true;
+      report2.value = false;
+      report3.value = false;
+      report4.value = false;
+    }
+    function linechart() {
+      report2.value = true;
+      report1.value = false;
+      report3.value = false;
+      report4.value = false;
+    }
+    function piechart() {
+      report3.value = true;
+      report1.value = false;
+      report2.value = false;
+      report4.value = false;
+    }
+    function radarchart() {
+      report4.value = true;
+      report1.value = false;
+      report2.value = false;
+      report3.value = false;
+    }
+
     return {
       lessons,
       lessons2,
@@ -314,6 +357,14 @@ export default {
       scores4,
       user_id,
       exam_ids,
+      report1,
+      report2,
+      report3,
+      report4,
+      barchart,
+      linechart,
+      piechart,
+      radarchart,
     };
   },
 };
