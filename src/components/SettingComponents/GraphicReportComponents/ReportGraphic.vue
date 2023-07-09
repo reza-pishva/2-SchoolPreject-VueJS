@@ -177,7 +177,7 @@
           </div>
         </div>
         <div class="col-7 pt-5" style="height: 400px">
-          <ReportTwo :ScoresList="scores3" :LessonList="lessons2" />
+          <ReportTwo :ScoresList="scores3" :ExamList="exam_ids" />
         </div>
       </div>
     </div>
@@ -200,6 +200,7 @@ export default {
     const scores2 = ref([]);
     const scores3 = ref([]);
     const scores4 = ref([]);
+    const exam_ids = ref([]);
     const lessons = ref([]);
     const lessons2 = ref([]);
     const lesson_ids = ref([]);
@@ -287,6 +288,7 @@ export default {
         .then(function (response) {
           scores3.value = response.data[0];
           scores4.value = response.data[1];
+          exam_ids.value = response.data[2];
         })
         .catch(function (error) {
           console.log(error);
@@ -311,6 +313,7 @@ export default {
       scores3,
       scores4,
       user_id,
+      exam_ids,
     };
   },
 };

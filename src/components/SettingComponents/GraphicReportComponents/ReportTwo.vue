@@ -1,19 +1,30 @@
 <template>
-  {{ ScoresList }}
-  <Line
-    :options="{
-      responsive: true,
-    }"
-    :data="{
-      labels: LessonList,
-      datasets: [
-        {
-          label: 'میانگین نمرات دانش آموز',
-          data: ScoresList,
-        },
-      ],
-    }"
-  />
+  <div
+    style="
+      background-color: rgba(33, 31, 31, 0.704);
+      margin-top: 50px;
+      margin-right: -10px;
+      width: 98%;
+      border-radius: 5px;
+    "
+  >
+    <Line
+      :options="{
+        responsive: true,
+      }"
+      :data="{
+        labels: ExamList,
+        datasets: [
+          {
+            label: 'تغییرات نمرات این درس',
+            backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
+            borderColor: 'rgba(255,99,132,1)',
+            data: ScoresList,
+          },
+        ],
+      }"
+    />
+  </div>
 </template>
 
 <script>
@@ -44,7 +55,7 @@ export default {
   components: { Line },
   props: {
     ScoresList: Array,
-    LessonList: Array,
+    ExamList: Array,
   },
   setup() {
     const chartData = ref({
