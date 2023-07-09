@@ -177,7 +177,11 @@
           </div>
         </div>
         <div class="col-7 pt-5" style="height: 400px">
-          <ReportTwo :ScoresList="scores3" :LessonList="lessons2" />
+          <ReportThree
+            :LessonList="lessons"
+            :ScoresList="scores"
+            :ScoresList2="scores2"
+          />
         </div>
       </div>
     </div>
@@ -185,21 +189,19 @@
 </template>
 
 <script>
-import ReportTwo from "./ReportTwo.vue";
+import ReportThree from "./ReportOne.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
 export default {
   components: {
-    ReportTwo,
+    ReportThree,
     StudentList,
   },
   setup() {
     const classes = ref([]);
     const scores = ref([]);
     const scores2 = ref([]);
-    const scores3 = ref([]);
-    const scores4 = ref([]);
     const lessons = ref([]);
     const lessons2 = ref([]);
     const lesson_ids = ref([]);
@@ -279,18 +281,6 @@ export default {
           // handle error
           console.log(error);
         });
-
-      axios
-        .get(
-          `http://127.0.0.1:8000/api/school/exam-user/user/${grade_id.value}/${user_id.value}/${lesson_id.value}`
-        )
-        .then(function (response) {
-          scores3.value = response.data[0];
-          scores4.value = response.data[1];
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     }
     return {
       lessons,
@@ -308,8 +298,6 @@ export default {
       grade_id,
       scores,
       scores2,
-      scores3,
-      scores4,
       user_id,
     };
   },

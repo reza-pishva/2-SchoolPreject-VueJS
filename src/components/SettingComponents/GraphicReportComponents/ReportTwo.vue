@@ -1,88 +1,63 @@
 <template>
-  <!-- {{ chartData }} -->
-  <div>
-    <!-- <canvas id="my-chart-id" :options="chartOptions" :data="chartData"></canvas> -->
-    <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
-  </div>
+  {{ ScoresList }}
+  <Line
+    :options="{
+      responsive: true,
+    }"
+    :data="{
+      labels: LessonList,
+      datasets: [
+        {
+          label: 'میانگین نمرات دانش آموز',
+          data: ScoresList,
+        },
+      ],
+    }"
+  />
 </template>
 
 <script>
-import { ref, onMounted, watch } from "vue";
-import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
   CategoryScale,
   LinearScale,
-} from "chart.js";
-
-ChartJS.register(
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+} from "chart.js";
+import { Line } from "vue-chartjs";
+import { ref } from "vue";
+
+ChartJS.register(
   CategoryScale,
-  LinearScale
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 export default {
-  name: "ReportTwo",
-  components: { Bar },
+  components: { Line },
   props: {
-    ScoresList: {
-      type: Array,
-      // required: true,
-    },
-    LessonList: {
-      type: Array,
-      // required: true,
-    },
+    ScoresList: Array,
+    LessonList: Array,
   },
-  setup(props) {
+  setup() {
     const chartData = ref({
-      labels: props.LessonList,
+      labels: [],
       datasets: [
         {
-          label: "Scores",
-          data: props.ScoresList,
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1,
+          data: [],
         },
       ],
     });
-    const chartOptions = ref({
-      responsive: true,
-    });
-
-    onMounted(() => {
-      updateChartData();
-    });
-
-    watch(
-      () => [props.ScoresList, props.LessonList],
-      () => {
-        console.log(chartOptions.value);
-        console.log(chartData.value);
-        chartData.value.datasets[0].data = props.ScoresList;
-        chartData.value.labels = props.LessonList;
-        chartOptions.value.responsive = true;
-      }
-    );
-
-    const updateChartData = () => {
-      chartData.value.datasets[0].data = props.ScoresList;
-      chartData.value.labels = props.LessonList;
-      chartOptions.value.responsive = true;
-      console.log("updateChartData");
-    };
 
     return {
       chartData,
-      chartOptions,
     };
   },
 };

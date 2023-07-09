@@ -1,51 +1,38 @@
 <template>
-  <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <Line :data="data" :options="options" />
 </template>
 
 <script>
-import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
   CategoryScale,
   LinearScale,
-} from "chart.js";
-
-ChartJS.register(
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
-  BarElement,
+} from "chart.js";
+import { Line } from "vue-chartjs";
+import * as chartConfig from "./chartConfig.js";
+
+ChartJS.register(
   CategoryScale,
-  LinearScale
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 export default {
-  name: "BarChart",
-  components: { Bar },
-  props: {
-    ScoresList: {
-      type: Array,
-      required: true,
-    },
-    LessonList: {
-      type: Array,
-      required: true,
-    },
+  name: "App",
+  components: {
+    Line,
   },
   data() {
-    return {
-      chartData: {
-        labels: this.props.LessonList,
-        datasets: [{ data: this.props.ScoresList }],
-      },
-      chartOptions: {
-        responsive: true,
-      },
-    };
+    return chartConfig;
   },
 };
 </script>
