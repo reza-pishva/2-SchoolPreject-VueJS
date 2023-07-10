@@ -112,6 +112,7 @@ export default {
     const l_name = ref("");
     const f_name = ref("");
     const graphicShow = ref(false);
+    const searchBtn = ref(false);
 
     function selectRow(index, gradeId, fName, lName, user_id) {
       selectedRowIndex.value = index;
@@ -120,6 +121,7 @@ export default {
       l_name.value = lName;
       grade_id.value = gradeId;
       userId.value = user_id;
+      searchBtn.value = true;
 
       axios
         .get(
@@ -148,7 +150,14 @@ export default {
           // handle error
           console.log(error);
         });
-      emit("graphicShow", [graphicShow.value, fName, lName, gradeId, user_id]);
+      emit("graphicShow", [
+        graphicShow.value,
+        fName,
+        lName,
+        gradeId,
+        user_id,
+        searchBtn.value,
+      ]);
     }
 
     return {
@@ -187,7 +196,7 @@ export default {
   height: 30px;
 }
 .selected-row {
-  background-color: rgb(10, 35, 62);
-  color: rgb(234, 241, 19) !important;
+  background-color: rgb(243, 246, 164);
+  color: rgb(10, 10, 10) !important;
 }
 </style>

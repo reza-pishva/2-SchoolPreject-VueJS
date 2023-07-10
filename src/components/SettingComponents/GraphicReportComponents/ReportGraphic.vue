@@ -9,7 +9,7 @@
             width: 70%;
             background-color: rgba(51, 51, 144, 0.726);
             margin-right: 48px;
-            margin-top: 90px;
+            margin-top: 35px;
           "
         >
           <p
@@ -40,6 +40,7 @@
             <button
               type="button"
               class="btn btn-primary button-class"
+              :class="btn1"
               style="
                 width: 120%;
                 height: 30px;
@@ -58,6 +59,7 @@
             <button
               type="button"
               class="btn btn-primary button-class"
+              :class="btn2"
               style="
                 width: 120%;
                 height: 30px;
@@ -76,6 +78,7 @@
             <button
               type="button"
               class="btn btn-primary button-class"
+              :class="btn3"
               style="
                 width: 120%;
                 height: 30px;
@@ -89,6 +92,20 @@
             </button>
           </div>
         </div>
+        <div
+          v-if="report2"
+          class="alert alert-primary"
+          role="alert"
+          style="
+            font-family: Vazir;
+            font-size: 12px;
+            color: black;
+            margin-top: 40px;
+          "
+        >
+          برای مشاهده این گزارش قبل از انتخاب نام دانش آموز بایستی یک درس انتخاب
+          شود
+        </div>
       </div>
     </div>
     <div class="col-10">
@@ -99,11 +116,11 @@
             <div class="col"></div>
           </div>
           <div class="row" style="height: 10%">
-            <div class="col" style="padding-right: 35px">
+            <div class="col-5" style="padding-right: 35px">
               <select
                 v-model="class_id"
                 class="form-select"
-                style="font-size: 12px"
+                style="font-size: 12px; width: 100%"
               >
                 <option selected value="">انتخاب کلاس:</option>
                 <option
@@ -115,13 +132,14 @@
                 </option>
               </select>
             </div>
-            <div class="col" style="padding-right: 35px">
+            <div class="col-4" style="padding-right: 35px">
               <select
+                v-if="letLesson"
                 v-model="lesson_id"
                 class="form-select"
-                style="font-size: 12px"
+                style="font-size: 12px; font-family: Vazir"
               >
-                <option selected value="">انتخاب درس:</option>
+                <option selected value="">درس:</option>
                 <option
                   v-for="(item, index) in lessons2"
                   :key="index"
@@ -131,12 +149,13 @@
                 </option>
               </select>
             </div>
-            <div class="col" style="padding-left: 50px">
+            <div class="col-3">
               <button
+                v-if="reportCommon"
                 type="button"
                 class="btn btn-primary button-class"
                 style="
-                  width: 50%;
+                  width: 75px;
                   height: 30px;
                   margin-top: 1px;
                   padding-top: 2px;
@@ -158,6 +177,7 @@
             </div>
           </div>
         </div>
+
         <div v-if="report1" class="col-7 pt-5" style="height: 400px">
           <ReportOne
             :LessonList="lessons"
@@ -189,7 +209,7 @@ import ReportOne from "./ReportOne.vue";
 import ReportTwo from "./ReportTwo.vue";
 import ReportThree from "./ReportThree.vue";
 import StudentList from "./StudentsListComponent.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import axios from "axios";
 export default {
   components: {
@@ -210,6 +230,7 @@ export default {
     const lesson_ids = ref([]);
     const users = ref([]);
     const class_id = ref("");
+    const lesson_name = ref("");
     const letGraphicShow = ref(false);
     const f_name = ref("");
     const l_name = ref("");
@@ -219,6 +240,11 @@ export default {
     const report1 = ref(true);
     const report2 = ref(false);
     const report3 = ref(false);
+    const btn1 = ref(false);
+    const btn2 = ref(false);
+    const btn3 = ref(false);
+    const reportCommon = ref(false);
+    const letLesson = ref(false);
 
     function getClasses() {
       axios
@@ -253,6 +279,10 @@ export default {
       l_name.value = graphicShow[2];
       grade_id.value = graphicShow[3];
       user_id.value = graphicShow[4];
+      reportCommon.value = false;
+      // if (report2.value) {
+      //   letLesson.value = true;
+      // }
       axios
         .get(
           `http://127.0.0.1:8000/api/school/lesson/lessons/${grade_id.value}`
@@ -303,26 +333,55 @@ export default {
     }
 
     function barchart() {
+      btn1.value = "class2";
+      btn2.value = "class1";
+      btn3.value = "class1";
       report1.value = true;
       report2.value = false;
       report3.value = false;
+      letLesson.value = false;
+      //reportCommon.value = false;
     }
     function linechart() {
+      btn1.value = "class1";
+      btn2.value = "class2";
+      btn3.value = "class1";
       report2.value = true;
       report1.value = false;
       report3.value = false;
+      letLesson.value = true;
+      // reportCommon.value = false;
     }
     function radarchart() {
+      btn1.value = "class1";
+      btn2.value = "class1";
+      btn3.value = "class2";
       report3.value = true;
       report1.value = false;
       report2.value = false;
+      letLesson.value = false;
+      //reportCommon.value = false;
     }
+
+    watch(
+      () => class_id.value,
+      () => {
+        reportCommon.value = true;
+      }
+    );
+    watch(
+      () => lesson_id.value,
+      () => {
+        reportCommon.value = false;
+      }
+    );
 
     return {
       lessons,
       lessons2,
       lesson_ids,
       lesson_id,
+      lesson_name,
       classes,
       class_id,
       searchList,
@@ -341,10 +400,23 @@ export default {
       report1,
       report2,
       report3,
+      reportCommon,
+      letLesson,
       barchart,
       linechart,
       radarchart,
+      btn1,
+      btn2,
+      btn3,
     };
   },
 };
 </script>
+<style scoped>
+.class1 {
+  background-color: rgb(31, 158, 212);
+}
+.class2 {
+  background-color: rgb(38, 46, 35);
+}
+</style>

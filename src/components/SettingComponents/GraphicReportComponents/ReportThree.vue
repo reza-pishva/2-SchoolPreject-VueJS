@@ -2,7 +2,7 @@
   <div
     style="
       background-color: rgba(255, 255, 255, 0.5);
-      margin-top: -50px;
+      margin-top: -20px;
       margin-right: -10px;
       width: 98%;
       height: 430px;
@@ -24,7 +24,7 @@
             data: ScoresList,
           },
           {
-            label: 'میانگین نمرات کلیه دانش آموز',
+            label: 'میانگین نمرات کلیه دانش آموزان',
             backgroundColor: 'rgba(0,79,157,0.5)',
             borderColor: 'rgba(0,79,157,1)',
             pointBackgroundColor: 'rgba(255,99,132,1)',
