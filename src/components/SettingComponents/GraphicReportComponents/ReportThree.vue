@@ -1,80 +1,79 @@
 <template>
-  <div>{{ ScoresList }}{{ LessonList }}</div>
-
-  <div>
-    <Bar
-      :options="{ responsive: true }"
+  <div
+    style="
+      background-color: rgba(255, 255, 255, 0.5);
+      margin-top: -50px;
+      margin-right: -10px;
+      width: 98%;
+      height: 430px;
+      border-radius: 5px;
+    "
+  >
+    <Radar
       :data="{
-        labels: `${LessonList}`,
+        labels: LessonList,
         datasets: [
           {
-            label: 'Scores',
-            data: `${ScoresList}`,
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
+            label: 'میانگین نمرات دانش آموز',
+            backgroundColor: 'rgba(44,113,36,0.5)',
+            borderColor: 'rgba(44,113,36,1)',
+            pointBackgroundColor: 'rgba(44,113,36,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(179,181,198,1)',
+            data: ScoresList,
+          },
+          {
+            label: 'میانگین نمرات کلیه دانش آموز',
+            backgroundColor: 'rgba(0,79,157,0.5)',
+            borderColor: 'rgba(0,79,157,1)',
+            pointBackgroundColor: 'rgba(255,99,132,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255,99,132,1)',
+            data: ScoresList2,
           },
         ],
       }"
+      :options="{ responsive: true, maintainAspectRatio: false }"
     />
   </div>
 </template>
 
-<script>
-import { Bar } from "vue-chartjs";
-import { ref, watch } from "vue";
+<script lang="js">
 import {
   Chart as ChartJS,
-  Title,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
   Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
-} from "chart.js";
+  Legend
+} from 'chart.js'
+import { Radar } from 'vue-chartjs'
+import * as chartConfig from './chartConfig.js'
 
 ChartJS.register(
-  Title,
+  RadialLinearScale,
+  PointElement,
+  LineElement,
+  Filler,
   Tooltip,
-  Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale
-);
+  Legend
+)
 
 export default {
-  components: { Bar },
+  name: 'App',
+  components: {
+    Radar
+  },
   props: {
     ScoresList: Array,
+    ScoresList2: Array,
     LessonList: Array,
   },
-  setup(props) {
-    const chartData = ref({
-      labels: [],
-      datasets: [
-        {
-          data: [],
-        },
-      ],
-    });
-
-    watch(props.ScoresList, (newScoresList) => {
-      chartData.value.labels = newScoresList.map((score) => score.name);
-      chartData.value.datasets[0].data = newScoresList.map(
-        (score) => score.score
-      );
-    });
-
-    watch(props.LessonList, (newLessonList) => {
-      chartData.value.labels = newLessonList.map((lesson) => lesson.name);
-      chartData.value.datasets[0].data = newLessonList.map(
-        (lesson) => lesson.score
-      );
-    });
-
-    return {
-      chartData,
-    };
-  },
-};
+  data() {
+    return chartConfig
+  }
+}
 </script>

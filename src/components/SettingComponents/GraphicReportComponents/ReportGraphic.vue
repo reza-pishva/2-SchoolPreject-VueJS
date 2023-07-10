@@ -29,7 +29,7 @@
         style="
           background-color: rgba(20, 16, 63, 0.656);
           margin-top: 10px;
-          height: 200px;
+          height: 150px;
           width: 90%;
           margin-right: 25px;
           border-radius: 5px;
@@ -68,24 +68,6 @@
               @click="linechart"
             >
               <p style="font-size: 13px; font-family: Vazir">Line chart</p>
-            </button>
-          </div>
-        </div>
-        <div class="row mt-1" style="margin-right: 2px">
-          <div style="height: 40px; width: 80%; padding-right: 27px">
-            <button
-              type="button"
-              class="btn btn-primary button-class"
-              style="
-                width: 120%;
-                height: 30px;
-                margin-top: 5px;
-                padding-top: 5px;
-                margin-right: -7px;
-              "
-              @click="piechart"
-            >
-              <p style="font-size: 13px; font-family: Vazir">Pie chart</p>
             </button>
           </div>
         </div>
@@ -190,6 +172,13 @@
             :ExamList="exam_ids"
           />
         </div>
+        <div v-if="report3" class="col-7 pt-5" style="height: 400px">
+          <ReportThree
+            :LessonList="lessons"
+            :ScoresList="scores"
+            :ScoresList2="scores2"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -198,6 +187,7 @@
 <script>
 import ReportOne from "./ReportOne.vue";
 import ReportTwo from "./ReportTwo.vue";
+import ReportThree from "./ReportThree.vue";
 import StudentList from "./StudentsListComponent.vue";
 import { ref } from "vue";
 import axios from "axios";
@@ -205,6 +195,7 @@ export default {
   components: {
     ReportOne,
     ReportTwo,
+    ReportThree,
     StudentList,
   },
   setup() {
@@ -228,7 +219,6 @@ export default {
     const report1 = ref(true);
     const report2 = ref(false);
     const report3 = ref(false);
-    const report4 = ref(false);
 
     function getClasses() {
       axios
@@ -316,25 +306,16 @@ export default {
       report1.value = true;
       report2.value = false;
       report3.value = false;
-      report4.value = false;
     }
     function linechart() {
       report2.value = true;
       report1.value = false;
       report3.value = false;
-      report4.value = false;
     }
-    function piechart() {
+    function radarchart() {
       report3.value = true;
       report1.value = false;
       report2.value = false;
-      report4.value = false;
-    }
-    function radarchart() {
-      report4.value = true;
-      report1.value = false;
-      report2.value = false;
-      report3.value = false;
     }
 
     return {
@@ -360,10 +341,8 @@ export default {
       report1,
       report2,
       report3,
-      report4,
       barchart,
       linechart,
-      piechart,
       radarchart,
     };
   },

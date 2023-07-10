@@ -74,21 +74,6 @@ export default {
         },
       ],
     });
-
-    // watch(props.ScoresList, (newScoresList) => {
-    //   chartData.value.labels = newScoresList.map((score) => score.name);
-    //   chartData.value.datasets[0].data = newScoresList.map(
-    //     (score) => score.score
-    //   );
-    // });
-
-    // watch(props.LessonList, (newLessonList) => {
-    //   chartData.value.labels = newLessonList.map((lesson) => lesson.name);
-    //   chartData.value.datasets[0].data = newLessonList.map(
-    //     (lesson) => lesson.score
-    //   );
-    // });
-
     return {
       chartData,
     };
