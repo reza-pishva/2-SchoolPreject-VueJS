@@ -1,15 +1,5 @@
 <template>
-  <div style="width: 40%" v-if="spinner">
-    <div
-      class="spinner-border text-danger"
-      role="status"
-      style="width: 100px; height: 100px; margin-top: 100px"
-    >
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
   <div
-    v-else
     style="
       width: 36%;
       height: 300px;
@@ -22,7 +12,17 @@
       margin-right: 25px;
     "
   >
+    <div style="margin: auto; width: 40%" v-if="spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <table
+      v-else
       class="table table-bordered"
       style="
         font-family: Vazir;

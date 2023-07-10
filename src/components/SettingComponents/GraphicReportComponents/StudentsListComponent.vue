@@ -1,15 +1,5 @@
 <template>
-  <div style="width: 40%" v-if="spinner">
-    <div
-      class="spinner-border text-danger"
-      role="status"
-      style="width: 100px; height: 100px; margin-top: 100px"
-    >
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
   <div
-    v-else
     style="
       margin-top: 10px;
       width: 100%;
@@ -23,7 +13,17 @@
       margin-right: 5px;
     "
   >
+    <div style="width: 90%" v-if="spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <table
+      v-else
       class="table table-bordered"
       style="
         font-family: Vazir;
@@ -103,6 +103,7 @@ export default {
   },
   setup(props, { emit }) {
     const loading = ref(false);
+    const spinner = ref(true);
     const users = ref([]);
     const lessons = ref([]);
     const selectedIds = ref([]);
@@ -159,6 +160,12 @@ export default {
         searchBtn.value,
       ]);
     }
+    function spinnerHandling() {
+      setInterval(() => {
+        spinner.value = false;
+      }, 1000);
+    }
+    spinnerHandling();
 
     return {
       users,
@@ -171,6 +178,7 @@ export default {
       l_name,
       userId,
       graphicShow,
+      spinner,
     };
   },
 };

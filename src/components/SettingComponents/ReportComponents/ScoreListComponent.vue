@@ -1,15 +1,5 @@
 <template>
-  <div style="width: 90%" v-if="spinner">
-    <div
-      class="spinner-border text-danger"
-      role="status"
-      style="width: 100px; height: 100px; margin-top: 100px"
-    >
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
   <div
-    v-else
     style="
       width: 95%;
       height: 300px;
@@ -18,7 +8,17 @@
       border-radius: 5px;
     "
   >
+    <div style="width: 90%" v-if="spinner">
+      <div
+        class="spinner-border text-danger"
+        role="status"
+        style="width: 100px; height: 100px; margin-top: 100px"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <table
+      v-else
       class="table table-bordered"
       id="ScoreTable"
       style="
