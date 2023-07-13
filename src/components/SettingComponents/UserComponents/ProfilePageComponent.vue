@@ -4,9 +4,7 @@
 </template>
 
 <script>
-// import UserGetComponent from "./UserGetComponent.vue";
 import ProfileInsertFormComponent from "./ProfileInsertFormComponent.vue";
-
 export default {
   name: "App",
   components: {
