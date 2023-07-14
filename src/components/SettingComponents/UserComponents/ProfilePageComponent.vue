@@ -1,5 +1,4 @@
 <template>
-  <!-- <UserGetComponent /> -->
   <ProfileInsertFormComponent />
 </template>
 
