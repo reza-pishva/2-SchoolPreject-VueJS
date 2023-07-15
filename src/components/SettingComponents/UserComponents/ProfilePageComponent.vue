@@ -7,7 +7,6 @@ import ProfileInsertFormComponent from "./ProfileInsertFormComponent.vue";
 export default {
   name: "App",
   components: {
-    // UserGetComponent,
     ProfileInsertFormComponent,
   },
   data() {},
